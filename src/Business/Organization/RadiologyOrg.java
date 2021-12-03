@@ -7,7 +7,7 @@ package Business.Organization;
 
 /**
  *
- * @author amey
+ * @author Lavina
  */
 public class RadiologyOrg {
     

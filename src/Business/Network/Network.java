@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Organization;
+package Business.Network;
 
 /**
  *
- * @author ninos
+ * @author Lavina
  */
-public class TrustFundOrg {
+public class Network {
     
 }
