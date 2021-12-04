@@ -11,4 +11,6 @@ package Business.Network;
  */
 public class Network {
     
+    private String networkName;
+    
 }

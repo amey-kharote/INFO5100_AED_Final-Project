@@ -10,32 +10,44 @@ package Business.Employee;
  */
 public class Employee {
     
-    private String name;
-    private int id;
-    private static int count = 1;
+    private int empID;
+    private String empName;  
+    private String empRole;
+    
+    //Counter to set Employee ID
+    private static int counter = 101;
 
     public Employee() {
-        id = count;
-        count++;
+        empID = counter;
+        counter = counter + 1;    
     }
 
-    public int getId() {
-        return id;
+    public int getEmpID() {
+        return empID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmpID(int empID) {
+        this.empID = empID;
     }
 
-    
-    public String getName() {
-        return name;
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public String getEmpRole() {
+        return empRole;
+    }
+
+    public void setEmpRole(String empRole) {
+        this.empRole = empRole;
     }
 
     @Override
     public String toString() {
-        return name;
-    }
-    
-    
+        return empName;
+    }   
 }
