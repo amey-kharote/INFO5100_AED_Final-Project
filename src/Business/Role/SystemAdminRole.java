@@ -18,7 +18,5 @@ public class SystemAdminRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel pnl, UserAccount ua, EcoSystem es) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
+    }    
 }
