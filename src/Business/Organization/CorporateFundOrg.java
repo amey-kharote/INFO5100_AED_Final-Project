@@ -5,6 +5,7 @@
  */
 package Business.Organization;
 
+import Business.Role.CorporateManagerRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -20,7 +21,9 @@ public class CorporateFundOrg extends Organization {
 
     @Override
     public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> supportedRole = new ArrayList<>();
+        supportedRole.add(new CorporateManagerRole());
+        return supportedRole;
     }
 
 }
