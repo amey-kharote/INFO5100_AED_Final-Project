@@ -16,7 +16,7 @@ public class EmployeeDirectory {
     private ArrayList<Employee> empList;
 
     public EmployeeDirectory() {
-        empList = new ArrayList();
+        empList = new ArrayList<Employee>();
     }
 
     public ArrayList<Employee> getEmpList() {

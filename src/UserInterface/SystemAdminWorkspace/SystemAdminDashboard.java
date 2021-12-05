@@ -5,17 +5,32 @@
  */
 package UserInterface.SystemAdminWorkspace;
 
+import Business.EcoSystem;
+import Business.Network.Network;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amey
  */
 public class SystemAdminDashboard extends javax.swing.JPanel {
 
+    EcoSystem ecoSystem;
+    JPanel rightJPanel;
+
     /**
      * Creates new form SystemAdminDashboard
      */
-    public SystemAdminDashboard() {
+    public SystemAdminDashboard(JPanel rightJPanel, EcoSystem ecoSystemObj) {
         initComponents();
+        this.ecoSystem = ecoSystemObj;
+        this.rightJPanel = rightJPanel;
+    }
+
+    public void populateTree() {
+
     }
 
     /**
@@ -56,8 +71,18 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         });
 
         manageEnterpriseBtn.setText("Manage Enterprise");
+        manageEnterpriseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEnterpriseBtnActionPerformed(evt);
+            }
+        });
 
         manageEnterpriseAdminBtn.setText("Manage Enterprise Admin");
+        manageEnterpriseAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEnterpriseAdminBtnActionPerformed(evt);
+            }
+        });
 
         manageDonorRecipientBtn.setText("Manage Donors and Recipient Name");
 
@@ -136,7 +161,41 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
 
     private void manageNetworkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageNetworkBtnActionPerformed
         // TODO add your handling code here:
+        ManageCitiesNetwork manageNetwork = new ManageCitiesNetwork(rightJPanel, ecoSystem);
+        rightJPanel.add("manageCityNetworks", manageNetwork);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_manageNetworkBtnActionPerformed
+
+    private void manageEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseBtnActionPerformed
+        // TODO add your handling code here:
+        if (ecoSystem.getNetworks().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Currently there are no networks. Please create a network.");
+            return;
+        }
+        ManageEnterpriseAddEnterprise enterpriseObj = new ManageEnterpriseAddEnterprise(rightJPanel, ecoSystem);
+        rightJPanel.add("manageAddEnterprise", enterpriseObj);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_manageEnterpriseBtnActionPerformed
+
+    private void manageEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseAdminBtnActionPerformed
+        // TODO add your handling code here:
+        if (ecoSystem.getNetworks().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please create networks before creating admins");
+            return;
+        }
+        for (Network networkObj : ecoSystem.getNetworks()) {
+            if (!networkObj.getEnterpriseDirectory().getEnterpriseList().isEmpty()) {
+                ManageEnterpriseAdminDash manageEntAdmins = new ManageEnterpriseAdminDash(rightJPanel, ecoSystem);
+                rightJPanel.add("manageEntAdmins", manageEntAdmins);
+                CardLayout layout = (CardLayout) rightJPanel.getLayout();
+                layout.next(rightJPanel);
+                return;
+            }
+        }    
+        JOptionPane.showMessageDialog(null, "Please create enterprises before creating admins");
+    }//GEN-LAST:event_manageEnterpriseAdminBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
