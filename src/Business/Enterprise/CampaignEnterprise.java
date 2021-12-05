@@ -5,10 +5,22 @@
  */
 package Business.Enterprise;
 
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author ninos
  */
-public class CampaignEnterprise {
-    
+public class CampaignEnterprise extends Enterprise {
+
+    public CampaignEnterprise(String name) {
+        super(name, Enterprise.EnterpriseType.Campaign);
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        return null;
+    }
+
 }
