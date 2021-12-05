@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author ninos
  */
 public abstract class Organization {
 
@@ -23,21 +23,6 @@ public abstract class Organization {
     private int organizationID;
     private static int counter=0;
     
-    public enum Type{
-        RestaurantAdmin("RestaurantAdmin"),
-        Customer("Customer"),
-        DeliveryMan("Delivery"),
-        SysAdmin("Sysadmin");
-        
-        private String value;
-        private Type(String value) {
-            this.value = value;
-        }
-        public String getValue() {
-            return value;
-        }
-    }
-
     public Organization(String name) {
         this.name = name;
         workQueue = new WorkQueue();
@@ -49,6 +34,33 @@ public abstract class Organization {
     public Organization(){
         
     }
+   
+    // setting enums for organizations in different enterprises
+    public enum OrganizationType {
+        // hospital enterprise org
+        InternalLab("InternalLab Org"),
+        Doctor("Doctor Org"),
+        Applicant("Applicant Org"),
+        // campaign enterprise org
+        RedCrossAwarenessOrg("RedCross Awareness Org"),
+        // funding enterprise org
+        TrustFund("Trust Fund Org"),
+        CorporateFund("Corporate Fund Org"),
+        // lab enterprise org
+        Radiology("Radiology Org"),
+        Pathology("Screening Org");
+
+        private String value;
+
+        private OrganizationType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+    
     public abstract ArrayList<Role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {

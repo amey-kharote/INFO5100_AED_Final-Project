@@ -5,10 +5,21 @@
  */
 package Business.Organization;
 
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lavina
  */
-public class DoctorOrg {
-    
+public class DoctorOrg extends Organization{
+
+    public DoctorOrg() {
+        super(Organization.OrganizationType.Doctor.getValue());
+    }    
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
