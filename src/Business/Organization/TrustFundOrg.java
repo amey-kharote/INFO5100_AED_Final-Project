@@ -5,10 +5,21 @@
  */
 package Business.Organization;
 
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author ninos
  */
-public class TrustFundOrg {
+public class TrustFundOrg extends Organization{
     
+    public TrustFundOrg() {
+        super(Organization.OrganizationType.TrustFund.getValue());
+    }    
+    
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
