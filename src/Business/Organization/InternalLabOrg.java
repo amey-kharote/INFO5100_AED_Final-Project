@@ -5,10 +5,25 @@
  */
 package Business.Organization;
 
+import Business.Role.DoctorRole;
+import Business.Role.InternalLabAssistantRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lavina
  */
-public class InternalLabOrg {
-    
+public class InternalLabOrg extends Organization {
+
+    public InternalLabOrg() {
+        super(Organization.OrganizationType.InternalLab.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> supportedRole = new ArrayList<>();
+        supportedRole.add(new InternalLabAssistantRole());
+        return supportedRole;
+    }
 }

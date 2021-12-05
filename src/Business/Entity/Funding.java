@@ -5,10 +5,41 @@
  */
 package Business.Entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Lavina
  */
 public class Funding {
+    
+    String networkName;
+    String eventName;
+    Date Date;
+
+    public String getNetworkName() {
+        return networkName;
+    }
+
+    public void setNetworkName(String networkName) {
+        this.networkName = networkName;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public Date getDate() {
+        return Date;
+    }
+
+    public void setDate(Date Date) {
+        this.Date = Date;
+    }
+    
     
 }

@@ -5,10 +5,12 @@
  */
 package Business;
 
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,9 +19,11 @@ import java.util.ArrayList;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
+    List <Network> networks = new ArrayList<>();
 
     public EcoSystem() {
-
+        super();
+        networks = new ArrayList<>();
     }
     
     public static EcoSystem getInstance(){
@@ -29,11 +33,34 @@ public class EcoSystem extends Organization{
         return business;
     }
     
+    public Network createAddNetwork(){
+        Network networkObj = new Network();
+        // add newly created network object to network list
+        networks.add(networkObj);
+        return networkObj;
+    }
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList=new ArrayList<Role>();
         roleList.add(new SystemAdminRole());
         return roleList;
+    }
+
+    public static EcoSystem getBusiness() {
+        return business;
+    }
+
+    public static void setBusiness(EcoSystem business) {
+        EcoSystem.business = business;
+    }
+
+    public List<Network> getNetworks() {
+        return networks;
+    }
+
+    public void setNetworks(List<Network> networks) {
+        this.networks = networks;
     }
 
 }

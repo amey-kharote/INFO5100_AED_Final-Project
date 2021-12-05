@@ -5,10 +5,25 @@
  */
 package Business.Organization;
 
+import Business.Role.CorporateManagerRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lavina
  */
-public class CorporateFundOrg {
-    
+public class CorporateFundOrg extends Organization {
+
+    public CorporateFundOrg() {
+        super(Organization.OrganizationType.CorporateFund.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> supportedRole = new ArrayList<>();
+        supportedRole.add(new CorporateManagerRole());
+        return supportedRole;
+    }
+
 }

@@ -5,10 +5,24 @@
  */
 package Business.Organization;
 
+import Business.Role.LabAssistantRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lavina
  */
-public class PathologyOrg {
-    
+public class PathologyOrg extends Organization {
+
+    public PathologyOrg() {
+        super(Organization.OrganizationType.Pathology.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> supportedRole = new ArrayList<>();
+        supportedRole.add(new LabAssistantRole());
+        return supportedRole;    
+    }
 }

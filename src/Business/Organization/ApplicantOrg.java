@@ -5,10 +5,24 @@
  */
 package Business.Organization;
 
+import Business.Role.ApplicantRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lavina
  */
-public class ApplicantOrg {
-    
+public class ApplicantOrg extends Organization {
+
+    public ApplicantOrg() {
+        super(Organization.OrganizationType.Applicant.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList <Role> supportedRole = new ArrayList<>();
+        supportedRole.add(new ApplicantRole());
+        return supportedRole;        
+    }
 }
