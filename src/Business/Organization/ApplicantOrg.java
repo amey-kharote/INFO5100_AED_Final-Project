@@ -21,6 +21,8 @@ public class ApplicantOrg extends Organization {
 
     @Override
     public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList <Role> supportedRole = new ArrayList<>();
+        supportedRole.add(new ApplicantRole());
+        return supportedRole;        
     }
 }
