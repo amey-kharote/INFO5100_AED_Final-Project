@@ -5,6 +5,8 @@
  */
 package Business.Organization;
 
+import Business.Role.DoctorRole;
+import Business.Role.InternalLabAssistantRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -20,6 +22,8 @@ public class InternalLabOrg extends Organization {
 
     @Override
     public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> supportedRole = new ArrayList<>();
+        supportedRole.add(new InternalLabAssistantRole());
+        return supportedRole;
     }
 }
