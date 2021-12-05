@@ -117,11 +117,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Enterprise"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageEnterpriseBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="manageEnterpriseAdminBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Enterprise Admin"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageEnterpriseAdminBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="manageDonorRecipientBtn">
               <Properties>
