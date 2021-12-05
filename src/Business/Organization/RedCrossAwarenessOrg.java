@@ -5,10 +5,21 @@
  */
 package Business.Organization;
 
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lavina
  */
-public class RedCrossAwarenessOrg {
+public class RedCrossAwarenessOrg extends Organization{
     
+    public RedCrossAwarenessOrg() {
+        super(Organization.OrganizationType.RedCrossAwarenessOrg.getValue());
+    }    
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
