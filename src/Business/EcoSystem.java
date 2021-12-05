@@ -19,11 +19,11 @@ import java.util.List;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
-    List <Network> networks = new ArrayList<>();
+    List <Network> networks = new ArrayList<Network>();
 
     public EcoSystem() {
-        super();
-        networks = new ArrayList<>();
+        super(null);
+        networks = new ArrayList<Network>();
     }
     
     public static EcoSystem getInstance(){
