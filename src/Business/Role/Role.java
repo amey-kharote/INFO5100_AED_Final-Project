@@ -4,7 +4,10 @@
  */
 package Business.Role;
 
+import Business.Account.Account;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
@@ -57,17 +60,17 @@ public abstract class Role {
         } else if (roleType.equals(RoleType.CorporateManagerRole)) {
             roleObj = new CorporateManagerRole();
         } else if (roleType.equals(RoleType.TrustManagerRole)) {
-             roleObj = new TrustManagerRole();
-        } else if (roleType.equals(RoleType.SystemAdminRole)){
-             roleObj = new TrustManagerRole();
-        } else if (roleType.equals(RoleType.EnterpriseManagerRole)){
-             roleObj = new EnterpriseManagerRole();
+            roleObj = new TrustManagerRole();
+        } else if (roleType.equals(RoleType.SystemAdminRole)) {
+            roleObj = new TrustManagerRole();
+        } else if (roleType.equals(RoleType.EnterpriseManagerRole)) {
+            roleObj = new EnterpriseManagerRole();
         }
-       return roleObj;
+        return roleObj;
     }
 
-    public abstract JPanel createWorkArea(JPanel userProcessContainer,
-            UserAccount account,
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org,
+            Enterprise enterprise,
             EcoSystem business);
 
     @Override
