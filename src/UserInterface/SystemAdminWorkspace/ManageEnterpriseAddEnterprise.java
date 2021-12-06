@@ -5,17 +5,62 @@
  */
 package UserInterface.SystemAdminWorkspace;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Utils.Utils;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
 
+    EcoSystem ecoSystem;
+    JPanel rightJPanel;
+
     /**
      * Creates new form ManageEnterpriseAddEnterprise
      */
-    public ManageEnterpriseAddEnterprise() {
+    public ManageEnterpriseAddEnterprise(JPanel rightJPanel, EcoSystem ecosystemObj) {
         initComponents();
+        this.ecoSystem = ecosystemObj;
+        this.rightJPanel = rightJPanel;
+        populateTable();
+        populateComboBox();
+    }
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) enterpriseTable.getModel();
+        model.setRowCount(0);
+
+        for (Network network : ecoSystem.getNetworks()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                Object[] row = new Object[3];
+                row[0] = network.getName();
+                row[1] = enterprise.getName();
+                row[2] = enterprise.getEnterpriseType().getValue();
+                model.addRow(row);
+            }
+        }
+    }
+
+    // populate filters
+    private void populateComboBox() {
+        cityDropdown.removeAllItems();
+        for (Network city : ecoSystem.getNetworks()) {
+            cityDropdown.addItem(city);
+        }
+        enterpriseTypeDropdown.removeAllItems();
+        for (Enterprise.EnterpriseType enterpriseType : Enterprise.EnterpriseType.values()) {
+            enterpriseTypeDropdown.addItem(enterpriseType);
+        }
     }
 
     /**
@@ -27,13 +72,13 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jscrollPane = new javax.swing.JScrollPane();
+        enterpriseTable = new javax.swing.JTable();
         enterpriseCityLabel = new javax.swing.JLabel();
         enterpriseTypeLabel = new javax.swing.JLabel();
         enterpriseNameLabel = new javax.swing.JLabel();
-        cityDropdown = new javax.swing.JComboBox<>();
-        enterpriseTypeDropdown = new javax.swing.JComboBox<>();
+        cityDropdown = new javax.swing.JComboBox();
+        enterpriseTypeDropdown = new javax.swing.JComboBox();
         enterpriseNameTextField = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
         submitBtn = new javax.swing.JButton();
@@ -42,21 +87,21 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(0, 153, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        enterpriseTable.setBackground(new java.awt.Color(0, 153, 255));
+        enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Network Name", "Enterprise Name", "Enterprise Type"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jscrollPane.setViewportView(enterpriseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 970, 170));
+        add(jscrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 970, 170));
 
         enterpriseCityLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseCityLabel.setText("City");
@@ -70,10 +115,15 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         enterpriseNameLabel.setText("Enterprise Name");
         add(enterpriseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
 
-        cityDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cityDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cityDropdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityDropdownActionPerformed(evt);
+            }
+        });
         add(cityDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, -1, -1));
 
-        enterpriseTypeDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseTypeDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         enterpriseTypeDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterpriseTypeDropdownActionPerformed(evt);
@@ -84,10 +134,20 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
 
         backBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         backBtn.setText("<<BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
         add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, -1, -1));
 
         submitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
         add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, -1, -1));
 
         imageHelperLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/donation.jpg"))); // NOI18N
@@ -98,18 +158,64 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_enterpriseTypeDropdownActionPerformed
 
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        Utils util = new Utils();
+        Enterprise.EnterpriseType enterpriseType = (Enterprise.EnterpriseType) enterpriseTypeDropdown.getSelectedItem();
+        Network networkObj = (Network) cityDropdown.getSelectedItem();
+        String enterpriseName = enterpriseNameTextField.getText();
+        if (networkObj == null || enterpriseType == null) {
+            JOptionPane.showMessageDialog(null, "Please select a network and enterprise type!");
+            return;
+        }
+        if (!util.notNullOrEmpty(enterpriseName)) {
+            JOptionPane.showMessageDialog(null, "Please enter an enterprise name.");
+            return;
+        } else if (!util.isAlphabetFieldValid(enterpriseName)) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid enterprise name.");
+            return;
+        }
+        List<Enterprise> enterpriseList = networkObj.getEnterpriseDirectory().getEnterpriseList();
+        for (Enterprise enterpriseObj : enterpriseList) {
+            if (enterpriseObj.getName().equalsIgnoreCase(enterpriseName)) {
+                JOptionPane.showMessageDialog(null, "This enterprise already exists. Please create a new enterprise.");
+                return;
+            }
+        }
+        networkObj.getEnterpriseDirectory().createAndAddEnterprise(enterpriseName, enterpriseType);
+        populateTable();
+        enterpriseNameTextField.setText("");
+    }//GEN-LAST:event_submitBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        rightJPanel.remove(this);
+        rightJPanel.remove(this);
+        Component[] componentArray = rightJPanel.getComponents();
+        Component componentObj = componentArray[componentArray.length - 1];
+        SystemAdminDashboard sysAdminScreen = (SystemAdminDashboard) componentObj;
+        CardLayout prevLayout = (CardLayout) rightJPanel.getLayout();
+        // populate tree on admin screen
+        sysAdminScreen.populateTree();
+        prevLayout.previous(rightJPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void cityDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityDropdownActionPerformed
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_cityDropdownActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox<String> cityDropdown;
+    private javax.swing.JComboBox cityDropdown;
     private javax.swing.JLabel enterpriseCityLabel;
     private javax.swing.JLabel enterpriseNameLabel;
     private javax.swing.JTextField enterpriseNameTextField;
-    private javax.swing.JComboBox<String> enterpriseTypeDropdown;
+    private javax.swing.JTable enterpriseTable;
+    private javax.swing.JComboBox enterpriseTypeDropdown;
     private javax.swing.JLabel enterpriseTypeLabel;
     private javax.swing.JLabel imageHelperLabel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jscrollPane;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }

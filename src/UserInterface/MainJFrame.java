@@ -5,19 +5,32 @@
  */
 package UserInterface;
 
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author amey
  */
 public class MainJFrame extends javax.swing.JFrame {
+    
+    public EcoSystem ecoSystem;
+    private DB4OUtil dB4OUtilObj = DB4OUtil.getInstance();
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        this.ecoSystem = dB4OUtilObj.retrieveSystem();;
     }
 
     /**
@@ -38,8 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
-        rightPanel = new javax.swing.JPanel();
-        backgroundLabel = new javax.swing.JLabel();
+        rightJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,8 +65,18 @@ public class MainJFrame extends javax.swing.JFrame {
         passwordLabel.setText("Password");
 
         loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titleLabel.setText("Organ Donation System");
@@ -98,26 +120,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(leftPanel);
 
-        rightPanel.setBackground(new java.awt.Color(204, 255, 255));
-
-        backgroundLabel.setBackground(new java.awt.Color(204, 255, 255));
-        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/GettyImages-organ-donation-1200.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
-        rightPanel.setLayout(rightPanelLayout);
-        rightPanelLayout.setHorizontalGroup(
-            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroundLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        rightPanelLayout.setVerticalGroup(
-            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rightPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backgroundLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(102, 102, 102))
-        );
-
-        jSplitPane1.setRightComponent(rightPanel);
+        rightJPanel.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(rightJPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,6 +136,76 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        String passwordVal = String.valueOf(passwordField.getPassword());
+        String usernameVal = usernameTextField.getText();
+   
+        UserAccount account = ecoSystem.getUserAccountDirectory().authenticateUser(usernameVal, passwordVal);
+
+        Organization inOrg = null;
+        Enterprise inEnterprise = null;
+
+
+        if (account == null) {
+            //Step 1: Go inside each network and check every enterprise
+            for (Network network : ecoSystem.getNetworks()) {
+                //Step 2: check against each enterprise
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    account = enterprise.getUserAccountDirectory().authenticateUser(usernameVal, passwordVal);
+                    if (account == null) {
+                        //Step 3:check against each organization for each enterprise
+                        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            account = org.getUserAccountDirectory().authenticateUser(usernameVal, passwordVal);
+                            if (account != null) {
+                                inEnterprise = enterprise;
+                                inOrg = org;
+                                break;
+                            }
+                        }
+
+                    } else {
+                        inEnterprise = enterprise;
+                        break;
+                    }
+                    if (inOrg != null)  break;
+                }
+                if (inEnterprise != null) break;
+            }
+        }
+        
+        if (account == null) {
+            JOptionPane.showMessageDialog(null, "User name or password is incorrect");
+            return;
+        } else {
+            CardLayout layout = (CardLayout) rightJPanel.getLayout();
+            rightJPanel.add("workArea", account.getRole().createWorkArea(rightJPanel, account, inOrg, inEnterprise, ecoSystem));
+            layout.next(rightJPanel);
+        }
+
+        // disable controls to login again
+        loginButton.setEnabled(false);
+        logoutButton.setEnabled(true);
+        usernameTextField.setEnabled(false);
+        passwordField.setEnabled(false);
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        logoutButton.setEnabled(false);
+        usernameTextField.setEnabled(true);
+        passwordField.setEnabled(true);
+        usernameTextField.setText("");
+        passwordField.setText("");
+        loginButton.setEnabled(true);
+        rightJPanel.removeAll();//clearing all the stacked cards after logout
+        JPanel emptyJPanel = new JPanel();
+        rightJPanel.add("empty", emptyJPanel);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
+        dB4OUtilObj.storeSystem(ecoSystem);
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,14 +245,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backgroundLabel;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton logoutButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JPanel rightPanel;
+    private javax.swing.JPanel rightJPanel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userNameLabel;
     private javax.swing.JTextField usernameTextField;

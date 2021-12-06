@@ -5,19 +5,42 @@
  */
 package UserInterface.SystemAdminWorkspace;
 
+import Business.EcoSystem;
+import Business.Network.Network;
+import Business.Utils.Utils;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class ManageCitiesNetwork extends javax.swing.JPanel {
 
+    EcoSystem ecoSystem;
+    JPanel rightJPanel;
     /**
      * Creates new form ManageCitiesNetwork
      */
-    public ManageCitiesNetwork() {
+    public ManageCitiesNetwork(JPanel rightJPanel, EcoSystem ecoSystemObj) {
         initComponents();
+        this.ecoSystem = ecoSystemObj;
+        this.rightJPanel = rightJPanel;
+        populateNetworkTable();
     }
-
+    
+    private void populateNetworkTable() {
+        DefaultTableModel networkTable = (DefaultTableModel) citiesNetworkTable.getModel();
+        networkTable.setRowCount(0);
+        for (Network network : ecoSystem.getNetworks()) {
+            Object[] tableRow = new Object[1];
+            tableRow[0] = network.getName();
+            networkTable.addRow(tableRow);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,13 +62,13 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
         citiesNetworkTable.setBackground(new java.awt.Color(0, 153, 255));
         citiesNetworkTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "City Network Name"
             }
         ));
         jScrollPane2.setViewportView(citiesNetworkTable);
@@ -55,9 +78,19 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
 
         backBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         backBtn.setText("<<BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         submitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,6 +126,45 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
                 .addContainerGap(362, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        rightJPanel.remove(this);
+        Component[] componentArray = rightJPanel.getComponents();
+        Component componentObj = componentArray[componentArray.length - 1];
+        SystemAdminDashboard sysAdminScreen = (SystemAdminDashboard) componentObj;
+        CardLayout prevLayout = (CardLayout) rightJPanel.getLayout();
+        // populate tree on admin screen
+        sysAdminScreen.populateTree();
+        prevLayout.previous(rightJPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        Utils util = new Utils();
+        String networkName = cityNameTextField.getText();
+
+        if (util.notNullOrEmpty(networkName)) {
+            if (util.isAlphaNumericFieldValid(networkName)) {
+                for (Network network: ecoSystem.getNetworks()) {
+                    if (network.getName().equalsIgnoreCase(networkName)) {
+                        JOptionPane.showMessageDialog(null, "City aLready exists. Please enter a new city!");
+                        cityNameTextField.setText("");
+                        return;
+                    }
+                }
+                Network newNetwork = ecoSystem.createAddNetwork();
+                newNetwork.setName(networkName);
+                populateNetworkTable(); 
+                cityNameTextField.setText("");
+                JOptionPane.showMessageDialog(null, "Sucessfully created a city.");
+                return;
+            }
+             JOptionPane.showMessageDialog(null, "Please enter a valid city.");
+             return;
+        }
+        JOptionPane.showMessageDialog(null, "Please do not leave city name as empty!");              
+    }//GEN-LAST:event_submitBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
