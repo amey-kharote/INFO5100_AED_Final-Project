@@ -16,7 +16,7 @@ public class DonorDirectory {
     
     private ArrayList<Donor> donorRecords;
 
-    public DonorDirectory(ArrayList<Donor> donorRecords) {
+    public DonorDirectory() {
         donorRecords = new ArrayList();
     }
 

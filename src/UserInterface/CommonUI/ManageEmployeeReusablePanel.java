@@ -5,17 +5,53 @@
  */
 package UserInterface.CommonUI;
 
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Utils.Utils;
+import UserInterface.HospitalAdminWorkspace.ManageHospitalApplicant;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
 
+    JPanel rightJPanel;
+    private Enterprise enterpriseObj;
+
     /**
      * Creates new form ManageEmployeeReusablePanel
      */
-    public ManageEmployeeReusablePanel() {
+    public ManageEmployeeReusablePanel(JPanel rightJPanel, Enterprise enterpriseObj) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.enterpriseObj = enterpriseObj;
+        populateOrgDropDown();
+    }
+    
+    private void populateOrgDropDown() {
+        sortByDropdown.removeAllItems();
+        organizationDropdown.removeAllItems();
+        for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
+            sortByDropdown.addItem(organization);
+            organizationDropdown.addItem(organization);
+        }
+    }
+
+    private void populateEmployeeTable(Organization org) {
+        DefaultTableModel tableModel = (DefaultTableModel)displayEmployeeDetailsTable.getModel();
+        tableModel.setRowCount(0);
+        for (Employee employeeObj : org.getEmployeeDirectory().getEmpList()) {
+            Object[] row = new Object[2];
+            row[0] = employeeObj.getEmpID();
+            row[1] = employeeObj.getEmpName();
+            tableModel.addRow(row);
+        }
     }
 
     /**
@@ -163,16 +199,41 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_organizationDropdownMouseReleased
 
     private void organizationDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationDropdownActionPerformed
-       
+        if (String.valueOf(organizationDropdown.getItemAt(organizationDropdown.getSelectedIndex())).equals("Applicant Org")) {
+            nameTextField.setEnabled(false);
+            nameTextField.setEditable(false);
+        } else {
+            nameTextField.setEnabled(true);
+            nameTextField.setEditable(true);
+        }
     }//GEN-LAST:event_organizationDropdownActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-   
+        rightJPanel.remove(this);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.previous(rightJPanel);
+
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        
+        Utils util = new Utils();
+        if (!util.notNullOrEmpty(nameTextField.getText()) || !util.isValidName(nameTextField.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid name.");
+            return;
+        }
+        Organization org = (Organization) organizationDropdown.getSelectedItem();
+       if (org.getName().equals("Applicant Org")) {
+            ManageHospitalApplicant hospitalApplicantScreen = new ManageHospitalApplicant(rightJPanel, org);
+            rightJPanel.add("hospitalApplicantScreen", hospitalApplicantScreen);
+            CardLayout layout = (CardLayout) rightJPanel.getLayout();
+            layout.next(rightJPanel);
+        } else {
+            org.getEmployeeDirectory().createEmployee(nameTextField.getText());
+            populateEmployeeTable(org);
+            JOptionPane.showMessageDialog(null, "Employee added successfully!");
+        }
+        nameTextField.setText("");
     }//GEN-LAST:event_addButtonActionPerformed
 
 

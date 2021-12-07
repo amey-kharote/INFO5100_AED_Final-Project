@@ -11,11 +11,12 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author ninos
+ * @author rrheg
  */
 public class DB4OUtil {
 
-    private static final String FILENAME = Paths.get("Databank.db4o").toAbsolutePath().toString();// path to the data store
+    // path to the data store
+    private static final String FILENAME = Paths.get("Databank1.db4o").toAbsolutePath().toString();
     private static DB4OUtil dB4OUtil;
     
     public synchronized static DB4OUtil getInstance(){
@@ -40,10 +41,9 @@ public class DB4OUtil {
             config.common().activationDepth(Integer.MAX_VALUE);
             //Controls the depth/level of updation of Object
             config.common().updateDepth(Integer.MAX_VALUE);
-
             //Register your top most Class here
-            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); // Change to the object you want to save
-
+            // Change to the object you want to save
+            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); 
             ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
             return db;
         } catch (Exception ex) {
@@ -61,10 +61,12 @@ public class DB4OUtil {
     
     public EcoSystem retrieveSystem(){
         ObjectContainer conn = createConnection();
-        ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
+        // Change to the object you want to retrive
+        ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); 
         EcoSystem system;
         if (systems.size() == 0){
-            system = ConfigureSystem.configure();  // If there's no System in the record, create a new one
+            // If there's no System in the record, create a new one
+            system = ConfigureSystem.configure();  
         }
         else{
             system = systems.get(systems.size() - 1);
