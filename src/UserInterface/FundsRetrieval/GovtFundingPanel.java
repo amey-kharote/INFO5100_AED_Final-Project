@@ -9,12 +9,12 @@ package UserInterface.FundsRetrieval;
  *
  * @author Amey
  */
-public class GovtCorpFundingPanel extends javax.swing.JPanel {
+public class GovtFundingPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form GovtFundingPanel
      */
-    public GovtCorpFundingPanel() {
+    public GovtFundingPanel() {
         initComponents();
     }
 
@@ -30,9 +30,6 @@ public class GovtCorpFundingPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         govtEventDetailTable = new javax.swing.JTable();
         govtEventFundTableLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        corpEventDetailTable = new javax.swing.JTable();
-        corpEventFundTableLabel = new javax.swing.JLabel();
         assignToMeButton = new javax.swing.JButton();
         processButton = new javax.swing.JButton();
 
@@ -56,23 +53,6 @@ public class GovtCorpFundingPanel extends javax.swing.JPanel {
         govtEventFundTableLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         govtEventFundTableLabel.setText("Government Event Fund Raising Details");
 
-        corpEventDetailTable.setBackground(new java.awt.Color(0, 153, 255));
-        corpEventDetailTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Message", "Sender", "Receiver", "Status"
-            }
-        ));
-        jScrollPane3.setViewportView(corpEventDetailTable);
-
-        corpEventFundTableLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        corpEventFundTableLabel.setText("Corporate Event Fund Raising Details");
-
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         assignToMeButton.setText("Assign To Me");
 
@@ -83,50 +63,40 @@ public class GovtCorpFundingPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(govtEventFundTableLabel)
-                            .addComponent(corpEventFundTableLabel)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(assignToMeButton)
-                        .addGap(120, 120, 120)
-                        .addComponent(processButton)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(govtEventFundTableLabel)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(83, 83, 83))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(286, Short.MAX_VALUE)
+                .addComponent(assignToMeButton)
+                .addGap(223, 223, 223)
+                .addComponent(processButton)
+                .addGap(315, 315, 315))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(39, 39, 39)
                 .addComponent(govtEventFundTableLabel)
-                .addGap(38, 38, 38)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
+                .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignToMeButton)
                     .addComponent(processButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(corpEventFundTableLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignToMeButton;
-    private javax.swing.JTable corpEventDetailTable;
-    private javax.swing.JLabel corpEventFundTableLabel;
     private javax.swing.JTable govtEventDetailTable;
     private javax.swing.JLabel govtEventFundTableLabel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton processButton;
     // End of variables declaration//GEN-END:variables
 }

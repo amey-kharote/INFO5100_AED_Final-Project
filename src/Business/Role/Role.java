@@ -4,7 +4,6 @@
  */
 package Business.Role;
 
-import Business.Account.Account;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
