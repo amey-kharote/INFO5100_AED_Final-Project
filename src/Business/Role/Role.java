@@ -16,6 +16,7 @@ import javax.swing.JPanel;
  * @author amey
  */
 public abstract class Role {
+   
 
     public enum RoleType {
         ApplicantRole("Applicant"),
@@ -71,10 +72,4 @@ public abstract class Role {
     public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org,
             Enterprise enterprise,
             EcoSystem business);
-
-    @Override
-    public String toString() {
-        return this.getClass().getName();
-    }
-
 }
