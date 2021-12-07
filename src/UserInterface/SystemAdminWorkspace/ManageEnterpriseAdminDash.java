@@ -5,7 +5,6 @@
  */
 package UserInterface.SystemAdminWorkspace;
 
-import Business.Account.Account;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
