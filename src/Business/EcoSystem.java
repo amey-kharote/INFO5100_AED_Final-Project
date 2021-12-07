@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Entity.CampaignEvent;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
@@ -19,11 +20,20 @@ import java.util.List;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
+    private ArrayList<CampaignEvent> campaignList;
     List <Network> networks = new ArrayList<Network>();
 
     public EcoSystem() {
         super(null);
         networks = new ArrayList<Network>();
+        campaignList = new ArrayList<CampaignEvent>();
+    }
+    
+    public CampaignEvent createCampaign(){
+        
+        CampaignEvent campaign = new CampaignEvent();
+        campaignList.add(campaign);
+        return campaign;
     }
     
     public static EcoSystem getInstance(){
@@ -63,4 +73,9 @@ public class EcoSystem extends Organization{
         this.networks = networks;
     }
 
+    public ArrayList<CampaignEvent> getCampaignList() {
+        return campaignList;
+    }
+
+    
 }

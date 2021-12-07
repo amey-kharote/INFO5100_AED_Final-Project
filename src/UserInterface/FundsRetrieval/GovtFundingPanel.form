@@ -125,6 +125,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Assign To Me"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignToMeButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="processButton">
       <Properties>
@@ -133,6 +136,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Process"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="processButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -5,17 +5,58 @@
  */
 package UserInterface.FundsRetrieval;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Role.CorporateManagerRole;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FundingWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class CorporateFundingPanel extends javax.swing.JPanel {
 
+    EcoSystem ecoSystem;
+    Enterprise enterprise;
+    Organization organization;
+    JPanel panel;
+    private UserAccount useraccount;
+    String patient = null;
     /**
      * Creates new form CorporateFundingPanel
      */
-    public CorporateFundingPanel() {
+    public CorporateFundingPanel(EcoSystem ecoSystem, Enterprise enterprise, Organization org, JPanel panel, UserAccount useraccount) {
         initComponents();
+        this.ecoSystem = ecoSystem;
+        this.enterprise = enterprise;
+        this.organization = org;
+        this.panel = panel;
+        this.useraccount = useraccount;
+        populateTable();
+    }
+    
+    public void populateTable(){
+        
+        DefaultTableModel dtm  = (DefaultTableModel)corpEventDetailTable.getModel();
+        dtm.setRowCount(0);
+        
+        for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){            
+            for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            row[0] = req;
+            row[1] = req.getSender().getEmployee();
+            row[2] = req.getReceiver() == null ? null : req.getReceiver().getEmployee().getEmpName();
+            row[3] = req.getStatus();
+            dtm.addRow(row);
+            }
+        }
     }
 
     /**
@@ -52,9 +93,19 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
 
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         assignToMeButton.setText("Assign To Me");
+        assignToMeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignToMeButtonActionPerformed(evt);
+            }
+        });
 
         processButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         processButton.setText("Process");
+        processButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -90,6 +141,51 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
                 .addContainerGap(348, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void assignToMeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignToMeButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = corpEventDetailTable.getSelectedRow();
+
+        if(corpEventDetailTable.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "No rows available to select", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        WorkRequest request = (WorkRequest)corpEventDetailTable.getValueAt(selectedRow, 0);
+        request.setReceiver(useraccount);
+        request.setStatus("Pending");
+        if(useraccount.getRole() instanceof CorporateManagerRole){
+            populateTable();
+        }
+    }//GEN-LAST:event_assignToMeButtonActionPerformed
+
+    private void processButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = corpEventDetailTable.getSelectedRow();
+
+        if(corpEventDetailTable.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "No rows available to select", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        FundingWorkRequest request = (FundingWorkRequest)corpEventDetailTable.getValueAt(selectedRow, 0);
+        request.setFundStatus("Processing");
+        
+        FundsApprovalPanel processWorkRequestJPanel = new FundsApprovalPanel(panel, request, useraccount);
+        panel.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.next(panel);
+    }//GEN-LAST:event_processButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
