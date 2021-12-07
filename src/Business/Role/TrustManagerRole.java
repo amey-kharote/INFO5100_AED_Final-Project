@@ -16,7 +16,14 @@ import javax.swing.JPanel;
  * @author amey
  */
 public class TrustManagerRole extends Role {
-
+  
+    RoleType roleType = RoleType.TrustManagerRole;
+    
+    @Override
+    public String toString() {
+        return this.roleType.getValue();
+    }
+    
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
