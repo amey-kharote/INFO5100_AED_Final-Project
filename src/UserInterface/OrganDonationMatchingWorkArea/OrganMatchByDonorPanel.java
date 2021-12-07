@@ -9,12 +9,12 @@ package UserInterface.OrganDonationMatchingWorkArea;
  *
  * @author Amey
  */
-public class OrganMatchByApplicantPanel extends javax.swing.JPanel {
+public class OrganMatchByDonorPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form OrganMatchByApplicantPanel
      */
-    public OrganMatchByApplicantPanel() {
+    public OrganMatchByDonorPanel() {
         initComponents();
     }
 
@@ -28,7 +28,7 @@ public class OrganMatchByApplicantPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        applicantInfoTable = new javax.swing.JTable();
+        donorInfoTable = new javax.swing.JTable();
         findMatchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         recipientInfoTable = new javax.swing.JTable();
@@ -37,9 +37,9 @@ public class OrganMatchByApplicantPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        applicantInfoTable.setBackground(new java.awt.Color(0, 153, 255));
-        applicantInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        applicantInfoTable.setModel(new javax.swing.table.DefaultTableModel(
+        donorInfoTable.setBackground(new java.awt.Color(0, 153, 255));
+        donorInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        donorInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,7 +65,7 @@ public class OrganMatchByApplicantPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(applicantInfoTable);
+        jScrollPane2.setViewportView(donorInfoTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 125, 970, 150));
 
@@ -151,8 +151,8 @@ public class OrganMatchByApplicantPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable applicantInfoTable;
     private javax.swing.JButton backButton;
+    private javax.swing.JTable donorInfoTable;
     private javax.swing.JButton findMatchButton;
     private javax.swing.JButton informOrganMatchButton;
     private javax.swing.JScrollPane jScrollPane1;
