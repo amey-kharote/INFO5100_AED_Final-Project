@@ -5,17 +5,30 @@
  */
 package UserInterface.CommonUI;
 
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amey
  */
 public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
 
+    Enterprise enterpriseObj;
+    JPanel rightJPanel;
+
     /**
-     * Creates new form HospitalAdminWorkArea
+     * Creates new form OrganizationAdminReusableWorkArea
      */
-    public OrganizationAdminReusableWorkArea() {
+    public OrganizationAdminReusableWorkArea(JPanel rightJPanel, Enterprise enterprise) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.enterpriseObj = enterprise;
+        adminValue.setText(enterpriseObj.getName());
     }
 
     /**
@@ -31,7 +44,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         managePeopleButton = new javax.swing.JButton();
         manageOrgButton = new javax.swing.JButton();
         hospitalAdminLabel = new javax.swing.JLabel();
-        hospitalAdminValue = new javax.swing.JLabel();
+        adminValue = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,27 +85,52 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         hospitalAdminLabel.setText("Admin :");
         add(hospitalAdminLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
-        hospitalAdminValue.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        hospitalAdminValue.setText("<value>");
-        add(hospitalAdminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, -1));
+        adminValue.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        adminValue.setText("<value>");
+        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButtonActionPerformed
-
+        if(enterpriseObj.getOrganizationDirectory().getOrganizationList().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Currently there are no organizations. Please create organizations first.");
+            return;
+        }
+      
+        for(Organization orgObj : enterpriseObj.getOrganizationDirectory().getOrganizationList()){
+            if(!orgObj.getEmployeeDirectory().getEmpList().isEmpty()){
+                ManageUserAccountReusablePanel manageUserJPanel = new ManageUserAccountReusablePanel(rightJPanel, enterpriseObj);
+                rightJPanel.add("manageUserJPanel", manageUserJPanel);
+                CardLayout layout = (CardLayout) rightJPanel.getLayout();
+                layout.next(rightJPanel);
+                return;
+            }
+                
+        }
+        JOptionPane.showMessageDialog(null, "Please create employees before creating users."); 
     }//GEN-LAST:event_manageUserButtonActionPerformed
 
     private void managePeopleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePeopleButtonActionPerformed
-
+        if(enterpriseObj.getOrganizationDirectory().getOrganizationList().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Currently there are no organizations. Please create an organization first.");
+            return;
+        }
+        ManageEmployeeReusablePanel managePeopleJPanel = new ManageEmployeeReusablePanel(rightJPanel, enterpriseObj);
+        rightJPanel.add("manageEmployeeRuseableJPanel", managePeopleJPanel);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_managePeopleButtonActionPerformed
 
     private void manageOrgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrgButtonActionPerformed
-
+        ManageOrganizationReusablePanel manageOrgaJpanel = new ManageOrganizationReusablePanel(rightJPanel, enterpriseObj);
+        rightJPanel.add("manageOrgJpanel", manageOrgaJpanel);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_manageOrgButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel adminValue;
     private javax.swing.JLabel hospitalAdminLabel;
-    private javax.swing.JLabel hospitalAdminValue;
     private javax.swing.JButton manageOrgButton;
     private javax.swing.JButton managePeopleButton;
     private javax.swing.JButton manageUserButton;

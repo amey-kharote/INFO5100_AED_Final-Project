@@ -17,11 +17,15 @@ import javax.swing.JPanel;
  * @author amey
  */
 public class SystemAdminRole extends Role{
-
+    
+    RoleType roleType = RoleType.SystemAdminRole;
+    
+    @Override
+    public String toString() {
+        return this.roleType.getValue();
+    }
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
          return new SystemAdminDashboard(userProcessContainer, business);
-    }
-
-   
+    }   
 }

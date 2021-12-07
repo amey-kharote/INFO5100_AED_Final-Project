@@ -5,19 +5,67 @@
  */
 package UserInterface.CommonUI;
 
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+import Business.Utils.Utils;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
-
+    
+    JPanel rightJPanel;
+    Enterprise enterpriseObj;
     /**
      * Creates new form ManageUserAccountReusablePanel
      */
-    public ManageUserAccountReusablePanel() {
+    public ManageUserAccountReusablePanel(JPanel rightJPanel, Enterprise enterpriseObj) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.enterpriseObj = enterpriseObj;
+        populateOrgCombo();
+        populateTableData();
     }
 
+    private void populateTableData() {
+        DefaultTableModel model = (DefaultTableModel) displayUserDetailsTable.getModel();
+        model.setRowCount(0);
+        for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount account : organization.getUserAccountDirectory().getUserAccountList()) {
+                Object rowObj[] = new Object[2];
+                rowObj[0] = account;
+                rowObj[1] = account.getRole();
+                model.addRow(rowObj);
+            }
+        }
+    }
+     public void populateEmployeeComboBox(Organization org){
+        employeeDropdown.removeAllItems();        
+        for (Employee employeeObj : org.getEmployeeDirectory().getEmpList()){
+            employeeDropdown.addItem(employeeObj);
+        }
+    }
+    
+    private void populateRoleComboBox(Organization org){
+        roleDropdown.removeAllItems();
+        for (Role role : org.getSupportedRole()){
+            roleDropdown.addItem(role);
+        }
+    }
+    private void populateOrgCombo() {
+        orgDropdown.removeAllItems();
+        for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
+            orgDropdown.addItem(organization);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,6 +134,11 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
 
         employeeDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         employeeDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        employeeDropdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeDropdownActionPerformed(evt);
+            }
+        });
 
         roleDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         roleDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -204,7 +257,23 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgDropdownActionPerformed
-        
+        Organization org = (Organization) orgDropdown.getSelectedItem();
+        if (org != null){
+            populateEmployeeComboBox(org);
+            populateRoleComboBox(org);
+        }
+        if(String.valueOf(orgDropdown.getItemAt(orgDropdown.getSelectedIndex())).equals("Application Org")){
+            usernameTextField.setEnabled(false);
+            passwordField.setEditable(false);
+            usernameTextField.setEditable(false);
+            passwordField.setEnabled(false);
+        }
+        else{
+            usernameTextField.setEnabled(true);
+            passwordField.setEnabled(true);
+            usernameTextField.setEditable(true);
+            passwordField.setEditable(true);
+        }        
 
     }//GEN-LAST:event_orgDropdownActionPerformed
 
@@ -217,13 +286,45 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_usernameTextFieldActionPerformed
 
     private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
-        
+        String userEmail = usernameTextField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        Utils util = new Utils();  
+        if( !util.notNullOrEmpty(userEmail) && !util.notNullOrEmpty(password)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid username and password!");
+            return;
+        }
+        Organization org = (Organization) orgDropdown.getSelectedItem();
+        Employee employeeObj = (Employee) employeeDropdown.getSelectedItem();
+        Role role = (Role) roleDropdown.getSelectedItem();   
+        if(!util.isEmaildIdvalid(userEmail)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid emailId.");
+            return;
+        }        
+        if(!util.isPasswordValid(password)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid password.");
+            return;
+        }
+        UserAccount account = org.getUserAccountDirectory().createUserAccount(userEmail, password, employeeObj, role);
+        if(account == null){
+            JOptionPane.showMessageDialog(null, "User already exists!. Please enter a different emailId.");
+            usernameTextField.setText("");
+            passwordField.setText("");
+            return;
+        }
+        populateTableData();
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        rightJPanel.remove(this);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.previous(rightJPanel);
         
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void employeeDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeDropdownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_employeeDropdownActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

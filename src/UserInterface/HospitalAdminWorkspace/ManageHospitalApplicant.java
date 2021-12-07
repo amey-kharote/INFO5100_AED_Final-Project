@@ -5,6 +5,10 @@
  */
 package UserInterface.HospitalAdminWorkspace;
 
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amey
@@ -14,7 +18,7 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
     /**
      * Creates new form ManageHospitalVisitors
      */
-    public ManageHospitalApplicant() {
+    public ManageHospitalApplicant(JPanel rightJPanel, Organization org) {
         initComponents();
     }
 

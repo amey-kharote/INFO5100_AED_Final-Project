@@ -17,7 +17,14 @@ import javax.swing.JPanel;
  * @author amey
  */
 public class TrustManagerRole extends Role {
-
+  
+    RoleType roleType = RoleType.TrustManagerRole;
+    
+    @Override
+    public String toString() {
+        return this.roleType.getValue();
+    }
+    
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
         return new GovtFundingPanel(business, enterprise, org, userProcessContainer, account);

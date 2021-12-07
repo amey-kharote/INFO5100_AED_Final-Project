@@ -11,33 +11,40 @@ package Business.WorkQueue;
  */
 public class LabTestWorkRequest extends WorkRequest{
     
+    private String patientId;
     private String patientName;
-    private String attachedFile;
-    private String labResult;
+    private String testResult;
+    private String testUploaded;
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
 
     public String getPatientName() {
         return patientName;
     }
 
-    public String getAttachedFile() {
-        return attachedFile;
-    }
-
-    public String getLabResult() {
-        return labResult;
-    }
-
     public void setPatientName(String patientName) {
         this.patientName = patientName;
     }
-
-    public void setAttachedFile(String attachedFile) {
-        this.attachedFile = attachedFile;
+    
+    public String getTestResult() {
+        return testResult;
     }
 
-    public void setLabResult(String labResult) {
-        this.labResult = labResult;
+    public void setTestResult(String testResult) {
+        this.testResult = testResult;
     }
-    
-    
+
+    public String getTestUploaded() {
+        return testUploaded;
+    }
+
+    public void setTestUploaded(String testUploaded) {
+        this.testUploaded = testUploaded;
+    }  
 }

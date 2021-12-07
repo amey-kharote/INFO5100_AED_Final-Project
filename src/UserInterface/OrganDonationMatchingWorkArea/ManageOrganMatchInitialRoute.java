@@ -16,6 +16,8 @@ import UserInterface.SystemAdminWorkspace.ManageCitiesNetwork;
 import UserInterface.SystemAdminWorkspace.SystemAdminDashboard;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -153,7 +155,7 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
     
     private void matchOrganByRecipientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchOrganByRecipientButtonActionPerformed
         
-        List<Recipient> rList = createListOfRecipients();
+        List<Recipient> rList = createRecipientsList();
         if(rList.size() > 0){
             OrganMatchByRecipientPanel organMatch = new OrganMatchByRecipientPanel(ecoSystem, panel, rList);
             panel.add("panel", organMatch);
@@ -164,6 +166,40 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_matchOrganByRecipientButtonActionPerformed
 
+    private List<Recipient> createRecipientsList(){
+        List<Recipient> recipientL = new ArrayList<Recipient>();
+        
+        for (Network network : ecoSystem.getNetworks()) {
+            for (Enterprise ents : network.getEnterpriseDirectory().getEnterpriseList()) {
+                
+                if(ents instanceof HospitalEnterprise){
+                    for(Organization organization : ents.getOrganizationDirectory().getOrganizationList()){
+                        if(organization.getName().equals("Applicant Organization")){
+                            for( Recipient recp : organization.getRecipientDirectory().getRecipientRecords()){
+                                  if(recp.getPriorityNo() > 0){
+                                      recp.setNetwork(network.getName());
+                                      recipientL.add(recp);
+                                  }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+       // List<Map.Entry<String, Recipient>> list = new ArrayList<Map.Entry<String, Recipient>>(recipientList.entrySet());
+        //sort recipient list by their sevirity
+        Collections.sort(recipientL, new Comparator<Recipient>() {
+            @Override
+            public int compare(Recipient recipent1, Recipient recipent2) {
+                return recipent1.compareTo(recipent2);
+            }
+        });
+        
+        return recipientL;
+    }
+    
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         SystemAdminDashboard manageCitiesNetwork = new SystemAdminDashboard(panel, ecoSystem);

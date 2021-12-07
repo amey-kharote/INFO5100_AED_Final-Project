@@ -52,7 +52,11 @@ public class Utils {
       return true;
     }
     
-     public boolean isPasswordValid(String sentence) {
+      public boolean isPasswordValid(String sentence) {
+      return true;
+    }
+    
+    public boolean isValidName(String name) {
       return true;
     }
      
