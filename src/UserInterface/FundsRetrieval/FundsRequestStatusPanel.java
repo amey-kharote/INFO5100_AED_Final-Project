@@ -5,17 +5,73 @@
  */
 package UserInterface.FundsRetrieval;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Entity.ApplicantDirectory;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FundingWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import UserInterface.Campaign.AwarenessCampaignInitiator;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class FundsRequestStatusPanel extends javax.swing.JPanel {
 
+    EcoSystem ecoSystem;
+    JPanel panel;
+    private Enterprise enterprise;
+    private UserAccount userAccount;    
+    ApplicantDirectory applicant = new ApplicantDirectory();
+    
     /**
      * Creates new form FundsRequestStatusPanel
      */
-    public FundsRequestStatusPanel() {
+    public FundsRequestStatusPanel(Enterprise enterprise, JPanel panel, UserAccount userAccount) {
         initComponents();
+        this.enterprise = enterprise;
+        this.panel = panel;
+        this.userAccount = userAccount;
+        
+        populateTrustFundsRequestTable();
+        populatecorporateFundsRequestTable();
+    }
+    
+    public void populateTrustFundsRequestTable(){
+        DefaultTableModel dtm = (DefaultTableModel)governmentFundRequestStatusTable.getModel();
+        dtm.setRowCount(0);
+        
+        FundingWorkRequest req = new FundingWorkRequest();
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            row[0] = ((FundingWorkRequest) request).getCampaign();
+            row[1] = ((FundingWorkRequest) request).getReceiver();
+            row[2] = ((FundingWorkRequest) request).getFundStatus();
+            String result = String.valueOf(((FundingWorkRequest) request).getAmount());
+            row[3] = result;
+            dtm.addRow(row);
+        }
+    }
+    
+    public void populatecorporateFundsRequestTable(){
+        DefaultTableModel dtm = (DefaultTableModel)governmentFundRequestStatusTable1.getModel();
+        dtm.setRowCount(0);
+        
+        FundingWorkRequest req = new FundingWorkRequest();
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            row[0] = ((FundingWorkRequest) request).getCampaign();
+            row[1] = ((FundingWorkRequest) request).getReceiver();
+            row[2] = ((FundingWorkRequest) request).getFundStatus();
+            String result = String.valueOf(((FundingWorkRequest) request).getAmount());
+            row[3] = result;
+            dtm.addRow(row);
+        }
     }
 
     /**
@@ -66,13 +122,18 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(governmentFundRequestStatusTable1);
 
         govtFundingTableHeaderLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        govtFundingTableHeaderLbl.setText("Government Funds Request Status");
+        govtFundingTableHeaderLbl.setText("Trust Funds Request Status");
 
         corporateFundingTableHeaderLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         corporateFundingTableHeaderLbl.setText("Corporate Funds Request Status");
 
         backBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         backBtn.setText("<<BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,6 +165,13 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
                 .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        panel.remove(this);
+        CardLayout layout = (CardLayout)panel.getLayout();
+        layout.previous(panel);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

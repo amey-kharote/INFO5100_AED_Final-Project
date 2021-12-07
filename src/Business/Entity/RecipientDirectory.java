@@ -35,8 +35,17 @@ public class RecipientDirectory {
         r1.setSignature(signature);       
         r1.setOrganType(organType);
         recipientRecords.add(r1);
-        return r1;
-        
+        return r1; 
     }
+
+    public List<Recipient> getRecipientRecords() {
+        return recipientRecords;
+    }
+
+    public void setRecipientRecords(List<Recipient> recipientRecords) {
+        this.recipientRecords = recipientRecords;
+    }
+    
+    
     
 }

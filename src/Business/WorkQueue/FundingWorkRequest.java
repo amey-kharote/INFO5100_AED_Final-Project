@@ -9,6 +9,72 @@ package Business.WorkQueue;
  *
  * @author amey
  */
-public class FundingWorkRequest {
+public class FundingWorkRequest extends WorkRequest{
+    
+    private String network;
+    private String eventType;
+    private String eventDate;
+    private String campaign;
+    private String approval;
+    private float amount;
+    private String fundStatus;
+    
+
+    public String getNetwork() {
+        return network;
+    }
+
+    public String getEventName() {
+        return eventType;
+    }
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public String getCampaign() {
+        return campaign;
+    }
+
+    public String getApproval() {
+        return approval;
+    }
+
+    public String getFundStatus() {
+        return fundStatus;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setNetwork(String network) {
+        this.network = network;
+    }
+
+    public void setEventName(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public void setCampaign(String campaign) {
+        this.campaign = campaign;
+    }
+
+    public void setApproval(String approval) {
+        this.approval = approval;
+    }
+
+    public void setFundStatus(String fundStatus) {
+        this.fundStatus = fundStatus;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+    
     
 }
