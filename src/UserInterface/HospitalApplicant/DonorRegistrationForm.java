@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HospitalApplicant;
+package UserInterface.HospitalApplicant;
 
 /**
  *
@@ -27,25 +27,25 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        donorRegFormHeader = new javax.swing.JLabel();
+        nameTextFieldLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         ageTextField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        ageTextFieldLabel = new javax.swing.JLabel();
+        sexCheckboxLabel = new javax.swing.JLabel();
         maleRadioBtn = new javax.swing.JRadioButton();
         femaleRadioBtn = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        bloodGroupDropdown = new javax.swing.JComboBox();
+        bloodGroupDropdownLabel = new javax.swing.JLabel();
+        contactNumberLabel = new javax.swing.JLabel();
         contactNumTextField = new javax.swing.JTextField();
-        emailIdTextField = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JTextField();
+        emailTextFieldLabel = new javax.swing.JLabel();
+        addressTextAreaLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         addressTextArea = new javax.swing.JTextArea();
-        jLabel12 = new javax.swing.JLabel();
+        organCheckboxHeader = new javax.swing.JLabel();
         corneasCheckBox = new javax.swing.JCheckBox();
         heartCheckBox = new javax.swing.JCheckBox();
         liverCheckBox = new javax.swing.JCheckBox();
@@ -54,118 +54,121 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         kidneysCheckBox = new javax.swing.JCheckBox();
         organNotAvailRadioButton = new javax.swing.JRadioButton();
         organAvailRadioButton = new javax.swing.JRadioButton();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        organAvailabilityHeader = new javax.swing.JLabel();
+        emergencyContactHeader = new javax.swing.JLabel();
         emergencyContactNameTextField = new javax.swing.JTextField();
         emergencyContactNumTextField = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        emergencyContactTextFieldLabel = new javax.swing.JLabel();
+        emergencyNameTextFieldName = new javax.swing.JLabel();
+        registerButton = new javax.swing.JButton();
+        signatureTextField = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton2.setText("<< Back");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(153, 204, 255));
+        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        backButton.setText("<< Back");
+        backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel1.setText("Donor Registration Form");
+        donorRegFormHeader.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        donorRegFormHeader.setText("Donor Registration Form");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel2.setText("Name:");
+        nameTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        nameTextFieldLabel.setText("Name:");
 
         nameTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
 
         ageTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel3.setText("Age:");
+        ageTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        ageTextFieldLabel.setText("Age:");
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel4.setText("Sex:");
+        sexCheckboxLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        sexCheckboxLabel.setText("Sex:");
 
-        maleRadioBtn.setBackground(new java.awt.Color(255, 204, 204));
+        maleRadioBtn.setBackground(new java.awt.Color(255, 255, 255));
         maleRadioBtn.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         maleRadioBtn.setText("Male");
 
-        femaleRadioBtn.setBackground(new java.awt.Color(255, 204, 204));
+        femaleRadioBtn.setBackground(new java.awt.Color(255, 255, 255));
         femaleRadioBtn.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         femaleRadioBtn.setText("Female");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "O-positive", "O-negative ", "A-positive", "A-negative", "B-positive", "B-negative", "AB-positive", "AB-negative" }));
+        bloodGroupDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        bloodGroupDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "O-positive", "O-negative ", "A-positive", "A-negative", "B-positive", "B-negative", "AB-positive", "AB-negative" }));
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel5.setText("Blood Group:");
+        bloodGroupDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        bloodGroupDropdownLabel.setText("Blood Group:");
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel6.setText("Contact Number:");
+        contactNumberLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        contactNumberLabel.setText("Contact Number:");
 
         contactNumTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
 
-        emailIdTextField.setEditable(false);
-        emailIdTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        emailIdTextField.setEnabled(false);
-        emailIdTextField.addActionListener(new java.awt.event.ActionListener() {
+        emailTextField.setEditable(false);
+        emailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        emailTextField.setEnabled(false);
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailIdTextFieldActionPerformed(evt);
+                emailTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel8.setText("Email Id:");
+        emailTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        emailTextFieldLabel.setText("Email Id:");
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel7.setText("Address:");
+        addressTextAreaLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        addressTextAreaLabel.setText("Address:");
 
         addressTextArea.setColumns(20);
         addressTextArea.setFont(new java.awt.Font("Times New Roman", 0, 23)); // NOI18N
         addressTextArea.setRows(5);
         jScrollPane1.setViewportView(addressTextArea);
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 3, 22)); // NOI18N
-        jLabel12.setText("After My Death I would like to donate:");
+        organCheckboxHeader.setFont(new java.awt.Font("Times New Roman", 3, 22)); // NOI18N
+        organCheckboxHeader.setText("After My Death I would like to donate:");
 
-        corneasCheckBox.setBackground(new java.awt.Color(255, 204, 204));
+        corneasCheckBox.setBackground(new java.awt.Color(255, 255, 255));
         corneasCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         corneasCheckBox.setText("Corneas");
 
-        heartCheckBox.setBackground(new java.awt.Color(255, 204, 204));
+        heartCheckBox.setBackground(new java.awt.Color(255, 255, 255));
         heartCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         heartCheckBox.setText("Heart");
 
-        liverCheckBox.setBackground(new java.awt.Color(255, 204, 204));
+        liverCheckBox.setBackground(new java.awt.Color(255, 255, 255));
         liverCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         liverCheckBox.setText("Liver");
 
-        pancreasCheckBox.setBackground(new java.awt.Color(255, 204, 204));
+        pancreasCheckBox.setBackground(new java.awt.Color(255, 255, 255));
         pancreasCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         pancreasCheckBox.setText("Pancreas");
 
-        lungsCheckBox.setBackground(new java.awt.Color(255, 204, 204));
+        lungsCheckBox.setBackground(new java.awt.Color(255, 255, 255));
         lungsCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         lungsCheckBox.setText("Lungs");
 
-        kidneysCheckBox.setBackground(new java.awt.Color(255, 204, 204));
+        kidneysCheckBox.setBackground(new java.awt.Color(255, 255, 255));
         kidneysCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         kidneysCheckBox.setText("Kidney");
 
-        organNotAvailRadioButton.setBackground(new java.awt.Color(255, 204, 204));
+        organNotAvailRadioButton.setBackground(new java.awt.Color(255, 255, 255));
         organNotAvailRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         organNotAvailRadioButton.setText("NO");
 
-        organAvailRadioButton.setBackground(new java.awt.Color(255, 204, 204));
+        organAvailRadioButton.setBackground(new java.awt.Color(255, 255, 255));
         organAvailRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         organAvailRadioButton.setText("Yes");
 
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel15.setText("Organ Available Now?");
+        organAvailabilityHeader.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        organAvailabilityHeader.setText("Organ Available Now?");
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        jLabel9.setText("In Emergency, Person of Contact");
+        emergencyContactHeader.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        emergencyContactHeader.setText("In Emergency, Person of Contact");
 
         emergencyContactNameTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
 
@@ -176,228 +179,254 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel11.setText("Contact Number:");
+        emergencyContactTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        emergencyContactTextFieldLabel.setText("Contact Number:");
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel10.setText("Name:");
+        emergencyNameTextFieldName.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        emergencyNameTextFieldName.setText("Name:");
+
+        registerButton.setBackground(new java.awt.Color(153, 204, 255));
+        registerButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        registerButton.setText("Register");
+        registerButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
+
+        signatureTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 22)); // NOI18N
+        jLabel14.setText("Digital Signature:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addressTextAreaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(649, 649, 649))
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(16, 16, 16))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(39, 39, 39))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                    .addGap(3, 3, 3))
-                                .addComponent(jLabel3))
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(ageTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(maleRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(femaleRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(contactNumTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(emailIdTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(253, 253, 253)
-                                .addComponent(jLabel1)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ageTextFieldLabel)
+                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameTextFieldLabel)
+                            .addComponent(sexCheckboxLabel))
+                        .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bloodGroupDropdownLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(contactNumberLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(emailTextFieldLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(donorRegFormHeader)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(339, 339, 339)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(maleRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(femaleRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(contactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bloodGroupDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(heartCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(lungsCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(liverCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(pancreasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(corneasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(kidneysCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel15)
+                                    .addComponent(organCheckboxHeader)
+                                    .addComponent(organAvailabilityHeader)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(organAvailRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(organNotAvailRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(organNotAvailRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(emergencyContactHeader)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(emergencyNameTextFieldName)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(emergencyContactNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(liverCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(pancreasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(emergencyContactNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(jLabel9)))
-                        .addGap(91, 91, 91))))
+                                    .addComponent(emergencyContactTextFieldLabel)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(signatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(105, 105, 105))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(365, 365, 365)
+                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(backButton)
+                            .addComponent(donorRegFormHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(nameTextFieldLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(8, 8, 8)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(maleRadioBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(femaleRadioBtn)
-                        .addComponent(jLabel4)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(contactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)
-                        .addGap(8, 8, 8)
+                            .addComponent(ageTextFieldLabel)
+                            .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sexCheckboxLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(maleRadioBtn)
+                                .addComponent(femaleRadioBtn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bloodGroupDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloodGroupDropdownLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(contactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(contactNumberLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(organCheckboxHeader)
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(corneasCheckBox)
+                            .addComponent(kidneysCheckBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lungsCheckBox)
+                            .addComponent(heartCheckBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(liverCheckBox)
+                            .addComponent(pancreasCheckBox))
+                        .addGap(17, 17, 17)
+                        .addComponent(organAvailabilityHeader)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(organAvailRadioButton)
+                            .addComponent(organNotAvailRadioButton))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailTextFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(emergencyContactHeader)
+                        .addGap(4, 4, 4)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addressTextAreaLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(emergencyContactNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(379, 379, 379)
-                                .addComponent(jLabel9)
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(emergencyContactNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(corneasCheckBox)
-                                    .addComponent(kidneysCheckBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lungsCheckBox)
-                                    .addComponent(heartCheckBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(liverCheckBox)
-                                    .addComponent(pancreasCheckBox))
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(organAvailRadioButton)
-                                    .addComponent(organNotAvailRadioButton))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(146, 146, 146))
+                                .addGap(9, 9, 9)
+                                .addComponent(emergencyNameTextFieldName)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emergencyContactTextFieldLabel))))
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(signatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addGap(53, 53, 53)
+                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void emailIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailIdTextFieldActionPerformed
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailIdTextFieldActionPerformed
+    }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void emergencyContactNumTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emergencyContactNumTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emergencyContactNumTextFieldActionPerformed
 
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+
+
+    }//GEN-LAST:event_registerButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea addressTextArea;
+    private javax.swing.JLabel addressTextAreaLabel;
     private javax.swing.JTextField ageTextField;
+    private javax.swing.JLabel ageTextFieldLabel;
+    private javax.swing.JButton backButton;
+    private javax.swing.JComboBox bloodGroupDropdown;
+    private javax.swing.JLabel bloodGroupDropdownLabel;
     private javax.swing.JTextField contactNumTextField;
+    private javax.swing.JLabel contactNumberLabel;
     private javax.swing.JCheckBox corneasCheckBox;
-    private javax.swing.JTextField emailIdTextField;
+    private javax.swing.JLabel donorRegFormHeader;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel emailTextFieldLabel;
+    private javax.swing.JLabel emergencyContactHeader;
     private javax.swing.JTextField emergencyContactNameTextField;
     private javax.swing.JTextField emergencyContactNumTextField;
+    private javax.swing.JLabel emergencyContactTextFieldLabel;
+    private javax.swing.JLabel emergencyNameTextFieldName;
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JCheckBox heartCheckBox;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox kidneysCheckBox;
     private javax.swing.JCheckBox liverCheckBox;
     private javax.swing.JCheckBox lungsCheckBox;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JLabel nameTextFieldLabel;
     private javax.swing.JRadioButton organAvailRadioButton;
+    private javax.swing.JLabel organAvailabilityHeader;
+    private javax.swing.JLabel organCheckboxHeader;
     private javax.swing.JRadioButton organNotAvailRadioButton;
     private javax.swing.JCheckBox pancreasCheckBox;
+    private javax.swing.JButton registerButton;
+    private javax.swing.JLabel sexCheckboxLabel;
+    private javax.swing.JTextField signatureTextField;
     // End of variables declaration//GEN-END:variables
 }
