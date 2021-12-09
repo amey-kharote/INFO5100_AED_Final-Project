@@ -5,6 +5,38 @@
  */
 package UserInterface.LabAssistant;
 
+import Business.Role.InternalLabAssistantRole;
+
+import Business.Role.LabAssistantRole;
+
+import Business.UserAccount.UserAccount;
+
+import Business.WorkQueue.LabTestWorkRequest;
+
+import java.awt.CardLayout;
+
+import java.awt.Component;
+
+import java.io.File;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+
+import javax.mail.Session;
+
+import javax.mail.Transport;
+
+import javax.mail.internet.InternetAddress;
+
+import javax.mail.internet.MimeMessage;
+
+import javax.swing.JFileChooser;
+
+import javax.swing.JOptionPane;
+
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amey
@@ -14,8 +46,21 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
     /**
      * Creates new form TestResultUploadPanel
      */
-    public TestResultUploadPanel() {
+    JPanel rightPanel;
+
+    LabTestWorkRequest labTestWorkRequest;
+
+    UserAccount userAccount;
+
+    public TestResultUploadPanel(JPanel rightPanel, LabTestWorkRequest labTestWorkRequest, UserAccount userAccount) {
+
         initComponents();
+
+        this.rightPanel = rightPanel;
+
+        this.labTestWorkRequest = labTestWorkRequest;
+
+        this.userAccount = userAccount;
     }
 
     /**
@@ -33,9 +78,16 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
         uploadResultButtonLabel = new javax.swing.JLabel();
         submitResultButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        fileUploadPathDisplayerLabel = new javax.swing.JLabel();
 
         resultTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        resultTextFieldLabel.setText("Result");
+        resultTextFieldLabel.setText("Result:");
+
+        resultFileDisplayTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultFileDisplayTextFieldActionPerformed(evt);
+            }
+        });
 
         uploadButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         uploadButton.setText("Upload");
@@ -47,7 +99,7 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
         });
 
         uploadResultButtonLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        uploadResultButtonLabel.setText("Upload result");
+        uploadResultButtonLabel.setText("Upload Result:");
 
         submitResultButton.setBackground(new java.awt.Color(255, 153, 153));
         submitResultButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -74,54 +126,180 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(310, 310, 310)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(resultTextFieldLabel)
+                            .addComponent(uploadResultButtonLabel)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(resultFileDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(uploadResultButtonLabel)
-                            .addComponent(resultTextFieldLabel))
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(resultFileDisplayTextField)
-                            .addComponent(uploadButton, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
-                    .addComponent(submitResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(310, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(331, 331, 331)
+                                .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(submitResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
+                .addComponent(fileUploadPathDisplayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(38, 38, 38)
+                .addComponent(backButton)
+                .addGap(140, 140, 140)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resultTextFieldLabel)
-                    .addComponent(resultFileDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(resultFileDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fileUploadPathDisplayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(uploadButton)
                     .addComponent(uploadResultButtonLabel))
-                .addGap(57, 57, 57)
+                .addGap(76, 76, 76)
                 .addComponent(submitResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210)
-                .addComponent(backButton)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
+        JFileChooser jFileChooserObject = new JFileChooser();
 
+        jFileChooserObject.showOpenDialog(null);
+
+        File f = jFileChooserObject.getSelectedFile();
+
+        String fileToUpload = f.getAbsolutePath();
+
+        fileUploadPathDisplayerLabel.setText(fileToUpload);
+
+        labTestWorkRequest.setTestUploaded(fileToUpload);
     }//GEN-LAST:event_uploadButtonActionPerformed
 
     private void submitResultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitResultButtonActionPerformed
-       
+        if (resultFileDisplayTextField.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Please enter a comment!");
+
+            return;
+
+        } else {
+
+            labTestWorkRequest.setTestResult(resultFileDisplayTextField.getText());
+
+            //Sending Email to the Patient of his Report
+            boolean variableForSession = false;
+
+            final String toPerson = labTestWorkRequest.getPatientName().trim(); //This needs to be an email address
+
+            String from = "organdonationaed@gmail.com";
+
+            String host = "smtp.gmail.com";
+
+            String username = "organdonationaed@gmail.com";
+
+            String password = "Pass@1234";//we have to type the real password here for it to work
+            //if it is gmail we have to enable less secure apps
+
+            Properties propertiesOfEmailServer = System.getProperties();
+
+            propertiesOfEmailServer.setProperty("mail.smtp.host", host);
+
+            propertiesOfEmailServer.put("mail.smtp.starttls.required", "true");
+
+            propertiesOfEmailServer.put("mail.smtp.starttls.enable", "true");
+
+            propertiesOfEmailServer.put("mail.smtp.host", host);
+
+            propertiesOfEmailServer.put("mail.smtp.port", "587");
+
+            propertiesOfEmailServer.put("mail.smtp.auth", "true");
+
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+
+            Session session;
+
+            session = Session.getDefaultInstance(propertiesOfEmailServer, null);
+
+            session.setDebug(variableForSession);
+
+            try {
+                MimeMessage messageToSendEmail = new MimeMessage(session);
+
+                messageToSendEmail.setFrom(new InternetAddress(from));
+
+                messageToSendEmail.setRecipient(Message.RecipientType.TO, new InternetAddress(toPerson));
+
+                InternetAddress addressToPerson;
+
+                addressToPerson = new InternetAddress(toPerson);
+
+                messageToSendEmail.setSubject("Your Test Report is ready!");
+
+                messageToSendEmail.setText("Hello! You can find the report in Attachment.");
+
+                messageToSendEmail.setFileName(labTestWorkRequest.getTestUploaded());
+
+                Transport transport = session.getTransport("smtp");
+
+                transport.connect(host, username, password);
+
+                transport.sendMessage(messageToSendEmail, messageToSendEmail.getAllRecipients());
+
+                transport.close();
+
+            } catch (Exception e) {
+
+                System.out.println(e);
+
+                JOptionPane.showMessageDialog(null, "Please attach test report!");
+
+            }
+
+            labTestWorkRequest.setStatus("Completed");
+
+            JOptionPane.showMessageDialog(null, "Processed");
+        }
     }//GEN-LAST:event_submitResultButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        rightPanel.remove(this);
+
+        Component[] arrayOfComponents = rightPanel.getComponents();
+
+        Component componentObject = arrayOfComponents[arrayOfComponents.length - 1];
+
+        LabAssistantWorkAreaPanel labAssistantWorkAreaPanelObject = (LabAssistantWorkAreaPanel) componentObject;
+
+        if (userAccount.getRole() instanceof InternalLabAssistantRole) {
+
+            labAssistantWorkAreaPanelObject.methodToPopulateTableData();
+
+        } else if (userAccount.getRole() instanceof LabAssistantRole) {
+
+            labAssistantWorkAreaPanelObject.methodToPopulateTableEnterprise();
+
+        }
+
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+
+        layout.previous(rightPanel);
+
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void resultFileDisplayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultFileDisplayTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resultFileDisplayTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel fileUploadPathDisplayerLabel;
     private javax.swing.JTextField resultFileDisplayTextField;
     private javax.swing.JLabel resultTextFieldLabel;
     private javax.swing.JButton submitResultButton;
