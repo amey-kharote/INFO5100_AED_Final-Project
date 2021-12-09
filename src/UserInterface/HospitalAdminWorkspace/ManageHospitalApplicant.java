@@ -7,6 +7,8 @@ package UserInterface.HospitalAdminWorkspace;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import UserInterface.HospitalApplicant.RecipientRegistrationForm;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -18,8 +20,13 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
     /**
      * Creates new form ManageHospitalVisitors
      */
+    JPanel rightJPanel;
+    Organization org;
+
     public ManageHospitalApplicant(JPanel rightJPanel, Organization org) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.org = org;
     }
 
     /**
@@ -94,15 +101,25 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void donorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donorButtonActionPerformed
-
+        ShowingInterestUI interestObj = new ShowingInterestUI(rightJPanel, org);
+        rightJPanel.add("manageInterest", interestObj);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_donorButtonActionPerformed
 
     private void recipientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recipientButtonActionPerformed
         // TODO add your handling code here:
+        RecipientRegistrationForm reciptObj = new RecipientRegistrationForm(rightJPanel, org);
+        rightJPanel.add("recipientRegistrationForm", reciptObj);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_recipientButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        rightJPanel.remove(this);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.previous(rightJPanel);
     }//GEN-LAST:event_backButtonActionPerformed
 
 

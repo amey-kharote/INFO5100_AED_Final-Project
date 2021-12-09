@@ -218,11 +218,12 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Utils util = new Utils();
-        if (!util.notNullOrEmpty(nameTextField.getText()) || !util.isValidName(nameTextField.getText())) {
+        Organization org = (Organization) organizationDropdown.getSelectedItem();
+        if((!util.notNullOrEmpty(nameTextField.getText()) || !util.isValidName(nameTextField.getText())) 
+                && !org.getName().equals("Applicant Org")) {
             JOptionPane.showMessageDialog(null, "Please enter valid name.");
             return;
         }
-        Organization org = (Organization) organizationDropdown.getSelectedItem();
        if (org.getName().equals("Applicant Org")) {
             ManageHospitalApplicant hospitalApplicantScreen = new ManageHospitalApplicant(rightJPanel, org);
             rightJPanel.add("hospitalApplicantScreen", hospitalApplicantScreen);

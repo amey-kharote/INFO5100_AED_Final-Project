@@ -21,9 +21,7 @@ public class ApplicantDirectory {
 
     public ApplicantDirectory() {
         applicantRecords = new ArrayList();
-    }
-    
-    
+    } 
 
     public ArrayList<Applicant> getApplicantRecords() {
         return applicantRecords;
@@ -34,8 +32,7 @@ public class ApplicantDirectory {
     }
     
     //Create new Applicant
-    public Applicant createApplicant (boolean choice, String emailID){
-        
+    public Applicant createApplicant (boolean choice, String emailID){        
         Applicant applicant = new Applicant();
         applicant.setApplicantEmailId(emailID);
         applicant.setChoice(choice);
