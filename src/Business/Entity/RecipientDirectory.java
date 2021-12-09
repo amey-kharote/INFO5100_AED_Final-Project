@@ -19,6 +19,14 @@ public class RecipientDirectory {
     public RecipientDirectory() {
         this.recipientRecords = new ArrayList();
     }
+
+    public List<Recipient> getRecipientRecords() {
+        return recipientRecords;
+    }
+
+    public void setRecipientRecords(List<Recipient> recipientRecords) {
+        this.recipientRecords = recipientRecords;
+    }
     
     //Create new recipient
     public Recipient createRecipient(String personName, int personAge, String personAddress, String personPhoneNo, 

@@ -36,6 +36,7 @@ public class ManageOrganizationReusablePanel extends javax.swing.JPanel {
         populateDropDown();
         populateOrganizationTable();
         populateOrgCombo();
+        System.out.println("Creating organization in enterprise of type :"+enterpriseObj.getEnterpriseType().getValue());
     }
     private void populateDropDown() {
          if(enterpriseObj instanceof HospitalEnterprise){

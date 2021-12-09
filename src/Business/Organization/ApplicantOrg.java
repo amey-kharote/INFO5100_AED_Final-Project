@@ -16,30 +16,9 @@ import java.util.ArrayList;
  * @author Lavina
  */
 public class ApplicantOrg extends Organization {
-   
-    private DonorDirectory donorDirectory;
-    private RecipientDirectory recipientDirectory;
-
-    public DonorDirectory getDonorDirectory() {
-        return donorDirectory;
-    }
-
-    public void setDonorDirectory(DonorDirectory donorDirectory) {
-        this.donorDirectory = donorDirectory;
-    }
-
-    public RecipientDirectory getRecipientDirectory() {
-        return recipientDirectory;
-    }
-
-    public void setRecipientDirectory(RecipientDirectory recipientDirectory) {
-        this.recipientDirectory = recipientDirectory;
-    }
-    
+      
     public ApplicantOrg() {
         super(Organization.OrganizationType.Applicant.getValue());
-        donorDirectory = new DonorDirectory();
-        recipientDirectory = new RecipientDirectory();
     }
 
     @Override

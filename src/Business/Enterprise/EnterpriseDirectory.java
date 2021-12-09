@@ -40,7 +40,7 @@ public class EnterpriseDirectory {
             enterpriseObj = new LabEnterprise(name);
         } 
         else if (enterpriseType == Enterprise.EnterpriseType.Campaign) {
-            enterpriseObj = new LabEnterprise(name);
+            enterpriseObj = new CampaignEnterprise(name);
         } 
         else if (enterpriseType == Enterprise.EnterpriseType.Funding) {
             enterpriseObj = new FundingEnterprise(name);

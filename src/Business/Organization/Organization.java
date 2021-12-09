@@ -5,6 +5,8 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
+import Business.Entity.DonorDirectory;
+import Business.Entity.RecipientDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
@@ -21,20 +23,25 @@ public abstract class Organization {
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
-    private static int counter=0;
-    
+    private static int counter = 0;
+    private DonorDirectory donorDirectory;
+    private RecipientDirectory recipientDirectory;
+
     public Organization(String name) {
         this.name = name;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
+        donorDirectory = new DonorDirectory();
+        recipientDirectory = new RecipientDirectory();
         ++counter;
     }
-    public Organization(){
-        
+
+    public Organization() {
+
     }
-   
+
     // setting enums for organizations in different enterprises
     public enum OrganizationType {
         // hospital enterprise org
@@ -60,11 +67,19 @@ public abstract class Organization {
             return value;
         }
     }
-    
+
     public abstract ArrayList<Role> getSupportedRole();
-    
+
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
+    }
+    
+    public DonorDirectory getDonorDirectory() {
+        return donorDirectory;
+    }
+    
+    public RecipientDirectory getRecipientDirectory(){
+        return recipientDirectory;
     }
 
     public int getOrganizationID() {
@@ -74,7 +89,7 @@ public abstract class Organization {
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -95,6 +110,5 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
-    
-    
+
 }

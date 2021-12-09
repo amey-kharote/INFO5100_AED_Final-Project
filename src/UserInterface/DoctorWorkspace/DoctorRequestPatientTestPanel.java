@@ -5,6 +5,24 @@
  */
 package UserInterface.DoctorWorkspace;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.LabEnterprise;
+import Business.Entity.Donor;
+import Business.Entity.Recipient;
+import Business.Network.Network;
+import Business.Organization.InternalLabOrg;
+import Business.Organization.Organization;
+import Business.Organization.PathologyOrg;
+import Business.Organization.RadiologyOrg;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LabTestWorkRequest;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amey
@@ -14,8 +32,32 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorRequestPatientTestPanel
      */
-    public DoctorRequestPatientTestPanel() {
+    JPanel rightJPanel;
+    Enterprise enterprise;
+    private UserAccount account;
+    EcoSystem business;
+    String patientType = "";
+
+    void populatePatientIdDropdown() {
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (Donor donorObj : org.getDonorDirectory().getDonorRecords()) {
+                patientNameCombobox.addItem(donorObj.getPersonEmailId().trim());
+                patientType = "Donor";
+            }
+            for (Recipient rObj : org.getRecipientDirectory().getRecipientRecords()) {
+                patientNameCombobox.addItem(rObj.getPersonEmailId().trim());
+                patientType = "Recipient";
+            }
+        }
+    }
+
+    public DoctorRequestPatientTestPanel(JPanel rightJPanel, Enterprise enterprise, UserAccount account, EcoSystem business) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.enterprise = enterprise;
+        this.account = account;
+        this.business = business;
+        populatePatientIdDropdown();
     }
 
     /**
@@ -174,10 +216,101 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void askToTakeTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_askToTakeTestButtonActionPerformed
+        if (bloodTestCheckbox.isSelected() == false
+                && xrayCheckbox.isSelected() == false
+                && radiologicTestCheckbox.isSelected() == false
+                && gynecologicalScreeningCheckbox.isSelected() == false
+                && cancerCheckbox.isSelected() == false) {
+            JOptionPane.showMessageDialog(null, "Please advice some test!");
+            return;
+        }
+        if (bloodTestCheckbox.isSelected() || xrayCheckbox.isSelected() || radiologicTestCheckbox.isSelected()) {
+            LabTestWorkRequest request = new LabTestWorkRequest();
+            request.setStatus("Request Generated");
+            request.setMessage("Requesting tests for patient!");
+            request.setSender(account);
+            request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
+            Organization org = null;
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                if (organization instanceof InternalLabOrg) {
+                    org = organization;
+                    break;
+                }
+            }
+            if (org != null) {
+                org.getWorkQueue().getWorkRequestList().add(request);
+                account.getWorkQueue().getWorkRequestList().add(request);
+            }
+            JOptionPane.showMessageDialog(null, "A request has been sent to internal lab!");
+        }
+        if (gynecologicalScreeningCheckbox.isSelected()) {
+            LabTestWorkRequest request = new LabTestWorkRequest();
+            request.setSender(account);
+            request.setMessage("Requesting screening for patient!");
+            request.setStatus("Request Generated");
+            request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
+            Organization orgObj = null;
+            for (Network networkObj : business.getNetworks()) {
+                for (Enterprise eObj : networkObj.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (eObj instanceof LabEnterprise) {
+                        for (Organization org : eObj.getOrganizationDirectory().getOrganizationList()) {
+                            if (org instanceof PathologyOrg) {
+                                orgObj = org;
+                            }
+                        }
+                    }
+                }
+            }
+            if (orgObj != null) {
+                orgObj.getWorkQueue().getWorkRequestList().add(request);
+                account.getWorkQueue().getWorkRequestList().add(request);
+                JOptionPane.showMessageDialog(null, "A request has been sent to pathology lab!");
+            }
+        }
+        if (cancerCheckbox.isSelected()) {
+            LabTestWorkRequest request = new LabTestWorkRequest();
+            request.setStatus("Request Generated");
+            request.setSender(account);
+            request.setMessage("Requesting screening for patient");
+            request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
+            Organization orgObj = null;
+            for (Network networkObj : business.getNetworks()) {
+                for (Enterprise eObj : networkObj.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (eObj instanceof LabEnterprise) {
+                        for (Organization org : eObj.getOrganizationDirectory().getOrganizationList()) {
+                            if (org instanceof RadiologyOrg) {
+                                orgObj = org;
+                            }
+                        }
+                    }
+                }
+            }
+            if (orgObj != null) {
+                orgObj.getWorkQueue().getWorkRequestList().add(request);
+                account.getWorkQueue().getWorkRequestList().add(request);
+                JOptionPane.showMessageDialog(null, "A request has been sent to radiology lab!");
+            }
+        }
+        xrayCheckbox.setSelected(false);
+        radiologicTestCheckbox.setSelected(false);
+        gynecologicalScreeningCheckbox.setSelected(false);
+        bloodTestCheckbox.setSelected(false);
+        cancerCheckbox.setSelected(false);
 
     }//GEN-LAST:event_askToTakeTestButtonActionPerformed
 
     private void checkResultStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkResultStatusButtonActionPerformed
+        List<String> testLists = new ArrayList<>();
+        if (bloodTestCheckbox.isSelected()) testLists.add("Yes");
+        else testLists.add("No");
+        if (radiologicTestCheckbox.isSelected()) testLists.add("Yes");
+        else testLists.add("No");
+        if (xrayCheckbox.isSelected()) testLists.add("Yes"); else testLists.add("No");     
+        String patientId = (String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex());
+        ActivityAreaForDoctorPanel doctorActivityArea = new ActivityAreaForDoctorPanel(rightJPanel, account,enterprise, patientId , testLists, patientType);
+        rightJPanel.add("ActivityScreenForDoctor", doctorActivityArea);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
 
     }//GEN-LAST:event_checkResultStatusButtonActionPerformed
 
