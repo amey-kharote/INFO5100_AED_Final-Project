@@ -5,17 +5,48 @@
  */
 package UserInterface.HospitalApplicant;
 
+import Business.Organization.Organization;
+import Business.Utils.Utils;
+import java.awt.CardLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+
 /**
  *
  * @author Amey
  */
 public class RecipientRegistrationForm extends javax.swing.JPanel {
-
+    
+    Organization organization;
+    JPanel panel;
+    Utils utils;
     /**
      * Creates new form RecipientRegistrationForm
      */
-    public RecipientRegistrationForm() {
+    public RecipientRegistrationForm(Organization organization, JPanel panel ) {
         initComponents();
+        this.organization = organization;
+        this.panel = panel;
+        populateRadio1();
+        populateRadio2();
+    }
+    
+    private void populateRadio1() {
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(maleRadioBtn);
+        buttonGroup.add(femaleRadioBtn);
+    }
+    
+    private void populateRadio2() {
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(lungRdBtn);
+        buttonGroup.add(kidneyRdBtn);
+        buttonGroup.add(pancreasRdBtn);
+        buttonGroup.add(corneasRdBtn);
+        buttonGroup.add(liverRdBtn);
+        buttonGroup.add(heartRdBtn);
     }
 
     /**
@@ -292,12 +323,120 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+
+        panel.remove(this);
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.previous(panel);                          
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        String gender = "";
+        int age;
         
+        if(maleRadioBtn.isSelected()){
+            gender = maleRadioBtn.getText();
+        }else{
+            gender = femaleRadioBtn.getText();
+        }  
+
+            
+        String nameOnForm = nameTextField.getText();
+        String phone = contactNumTextField.getText();
+        String emailID = emailTextField.getText();
+        String signature = signatureTextField.getText(); 
+        
+       if(nameOnForm.equals("") || 
+               gender.equals("") || 
+               signature.equals("") || 
+               emailID.equals("") || 
+               phone.equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill all the details.");
+            return;
+        }
+        
+        
+        
+        try{
+            age =  Integer.parseInt(ageTextField.getText());          
+            if(age > 80 || age < 18){
+                JOptionPane.showMessageDialog(null , "Please enter correct age.");
+                ageTextField.setText("");
+                 return;
+            }
+           }
+           catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null , "Please add correct age"); 
+            ageTextField.setText("");
+               return;
+           }
+           
+         //Check Name validity
+        if(!utils.isValidName(nameOnForm) || !utils.isValidSign(signature)){
+            JOptionPane.showMessageDialog(null, "Please enter valid name.");
+            return;
+        }
+        
+        //check Phone number validity
+        if(utils.isValidPhoneNo(phone)){
+            JOptionPane.showMessageDialog(null, " Invalid Phone No." + 
+                "Should be 10 digit number between 0-9");
+            return;
+        }
+        //check email ID validity
+        if(!utils.isEmaildIdvalid(emailID)){
+            JOptionPane.showMessageDialog(null, " Invalid Email ID." + 
+                "Username should be an email-ID");
+            return;
+        }
+        
+   
+        if(!(corneasRdBtn.isSelected() || 
+                kidneyRdBtn.isSelected() ||
+                liverRdBtn.isSelected() ||
+                heartRdBtn.isSelected() ||
+                lungRdBtn.isSelected() ||                 
+                pancreasRdBtn.isSelected())){
+            JOptionPane.showMessageDialog(null, "Kindly select an organ for transplantation");
+            return;
+        }
+            
+        Object bloodGroup = bloodGroupDropdown.getSelectedItem();
+
+            String addr = addressTextArea.getText();
+
+            String organType;
+            
+            if(corneasRdBtn.isSelected())
+                organType = pancreasRdBtn.getText();               
+            else if(kidneyRdBtn.isSelected())
+                organType = kidneyRdBtn.getText();
+            else if(heartRdBtn.isSelected())
+                organType = liverRdBtn.getText();               
+            else if(lungRdBtn.isSelected())
+                organType = lungRdBtn.getText();
+            else if(liverRdBtn.isSelected())
+                organType = heartRdBtn.getText();
+            else 
+                organType = corneasRdBtn.getText();
+            
+            if(organization != null && organization.getRecipientDirectory() != null){
+                organization.getRecipientDirectory().createRecipient(nameOnForm, age, addr, 
+                        phone,emailID, (String) bloodGroup, gender,
+                        signature, organType);
+                JOptionPane.showMessageDialog(null, "You have been registered successfully.");
+                
+                signatureTextField.setText("");
+                nameTextField.setText("");
+                addressTextArea.setText("");
+                ageTextField.setText("");
+                emailTextField.setText("");
+                contactNumTextField.setText("");
+                
+                panel.remove(this);
+                CardLayout layout = (CardLayout) panel.getLayout();
+                layout.previous(panel);
+            }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

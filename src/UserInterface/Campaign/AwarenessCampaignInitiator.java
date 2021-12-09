@@ -13,6 +13,8 @@ import Business.Entity.ApplicantDirectory;
 import Business.Entity.CampaignEvent;
 import Business.Network.Network;
 import Business.Organization.ApplicantOrg;
+import Business.Organization.CorporateFundOrg;
+import Business.Organization.TrustFundOrg;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.Utils;
@@ -101,6 +103,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         requestFundsFormCurrencyLabel = new javax.swing.JLabel();
         fundsRequestStatusBtn = new javax.swing.JButton();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        reqCorporateFunds = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setLayout(null);
@@ -193,6 +196,10 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         fundsRequestStatusBtn.setBounds(53, 537, 361, 35);
         add(jDateChooser2);
         jDateChooser2.setBounds(264, 331, 147, 32);
+
+        reqCorporateFunds.setText("jButton1");
+        add(reqCorporateFunds);
+        reqCorporateFunds.setBounds(460, 480, 230, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setupEventBtnActionPerformed
@@ -203,11 +210,30 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         
         Date date = new Date();
         Date today = new java.sql.Date (date.getTime());
-        
+ 
+        try{
+        if(networkName.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select city for the event");
+            return;
+        }else if(campaignName.equals("")){
+            JOptionPane.showMessageDialog(null, "Please add the event Name ");
+            return;
+        }else if(eventDate.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select the date for the event");
+            return;
+        }else if(requestFundsFormTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter the amount of funds required");
+            return;
+        }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please enter values for all the fields");
+            return;
+        }
+        /*
         if(!(utility.isValidCampaign(campaignName))){
             JOptionPane.showMessageDialog(null, "Campign Name is not valid");
             return;
-        }
+        }*/
         
         //Validate Date
         try{
@@ -231,18 +257,10 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         }
         
         //Check for empty details
-        if(networkName.equals(null)){
-            JOptionPane.showMessageDialog(null, "Please select city for the event");
-            return;
-        }else if(campaignName.equals("")){
-            JOptionPane.showMessageDialog(null, "Please add the event Name ");
-            return;
-        }else if(eventDate.equals(null)){
-            JOptionPane.showMessageDialog(null, "Please select the date for the event");
-            return;
-        }
         
+        //Send email to all the applicants
         if(ecoSystem != null){
+            System.out.println("####LP#### Befoer sending email");
             for(Applicant applicant : appDirectory.getApplicantRecords()){
                 utility.sendEmail(applicant.getApplicantEmailId(), campaignName, String.valueOf(eventDate), String.valueOf(networkName));
             }
@@ -261,35 +279,46 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         }
         
         FundingWorkRequest req = new FundingWorkRequest();
-        req.setMessage("Kindly provide approval for th requested funds!!");
+        req.setMessage("Kindly provide approval for the requested funds!!");
         req.setSender(userAccount);
         req.setStatus("Sent");
-        req.setCampaign(campaignName);
+        req.setCampaign(eventNameFromTextField.getText());
         req.setAmount(money);
         req.setEventName(campaignName);
+
         
-        Organization organisation = null;
+        Organization org1 = null;
          for(Network network : ecoSystem.getNetworks()){          
             for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                System.out.println("####LP#### Enterprise" +enterprise.toString());
                 if(enterprise instanceof FundingEnterprise){
                    
-                    for(Organization org :  enterprise.getOrganizationDirectory().getOrganizationList()){     
-                       if(org instanceof FundingEnterprise){
-                           organisation = org;                          
+                    for(Organization org :  enterprise.getOrganizationDirectory().getOrganizationList()){  
+                        System.out.println("####LP####");
+                        System.out.println(org.toString());
+                       if(org instanceof CorporateFundOrg || org instanceof TrustFundOrg){
+                           org1 = org; 
+                           System.out.println("####LP####");
+                           System.out.println(org1.toString());
                        }
                    }
                 }
             }
         }
-        if(organisation != null){
-            organisation.getWorkQueue().getWorkRequestList().add(req);
+        if(org1 != null){
+            System.out.println("####LP####");
+            System.out.println(org1);
+            
+            org1.getWorkQueue().getWorkRequestList().add(req);
             userAccount.getWorkQueue().getWorkRequestList().add(req);
+            System.out.println(org1.getWorkQueue().getWorkRequestList());
+            System.out.println(userAccount.getWorkQueue().getWorkRequestList());
         }
         
         CampaignEvent campaign = ecoSystem.createCampaign();
         campaign.setCampaignName(campaignName);
         campaign.setNetworkName(networkName.getName());
-        campaign.setDate(date);
+        campaign.setDate(eventDate);
         campaign.setMoney(money);
         
         JOptionPane.showMessageDialog(null, "Awareness event created successfully.");
@@ -323,6 +352,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
     private javax.swing.JButton fundsRequestStatusBtn;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton reqCorporateFunds;
     private javax.swing.JLabel requestFundsFormCurrencyLabel;
     private javax.swing.JLabel requestFundsFormLabel;
     private javax.swing.JTextField requestFundsFormTextField;

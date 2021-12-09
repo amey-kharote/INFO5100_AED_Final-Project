@@ -312,6 +312,9 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
             return;
         }
         populateTableData();
+        usernameTextField.setText("");
+        passwordField.setText("");
+        
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
