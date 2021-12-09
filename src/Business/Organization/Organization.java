@@ -23,11 +23,9 @@ public abstract class Organization {
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private RecipientDirectory recipientDirectory;
-    private DonorDirectory donorDirectory;  
+    private DonorDirectory donorDirectory;
     private int organizationID;
     private static int counter = 0;
-    private DonorDirectory donorDirectory;
-    private RecipientDirectory recipientDirectory;
 
     public Organization(String name) {
         this.name = name;
@@ -75,12 +73,12 @@ public abstract class Organization {
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }
-    
+
     public DonorDirectory getDonorDirectory() {
         return donorDirectory;
     }
-    
-    public RecipientDirectory getRecipientDirectory(){
+
+    public RecipientDirectory getRecipientDirectory() {
         return recipientDirectory;
     }
 
@@ -108,23 +106,13 @@ public abstract class Organization {
         this.workQueue = workQueue;
     }
 
-    public RecipientDirectory getRecipientDirectory() {
-        return recipientDirectory;
-    }
-
     public void setRecipientDirectory(RecipientDirectory recipientDirectory) {
         this.recipientDirectory = recipientDirectory;
-    }
-
-    public DonorDirectory getDonorDirectory() {
-        return donorDirectory;
     }
 
     public void setDonorDirectory(DonorDirectory donorDirectory) {
         this.donorDirectory = donorDirectory;
     }
-    
-    
 
     @Override
     public String toString() {

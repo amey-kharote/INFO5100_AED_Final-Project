@@ -21,14 +21,25 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="submitButton" min="-2" pref="650" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="emailTextFieldLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="passwordTextFieldLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="confirmPasswordTextFieldLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="cityDropdownLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="organDonationInterestRadioButtonLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="217" pref="217" max="-2" attributes="0"/>
+                      <Component id="newApplicantSignUpForm" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="emailTextFieldLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="passwordTextFieldLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cityDropdownLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="organDonationInterestRadioButtonLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="yesBtn" min="-2" pref="100" max="-2" attributes="0"/>
@@ -36,14 +47,9 @@
                               <Component id="noBtn" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Component id="cityDropdown" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
-                          <Component id="confirmPasswordTextField" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
                           <Component id="passwordTextField" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
                           <Component id="emailTextField" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
-                      <Component id="newApplicantSignUpForm" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="272" max="32767" attributes="0"/>
@@ -55,7 +61,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
               <Component id="newApplicantSignUpForm" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <EmptySpace pref="96" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="emailTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="emailTextFieldLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -65,26 +71,20 @@
                   <Component id="passwordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordTextFieldLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="confirmPasswordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="confirmPasswordTextFieldLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cityDropdown" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cityDropdownLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityDropdown" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                      <Component id="organDonationInterestRadioButtonLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="yesBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="organDonationInterestRadioButtonLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="yesBtn" min="-2" max="-2" attributes="0"/>
                   <Component id="noBtn" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
               <Component id="submitButton" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
           </Group>
@@ -121,24 +121,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="confirmPasswordTextFieldLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="24" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Confirm Password"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="confirmPasswordTextField">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="23" style="1"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="confirmPasswordTextFieldKeyPressed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cityDropdown">
       <Properties>

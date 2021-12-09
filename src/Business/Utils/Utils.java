@@ -64,6 +64,10 @@ public class Utils {
          return true;
      }
      
+     public boolean isValidPhoneNum(String campaign){
+         return true;
+     }
+             
      public void sendEmail(String emailID, String campaignName, String campaignDate, String city){
          
          final String recipient = emailID;
