@@ -143,7 +143,6 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
         // TODO add your handling code here:
         Utils util = new Utils();
         String networkName = cityNameTextField.getText();
-
         if (util.notNullOrEmpty(networkName)) {
             if (util.isAlphaNumericFieldValid(networkName)) {
                 for (Network network: ecoSystem.getNetworks()) {
@@ -153,9 +152,11 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
                         return;
                     }
                 }
+                System.out.println("Creating a new network with name :"+networkName);
                 Network newNetwork = ecoSystem.createAddNetwork();
                 newNetwork.setName(networkName);
                 populateNetworkTable(); 
+                System.out.println("Created new network with name :"+networkName);
                 cityNameTextField.setText("");
                 JOptionPane.showMessageDialog(null, "Sucessfully created a city.");
                 return;

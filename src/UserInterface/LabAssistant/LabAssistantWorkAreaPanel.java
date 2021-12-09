@@ -5,17 +5,75 @@
  */
 package UserInterface.LabAssistant;
 
+import Business.EcoSystem;
+
+import Business.Enterprise.Enterprise;
+
+import Business.Organization.InternalLabOrg;
+
+import Business.Organization.Organization;
+
+import Business.Role.LabAssistantRole;
+
+import Business.Role.InternalLabAssistantRole;
+
+import Business.UserAccount.UserAccount;
+
+import Business.WorkQueue.LabTestWorkRequest;
+
+import Business.WorkQueue.WorkRequest;
+
+import java.awt.CardLayout;
+
+import java.awt.Font;
+
+import javax.swing.JOptionPane;
+
+import javax.swing.JPanel;
+
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Amey
  */
 public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
-
+    
+    JPanel rightPanel;
+    EcoSystem ecosystem;
+    Enterprise enterprise;
+    Organization organization;
+    UserAccount userAccount;
     /**
      * Creates new form NewJPanel
      */
-    public LabAssistantWorkAreaPanel() {
+    public LabAssistantWorkAreaPanel(JPanel rightPanel, EcoSystem ecosystem, Enterprise enterprise, Organization organization, UserAccount userAccount) {
         initComponents();
+        
+        this.ecosystem = ecosystem;
+        
+        this.organization = (InternalLabOrg)organization;
+        
+        this.userAccount = userAccount;
+        
+        this.rightPanel = rightPanel;
+        
+        methodToPopulateTableData();
+        
+        labAssitantWorkRequestTable.getTableHeader().setFont(new Font("Times New Roman" , Font.ITALIC,23));
+    }
+    public LabAssistantWorkAreaPanel(JPanel rightPanel, EcoSystem ecosystem, Enterprise enterprise, UserAccount userAccount) {
+        
+        initComponents();
+        
+        this.ecosystem = ecosystem;
+        
+        this.enterprise = enterprise;
+        
+        this.userAccount = userAccount;
+        
+        this.rightPanel = rightPanel;
+        
+        methodToPopulateTableEnterprise();
     }
 
     /**
@@ -31,6 +89,8 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         labAssitantWorkRequestTable = new javax.swing.JTable();
         assignToMeButton = new javax.swing.JButton();
         processButton = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labAssitantWorkRequestTable.setBackground(new java.awt.Color(0, 153, 255));
         labAssitantWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -62,6 +122,8 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(labAssitantWorkRequestTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 68, 1090, 180));
+
         assignToMeButton.setBackground(new java.awt.Color(153, 204, 255));
         assignToMeButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         assignToMeButton.setText("Assign to me");
@@ -71,6 +133,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
                 assignToMeButtonActionPerformed(evt);
             }
         });
+        add(assignToMeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 325, 300, 40));
 
         processButton.setBackground(new java.awt.Color(153, 204, 255));
         processButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -81,42 +144,114 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
                 processButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(assignToMeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(processButton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignToMeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(processButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(354, Short.MAX_VALUE))
-        );
+        add(processButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(811, 325, 300, 40));
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void methodToPopulateTableData () {
+        
+        DefaultTableModel tableModel = (DefaultTableModel)labAssitantWorkRequestTable.getModel();
+        
+        tableModel.setRowCount(0);
+        
+        for(WorkRequest workRequestObject : organization.getWorkQueue().getWorkRequestList()){
+            Object[] labAssistantTableRow = new Object[4];
+            
+            labAssistantTableRow[0] = workRequestObject;
+            
+            labAssistantTableRow[1] = workRequestObject.getSender().getEmployee().getEmpName();
+            
+            labAssistantTableRow[2] = workRequestObject.getReceiver() == null 
+                    ? null 
+                    : workRequestObject.getReceiver().getEmployee().getEmpName();
+            
+            labAssistantTableRow[3] = workRequestObject.getStatus();
+            
+            tableModel.addRow(labAssistantTableRow);
+        }
+    }
+    
+    
+    public void methodToPopulateTableEnterprise () {
+        
+        DefaultTableModel tableModel = (DefaultTableModel)labAssitantWorkRequestTable.getModel();
+        
+        tableModel.setRowCount(0);
+        
+        for(Organization organizationObject : enterprise.getOrganizationDirectory().getOrganizationList()){
+            
+            for(WorkRequest requestOfWork: organizationObject.getWorkQueue().getWorkRequestList()){
+                
+            Object[] labAssistantTableRow = new Object[4];
+            
+            labAssistantTableRow[0] = requestOfWork;
+            
+            labAssistantTableRow[1] = requestOfWork.getSender().getEmployee().getEmpName();
+            
+            labAssistantTableRow[2] = requestOfWork.getReceiver() == null 
+                    ? null 
+                    : requestOfWork.getReceiver().getEmployee().getEmpName();
+            
+            labAssistantTableRow[3] = requestOfWork.getStatus();
+            
+            tableModel.addRow(labAssistantTableRow);
+          
+            }
+        }
+    }
+    
     private void assignToMeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignToMeButtonActionPerformed
+        int selectedRowOfTable = labAssitantWorkRequestTable.getSelectedRow();
+
+        if(labAssitantWorkRequestTable.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "No rows present to select.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (selectedRowOfTable < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        WorkRequest requestOfWork = (WorkRequest)labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
+        
+        requestOfWork.setReceiver(userAccount);
+        
+        requestOfWork.setStatus("Pending");
+        
+        if(userAccount.getRole() instanceof LabAssistantRole){
+            
+           methodToPopulateTableEnterprise(); 
+        } else if(userAccount.getRole() instanceof InternalLabAssistantRole){
+            
+            methodToPopulateTableData();
+        }
     }//GEN-LAST:event_assignToMeButtonActionPerformed
 
     private void processButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processButtonActionPerformed
-    }//GEN-LAST:event_processButtonActionPerformed
+        int selectedRowOfTable = labAssitantWorkRequestTable.getSelectedRow();
 
+        if(labAssitantWorkRequestTable.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "There are no rows present in the Table to Select.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (selectedRowOfTable < 0){
+            JOptionPane.showMessageDialog(null, "Please, Select a row from the table.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        LabTestWorkRequest labTestWorkRequest = (LabTestWorkRequest)labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
+
+        labTestWorkRequest.setStatus("Processing");
+
+        TestResultUploadPanel processWorkRequestJPanel = new TestResultUploadPanel(rightPanel, labTestWorkRequest, userAccount);
+        
+        rightPanel.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        
+        CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
+        
+        cardLayout.next(rightPanel);
+    }//GEN-LAST:event_processButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignToMeButton;
