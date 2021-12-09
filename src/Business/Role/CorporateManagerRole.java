@@ -9,6 +9,8 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import UserInterface.FundsRetrieval.CorporateFundingPanel;
+import UserInterface.FundsRetrieval.GovtFundingPanel;
 import javax.swing.JPanel;
 
 /**
@@ -25,7 +27,7 @@ public class CorporateManagerRole extends Role {
     }
     
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem ecoSystem ) {
+        return new CorporateFundingPanel(ecoSystem, enterprise, org, userProcessContainer, account);
     }
 }
