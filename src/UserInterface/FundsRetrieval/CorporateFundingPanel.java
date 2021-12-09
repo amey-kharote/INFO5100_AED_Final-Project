@@ -44,16 +44,24 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
     
     public void populateTable(){
         
+        System.out.println("####LP#### In Corporate Table");
         DefaultTableModel dtm  = (DefaultTableModel)corpEventDetailTable.getModel();
         dtm.setRowCount(0);
         
-        for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){            
+        for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){  
+            System.out.println(organization);
+            System.out.println(organization.getWorkQueue().getWorkRequestList());
+            
             for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
+                
             Object[] row = new Object[4];
             row[0] = req;
             row[1] = req.getSender().getEmployee();
             row[2] = req.getReceiver() == null ? null : req.getReceiver().getEmployee().getEmpName();
             row[3] = req.getStatus();
+            System.out.println(row[1]);
+            System.out.println(row[2]);
+            System.out.println(row[3]);
             dtm.addRow(row);
             }
         }

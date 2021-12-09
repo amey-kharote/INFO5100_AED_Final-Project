@@ -64,6 +64,15 @@ public class Utils {
          return true;
      }
      
+     public boolean isValidSign(String signature){
+         return true;
+     }
+     
+     public boolean isValidPhoneNo(String number){
+         return true;
+     }
+     
+     //Specific to one class only, do not use
      public boolean isValidPhoneNum(String campaign){
          return true;
      }

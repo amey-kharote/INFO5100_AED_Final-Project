@@ -85,7 +85,10 @@ public abstract class Organization {
     public int getOrganizationID() {
         return organizationID;
     }
-
+    
+    public void setOrganizationID(int id) {
+        this.organizationID = id;
+    }
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
