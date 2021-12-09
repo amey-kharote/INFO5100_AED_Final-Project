@@ -35,10 +35,10 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     }
     
     private void populateOrgDropDown() {
-        sortByDropdown.removeAllItems();
+//        sortByDropdown.removeAllItems();
         organizationDropdown.removeAllItems();
         for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
-            sortByDropdown.addItem(organization);
+//            sortByDropdown.addItem(organization);
             organizationDropdown.addItem(organization);
         }
     }
@@ -50,6 +50,7 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = employeeObj.getEmpID();
             row[1] = employeeObj.getEmpName();
+            row[2] = org.getName();
             tableModel.addRow(row);
         }
     }
@@ -63,8 +64,6 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sortByDropdownLabel = new javax.swing.JLabel();
-        sortByDropdown = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         displayEmployeeDetailsTable = new javax.swing.JTable();
         organizationDropdown = new javax.swing.JComboBox();
@@ -75,19 +74,6 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         addButton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        sortByDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        sortByDropdownLabel.setText("Sort by");
-        add(sortByDropdownLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, 30));
-
-        sortByDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        sortByDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        sortByDropdown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortByDropdownActionPerformed(evt);
-            }
-        });
-        add(sortByDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 380, -1));
 
         displayEmployeeDetailsTable.setBackground(new java.awt.Color(255, 204, 204));
         displayEmployeeDetailsTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -178,10 +164,6 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 570, 180, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sortByDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByDropdownActionPerformed
-
-    }//GEN-LAST:event_sortByDropdownActionPerformed
-
     private void organizationDropdownMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_organizationDropdownMouseClicked
 
     }//GEN-LAST:event_organizationDropdownMouseClicked
@@ -247,7 +229,5 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     private javax.swing.JLabel nameTextFieldLabel;
     private javax.swing.JComboBox organizationDropdown;
     private javax.swing.JLabel organizationDropdownLabel;
-    private javax.swing.JComboBox sortByDropdown;
-    private javax.swing.JLabel sortByDropdownLabel;
     // End of variables declaration//GEN-END:variables
 }
