@@ -5,17 +5,65 @@
  */
 package UserInterface.DoctorWorkspace;
 
+import Business.Enterprise.Enterprise;
+import Business.Entity.Recipient;
+import Business.Organization.ApplicantOrg;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Font;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
 
+    private UserAccount account;
+    private JPanel rightJPanel;
+    private Enterprise enterprise;
+    String patientUserName;
+    String patientType;
+    List<String> tests;
+
     /**
      * Creates new form ActivityAreaForDoctorPanel
      */
-    public ActivityAreaForDoctorPanel() {
+    public ActivityAreaForDoctorPanel(JPanel rightJPanel, UserAccount account, Enterprise enterprise, String patientUserName, List<String> tests, String patientType) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.patientUserName = patientUserName;
+        displayEnterpriseValueTextField.setText(enterprise.getName());
+        this.tests = tests;
+        this.enterprise = enterprise;
+        this.account = account;
+        this.patientType = patientType;
+        populateWorkRequestTable();
+
+    }
+
+    public void populateWorkRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) displayWorkRequestTable.getModel();
+        model.setRowCount(0);
+        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[5];
+            if (((LabTestWorkRequest) request).getPatientId().equals(patientUserName)) {
+                row[0] = ((LabTestWorkRequest) request).getPatientId();
+                row[1] = ((LabTestWorkRequest) request).getPatientName();
+                row[2] = ((LabTestWorkRequest) request).getReceiver();
+                row[3] = ((LabTestWorkRequest) request).getStatus();
+                String result = ((LabTestWorkRequest) request).getTestResult();
+                row[4] = result == null ? "PENDING RESULTS" : result.toUpperCase();
+                model.addRow(row);
+            }
+        }
     }
 
     /**
@@ -175,11 +223,45 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_refreshTableButtonActionPerformed
 
     private void setPriorityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriorityButtonActionPerformed
+        int selectedRow = displayWorkRequestTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row to set priority!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (patientType.equals("recipient")) {
+            for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                for (Recipient rObj : org.getRecipientDirectory().getRecipientRecords()) {
+                    if (rObj.getPersonEmailId().equals(patientUserName)) {
+                        if ((displayWorkRequestTable.getValueAt(selectedRow, 2).equals("Completed"))) {
+                            if (priorityOptionsDropdown.getSelectedIndex() == 0) {
+                                rObj.setPriorityNo(1);
+                                JOptionPane.showMessageDialog(null, "Priority set to HIGH!");
+                            } else if (priorityOptionsDropdown.getSelectedIndex() == 1) {
+                                rObj.setPriorityNo(2);
+                                JOptionPane.showMessageDialog(null, "Priority set to MEDIUM!");
+                            } else if (priorityOptionsDropdown.getSelectedIndex() == 2) {
+                                rObj.setPriorityNo(3);
+                                JOptionPane.showMessageDialog(null, "Priority set to LOW!");
+                            }
 
+                        }
+                    }
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Sorry, You cannot set priority for a donor!");
+        }
     }//GEN-LAST:event_setPriorityButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        rightJPanel.remove(this);
+        Component[] componentArray = rightJPanel.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DoctorRequestPatientTestPanel reqPatientLabTestObj = (DoctorRequestPatientTestPanel) component;
+        CardLayout cardLayout = (CardLayout)reqPatientLabTestObj.getLayout();
+        cardLayout.previous(rightJPanel);
     }//GEN-LAST:event_backButtonActionPerformed
 
 

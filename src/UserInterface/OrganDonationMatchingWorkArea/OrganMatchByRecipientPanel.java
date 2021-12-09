@@ -5,17 +5,69 @@
  */
 package UserInterface.OrganDonationMatchingWorkArea;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.HospitalEnterprise;
+import Business.Entity.Donor;
+import Business.Entity.Recipient;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import java.awt.CardLayout;
+import java.awt.Frame;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+
 /**
  *
  * @author Amey
  */
 public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
 
+    
+    EcoSystem ecoSystem;
+    JPanel panel;
+    List<Recipient> rList;
+    Donor donor;
+    Recipient recipient;
     /**
      * Creates new form OrganMatchByRecipientPanel
      */
-    public OrganMatchByRecipientPanel() {
+    public OrganMatchByRecipientPanel(EcoSystem ecoSystem, JPanel panel, List<Recipient> rList) {
         initComponents();
+        this.ecoSystem = ecoSystem;
+        this.panel = panel;
+        this.rList = rList;
+        
+        populateTableForRecipient();
+        
+    }
+    
+    private void populateTableForRecipient(){
+        DefaultTableModel dtm = (DefaultTableModel) recipientInfoTable.getModel();
+        dtm.setRowCount(0);
+
+        for (Recipient rec : rList) {
+            Object[] rows = new Object[4];
+            rows[0] = rec;
+            rows[2] = rec.getOrganType();
+            rows[1] = rec.getNetwork();           
+            rows[3] = rec.getPriorityNo();
+            dtm.addRow(rows);
+        }
     }
 
     /**
@@ -149,20 +201,132 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
 
     private void findMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findMatchButtonActionPerformed
 
+        int selectedRow = recipientInfoTable.getSelectedRow();      
+        
+        if(selectedRow > 0){
+           recipient = (Recipient) recipientInfoTable.getValueAt(selectedRow, 0);
+           String network = (String) recipientInfoTable.getValueAt(selectedRow, 1);
+           String organType = (String) recipientInfoTable.getValueAt(selectedRow, 2);
+
+           populateDonorTable(network, organType);    
+        }else{
+
+            JOptionPane.showMessageDialog(null, "Please select a row.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_findMatchButtonActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+    private void populateDonorTable(String network, String organType){
+        DefaultTableModel dtm = (DefaultTableModel) applicantInfoTable.getModel();
+        List<Donor> donorL = new ArrayList<>();
 
+        dtm.setRowCount(0);
+        for (Network network1 : ecoSystem.getNetworks()) {
+            for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
+                if(enterprise instanceof HospitalEnterprise){
+                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                        if (organization.getName().equalsIgnoreCase("Applicant Org")) {
+                            for (Donor donor : organization.getDonorDirectory().getDonorRecords()) {
+                                for (String orgType : donor.getOrganList()) {
+                                    if (orgType.equalsIgnoreCase(organType)) {
+                                        donor.setNetwork(network1.getName());
+                                        donorL.add(donor);
+                                    }
+                                }
+                            }
+                        }
+                   }
+                }
+            }
+
+        }
+        
+    }
+    
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+
+        ManageOrganMatchInitialRoute ManageCitiesNetwork = new ManageOrganMatchInitialRoute(ecoSystem, panel);
+        panel.add("manageNetworksJPanel", ManageCitiesNetwork);
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.next(panel);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void seePieChartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seePieChartButtonActionPerformed
-        // TODO add your handling code here:
+
+        int num1 = this.applicantInfoTable.getRowCount();
+        int num2 = this.recipientInfoTable.getRowCount();
+
+        Frame frame1 = new Frame();
+
+        DefaultPieDataset pie = new DefaultPieDataset();
+        
+        pie.setValue("Total Recipients by Severity", num2);
+        pie.setValue("Total Donor Count", num1);
+        
+        JFreeChart chart = ChartFactory.createPieChart("Pie Chart", pie, true, true, true);
+
+        ChartPanel chartP = new ChartPanel(chart);
+        frame1.add(chartP);
+
+        frame1.pack();
+        frame1.setVisible(true);
+        chartP.setSize(600, 600);
+        chartP.setVisible(true);
     }//GEN-LAST:event_seePieChartButtonActionPerformed
 
     private void informAboutMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informAboutMatchButtonActionPerformed
 
+        int selectedRow = applicantInfoTable.getSelectedRow();
+
+        if (selectedRow > 0) {
+            donor = (Donor) applicantInfoTable.getValueAt(selectedRow, 0);
+            sendOutEmail(donor.getPersonEmailId());
+            sendOutEmail(recipient.getPersonEmailId());
+            JOptionPane.showMessageDialog(null, "Organ match information is sent successfully via email.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_informAboutMatchButtonActionPerformed
+
+        private void sendOutEmail(String emailID){
+            final String reci = emailID;
+            String hostname = "smtp.gmail.com";
+            String password = "taskplannermernproject@123";
+            String sender = "taskplannermernproject@gmail.com";            
+            String userNAme= "taskplannermernproject@gmail.com";
+            
+            Properties prop = System.getProperties();  
+            prop.setProperty("mail.smtp.host", hostname); 
+            prop.put("mail.smtp.starttls.required", "true");
+            prop.put("mail.smtp.starttls.enable", "true");
+            prop.put("mail.smtp.host",hostname);  
+            prop.put("mail.smtp.port", "587");  
+            prop.put("mail.smtp.auth", "true");  
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());  
+            
+            Session sess;
+            sess = Session.getDefaultInstance(prop, null);
+
+            try{
+            MimeMessage msg = new MimeMessage(sess);  
+            msg.setFrom(new InternetAddress(sender));  
+            msg.setRecipient(Message.RecipientType.TO,new InternetAddress(reci));  
+            InternetAddress add;
+            add = new InternetAddress(reci);
+            msg.setSubject("Organ Match Details!");  
+            msg.setText("You have been pared: Donor:: "+ donor.getPersonEmailId() + " with Recipient:: " 
+                    + recipient.getPersonEmailId()+ " for organ transplant");  
+            
+            Transport transport = sess.getTransport("smtp");
+            transport.connect(hostname, userNAme, password);
+            transport.sendMessage(msg, msg.getAllRecipients());
+            transport.close();
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Error encounter while trying to send Email!!");
+            }
+        }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

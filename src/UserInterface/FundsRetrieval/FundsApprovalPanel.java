@@ -5,19 +5,43 @@
  */
 package UserInterface.FundsRetrieval;
 
+import Business.Role.TrustManagerRole;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FundingWorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.Properties;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 /**
  *
  * @author Amey
  */
 public class FundsApprovalPanel extends javax.swing.JPanel {
 
+    JPanel panel;
+    FundingWorkRequest request;
+    UserAccount account;
     /**
      * Creates new form NewJPanel
      */
-    public FundsApprovalPanel() {
+    public FundsApprovalPanel(JPanel panel, FundingWorkRequest request, UserAccount account ) {
         initComponents();
+        this.panel = panel;
+        this.request = request;
+        this.account = account;
+        populateFundAmount();              
     }
 
+    public void populateFundAmount(){
+        requestedFundFormTextField.setText(String.valueOf(request.getAmount()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,14 +164,119 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
 
     private void approveRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveRequestBtnActionPerformed
 
+        if(requestedFundFormTextField.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a comment!");
+            return;
+        }
+        else{
+            request.setApproval(requestedFundFormTextField.getText());
+ 
+            final String recipient = request.getSender().toString();//this needs to be an email address
+            boolean sessionDebug = false;
+            
+            String from = "taskplannermernproject@gmail.com";
+            String host = "smtp.gmail.com";
+            String user="taskplannermernproject@gmail.com";
+            String pass = "taskplannermernproject@123";
+            Properties prop = System.getProperties();
+            prop.setProperty("mail.smtp.host", host); 
+            prop.put("mail.smtp.starttls.required", "true");
+            prop.put("mail.smtp.starttls.enable", "true");
+            prop.put("mail.smtp.host", host);
+            prop.put("mail.smtp.port", "587");
+            prop.put("mail.smtp.auth", "true");
+            
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            
+            Session session;
+            session = Session.getDefaultInstance(prop, null);
+            session.setDebug(sessionDebug);
+            
+            try{
+                MimeMessage msg = new MimeMessage(session);
+                msg.setFrom(new InternetAddress(from));
+                msg.setRecipient(Message.RecipientType.TO,new InternetAddress(recipient));
+                InternetAddress address;
+                address = new InternetAddress(recipient);
+                msg.setSubject("Status of the Fund Approval");
+                msg.setText("The requested fund has been approved");
+                Transport transport = session.getTransport("smtp");
+                transport.connect(host,user,pass);
+                transport.sendMessage(msg, msg.getAllRecipients());
+                transport.close();
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Error encountered while sending email");
+                }   
+
+            request.setFundStatus("Approved");
+            JOptionPane.showMessageDialog(null, "Funds have been approved");
+        }
     }//GEN-LAST:event_approveRequestBtnActionPerformed
 
     private void declineRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineRequestBtnActionPerformed
         // TODO add your handling code here:
+        if(requestedFundFormTextField.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a comment!");
+            return;
+        }
+        else{
+            request.setApproval(requestedFundFormTextField.getText());
+ 
+            final String recipient = request.getSender().toString();//this needs to be an email address
+            boolean sessionDebug = false;
+            
+            String from = "taskplannermernproject@gmail.com";
+            String host = "smtp.gmail.com";
+            String user="taskplannermernproject@gmail.com";
+            String pass = "taskplannermernproject@123";
+            Properties prop = System.getProperties();
+            prop.setProperty("mail.smtp.host", host); 
+            prop.put("mail.smtp.starttls.required", "true");
+            prop.put("mail.smtp.starttls.enable", "true");
+            prop.put("mail.smtp.host", host);
+            prop.put("mail.smtp.port", "587");
+            prop.put("mail.smtp.auth", "true");
+            
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            
+            Session session;
+            session = Session.getDefaultInstance(prop, null);
+            session.setDebug(sessionDebug);
+            
+            try{
+                MimeMessage msg = new MimeMessage(session);
+                msg.setFrom(new InternetAddress(from));
+                msg.setRecipient(Message.RecipientType.TO,new InternetAddress(recipient));
+                InternetAddress address;
+                address = new InternetAddress(recipient);
+                msg.setSubject("Status of the Fund Approval");
+                msg.setText("The requested fund has been declined");
+                Transport transport = session.getTransport("smtp");
+                transport.connect(host,user,pass);
+                transport.sendMessage(msg, msg.getAllRecipients());
+                transport.close();
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Error encountered while sending email");
+                }   
+
+            request.setFundStatus("Declined");
+            JOptionPane.showMessageDialog(null, "Funds have been declined");
+        }
+        
     }//GEN-LAST:event_declineRequestBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        panel.remove(this);
+        Component[] componentArray = panel.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        GovtFundingPanel cont = (GovtFundingPanel) component;
+        if(account.getRole() instanceof TrustManagerRole)
+        cont.populateTable();       
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.previous(panel);
     }//GEN-LAST:event_backBtnActionPerformed
 
 

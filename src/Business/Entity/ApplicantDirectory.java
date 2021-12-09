@@ -19,6 +19,12 @@ public class ApplicantDirectory {
         applicantRecords = new ArrayList();
     }
 
+    public ApplicantDirectory() {
+        applicantRecords = new ArrayList();
+    }
+    
+    
+
     public ArrayList<Applicant> getApplicantRecords() {
         return applicantRecords;
     }

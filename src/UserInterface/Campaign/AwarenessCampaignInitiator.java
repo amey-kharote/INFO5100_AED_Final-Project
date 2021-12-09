@@ -5,17 +5,77 @@
  */
 package UserInterface.Campaign;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.FundingEnterprise;
+import Business.Entity.Applicant;
+import Business.Entity.ApplicantDirectory;
+import Business.Entity.CampaignEvent;
+import Business.Network.Network;
+import Business.Organization.ApplicantOrg;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.Utils.Utils;
+import Business.WorkQueue.FundingWorkRequest;
+import UserInterface.FundsRetrieval.FundsRequestStatusPanel;
+import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class AwarenessCampaignInitiator extends javax.swing.JPanel {
 
+    EcoSystem ecoSystem;
+    JPanel panel;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    ApplicantDirectory appDirectory = new ApplicantDirectory();
+    Utils utility;
     /**
      * Creates new form AwarenessCampaignInitiator
      */
-    public AwarenessCampaignInitiator() {
+    public AwarenessCampaignInitiator(EcoSystem ecoSystem, JPanel panel, Enterprise enterprise, UserAccount userAccount) {
+        
         initComponents();
+        this.ecoSystem = ecoSystem;
+        this.panel = panel;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
+        
+        populateEventTable();
+        populateNetworkList();
+    }
+    
+    public void populateEventTable(){
+        
+        DefaultTableModel dtm = (DefaultTableModel)displayScheduledEventsTable.getModel();
+        dtm.setRowCount(0);
+        
+        if(ecoSystem != null && ecoSystem.getCampaignList() != null){
+            for(CampaignEvent campaign : ecoSystem.getCampaignList()){
+                Object[] row = new Object[4];
+                row[0] = campaign.getCampaignName();
+                row[1] = campaign.getNetworkName();
+                row[2] = campaign.getDate();
+                row[3] = campaign.getMoney();
+                
+                dtm.addRow(row);
+            }
+            
+        }
+    }
+    
+    public void populateNetworkList(){
+        
+        chooseCityFormComboBox.removeAllItems();
+        for(Network networkName : ecoSystem.getNetworks()){
+            chooseCityFormComboBox.addItem(networkName);
+        }
     }
 
     /**
@@ -137,7 +197,107 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
 
     private void setupEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setupEventBtnActionPerformed
 
-
+        Network networkName = (Network) chooseCityFormComboBox.getSelectedItem();
+        String campaignName = eventNameFromTextField.getText();
+        Date eventDate = jDateChooser2.getDate();
+        
+        Date date = new Date();
+        Date today = new java.sql.Date (date.getTime());
+        
+        if(!(utility.isValidCampaign(campaignName))){
+            JOptionPane.showMessageDialog(null, "Campign Name is not valid");
+            return;
+        }
+        
+        //Validate Date
+        try{
+            if(eventDate.compareTo(today) < 0){
+                JOptionPane.showMessageDialog(null,"Please select a valid date forthe event");
+                return;
+            }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please add the date");
+            return;
+        }
+        
+        //Handle exception for funds 
+        float money = 0;
+        try{
+            money = Float.parseFloat(requestFundsFormTextField.getText());
+            requestFundsFormTextField.setText("");
+            
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Please add correct amount of funds");
+        }
+        
+        //Check for empty details
+        if(networkName.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select city for the event");
+            return;
+        }else if(campaignName.equals("")){
+            JOptionPane.showMessageDialog(null, "Please add the event Name ");
+            return;
+        }else if(eventDate.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select the date for the event");
+            return;
+        }
+        
+        if(ecoSystem != null){
+            for(Applicant applicant : appDirectory.getApplicantRecords()){
+                utility.sendEmail(applicant.getApplicantEmailId(), campaignName, String.valueOf(eventDate), String.valueOf(networkName));
+            }
+            
+            for(Network network: ecoSystem.getNetworks()){
+                if(network.getName().equals(String.valueOf(networkName))){
+                  for(Enterprise enterprise :   network.getEnterpriseDirectory().getEnterpriseList()){
+                    for (Organization organisation : enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organisation instanceof ApplicantOrg){
+                           //LP Please add code later!!!
+                    }
+                    }
+                  }
+                }
+            }
+        }
+        
+        FundingWorkRequest req = new FundingWorkRequest();
+        req.setMessage("Kindly provide approval for th requested funds!!");
+        req.setSender(userAccount);
+        req.setStatus("Sent");
+        req.setCampaign(campaignName);
+        req.setAmount(money);
+        req.setEventName(campaignName);
+        
+        Organization organisation = null;
+         for(Network network : ecoSystem.getNetworks()){          
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof FundingEnterprise){
+                   
+                    for(Organization org :  enterprise.getOrganizationDirectory().getOrganizationList()){     
+                       if(org instanceof FundingEnterprise){
+                           organisation = org;                          
+                       }
+                   }
+                }
+            }
+        }
+        if(organisation != null){
+            organisation.getWorkQueue().getWorkRequestList().add(req);
+            userAccount.getWorkQueue().getWorkRequestList().add(req);
+        }
+        
+        CampaignEvent campaign = ecoSystem.createCampaign();
+        campaign.setCampaignName(campaignName);
+        campaign.setNetworkName(networkName.getName());
+        campaign.setDate(date);
+        campaign.setMoney(money);
+        
+        JOptionPane.showMessageDialog(null, "Awareness event created successfully.");
+        eventNameFromTextField.setText("");
+        jDateChooser2.setDate(eventDate);
+        requestFundsFormTextField.setText("");
+        populateEventTable();
+           
     }//GEN-LAST:event_setupEventBtnActionPerformed
 
     private void requestFundsFormTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFundsFormTextFieldActionPerformed
@@ -145,7 +305,11 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
     }//GEN-LAST:event_requestFundsFormTextFieldActionPerformed
 
     private void fundsRequestStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundsRequestStatusBtnActionPerformed
-
+        
+        FundsRequestStatusPanel freqPanel = new FundsRequestStatusPanel(enterprise, panel, userAccount);
+        panel.add("FundRequestStatusJPanel", freqPanel);
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.next(panel);
     }//GEN-LAST:event_fundsRequestStatusBtnActionPerformed
 
 
