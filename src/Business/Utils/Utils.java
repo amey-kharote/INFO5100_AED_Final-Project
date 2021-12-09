@@ -73,6 +73,10 @@ public class Utils {
      }
      
      //Specific to one class only, do not use
+     public boolean isValidPhoneNum(String campaign){
+         return true;
+     }
+             
      public void sendEmail(String emailID, String campaignName, String campaignDate, String city){
          
          final String recipient = emailID;
