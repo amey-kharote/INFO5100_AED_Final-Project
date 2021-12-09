@@ -17,44 +17,54 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="310" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="uploadResultButtonLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="resultTextFieldLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="resultFileDisplayTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="uploadButton" alignment="0" pref="270" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="resultTextFieldLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="uploadResultButtonLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="submitResultButton" alignment="0" min="-2" pref="473" max="-2" attributes="0"/>
-                  <Component id="backButton" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="resultFileDisplayTextField" min="-2" pref="270" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="backButton" min="-2" pref="187" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="331" max="-2" attributes="0"/>
+                              <Component id="uploadButton" min="-2" pref="270" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="submitResultButton" alignment="1" min="-2" pref="385" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="310" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="fileUploadPathDisplayerLabel" min="-2" pref="421" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="resultTextFieldLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="resultFileDisplayTextField" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="backButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="resultTextFieldLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="resultFileDisplayTextField" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="fileUploadPathDisplayerLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="uploadButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="uploadResultButtonLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               <Component id="submitResultButton" min="-2" pref="46" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
-              <Component id="backButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="150" max="32767" attributes="0"/>
+              <EmptySpace pref="307" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,10 +75,13 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="23" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Result"/>
+        <Property name="text" type="java.lang.String" value="Result:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="resultFileDisplayTextField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resultFileDisplayTextFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="uploadButton">
       <Properties>
@@ -91,7 +104,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="23" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Upload result"/>
+        <Property name="text" type="java.lang.String" value="Upload Result:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="submitResultButton">
@@ -131,6 +144,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="fileUploadPathDisplayerLabel">
     </Component>
   </SubComponents>
 </Form>
