@@ -22,6 +22,8 @@ public abstract class Organization {
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private RecipientDirectory recipientDirectory;
+    private DonorDirectory donorDirectory;  
     private int organizationID;
     private static int counter = 0;
     private DonorDirectory donorDirectory;
@@ -105,6 +107,24 @@ public abstract class Organization {
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
+
+    public RecipientDirectory getRecipientDirectory() {
+        return recipientDirectory;
+    }
+
+    public void setRecipientDirectory(RecipientDirectory recipientDirectory) {
+        this.recipientDirectory = recipientDirectory;
+    }
+
+    public DonorDirectory getDonorDirectory() {
+        return donorDirectory;
+    }
+
+    public void setDonorDirectory(DonorDirectory donorDirectory) {
+        this.donorDirectory = donorDirectory;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -5,17 +5,38 @@
  */
 package UserInterface.OrganDonationMatchingWorkArea;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.HospitalEnterprise;
+import Business.Entity.Donor;
+import Business.Entity.Recipient;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import UserInterface.SystemAdminWorkspace.ManageCitiesNetwork;
+import UserInterface.SystemAdminWorkspace.SystemAdminDashboard;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amey
  */
 public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
 
+    EcoSystem ecoSystem;
+    JPanel panel;
     /**
      * Creates new form ManageOrganMatchInitialRoute
      */
-    public ManageOrganMatchInitialRoute() {
+    public ManageOrganMatchInitialRoute(EcoSystem ecoSystem, JPanel panel) {
         initComponents();
+        this.ecoSystem = ecoSystem;
+        this.panel = panel;
     }
 
     /**
@@ -92,13 +113,99 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
 
     private void matchOrganByApplicantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchOrganByApplicantButtonActionPerformed
 
+        List<Donor> donorL= createDonorsList();
+        
+        //Check if there are donors available
+        if(donorL.size() > 0){
+            OrganMatchByDonorPanel organM = new OrganMatchByDonorPanel(ecoSystem, panel, donorL);
+            panel.add("organ", organM);
+            CardLayout layout = (CardLayout) panel.getLayout();
+            layout.next(panel);
+        }else {
+            JOptionPane.showMessageDialog(null, "There are currently no donors available in the system!!");
+        }
     }//GEN-LAST:event_matchOrganByApplicantButtonActionPerformed
+    
+    //Method to create Donor List
+    private List<Donor> createDonorsList() {
+        
+        List<Donor> donorL = new ArrayList();        
+        for (Network network : ecoSystem.getNetworks()) {
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if(e instanceof HospitalEnterprise){
+                    for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+                        if (organization.getName().equalsIgnoreCase("Applicant Org")) {
+                            for (Donor donors : organization.getDonorDirectory().getDonorRecords()) {
+                                if(donors.isIsOrganAvailable()){
+                                    donors.setNetwork(network.getName());
+                                    donorL.add(donors);
+                                }
+                            }
+                        }
 
+                    }
+                }
+                
+            }
+        }
+        //Return the donor List
+        return donorL;
+    }
+    
+    
     private void matchOrganByRecipientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchOrganByRecipientButtonActionPerformed
+        
+        List<Recipient> rList = createRecipientsList();
+        if(rList.size() > 0){
+            OrganMatchByRecipientPanel organMatch = new OrganMatchByRecipientPanel(ecoSystem, panel, rList);
+            panel.add("panel", organMatch);
+            CardLayout layout = (CardLayout) panel.getLayout();
+            layout.next(panel);
+        }else {
+            JOptionPane.showMessageDialog(null, "There are currently no Recipients alailable in the system");
+        }
     }//GEN-LAST:event_matchOrganByRecipientButtonActionPerformed
 
+    private List<Recipient> createRecipientsList(){
+        List<Recipient> recipientL = new ArrayList<Recipient>();
+        
+        for (Network network : ecoSystem.getNetworks()) {
+            for (Enterprise ents : network.getEnterpriseDirectory().getEnterpriseList()) {
+                
+                if(ents instanceof HospitalEnterprise){
+                    for(Organization organization : ents.getOrganizationDirectory().getOrganizationList()){
+                        if(organization.getName().equals("Applicant Organization")){
+                            for( Recipient recp : organization.getRecipientDirectory().getRecipientRecords()){
+                                  if(recp.getPriorityNo() > 0){
+                                      recp.setNetwork(network.getName());
+                                      recipientL.add(recp);
+                                  }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+       // List<Map.Entry<String, Recipient>> list = new ArrayList<Map.Entry<String, Recipient>>(recipientList.entrySet());
+        //sort recipient list by their sevirity
+        Collections.sort(recipientL, new Comparator<Recipient>() {
+            @Override
+            public int compare(Recipient recipent1, Recipient recipent2) {
+                return recipent1.compareTo(recipent2);
+            }
+        });
+        
+        return recipientL;
+    }
+    
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        SystemAdminDashboard manageCitiesNetwork = new SystemAdminDashboard(panel, ecoSystem);
+        panel.add("manageCitiesJPanel", manageCitiesNetwork);
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.next(panel);
     }//GEN-LAST:event_backButtonActionPerformed
 
 
