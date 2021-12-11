@@ -35,10 +35,10 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     }
     
     private void populateOrgDropDown() {
-        sortByDropdown.removeAllItems();
+//        sortByDropdown.removeAllItems();
         organizationDropdown.removeAllItems();
         for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
-            sortByDropdown.addItem(organization);
+//            sortByDropdown.addItem(organization);
             organizationDropdown.addItem(organization);
         }
     }
@@ -50,6 +50,7 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = employeeObj.getEmpID();
             row[1] = employeeObj.getEmpName();
+            row[2] = org.getName();
             tableModel.addRow(row);
         }
     }
@@ -63,8 +64,6 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sortByDropdownLabel = new javax.swing.JLabel();
-        sortByDropdown = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         displayEmployeeDetailsTable = new javax.swing.JTable();
         organizationDropdown = new javax.swing.JComboBox();
@@ -74,23 +73,9 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         backButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
-        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sortByDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        sortByDropdownLabel.setText("Sort by");
-        add(sortByDropdownLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, 30));
-
-        sortByDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        sortByDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        sortByDropdown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortByDropdownActionPerformed(evt);
-            }
-        });
-        add(sortByDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 380, -1));
-
-        displayEmployeeDetailsTable.setBackground(java.awt.SystemColor.info);
+        displayEmployeeDetailsTable.setBackground(new java.awt.Color(255, 204, 204));
         displayEmployeeDetailsTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEmployeeDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,32 +128,32 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
                 organizationDropdownActionPerformed(evt);
             }
         });
-        add(organizationDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 270, 40));
+        add(organizationDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 270, 40));
 
         nameTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 360, 270, 40));
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 270, 40));
 
         nameTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         nameTextFieldLabel.setText("Name");
-        add(nameTextFieldLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
+        add(nameTextFieldLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
 
         organizationDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         organizationDropdownLabel.setText("Organization");
-        add(organizationDropdownLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
+        add(organizationDropdownLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
 
         backButton.setBackground(new java.awt.Color(153, 204, 255));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backButton.setText("Back");
+        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        backButton.setText("<< Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 110, 40));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 160, 50));
 
         addButton.setBackground(new java.awt.Color(153, 204, 255));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-plus-+-24.png"))); // NOI18N
+        addButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         addButton.setText("Add ");
         addButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -176,12 +161,8 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
                 addButtonActionPerformed(evt);
             }
         });
-        add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, 150, 50));
+        add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 570, 180, 50));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void sortByDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByDropdownActionPerformed
-
-    }//GEN-LAST:event_sortByDropdownActionPerformed
 
     private void organizationDropdownMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_organizationDropdownMouseClicked
 
@@ -219,11 +200,12 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Utils util = new Utils();
-        if (!util.notNullOrEmpty(nameTextField.getText()) || !util.isValidName(nameTextField.getText())) {
+        Organization org = (Organization) organizationDropdown.getSelectedItem();
+        if((!util.notNullOrEmpty(nameTextField.getText()) || !util.isValidName(nameTextField.getText())) 
+                && !org.getName().equals("Applicant Org")) {
             JOptionPane.showMessageDialog(null, "Please enter valid name.");
             return;
         }
-        Organization org = (Organization) organizationDropdown.getSelectedItem();
        if (org.getName().equals("Applicant Org")) {
             ManageHospitalApplicant hospitalApplicantScreen = new ManageHospitalApplicant(rightJPanel, org);
             rightJPanel.add("hospitalApplicantScreen", hospitalApplicantScreen);
@@ -247,7 +229,5 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     private javax.swing.JLabel nameTextFieldLabel;
     private javax.swing.JComboBox organizationDropdown;
     private javax.swing.JLabel organizationDropdownLabel;
-    private javax.swing.JComboBox sortByDropdown;
-    private javax.swing.JLabel sortByDropdownLabel;
     // End of variables declaration//GEN-END:variables
 }

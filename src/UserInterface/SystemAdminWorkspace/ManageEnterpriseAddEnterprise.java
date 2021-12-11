@@ -190,7 +190,6 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         rightJPanel.remove(this);
-        rightJPanel.remove(this);
         Component[] componentArray = rightJPanel.getComponents();
         Component componentObj = componentArray[componentArray.length - 1];
         SystemAdminDashboard sysAdminScreen = (SystemAdminDashboard) componentObj;

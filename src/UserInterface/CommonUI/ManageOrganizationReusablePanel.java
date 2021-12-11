@@ -13,6 +13,7 @@ import Business.Enterprise.LabEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -36,41 +37,49 @@ public class ManageOrganizationReusablePanel extends javax.swing.JPanel {
         populateDropDown();
         populateOrganizationTable();
         populateOrgCombo();
+        System.out.println("Creating organization in enterprise of type :" + enterpriseObj.getEnterpriseType().getValue());
     }
+
     private void populateDropDown() {
-         if(enterpriseObj instanceof HospitalEnterprise){
-             if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() >= 3) {
+        if (enterpriseObj instanceof HospitalEnterprise) {
+            if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 3) {
                 orgTypeDropdown.removeAll();
                 orgTypeDropdown.setEnabled(false);
+                addOrgButton.setEnabled(false);
             }
-         }else if(enterpriseObj instanceof LabEnterprise){
-             if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() >= 2) {
+        } else if (enterpriseObj instanceof LabEnterprise) {
+            if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 2) {
                 orgTypeDropdown.removeAll();
                 orgTypeDropdown.setEnabled(false);
+                addOrgButton.setEnabled(false);
             }
-         }else if(enterpriseObj instanceof CampaignEnterprise){
-             if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() >= 1) {
+        } else if (enterpriseObj instanceof CampaignEnterprise) {
+            if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 1) {
                 orgTypeDropdown.removeAll();
                 orgTypeDropdown.setEnabled(false);
+                addOrgButton.setEnabled(false);
             }
-         }
-         else if(enterpriseObj instanceof FundingEnterprise){
-             if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() >= 1) {
+        } else if (enterpriseObj instanceof FundingEnterprise) {
+            if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 2) {
                 orgTypeDropdown.removeAll();
                 orgTypeDropdown.setEnabled(false);
+                addOrgButton.setEnabled(false);
             }
-         }    
+        }
     }
 
     private void removeItemsFromList() {
-        orgTypeDropdown.removeAll(); orgTypeDropdown.setEnabled(false);
+        orgTypeDropdown.removeAll();
+        orgTypeDropdown.setEnabled(false);
         JOptionPane.showMessageDialog(null, "The same organization cannot be added twice.");
     }
 
     private void addItemsInOrgDirectory() {
         Organization.OrganizationType orgType = (Organization.OrganizationType) orgTypeDropdown.getSelectedItem();
-        enterpriseObj.getOrganizationDirectory().createOrganization(orgType);
+        Organization org = enterpriseObj.getOrganizationDirectory().createOrganization(orgType);
+        org.setOrganizationID(enterpriseObj.getOrganizationDirectory().getOrganizationList().size());
         populateOrganizationTable();
+        populateDropDown();
         orgTypeDropdown.removeItem(orgTypeDropdown.getSelectedItem());
         JOptionPane.showMessageDialog(null, "Sucessfully addded organization.");
     }
@@ -92,31 +101,38 @@ public class ManageOrganizationReusablePanel extends javax.swing.JPanel {
             if (enterpriseObj.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Hospital.getValue())) {
                 if (orgType.getValue().equals(Organization.OrganizationType.Doctor.getValue())
                         || orgType.getValue().equals(Organization.OrganizationType.Applicant.getValue())
-                                || orgType.getValue().equals(Organization.OrganizationType.InternalLab.getValue()))  {
+                        || orgType.getValue().equals(Organization.OrganizationType.InternalLab.getValue())) {
                     orgTypeDropdown.addItem(orgType);
                 }
             }
             if (enterpriseObj.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Lab.getValue())) {
                 if (orgType.getValue().equals(Organization.OrganizationType.Pathology.getValue())
-                        || orgType.getValue().equals(Organization.OrganizationType.Radiology.getValue()))  {
+                        || orgType.getValue().equals(Organization.OrganizationType.Radiology.getValue())) {
                     orgTypeDropdown.addItem(orgType);
                 }
             }
-             if (enterpriseObj.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Funding.getValue())) {
+            if (enterpriseObj.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Funding.getValue())) {
                 if (orgType.getValue().equals(Organization.OrganizationType.CorporateFund.getValue())
-                        || orgType.getValue().equals(Organization.OrganizationType.TrustFund.getValue()))  {
+                        || orgType.getValue().equals(Organization.OrganizationType.TrustFund.getValue())) {
                     orgTypeDropdown.addItem(orgType);
                 }
             }
-             if (enterpriseObj.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Campaign.getValue())) {
-                if (orgType.getValue().equals(Organization.OrganizationType.RedCrossAwarenessOrg.getValue()))  {
+            if (enterpriseObj.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Campaign.getValue())) {
+                if (orgType.getValue().equals(Organization.OrganizationType.RedCrossAwarenessOrg.getValue())) {
                     orgTypeDropdown.addItem(orgType);
                 }
             }
         }
+        for(Organization org: enterpriseObj.getOrganizationDirectory().getOrganizationList()){
+            for(int i =0 ; i < orgTypeDropdown.getItemCount(); i++){
+                Organization.OrganizationType type = (Organization.OrganizationType)orgTypeDropdown.getItemAt(i);
+                String val = type.getValue();
+                if(val.equalsIgnoreCase(org.getName())){
+                    orgTypeDropdown.removeItemAt(i);
+                }
+            }
+        }
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -242,23 +258,18 @@ public class ManageOrganizationReusablePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_orgTypeDropdownActionPerformed
 
     private void addOrgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgButtonActionPerformed
-        if (enterpriseObj instanceof HospitalEnterprise) {
-            if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 3) removeItemsFromList();
-            else addItemsInOrgDirectory();        
-        }
-        if (enterpriseObj instanceof LabEnterprise) {
-           if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 2) removeItemsFromList();
-            else addItemsInOrgDirectory();
-        }
-        if (enterpriseObj instanceof FundingEnterprise) {
-           if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 2) removeItemsFromList();
-            else addItemsInOrgDirectory();
-        }
-        if (enterpriseObj instanceof CampaignEnterprise) {
-          if (enterpriseObj.getOrganizationDirectory().getOrganizationList().size() == 1) removeItemsFromList();
-          else addItemsInOrgDirectory();
-        }  
 
+        HashSet<String> s = new HashSet<>();
+        for (Organization org : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
+            s.add(org.getName());
+        }        
+        Organization.OrganizationType orgTypeSelected = (Organization.OrganizationType) orgTypeDropdown.getSelectedItem();
+        boolean addOrg = s.add(orgTypeSelected.getValue());
+        if (addOrg) {
+            addItemsInOrgDirectory();
+        } else {
+            JOptionPane.showMessageDialog(null, "The same organization cannot be added twice.");
+        }
     }//GEN-LAST:event_addOrgButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

@@ -160,7 +160,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="20" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Government Funds Request Status"/>
+        <Property name="text" type="java.lang.String" value="Trust Funds Request Status"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="corporateFundingTableHeaderLbl">
@@ -178,6 +178,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;&lt;BACK"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

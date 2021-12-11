@@ -5,6 +5,15 @@
  */
 package UserInterface.HospitalAdminWorkspace;
 
+import Business.Entity.Applicant;
+import Business.Entity.ApplicantDirectory;
+import Business.Organization.Organization;
+import Business.Utils.Utils;
+import UserInterface.HospitalApplicant.DonorRegistrationForm;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amey
@@ -14,8 +23,14 @@ public class ShowingInterestUI extends javax.swing.JPanel {
     /**
      * Creates new form ManageShowingInterest
      */
-    public ShowingInterestUI() {
+    JPanel rightJPanel;
+    Organization org;
+    ApplicantDirectory appDir = new ApplicantDirectory();
+    
+    public ShowingInterestUI(JPanel rightJPanel, Organization org) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.org = org;
     }
 
     /**
@@ -36,6 +51,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         infoTextArea = new javax.swing.JTextArea();
         submitButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -99,6 +115,16 @@ public class ShowingInterestUI extends javax.swing.JPanel {
             }
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 40));
+
+        jButton4.setBackground(new java.awt.Color(153, 204, 255));
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jButton4.setText("<< Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 200, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void yesRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesRadioButtonActionPerformed
@@ -108,13 +134,51 @@ public class ShowingInterestUI extends javax.swing.JPanel {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-        
+         // TODO add your handling code here:
+        if(enterEmailTextField.getText().equals("")&& yesRadioButton.isSelected()== false && noRadioButton.isSelected() == false){
+            JOptionPane.showMessageDialog(null, "Please enter email and choose a valid option.");
+            return;
+        }
+        if(!enterEmailTextField.getText().equals("")){
+            for(Applicant applicant : appDir.getApplicantRecords()){
+                if(applicant.getApplicantEmailId().equals(enterEmailTextField.getText())){
+                   JOptionPane.showMessageDialog(null, "Email already exists. Please register with a new email id!");
+                    return; 
+                }
+        }
+            
+        Utils util = new Utils();
+        if( util.isEmaildIdvalid(enterEmailTextField.getText())){
+            if (yesRadioButton.isSelected()){
+                appDir.createApplicant(true, enterEmailTextField.getText());
+                DonorRegistrationForm donorReg= new DonorRegistrationForm(rightJPanel, org, enterEmailTextField.getText());
+                rightJPanel.add("donorRegistration", donorReg);
+                CardLayout layout = (CardLayout) rightJPanel.getLayout();
+                layout.next(rightJPanel);
+            }
+            else if(noRadioButton.isSelected()) {
+                appDir.createApplicant(false, enterEmailTextField.getText());
+                JOptionPane.showMessageDialog(null, "Thanks for showing interest!");
+                return;
+            }
+        }        
+        else{
+            JOptionPane.showMessageDialog(null, "Please enter a valid email!");
+        }  
+     }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        rightJPanel.remove(this);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.previous(rightJPanel);
 
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -122,6 +186,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
     private javax.swing.JTextField enterEmailTextField;
     private javax.swing.JLabel enterEmailTextFieldLabel;
     private javax.swing.JTextArea infoTextArea;
+    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton noRadioButton;
     private javax.swing.JLabel showingInterestHeader;

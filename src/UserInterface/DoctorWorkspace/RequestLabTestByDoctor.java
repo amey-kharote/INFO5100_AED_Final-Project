@@ -5,15 +5,28 @@
  */
 package UserInterface.DoctorWorkspace;
 
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.LabEnterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LabTestWorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
- * @author Amey
+ * @author ninos
  */
 public class RequestLabTestByDoctor extends javax.swing.JPanel {
 
     /**
-     * Creates new form Temp
+     * Creates new form RequestLabTestByDoctor
      */
+    private JPanel rightJPanel;
+    private Enterprise enterpriseObj;
+    private UserAccount account;
+    
     public RequestLabTestByDoctor() {
         initComponents();
     }
@@ -27,18 +40,30 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         enterpriseFieldLabel = new javax.swing.JLabel();
         enterpriseValueLabel = new javax.swing.JLabel();
-        messageValueTextField = new javax.swing.JTextField();
         messageFieldLabel = new javax.swing.JLabel();
+        messageValueTextField = new javax.swing.JTextField();
+        backButton = new javax.swing.JButton();
         requestForTestButton = new javax.swing.JButton();
 
-        setBackground(java.awt.SystemColor.activeCaption);
+        setLayout(new java.awt.CardLayout());
 
-        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backButton.setText("Back");
+        enterpriseFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        enterpriseFieldLabel.setText("Enterprise :");
+
+        enterpriseValueLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        enterpriseValueLabel.setText("<value>");
+
+        messageFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        messageFieldLabel.setText("Message");
+
+        messageValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+
+        backButton.setBackground(new java.awt.Color(153, 204, 255));
+        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        backButton.setText("<< Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,19 +71,8 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
             }
         });
 
-        enterpriseFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        enterpriseFieldLabel.setText("Enterprise:");
-
-        enterpriseValueLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        enterpriseValueLabel.setText("<value>");
-
-        messageValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-
-        messageFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        messageFieldLabel.setText("Message:");
-
         requestForTestButton.setBackground(new java.awt.Color(153, 204, 255));
-        requestForTestButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/request.png"))); // NOI18N
+        requestForTestButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         requestForTestButton.setText("Request Test");
         requestForTestButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         requestForTestButton.addActionListener(new java.awt.event.ActionListener() {
@@ -67,55 +81,86 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(394, 394, 394)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enterpriseFieldLabel)
-                            .addComponent(messageFieldLabel))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(405, 405, 405)
+                        .addComponent(requestForTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(294, 294, 294)
+                                .addComponent(messageFieldLabel)
+                                .addGap(62, 62, 62))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(enterpriseFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(enterpriseValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(452, 452, 452)
-                        .addComponent(requestForTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(286, Short.MAX_VALUE))
+                            .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enterpriseValueLabel))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(messageFieldLabel))
-                .addGap(90, 90, 90)
+                .addGap(126, 126, 126)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterpriseValueLabel)
+                    .addComponent(enterpriseFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(messageFieldLabel)
+                        .addGap(76, 76, 76)))
                 .addComponent(requestForTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addGap(187, 187, 187))
         );
+
+        add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-
+        rightJPanel.remove(this);
+        Component[] componentArrayObj = rightJPanel.getComponents();
+        Component component = componentArrayObj[componentArrayObj.length - 1];
+        ActivityAreaForDoctorPanel doctorActivityArea = (ActivityAreaForDoctorPanel) component;
+        doctorActivityArea.populateWorkRequestTable();
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.previous(rightJPanel);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void requestForTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestForTestButtonActionPerformed
-
+        String messageTxt = messageValueTextField.getText();
+        LabTestWorkRequest request = new LabTestWorkRequest();
+        request.setMessage(messageTxt);
+        request.setSender(account);
+        request.setStatus("Request Sent");
+        Organization org = null;
+        for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof LabEnterprise) {
+                org = organization;
+                break;
+            }
+        }
+        if (org != null) {
+            org.getWorkQueue().getWorkRequestList().add(request);
+            account.getWorkQueue().getWorkRequestList().add(request);
+        }
     }//GEN-LAST:event_requestForTestButtonActionPerformed
 
 
@@ -123,6 +168,7 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
     private javax.swing.JButton backButton;
     private javax.swing.JLabel enterpriseFieldLabel;
     private javax.swing.JLabel enterpriseValueLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel messageFieldLabel;
     private javax.swing.JTextField messageValueTextField;
     private javax.swing.JButton requestForTestButton;

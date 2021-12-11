@@ -261,11 +261,12 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
             populateEmployeeComboBox(org);
             populateRoleComboBox(org);
         }
-        if(String.valueOf(orgDropdown.getItemAt(orgDropdown.getSelectedIndex())).equals("Application Org")){
+        if(String.valueOf(orgDropdown.getItemAt(orgDropdown.getSelectedIndex())).equals("Applicant Org")){
             usernameTextField.setEnabled(false);
             passwordField.setEditable(false);
             usernameTextField.setEditable(false);
             passwordField.setEnabled(false);
+            createUserButton.setEnabled(false);
         }
         else{
             usernameTextField.setEnabled(true);
@@ -311,6 +312,9 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
             return;
         }
         populateTableData();
+        usernameTextField.setText("");
+        passwordField.setText("");
+        
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

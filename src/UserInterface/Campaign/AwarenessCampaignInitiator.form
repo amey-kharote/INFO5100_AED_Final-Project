@@ -280,5 +280,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setupEventBtnActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="reqCorporateFunds">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="460" y="480" width="230" height="40"/>
+        </Constraint>
+      </Constraints>
+    </Component>
   </SubComponents>
 </Form>
