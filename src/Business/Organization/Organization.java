@@ -55,7 +55,7 @@ public abstract class Organization {
         CorporateFund("Corporate Fund Org"),
         // lab enterprise org
         Radiology("Radiology Org"),
-        Pathology("Screening Org");
+        Pathology("Pathology Org");
 
         private String value;
 

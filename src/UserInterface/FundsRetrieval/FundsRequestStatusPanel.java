@@ -43,11 +43,17 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
     }
     
     public void populateTrustFundsRequestTable(){
+        
         DefaultTableModel dtm = (DefaultTableModel)governmentFundRequestStatusTable.getModel();
         dtm.setRowCount(0);
         
-        FundingWorkRequest req = new FundingWorkRequest();
+        //FundingWorkRequest req = new FundingWorkRequest();
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            
+            String fundType = ((FundingWorkRequest) request).getFundType();
+            System.out.println(fundType);
+            try{
+            if(fundType.equals("Trust")){
             Object[] row = new Object[4];
             row[0] = ((FundingWorkRequest) request).getCampaign();
             row[1] = ((FundingWorkRequest) request).getReceiver();
@@ -56,6 +62,10 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
             row[3] = result;
             dtm.addRow(row);
         }
+        }catch(NullPointerException ex){
+                
+        }
+    }
     }
     
     public void populatecorporateFundsRequestTable(){
@@ -64,6 +74,10 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
         
         FundingWorkRequest req = new FundingWorkRequest();
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            String fundType = ((FundingWorkRequest) request).getFundType();
+            System.out.println(fundType);
+            try{
+            if(fundType.equals("Corporate")){
             Object[] row = new Object[4];
             row[0] = ((FundingWorkRequest) request).getCampaign();
             row[1] = ((FundingWorkRequest) request).getReceiver();
@@ -71,6 +85,10 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
             String result = String.valueOf(((FundingWorkRequest) request).getAmount());
             row[3] = result;
             dtm.addRow(row);
+        }
+        }catch(NullPointerException ex){
+            
+        }
         }
     }
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class RadiologyOrg extends Organization {
     
     public RadiologyOrg() {
-        super(Organization.OrganizationType.Doctor.getValue());
+        super(Organization.OrganizationType.Radiology.getValue());
     }    
 
     @Override
