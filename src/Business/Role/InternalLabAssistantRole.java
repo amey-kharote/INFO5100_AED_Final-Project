@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import UserInterface.LabAssistant.LabAssistantWorkAreaPanel;
 import javax.swing.JPanel;
 
 /**
@@ -26,7 +27,7 @@ public class InternalLabAssistantRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new LabAssistantWorkAreaPanel(userProcessContainer, business,  enterprise, org, account);
     }
   
 }

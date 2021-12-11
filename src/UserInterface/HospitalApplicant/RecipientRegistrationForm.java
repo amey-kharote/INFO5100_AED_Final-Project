@@ -21,7 +21,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
     
     Organization organization;
     JPanel panel;
-    Utils utils;
+    Utils utils = new Utils();
     /**
      * Creates new form RecipientRegistrationForm
      */
@@ -332,15 +332,12 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String gender = "";
-        int age;
-        
+        int age;        
         if(maleRadioBtn.isSelected()){
             gender = maleRadioBtn.getText();
         }else{
             gender = femaleRadioBtn.getText();
-        }  
-
-            
+        }            
         String nameOnForm = nameTextField.getText();
         String phone = contactNumTextField.getText();
         String emailID = emailTextField.getText();
@@ -353,11 +350,8 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
                phone.equals("")){
             JOptionPane.showMessageDialog(null, "Please fill all the details.");
             return;
-        }
-        
-        
-        
-        try{
+        }    
+         try{
             age =  Integer.parseInt(ageTextField.getText());          
             if(age > 80 || age < 18){
                 JOptionPane.showMessageDialog(null , "Please enter correct age.");
@@ -369,16 +363,14 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null , "Please add correct age"); 
             ageTextField.setText("");
                return;
-           }
-           
+           }           
          //Check Name validity
         if(!utils.isValidName(nameOnForm) || !utils.isValidSign(signature)){
             JOptionPane.showMessageDialog(null, "Please enter valid name.");
             return;
-        }
-        
+        }        
         //check Phone number validity
-        if(utils.isValidPhoneNo(phone)){
+        if(!utils.isValidPhoneNo(phone)){
             JOptionPane.showMessageDialog(null, " Invalid Phone No." + 
                 "Should be 10 digit number between 0-9");
             return;
@@ -388,9 +380,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, " Invalid Email ID." + 
                 "Username should be an email-ID");
             return;
-        }
-        
-   
+        }    
         if(!(corneasRdBtn.isSelected() || 
                 kidneyRdBtn.isSelected() ||
                 liverRdBtn.isSelected() ||
@@ -404,9 +394,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
         Object bloodGroup = bloodGroupDropdown.getSelectedItem();
 
             String addr = addressTextArea.getText();
-
-            String organType;
-            
+            String organType;            
             if(corneasRdBtn.isSelected())
                 organType = pancreasRdBtn.getText();               
             else if(kidneyRdBtn.isSelected())
@@ -418,8 +406,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
             else if(liverRdBtn.isSelected())
                 organType = heartRdBtn.getText();
             else 
-                organType = corneasRdBtn.getText();
-            
+                organType = corneasRdBtn.getText();            
             if(organization != null && organization.getRecipientDirectory() != null){
                 organization.getRecipientDirectory().createRecipient(nameOnForm, age, addr, 
                         phone,emailID, (String) bloodGroup, gender,
