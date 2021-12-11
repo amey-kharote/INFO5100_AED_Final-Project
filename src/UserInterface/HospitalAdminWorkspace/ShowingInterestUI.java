@@ -51,13 +51,13 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         infoTextArea = new javax.swing.JTextArea();
         submitButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
+        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         showingInterestHeader.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         showingInterestHeader.setText("Showing Awareness Of OTM importance");
-        add(showingInterestHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, 42));
+        add(showingInterestHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, 42));
 
         enterEmailTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         enterEmailTextFieldLabel.setText("Enter email ID");
@@ -66,7 +66,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         enterEmailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         add(enterEmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 270, -1));
 
-        yesRadioButton.setBackground(new java.awt.Color(255, 204, 204));
+        yesRadioButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         yesRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         yesRadioButton.setText("YES");
         yesRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,15 +76,15 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         });
         add(yesRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, -1, -1));
 
-        noRadioButton.setBackground(new java.awt.Color(255, 204, 204));
+        noRadioButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         noRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         noRadioButton.setText("NO");
         add(noRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
 
         infoTextArea.setEditable(false);
-        infoTextArea.setBackground(new java.awt.Color(255, 204, 204));
+        infoTextArea.setBackground(java.awt.SystemColor.inactiveCaption);
         infoTextArea.setColumns(20);
-        infoTextArea.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        infoTextArea.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         infoTextArea.setLineWrap(true);
         infoTextArea.setRows(5);
         infoTextArea.setText("1. Improvements in medical techniques and pharmacological anti-reject therapies have made organ transplantation a powerful and valid way to treat diseases. \n\n2. Thanks to this, and to the relevance that mass media put on it, \nthe number of donors is constantly increasing.\n\n3. Donors are usually persons who have been involved in serious accidents and are kept artificially alive though cerebral death has been stated. \n\n4. In such patients is extremely difficult to maintain acceptable vital parameters for a long time, and any variation in them can lead to the loss of organs. \n\n5. Moreover, after the organs have been taken from the body, they can be stored for very few hours and the transplant must take place in the shortest period possible.");
@@ -94,37 +94,28 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         infoTextArea.setFocusable(false);
         jScrollPane1.setViewportView(infoTextArea);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 580, 400));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 580, 480));
 
         submitButton.setBackground(new java.awt.Color(153, 204, 255));
-        submitButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        submitButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
             }
         });
-        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 580, 200, 40));
+        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 200, 40));
 
-        backButton.setBackground(new java.awt.Color(153, 204, 255));
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backButton.setText("<< Back");
+        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 40));
-
-        jButton4.setBackground(new java.awt.Color(153, 204, 255));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton4.setText("<< Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 200, 40));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void yesRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesRadioButtonActionPerformed
@@ -134,7 +125,6 @@ public class ShowingInterestUI extends javax.swing.JPanel {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-         // TODO add your handling code here:
         if(enterEmailTextField.getText().equals("")&& yesRadioButton.isSelected()== false && noRadioButton.isSelected() == false){
             JOptionPane.showMessageDialog(null, "Please enter email and choose a valid option.");
             return;
@@ -176,17 +166,12 @@ public class ShowingInterestUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JTextField enterEmailTextField;
     private javax.swing.JLabel enterEmailTextFieldLabel;
     private javax.swing.JTextArea infoTextArea;
-    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton noRadioButton;
     private javax.swing.JLabel showingInterestHeader;

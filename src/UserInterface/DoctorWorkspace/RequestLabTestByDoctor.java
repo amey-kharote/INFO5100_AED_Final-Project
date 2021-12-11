@@ -50,6 +50,8 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
+        jPanel1.setBackground(java.awt.SystemColor.activeCaption);
+
         enterpriseFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         enterpriseFieldLabel.setText("Enterprise :");
 
@@ -57,13 +59,13 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
         enterpriseValueLabel.setText("<value>");
 
         messageFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        messageFieldLabel.setText("Message");
+        messageFieldLabel.setText("Message:");
 
         messageValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
 
         backButton.setBackground(new java.awt.Color(153, 204, 255));
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backButton.setText("<< Back");
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +74,7 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
         });
 
         requestForTestButton.setBackground(new java.awt.Color(153, 204, 255));
-        requestForTestButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        requestForTestButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/request.png"))); // NOI18N
         requestForTestButton.setText("Request Test");
         requestForTestButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         requestForTestButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,49 +87,42 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 81, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterpriseFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(messageFieldLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterpriseValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(210, 210, 210))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(405, 405, 405)
-                        .addComponent(requestForTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(294, 294, 294)
-                                .addComponent(messageFieldLabel)
-                                .addGap(62, 62, 62))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(enterpriseFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enterpriseValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(161, 161, 161)
+                        .addComponent(requestForTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126)
+                .addGap(118, 118, 118)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseValueLabel)
-                    .addComponent(enterpriseFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(messageFieldLabel)
-                        .addGap(76, 76, 76)))
+                    .addComponent(enterpriseFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterpriseValueLabel))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(messageValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(messageFieldLabel))
+                .addGap(69, 69, 69)
                 .addComponent(requestForTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(187, 187, 187))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");

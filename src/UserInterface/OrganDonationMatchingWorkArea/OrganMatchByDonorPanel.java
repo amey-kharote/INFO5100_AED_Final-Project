@@ -67,10 +67,11 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
         informOrganMatchButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
+        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        donorInfoTable.setBackground(new java.awt.Color(0, 153, 255));
-        donorInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        donorInfoTable.setBackground(java.awt.SystemColor.info);
+        donorInfoTable.setFont(new java.awt.Font("Tahoma", 1, 23)); // NOI18N
         donorInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -101,8 +102,9 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 125, 970, 150));
 
-        findMatchButton.setBackground(new java.awt.Color(153, 204, 255));
-        findMatchButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        findMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        findMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        findMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-searching-32.png"))); // NOI18N
         findMatchButton.setText("Click To Find Match");
         findMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         findMatchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -110,9 +112,9 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
                 findMatchButtonActionPerformed(evt);
             }
         });
-        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 315, 270, 40));
+        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 300, 40));
 
-        recipientInfoTable.setBackground(new java.awt.Color(0, 153, 255));
+        recipientInfoTable.setBackground(java.awt.SystemColor.info);
         recipientInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         recipientInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,8 +146,9 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 399, 980, 170));
 
-        informOrganMatchButton.setBackground(new java.awt.Color(153, 204, 255));
-        informOrganMatchButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        informOrganMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        informOrganMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        informOrganMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-new-message-32.png"))); // NOI18N
         informOrganMatchButton.setText("Click To Inform Match");
         informOrganMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         informOrganMatchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -153,11 +156,11 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
                 informOrganMatchButtonActionPerformed(evt);
             }
         });
-        add(informOrganMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 609, 280, 40));
+        add(informOrganMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 610, 320, 40));
 
         backButton.setBackground(new java.awt.Color(153, 204, 255));
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backButton.setText("<< Back");
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.setFocusTraversalPolicyProvider(true);
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +168,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 22, 110, -1));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 22, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void findMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findMatchButtonActionPerformed

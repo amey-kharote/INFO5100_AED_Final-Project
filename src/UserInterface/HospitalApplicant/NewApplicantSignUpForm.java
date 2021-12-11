@@ -63,6 +63,8 @@ public class NewApplicantSignUpForm extends javax.swing.JPanel {
         cityDropdownLabel = new javax.swing.JLabel();
         newApplicantSignUpForm = new javax.swing.JLabel();
 
+        setBackground(java.awt.SystemColor.activeCaption);
+
         emailTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         emailTextFieldLabel.setText("Email");
 
@@ -73,8 +75,8 @@ public class NewApplicantSignUpForm extends javax.swing.JPanel {
         passwordTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         passwordTextFieldLabel.setText("Password");
 
-        yesBtn.setBackground(new java.awt.Color(255, 204, 204));
-        yesBtn.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        yesBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        yesBtn.setFont(new java.awt.Font("Tahoma", 0, 23)); // NOI18N
         yesBtn.setText("Yes");
         yesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,12 +84,13 @@ public class NewApplicantSignUpForm extends javax.swing.JPanel {
             }
         });
 
-        noBtn.setBackground(new java.awt.Color(255, 204, 204));
-        noBtn.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        noBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        noBtn.setFont(new java.awt.Font("Tahoma", 0, 23)); // NOI18N
         noBtn.setText("No");
 
         submitButton.setBackground(new java.awt.Color(153, 204, 255));
-        submitButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        submitButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitButton.setText("Submit");
         submitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -110,40 +113,41 @@ public class NewApplicantSignUpForm extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(221, 221, 221)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(newApplicantSignUpForm))
+                        .addGap(438, 438, 438)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(emailTextFieldLabel)
+                            .addComponent(passwordTextFieldLabel)
+                            .addComponent(cityDropdownLabel))
+                        .addGap(57, 57, 57))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(organDonationInterestRadioButtonLabel)
+                        .addGap(48, 48, 48)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(217, 217, 217)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(emailTextFieldLabel)
-                                    .addComponent(passwordTextFieldLabel)
-                                    .addComponent(cityDropdownLabel))
-                                .addGap(57, 57, 57))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(organDonationInterestRadioButtonLabel)
-                                .addGap(48, 48, 48)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(yesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(noBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cityDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(272, Short.MAX_VALUE))
+                        .addComponent(yesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(noBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cityDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(274, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(421, 421, 421)
+                .addComponent(newApplicantSignUpForm)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addComponent(newApplicantSignUpForm)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailTextFieldLabel))
@@ -161,9 +165,9 @@ public class NewApplicantSignUpForm extends javax.swing.JPanel {
                         .addComponent(yesBtn)
                         .addComponent(organDonationInterestRadioButtonLabel))
                     .addComponent(noBtn))
-                .addGap(90, 90, 90)
-                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(187, 187, 187))
+                .addGap(87, 87, 87)
+                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193))
         );
     }// </editor-fold>//GEN-END:initComponents
 

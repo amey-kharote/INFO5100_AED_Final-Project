@@ -17,6 +17,11 @@
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="d1" green="b4" id="Active Caption" palette="2" red="99" type="palette"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card2"/>
@@ -26,36 +31,30 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="81" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="enterpriseFieldLabel" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="messageFieldLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="messageValueTextField" min="-2" pref="220" max="-2" attributes="0"/>
+                      <Component id="enterpriseValueLabel" min="-2" pref="380" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="backButton" min="-2" pref="138" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                           <Component id="requestForTestButton" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
-                                  <Component id="messageFieldLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="enterpriseFieldLabel" min="-2" pref="140" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="enterpriseValueLabel" alignment="0" min="-2" pref="380" max="-2" attributes="0"/>
-                              <Component id="messageValueTextField" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
-                  <Component id="backButton" min="-2" pref="138" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -63,26 +62,21 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="backButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="enterpriseValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="enterpriseFieldLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="enterpriseValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="messageValueTextField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="messageFieldLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="messageValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="messageFieldLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   <Component id="requestForTestButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                  <EmptySpace pref="240" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,7 +103,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="23" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Message"/>
+            <Property name="text" type="java.lang.String" value="Message:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="messageValueTextField">
@@ -124,10 +118,10 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="99" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="24" style="1"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;&lt; Back"/>
+            <Property name="text" type="java.lang.String" value="Back"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                 <BevelBorder/>
@@ -143,8 +137,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="99" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="24" style="1"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/UserInterface/Images/request.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Request Test"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

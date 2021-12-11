@@ -83,9 +83,11 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         signatureTextField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
 
+        setBackground(java.awt.SystemColor.activeCaption);
+
         backButton.setBackground(new java.awt.Color(153, 204, 255));
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backButton.setText("<< Back");
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +95,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             }
         });
 
-        donorRegFormHeader.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        donorRegFormHeader.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         donorRegFormHeader.setText("Donor Registration Form");
 
         nameTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -209,8 +211,9 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         emergencyNameTextFieldName.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         emergencyNameTextFieldName.setText("Name:");
 
-        registerButton.setBackground(new java.awt.Color(153, 204, 255));
-        registerButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        registerButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        registerButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-register-32.png"))); // NOI18N
         registerButton.setText("Register");
         registerButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         registerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -228,12 +231,6 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addressTextAreaLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(649, 649, 649))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -306,10 +303,17 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(105, 105, 105))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(365, 365, 365)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addressTextAreaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(649, 649, 649))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(364, 364, 364))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +332,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ageTextFieldLabel)
                             .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sexCheckboxLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,9 +394,9 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(signatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addGap(53, 53, 53)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119))
+                .addGap(56, 56, 56)
+                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
     }// </editor-fold>//GEN-END:initComponents
 

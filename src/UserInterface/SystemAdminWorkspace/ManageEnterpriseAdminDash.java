@@ -83,15 +83,14 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
         formEmailTextField = new javax.swing.JTextField();
         formPasswordLabel = new javax.swing.JLabel();
         formPasswordField = new javax.swing.JPasswordField();
-        helperEmailLabel = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         SubmitBtn = new javax.swing.JButton();
         helperImageLabel = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(java.awt.SystemColor.activeCaption);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        enterpriseAdminTable.setBackground(new java.awt.Color(0, 153, 255));
+        enterpriseAdminTable.setBackground(java.awt.SystemColor.info);
         enterpriseAdminTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         enterpriseAdminTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,11 +113,11 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseAdminTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 920, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 1040, 140));
 
         formCityLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         formCityLabel.setText("City");
-        jPanel1.add(formCityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        jPanel1.add(formCityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
         cityNetworkDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         cityNetworkDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -127,11 +126,11 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
                 cityNetworkDropdownActionPerformed(evt);
             }
         });
-        jPanel1.add(cityNetworkDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 270, -1));
+        jPanel1.add(cityNetworkDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 270, -1));
 
         formenterpriseLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         formenterpriseLabel.setText("Enterprise");
-        jPanel1.add(formenterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        jPanel1.add(formenterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
 
         enterpriseNetworkDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         enterpriseNetworkDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -140,39 +139,35 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
                 enterpriseNetworkDropdownActionPerformed(evt);
             }
         });
-        jPanel1.add(enterpriseNetworkDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 270, -1));
+        jPanel1.add(enterpriseNetworkDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 270, -1));
 
         formUsernameLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         formUsernameLabel.setText("Email");
-        jPanel1.add(formUsernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+        jPanel1.add(formUsernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
 
         formEmailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        jPanel1.add(formEmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 270, -1));
+        jPanel1.add(formEmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 270, -1));
 
         formPasswordLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         formPasswordLabel.setText("Password");
-        jPanel1.add(formPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, -1));
+        jPanel1.add(formPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
 
         formPasswordField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        jPanel1.add(formPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 270, -1));
-
-        helperEmailLabel.setFont(new java.awt.Font("Times New Roman", 2, 22)); // NOI18N
-        helperEmailLabel.setText("Please give your Email Address");
-        jPanel1.add(helperEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 320, -1));
+        jPanel1.add(formPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 270, -1));
 
         backBtn.setBackground(new java.awt.Color(153, 204, 255));
-        backBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backBtn.setText("<< Back");
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backBtn.setText("Back");
         backBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 160, 40));
+        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 160, 40));
 
-        SubmitBtn.setBackground(new java.awt.Color(153, 204, 255));
-        SubmitBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        SubmitBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        SubmitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         SubmitBtn.setText("Submit");
         SubmitBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +175,7 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
                 SubmitBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 170, 40));
+        jPanel1.add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 170, 40));
 
         helperImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/donation.jpg"))); // NOI18N
         jPanel1.add(helperImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 600, 490));
@@ -270,7 +265,6 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
     private javax.swing.JLabel formPasswordLabel;
     private javax.swing.JLabel formUsernameLabel;
     private javax.swing.JLabel formenterpriseLabel;
-    private javax.swing.JLabel helperEmailLabel;
     private javax.swing.JLabel helperImageLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
