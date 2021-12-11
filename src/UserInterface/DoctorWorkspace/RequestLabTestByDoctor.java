@@ -9,12 +9,12 @@ package UserInterface.DoctorWorkspace;
  *
  * @author Amey
  */
-public class RequestLabTestByDoctorNew extends javax.swing.JPanel {
+public class RequestLabTestByDoctor extends javax.swing.JPanel {
 
     /**
      * Creates new form Temp
      */
-    public RequestLabTestByDoctorNew() {
+    public RequestLabTestByDoctor() {
         initComponents();
     }
 
