@@ -129,6 +129,11 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         contactNumberLabel.setText("Contact Number:");
 
         contactNumTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        contactNumTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactNumTextFieldActionPerformed(evt);
+            }
+        });
 
         emailTextField.setEditable(false);
         emailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -491,14 +496,19 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             return;
         }
         if (org != null && org.getDonorDirectory() != null) {
-            org.getDonorDirectory().createDonor(nameAdded, age, sexSelected, (String) bloodGroup, contactNo,
-                    addressAdded, sign, emailAddStr, emergencyName, emergencyNum, availableNow, organs);
+            org.getDonorDirectory().createDonor(nameAdded, age, addressAdded,contactNo,
+                     emailAddStr, (String) bloodGroup, sexSelected,
+                    sign, emergencyName, emergencyNum, availableNow, organs);
             JOptionPane.showMessageDialog(null, "Thankyou for registering as a donoe.");
             rightJPanel.remove(this);
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
             layout.previous(rightJPanel);
         }
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void contactNumTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNumTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactNumTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
