@@ -8,6 +8,7 @@ package UserInterface.FundsRetrieval;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Organization.TrustFundOrg;
 import Business.Role.TrustManagerRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FundingWorkRequest;
@@ -49,7 +50,10 @@ public class GovtFundingPanel extends javax.swing.JPanel {
         DefaultTableModel dtm  = (DefaultTableModel)govtEventDetailTable.getModel();
         dtm.setRowCount(0);
         
-        for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){            
+        for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            
+            if(organization instanceof TrustFundOrg){
+            
             for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = req;
@@ -58,6 +62,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
             row[3] = req.getStatus();
             dtm.addRow(row);
             }
+        }
         }
     }
 

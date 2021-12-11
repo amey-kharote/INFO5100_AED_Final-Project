@@ -32,47 +32,37 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Amey
  */
 public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
-    
+
     JPanel rightPanel;
     EcoSystem ecosystem;
     Enterprise enterprise;
     Organization organization;
     UserAccount userAccount;
+
     /**
      * Creates new form NewJPanel
      */
     public LabAssistantWorkAreaPanel(JPanel rightPanel, EcoSystem ecosystem, Enterprise enterprise, Organization organization, UserAccount userAccount) {
         initComponents();
-        
         this.ecosystem = ecosystem;
-        
-        this.organization = (InternalLabOrg)organization;
-        
+        this.organization = organization;
         this.userAccount = userAccount;
-        
         this.rightPanel = rightPanel;
-        
         methodToPopulateTableData();
-        
-        labAssitantWorkRequestTable.getTableHeader().setFont(new Font("Times New Roman" , Font.ITALIC,23));
     }
+
     public LabAssistantWorkAreaPanel(JPanel rightPanel, EcoSystem ecosystem, Enterprise enterprise, UserAccount userAccount) {
-        
         initComponents();
-        
         this.ecosystem = ecosystem;
-        
         this.enterprise = enterprise;
-        
         this.userAccount = userAccount;
-        
         this.rightPanel = rightPanel;
-        
         methodToPopulateTableEnterprise();
     }
 
@@ -149,110 +139,75 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         });
         add(processButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, 300, 40));
     }// </editor-fold>//GEN-END:initComponents
-    
-    public void methodToPopulateTableData () {
-        
-        DefaultTableModel tableModel = (DefaultTableModel)labAssitantWorkRequestTable.getModel();
-        
+
+    public void methodToPopulateTableData() {
+        DefaultTableModel tableModel = (DefaultTableModel) labAssitantWorkRequestTable.getModel();
         tableModel.setRowCount(0);
-        
-        for(WorkRequest workRequestObject : organization.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest workRequestObject : organization.getWorkQueue().getWorkRequestList()) {
             Object[] labAssistantTableRow = new Object[4];
-            
             labAssistantTableRow[0] = workRequestObject;
-            
             labAssistantTableRow[1] = workRequestObject.getSender().getEmployee().getEmpName();
-            
-            labAssistantTableRow[2] = workRequestObject.getReceiver() == null 
-                    ? null 
-                    : workRequestObject.getReceiver().getEmployee().getEmpName();
-            
+            labAssistantTableRow[2] = workRequestObject.getReceiver() == null ? null : workRequestObject.getReceiver().getEmployee().getEmpName();
             labAssistantTableRow[3] = workRequestObject.getStatus();
-            
             tableModel.addRow(labAssistantTableRow);
         }
     }
-    
-    
-    public void methodToPopulateTableEnterprise () {
-        
-        DefaultTableModel tableModel = (DefaultTableModel)labAssitantWorkRequestTable.getModel();
-        
+
+    public void methodToPopulateTableEnterprise() {
+
+        DefaultTableModel tableModel = (DefaultTableModel) labAssitantWorkRequestTable.getModel();
         tableModel.setRowCount(0);
-        
-        for(Organization organizationObject : enterprise.getOrganizationDirectory().getOrganizationList()){
-            
-            for(WorkRequest requestOfWork: organizationObject.getWorkQueue().getWorkRequestList()){
-                
-            Object[] labAssistantTableRow = new Object[4];
-            
-            labAssistantTableRow[0] = requestOfWork;
-            
-            labAssistantTableRow[1] = requestOfWork.getSender().getEmployee().getEmpName();
-            
-            labAssistantTableRow[2] = requestOfWork.getReceiver() == null 
-                    ? null 
-                    : requestOfWork.getReceiver().getEmployee().getEmpName();
-            
-            labAssistantTableRow[3] = requestOfWork.getStatus();
-            
-            tableModel.addRow(labAssistantTableRow);
-          
+        for (Organization organizationObject : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (WorkRequest requestOfWork : organizationObject.getWorkQueue().getWorkRequestList()) {
+                Object[] labAssistantTableRow = new Object[4];
+                labAssistantTableRow[0] = requestOfWork;
+                labAssistantTableRow[1] = requestOfWork.getSender().getEmployee().getEmpName();
+                labAssistantTableRow[2] = requestOfWork.getReceiver() == null ? null : requestOfWork.getReceiver().getEmployee().getEmpName();
+                labAssistantTableRow[3] = requestOfWork.getStatus();
+                tableModel.addRow(labAssistantTableRow);
             }
         }
     }
-    
+
     private void assignToMeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignToMeButtonActionPerformed
         int selectedRowOfTable = labAssitantWorkRequestTable.getSelectedRow();
-
-        if(labAssitantWorkRequestTable.getRowCount()==0){
+        if (labAssitantWorkRequestTable.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "No rows present to select.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        if (selectedRowOfTable < 0){
+        if (selectedRowOfTable < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
-        WorkRequest requestOfWork = (WorkRequest)labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
-        
+        WorkRequest requestOfWork = (WorkRequest) labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
+        if("Completed".equalsIgnoreCase(requestOfWork.getStatus())){
+            JOptionPane.showMessageDialog(null, "This test has already been completed.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         requestOfWork.setReceiver(userAccount);
-        
         requestOfWork.setStatus("Pending");
-        
-        if(userAccount.getRole() instanceof LabAssistantRole){
-            
-           methodToPopulateTableEnterprise(); 
-        } else if(userAccount.getRole() instanceof InternalLabAssistantRole){
-            
+        if (userAccount.getRole() instanceof LabAssistantRole) {
+            methodToPopulateTableData();
+        } else if (userAccount.getRole() instanceof InternalLabAssistantRole) {
             methodToPopulateTableData();
         }
     }//GEN-LAST:event_assignToMeButtonActionPerformed
 
     private void processButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processButtonActionPerformed
         int selectedRowOfTable = labAssitantWorkRequestTable.getSelectedRow();
-
-        if(labAssitantWorkRequestTable.getRowCount()==0){
+        if (labAssitantWorkRequestTable.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "There are no rows present in the Table to Select.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        if (selectedRowOfTable < 0){
+        if (selectedRowOfTable < 0) {
             JOptionPane.showMessageDialog(null, "Please, Select a row from the table.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        LabTestWorkRequest labTestWorkRequest = (LabTestWorkRequest)labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
-
+        LabTestWorkRequest labTestWorkRequest = (LabTestWorkRequest) labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
         labTestWorkRequest.setStatus("Processing");
-
         TestResultUploadPanel processWorkRequestJPanel = new TestResultUploadPanel(rightPanel, labTestWorkRequest, userAccount);
-        
         rightPanel.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        
         CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
-        
         cardLayout.next(rightPanel);
     }//GEN-LAST:event_processButtonActionPerformed
 

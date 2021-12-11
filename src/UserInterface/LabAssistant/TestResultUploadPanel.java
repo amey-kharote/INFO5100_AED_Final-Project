@@ -12,29 +12,12 @@ import Business.Role.LabAssistantRole;
 import Business.UserAccount.UserAccount;
 
 import Business.WorkQueue.LabTestWorkRequest;
-
 import java.awt.CardLayout;
-
 import java.awt.Component;
-
 import java.io.File;
-
 import java.util.Properties;
-
-import javax.mail.Message;
-
-import javax.mail.Session;
-
-import javax.mail.Transport;
-
-import javax.mail.internet.InternetAddress;
-
-import javax.mail.internet.MimeMessage;
-
 import javax.swing.JFileChooser;
-
 import javax.swing.JOptionPane;
-
 import javax.swing.JPanel;
 
 /**
@@ -47,19 +30,13 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
      * Creates new form TestResultUploadPanel
      */
     JPanel rightPanel;
-
     LabTestWorkRequest labTestWorkRequest;
-
     UserAccount userAccount;
 
     public TestResultUploadPanel(JPanel rightPanel, LabTestWorkRequest labTestWorkRequest, UserAccount userAccount) {
-
         initComponents();
-
         this.rightPanel = rightPanel;
-
         this.labTestWorkRequest = labTestWorkRequest;
-
         this.userAccount = userAccount;
     }
 
@@ -169,126 +146,73 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         JFileChooser jFileChooserObject = new JFileChooser();
-
         jFileChooserObject.showOpenDialog(null);
-
         File f = jFileChooserObject.getSelectedFile();
-
         String fileToUpload = f.getAbsolutePath();
-
         fileUploadPathDisplayerLabel.setText(fileToUpload);
-
         labTestWorkRequest.setTestUploaded(fileToUpload);
     }//GEN-LAST:event_uploadButtonActionPerformed
 
     private void submitResultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitResultButtonActionPerformed
         if (resultFileDisplayTextField.getText().equals("")) {
-
             JOptionPane.showMessageDialog(null, "Please enter a comment!");
-
             return;
-
         } else {
-
             labTestWorkRequest.setTestResult(resultFileDisplayTextField.getText());
-
-            //Sending Email to the Patient of his Report
-            boolean variableForSession = false;
-
-            final String toPerson = labTestWorkRequest.getPatientName().trim(); //This needs to be an email address
-
-            String from = "organdonationaed@gmail.com";
-
-            String host = "smtp.gmail.com";
-
-            String username = "organdonationaed@gmail.com";
-
-            String password = "Pass@1234";//we have to type the real password here for it to work
-            //if it is gmail we have to enable less secure apps
-
-            Properties propertiesOfEmailServer = System.getProperties();
-
-            propertiesOfEmailServer.setProperty("mail.smtp.host", host);
-
-            propertiesOfEmailServer.put("mail.smtp.starttls.required", "true");
-
-            propertiesOfEmailServer.put("mail.smtp.starttls.enable", "true");
-
-            propertiesOfEmailServer.put("mail.smtp.host", host);
-
-            propertiesOfEmailServer.put("mail.smtp.port", "587");
-
-            propertiesOfEmailServer.put("mail.smtp.auth", "true");
-
-            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-
-            Session session;
-
-            session = Session.getDefaultInstance(propertiesOfEmailServer, null);
-
-            session.setDebug(variableForSession);
-
-            try {
-                MimeMessage messageToSendEmail = new MimeMessage(session);
-
-                messageToSendEmail.setFrom(new InternetAddress(from));
-
-                messageToSendEmail.setRecipient(Message.RecipientType.TO, new InternetAddress(toPerson));
-
-                InternetAddress addressToPerson;
-
-                addressToPerson = new InternetAddress(toPerson);
-
-                messageToSendEmail.setSubject("Your Test Report is ready!");
-
-                messageToSendEmail.setText("Hello! You can find the report in Attachment.");
-
-                messageToSendEmail.setFileName(labTestWorkRequest.getTestUploaded());
-
-                Transport transport = session.getTransport("smtp");
-
-                transport.connect(host, username, password);
-
-                transport.sendMessage(messageToSendEmail, messageToSendEmail.getAllRecipients());
-
-                transport.close();
-
-            } catch (Exception e) {
-
-                System.out.println(e);
-
-                JOptionPane.showMessageDialog(null, "Please attach test report!");
-
-            }
-
+//            boolean variableForSession = false;
+//            final String toPerson = labTestWorkRequest.getPatientName().trim(); 
+//            String from = "organdonationaed@gmail.com";
+//            String host = "smtp.gmail.com";
+//            String username = "organdonationaed@gmail.com";
+//            String password = "Pass@1234";
+//            Properties propertiesOfEmailServer = System.getProperties();
+//            propertiesOfEmailServer.setProperty("mail.smtp.host", host);
+//            propertiesOfEmailServer.put("mail.smtp.starttls.required", "true");
+//            propertiesOfEmailServer.put("mail.smtp.starttls.enable", "true");
+//            propertiesOfEmailServer.put("mail.smtp.host", host);
+//            propertiesOfEmailServer.put("mail.smtp.port", "587");
+//            propertiesOfEmailServer.put("mail.smtp.auth", "true");
+//            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+//            Session session;
+//            session = Session.getDefaultInstance(propertiesOfEmailServer, null);
+//            session.setDebug(variableForSession);
+//            try {
+//                MimeMessage messageToSendEmail = new MimeMessage(session);
+//                messageToSendEmail.setFrom(new InternetAddress(from));
+//                messageToSendEmail.setRecipient(Message.RecipientType.TO, new InternetAddress(toPerson));
+//                InternetAddress addressToPerson;
+//                addressToPerson = new InternetAddress(toPerson);
+//                messageToSendEmail.setSubject("Your Test Report is ready!");
+//                messageToSendEmail.setText("Hello! You can find the report in Attachment.");
+//                messageToSendEmail.setFileName(labTestWorkRequest.getTestUploaded());
+//                Transport transport = session.getTransport("smtp");
+//                transport.connect(host, username, password);
+//                transport.sendMessage(messageToSendEmail, messageToSendEmail.getAllRecipients());
+//                transport.close();
+//            } catch (Exception e) {
+//                System.out.println("MAIL NOT SENT");
+//                JOptionPane.showMessageDialog(null, "Please attach test report!");
+//            }
             labTestWorkRequest.setStatus("Completed");
-
-            JOptionPane.showMessageDialog(null, "Processed");
+            JOptionPane.showMessageDialog(null, "Reports Uploaded. Request processing completed.");
+            submitResultButton.setEnabled(false);
+            uploadButton.setEnabled(false);
         }
     }//GEN-LAST:event_submitResultButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         rightPanel.remove(this);
-
         Component[] arrayOfComponents = rightPanel.getComponents();
-
         Component componentObject = arrayOfComponents[arrayOfComponents.length - 1];
-
         LabAssistantWorkAreaPanel labAssistantWorkAreaPanelObject = (LabAssistantWorkAreaPanel) componentObject;
-
-        if (userAccount.getRole() instanceof InternalLabAssistantRole) {
-
-            labAssistantWorkAreaPanelObject.methodToPopulateTableData();
-
-        } else if (userAccount.getRole() instanceof LabAssistantRole) {
-
-            labAssistantWorkAreaPanelObject.methodToPopulateTableEnterprise();
-
-        }
-
+        labAssistantWorkAreaPanelObject.methodToPopulateTableData();
+//        if (userAccount.getRole() instanceof InternalLabAssistantRole) {
+//            labAssistantWorkAreaPanelObject.methodToPopulateTableData();
+//        } else if (userAccount.getRole() instanceof LabAssistantRole) {
+//            labAssistantWorkAreaPanelObject.methodToPopulateTableEnterprise();
+//        }
         CardLayout layout = (CardLayout) rightPanel.getLayout();
-
         layout.previous(rightPanel);
 
     }//GEN-LAST:event_backButtonActionPerformed

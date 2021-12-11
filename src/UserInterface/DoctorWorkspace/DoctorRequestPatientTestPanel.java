@@ -219,17 +219,15 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
 
     private void askToTakeTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_askToTakeTestButtonActionPerformed
         if (bloodTestCheckbox.isSelected() == false
-                && xrayCheckbox.isSelected() == false
-                && radiologicTestCheckbox.isSelected() == false
                 && gynecologicalScreeningCheckbox.isSelected() == false
                 && cancerCheckbox.isSelected() == false) {
             JOptionPane.showMessageDialog(null, "Please advice some test!");
             return;
         }
-        if (bloodTestCheckbox.isSelected() || xrayCheckbox.isSelected() || radiologicTestCheckbox.isSelected()) {
+        if (bloodTestCheckbox.isSelected() || xrayCheckbox.isSelected()) {
             LabTestWorkRequest request = new LabTestWorkRequest();
             request.setStatus("Request Generated");
-            request.setMessage("Requesting tests for patient!");
+            request.setMessage("Requesting set of common tests!");
             request.setSender(account);
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             Organization org = null;
@@ -248,7 +246,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         if (gynecologicalScreeningCheckbox.isSelected()) {
             LabTestWorkRequest request = new LabTestWorkRequest();
             request.setSender(account);
-            request.setMessage("Requesting screening for patient!");
+            request.setMessage("Requesting all pathological tests for patient!");
             request.setStatus("Request Generated");
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             Organization orgObj = null;
@@ -273,7 +271,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             LabTestWorkRequest request = new LabTestWorkRequest();
             request.setStatus("Request Generated");
             request.setSender(account);
-            request.setMessage("Requesting screening for patient");
+            request.setMessage("Requesting all screening for patient");
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             Organization orgObj = null;
             for (Network networkObj : business.getNetworks()) {
