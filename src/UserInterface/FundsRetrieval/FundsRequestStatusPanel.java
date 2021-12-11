@@ -93,7 +93,7 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 204, 255));
 
-        governmentFundRequestStatusTable.setBackground(new java.awt.Color(0, 153, 255));
+        governmentFundRequestStatusTable.setBackground(java.awt.SystemColor.info);
         governmentFundRequestStatusTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -107,7 +107,7 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(governmentFundRequestStatusTable);
 
-        governmentFundRequestStatusTable1.setBackground(new java.awt.Color(0, 153, 255));
+        governmentFundRequestStatusTable1.setBackground(java.awt.SystemColor.info);
         governmentFundRequestStatusTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -127,8 +127,8 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
         corporateFundingTableHeaderLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         corporateFundingTableHeaderLbl.setText("Corporate Funds Request Status");
 
-        backBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        backBtn.setText("<<BACK");
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backBtn.setText("BACK");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -154,7 +154,7 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(govtFundingTableHeaderLbl)
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
