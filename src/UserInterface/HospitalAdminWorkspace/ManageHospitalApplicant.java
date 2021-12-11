@@ -42,8 +42,11 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
         recipientButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
-        donorButton.setBackground(new java.awt.Color(255, 204, 204));
-        donorButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        setBackground(java.awt.SystemColor.activeCaption);
+
+        donorButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        donorButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        donorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-donor-32.png"))); // NOI18N
         donorButton.setText("Donor");
         donorButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         donorButton.addActionListener(new java.awt.event.ActionListener() {
@@ -52,8 +55,9 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
             }
         });
 
-        recipientButton.setBackground(new java.awt.Color(255, 204, 204));
-        recipientButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        recipientButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        recipientButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        recipientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-welfare-32.png"))); // NOI18N
         recipientButton.setText("Recipient");
         recipientButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         recipientButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +66,7 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
             }
         });
 
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backButton.setText("<< Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,27 +80,27 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(donorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112)
-                        .addComponent(recipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                        .addComponent(donorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                        .addComponent(recipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(73, 73, 73)
                 .addComponent(backButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(donorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(recipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(450, 450, 450))
+                .addGap(406, 406, 406))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -109,7 +113,7 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
 
     private void recipientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recipientButtonActionPerformed
         // TODO add your handling code here:
-        RecipientRegistrationForm reciptObj = new RecipientRegistrationForm( org, rightJPanel);
+        RecipientRegistrationForm reciptObj = new RecipientRegistrationForm(org, rightJPanel);
         rightJPanel.add("recipientRegistrationForm", reciptObj);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);

@@ -80,10 +80,11 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         assignToMeButton = new javax.swing.JButton();
         processButton = new javax.swing.JButton();
 
+        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labAssitantWorkRequestTable.setBackground(new java.awt.Color(0, 153, 255));
-        labAssitantWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        labAssitantWorkRequestTable.setBackground(java.awt.SystemColor.info);
+        labAssitantWorkRequestTable.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labAssitantWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -112,10 +113,11 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(labAssitantWorkRequestTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 68, 1090, 180));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1090, 180));
 
         assignToMeButton.setBackground(new java.awt.Color(153, 204, 255));
-        assignToMeButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        assignToMeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-audit-24.png"))); // NOI18N
         assignToMeButton.setText("Assign to me");
         assignToMeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         assignToMeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -123,10 +125,11 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
                 assignToMeButtonActionPerformed(evt);
             }
         });
-        add(assignToMeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 325, 300, 40));
+        add(assignToMeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 300, 40));
 
-        processButton.setBackground(new java.awt.Color(153, 204, 255));
-        processButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        processButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        processButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        processButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/process.png"))); // NOI18N
         processButton.setText("Process");
         processButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         processButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +137,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
                 processButtonActionPerformed(evt);
             }
         });
-        add(processButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(811, 325, 300, 40));
+        add(processButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, 300, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     public void methodToPopulateTableData() {

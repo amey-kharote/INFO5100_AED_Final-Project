@@ -88,10 +88,11 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
         seePieChartButton = new javax.swing.JButton();
         informAboutMatchButton = new javax.swing.JButton();
 
+        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        recipientInfoTable.setBackground(new java.awt.Color(0, 153, 255));
-        recipientInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        recipientInfoTable.setBackground(java.awt.SystemColor.info);
+        recipientInfoTable.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         recipientInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -120,10 +121,11 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(recipientInfoTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 800, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 800, 170));
 
-        findMatchButton.setBackground(new java.awt.Color(153, 204, 255));
-        findMatchButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        findMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        findMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        findMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-searching-32.png"))); // NOI18N
         findMatchButton.setText("Click To Find Match");
         findMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         findMatchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -131,10 +133,10 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
                 findMatchButtonActionPerformed(evt);
             }
         });
-        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 260, -1));
+        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 260, -1));
 
-        applicantInfoTable.setBackground(new java.awt.Color(0, 153, 255));
-        applicantInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        applicantInfoTable.setBackground(java.awt.SystemColor.info);
+        applicantInfoTable.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         applicantInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -163,21 +165,22 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(applicantInfoTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 800, 170));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 800, 170));
 
-        backButton.setBackground(new java.awt.Color(153, 204, 255));
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backButton.setText("<< Back");
+        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 110, -1));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 140, 40));
 
-        seePieChartButton.setBackground(new java.awt.Color(153, 204, 255));
-        seePieChartButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        seePieChartButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        seePieChartButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        seePieChartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-chart-24.png"))); // NOI18N
         seePieChartButton.setText("See PieChart");
         seePieChartButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         seePieChartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -185,10 +188,11 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
                 seePieChartButtonActionPerformed(evt);
             }
         });
-        add(seePieChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 640, 260, -1));
+        add(seePieChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, 230, 40));
 
-        informAboutMatchButton.setBackground(new java.awt.Color(153, 204, 255));
-        informAboutMatchButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        informAboutMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        informAboutMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        informAboutMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-new-message-32.png"))); // NOI18N
         informAboutMatchButton.setText("Click To Inform Match");
         informAboutMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         informAboutMatchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -196,7 +200,7 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
                 informAboutMatchButtonActionPerformed(evt);
             }
         });
-        add(informAboutMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 260, -1));
+        add(informAboutMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void findMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findMatchButtonActionPerformed

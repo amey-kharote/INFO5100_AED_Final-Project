@@ -84,10 +84,12 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
         assignToMeButton = new javax.swing.JButton();
         processButton = new javax.swing.JButton();
 
+        setBackground(java.awt.SystemColor.activeCaption);
+
         corpEventFundTableLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         corpEventFundTableLabel.setText("Corporate Event Fund Raising Details");
 
-        corpEventDetailTable.setBackground(new java.awt.Color(0, 153, 255));
+        corpEventDetailTable.setBackground(java.awt.SystemColor.info);
         corpEventDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -102,6 +104,7 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(corpEventDetailTable);
 
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        assignToMeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-audit-24.png"))); // NOI18N
         assignToMeButton.setText("Assign To Me");
         assignToMeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +113,7 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
         });
 
         processButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        processButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/process.png"))); // NOI18N
         processButton.setText("Process");
         processButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,19 +127,14 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(corpEventFundTableLabel)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(corpEventFundTableLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 533, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(111, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(assignToMeButton)
-                .addGap(223, 223, 223)
-                .addComponent(processButton)
-                .addGap(317, 317, 317))
+                        .addComponent(assignToMeButton)
+                        .addGap(640, 640, 640)
+                        .addComponent(processButton))
+                    .addComponent(jScrollPane3))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,8 +142,8 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
                 .addGap(66, 66, 66)
                 .addComponent(corpEventFundTableLabel)
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignToMeButton)
                     .addComponent(processButton))

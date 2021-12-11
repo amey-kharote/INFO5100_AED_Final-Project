@@ -52,9 +52,12 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
         matchOrganByRecipientButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
-        matchOrganByApplicantButton.setBackground(new java.awt.Color(255, 204, 204));
-        matchOrganByApplicantButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        matchOrganByApplicantButton.setText("Match Organ by Applicant availability");
+        setBackground(java.awt.SystemColor.activeCaption);
+
+        matchOrganByApplicantButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        matchOrganByApplicantButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        matchOrganByApplicantButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-available-updates-32.png"))); // NOI18N
+        matchOrganByApplicantButton.setText("Match Organ by Applicant Availability");
         matchOrganByApplicantButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         matchOrganByApplicantButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,9 +65,10 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
             }
         });
 
-        matchOrganByRecipientButton.setBackground(new java.awt.Color(255, 204, 204));
-        matchOrganByRecipientButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        matchOrganByRecipientButton.setText("Match Organ by Recipient severity");
+        matchOrganByRecipientButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        matchOrganByRecipientButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        matchOrganByRecipientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-available-updates-red.png"))); // NOI18N
+        matchOrganByRecipientButton.setText("Match Organ by Recipient Severity");
         matchOrganByRecipientButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         matchOrganByRecipientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,9 +76,10 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
             }
         });
 
-        backButton.setBackground(new java.awt.Color(153, 204, 255));
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backButton.setText("<< Back");
+        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,21 +94,21 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(221, 221, 221)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(matchOrganByRecipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(matchOrganByApplicantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(matchOrganByApplicantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(337, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(53, 53, 53)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115)
+                .addGap(84, 84, 84)
                 .addComponent(matchOrganByApplicantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(matchOrganByRecipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
