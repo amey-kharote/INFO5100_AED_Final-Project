@@ -105,6 +105,12 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         patientEmailDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         patientEmailDropdownLabel.setText("Patient Information");
 
+        patientNameCombobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientNameComboboxActionPerformed(evt);
+            }
+        });
+
         testCheckboxLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         testCheckboxLabel.setText("Tests");
 
@@ -313,6 +319,10 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         layout.next(rightJPanel);
 
     }//GEN-LAST:event_checkResultStatusButtonActionPerformed
+
+    private void patientNameComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNameComboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientNameComboboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

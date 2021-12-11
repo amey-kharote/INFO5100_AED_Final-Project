@@ -12,12 +12,18 @@ import Business.Entity.Donor;
 import Business.Entity.Recipient;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.awt.CardLayout;
 import java.awt.Frame;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.TreeMap;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -241,7 +247,88 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
 
         }
         
+        Map<Double, Donor> cityDistMap = distbtwCity(network, donorL);
+        
+        for(Donor obj : cityDistMap.values()){
+            Object[] row = new Object[3];
+            row[0] = obj;
+            row[1] = obj.getNetwork();
+            row[2] = obj.isIsOrganAvailable();
+
+            dtm.addRow(row);
+        }
+        
     }
+    
+    public static double dist(double lattitude1, double longitude1, double latitude2, double longitude2, String str) {
+           double teta = longitude1 - longitude2;
+           double dist = Math.sin(deg2radian(lattitude1)) * Math.sin(deg2radian(latitude2)) 
+                   + Math.cos(deg2radian(lattitude1)) * Math.cos(deg2radian(latitude2)) * Math.cos(deg2radian(teta));
+           dist = Math.acos(dist);
+           dist = rad2degree(dist);
+           dist = dist * 60 * 1.1515;
+           if (str.equals("K")) {
+               dist = dist * 1.609344;
+           } else if (str.equals("N")) {
+               dist = dist * 0.8684;
+           }
+           return (dist);
+       }
+    
+    public static double rad2degree(double rad) {
+           return (rad * 180.0 / Math.PI);
+       }
+
+       public static double deg2radian(double deg) {
+           return (deg * Math.PI / 180.0);
+       }
+
+       
+       
+       
+    public static Map getGCodes(String address) {
+           try {
+               String geoCodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+               String key = "&key=AIzaSyBiz8PYrcTF4KFwOEpOANYPcgxZUDz3_kU";
+               StringBuilder result = new StringBuilder();
+               URL url = new URL(geoCodeUrl + address + key);
+               HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+               connection.setRequestMethod("GET");
+               BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+               
+               String lin;
+               while ((lin = rd.readLine()) != null) {
+                   result.append(lin);
+               }
+               rd.close();
+               Map resultMap = new ObjectMapper().readValue(result.toString(), Map.class);
+               return (Map) ((Map) ((Map) ((List) resultMap.get("results")).get(0)).get("geometry")).get("location");
+           } catch (Throwable throwable) {
+               
+               throwable.printStackTrace();
+           }
+           return null;
+       }
+    
+    private Map<Double, Donor> distbtwCity(String first, List<Donor> donorL) {
+        
+        Map<Double, Donor> cityDMap = new TreeMap<Double, Donor>();
+        
+        for(Donor d : donorL){
+            
+            double dist = getDist(first, d.getNetwork());
+            cityDMap.put(dist, d);
+        }
+        return cityDMap;
+    }
+    
+    public static double getDist(String fromAdd, String toAdd) {
+        
+            Map from = getGCodes(fromAdd);
+            Map to = getGCodes(toAdd);
+            return dist((Double) from.get("lat"), (Double) from.get("lng"), (Double) to.get("lat"), (Double) to.get("lng"), "K");
+
+        }
     
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
 

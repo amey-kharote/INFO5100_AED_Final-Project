@@ -21,7 +21,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
     
     Organization organization;
     JPanel panel;
-    Utils utils;
+    Utils utils = new Utils();
     /**
      * Creates new form RecipientRegistrationForm
      */
@@ -338,9 +338,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
             gender = maleRadioBtn.getText();
         }else{
             gender = femaleRadioBtn.getText();
-        }  
-
-            
+        }              
         String nameOnForm = nameTextField.getText();
         String phone = contactNumTextField.getText();
         String emailID = emailTextField.getText();
@@ -354,8 +352,6 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please fill all the details.");
             return;
         }
-        
-        
         
         try{
             age =  Integer.parseInt(ageTextField.getText());          
@@ -372,13 +368,14 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
            }
            
          //Check Name validity
+         /*
         if(!utils.isValidName(nameOnForm) || !utils.isValidSign(signature)){
             JOptionPane.showMessageDialog(null, "Please enter valid name.");
             return;
-        }
+        }*/
         
         //check Phone number validity
-        if(utils.isValidPhoneNo(phone)){
+        if(!utils.isValidPhoneNo(phone)){
             JOptionPane.showMessageDialog(null, " Invalid Phone No." + 
                 "Should be 10 digit number between 0-9");
             return;
