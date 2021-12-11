@@ -51,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
         rightJPanel = new javax.swing.JPanel();
         landingImage = new javax.swing.JLabel();
 
@@ -59,7 +60,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane1.setBackground(new java.awt.Color(204, 255, 255));
         jSplitPane1.setDividerLocation(250);
 
-        leftPanel.setBackground(new java.awt.Color(0, 204, 204));
+        leftPanel.setBackground(java.awt.SystemColor.inactiveCaption);
 
         userNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         userNameLabel.setText("Username");
@@ -86,6 +87,8 @@ public class MainJFrame extends javax.swing.JFrame {
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         titleLabel.setText("Organ Donation");
 
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-donation-64.png"))); // NOI18N
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -100,21 +103,26 @@ public class MainJFrame extends javax.swing.JFrame {
                             .addComponent(passwordLabel)
                             .addComponent(usernameTextField)))
                     .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(titleLabel))
-                    .addGroup(leftPanelLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(leftPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(titleLabel))
+                    .addGroup(leftPanelLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(logoLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
+                .addContainerGap()
+                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titleLabel)
-                .addGap(69, 69, 69)
+                .addGap(38, 38, 38)
                 .addComponent(userNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,14 +134,15 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(loginButton)
                 .addGap(36, 36, 36)
                 .addComponent(logoutButton)
-                .addContainerGap(466, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(leftPanel);
 
         rightJPanel.setLayout(new java.awt.CardLayout());
 
-        landingImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/GettyImages-organ-donation-1200.jpg"))); // NOI18N
+        landingImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        landingImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/organ-transplant-myths.jpg"))); // NOI18N
         rightJPanel.add(landingImage, "card2");
 
         jSplitPane1.setRightComponent(rightJPanel);
@@ -264,6 +273,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel landingImage;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JButton loginButton;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JButton logoutButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;

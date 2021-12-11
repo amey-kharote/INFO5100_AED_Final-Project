@@ -46,7 +46,7 @@
         <Container class="javax.swing.JPanel" name="leftPanel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="0" type="rgb"/>
+              <Color blue="db" green="cd" id="Inactive Caption" palette="2" red="bf" type="palette"/>
             </Property>
           </Properties>
           <Constraints>
@@ -70,15 +70,19 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="logoutButton" min="-2" pref="180" max="-2" attributes="0"/>
                                   <Component id="loginButton" min="-2" pref="180" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                              <Component id="logoLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -88,9 +92,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="logoLabel" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="userNameLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="usernameTextField" min="-2" max="-2" attributes="0"/>
@@ -102,7 +108,7 @@
                       <Component id="loginButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="466" max="32767" attributes="0"/>
+                      <EmptySpace pref="422" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -158,6 +164,13 @@
                 <Property name="text" type="java.lang.String" value="Organ Donation"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="logoLabel">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/UserInterface/Images/icons8-donation-64.png"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="rightJPanel">
@@ -171,8 +184,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="landingImage">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/UserInterface/Images/GettyImages-organ-donation-1200.jpg"/>
+                  <Image iconType="3" name="/UserInterface/Images/organ-transplant-myths.jpg"/>
                 </Property>
               </Properties>
               <Constraints>
