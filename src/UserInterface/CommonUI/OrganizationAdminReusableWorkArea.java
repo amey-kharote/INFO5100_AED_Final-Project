@@ -46,10 +46,12 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         hospitalAdminLabel = new javax.swing.JLabel();
         adminValue = new javax.swing.JLabel();
 
+        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageUserButton.setBackground(new java.awt.Color(255, 204, 204));
-        manageUserButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        manageUserButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        manageUserButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        manageUserButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/team-management.png"))); // NOI18N
         manageUserButton.setText("Manage User");
         manageUserButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         manageUserButton.addActionListener(new java.awt.event.ActionListener() {
@@ -59,8 +61,9 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         });
         add(manageUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 570, 40));
 
-        managePeopleButton.setBackground(new java.awt.Color(255, 204, 204));
-        managePeopleButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        managePeopleButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        managePeopleButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        managePeopleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/management.png"))); // NOI18N
         managePeopleButton.setText("Manage People");
         managePeopleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         managePeopleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,8 +73,9 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         });
         add(managePeopleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 570, 40));
 
-        manageOrgButton.setBackground(new java.awt.Color(255, 204, 204));
-        manageOrgButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        manageOrgButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        manageOrgButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        manageOrgButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/planning.png"))); // NOI18N
         manageOrgButton.setText("Manage Organization");
         manageOrgButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         manageOrgButton.addActionListener(new java.awt.event.ActionListener() {

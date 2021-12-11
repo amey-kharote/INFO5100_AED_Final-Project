@@ -83,7 +83,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 204, 255));
 
-        govtEventDetailTable.setBackground(new java.awt.Color(0, 153, 255));
+        govtEventDetailTable.setBackground(java.awt.SystemColor.info);
         govtEventDetailTable.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         govtEventDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +102,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
         govtEventFundTableLabel.setText("Government Event Fund Raising Details");
 
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        assignToMeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-audit-24.png"))); // NOI18N
         assignToMeButton.setText("Assign To Me");
         assignToMeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +111,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
         });
 
         processButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        processButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/process.png"))); // NOI18N
         processButton.setText("Process");
         processButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,17 +124,15 @@ public class GovtFundingPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 101, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(assignToMeButton)
+                        .addGap(640, 640, 640)
+                        .addComponent(processButton))
                     .addComponent(govtEventFundTableLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
                 .addGap(83, 83, 83))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(286, Short.MAX_VALUE)
-                .addComponent(assignToMeButton)
-                .addGap(223, 223, 223)
-                .addComponent(processButton)
-                .addGap(315, 315, 315))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,11 +141,11 @@ public class GovtFundingPanel extends javax.swing.JPanel {
                 .addComponent(govtEventFundTableLabel)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignToMeButton)
-                    .addComponent(processButton))
-                .addContainerGap(368, Short.MAX_VALUE))
+                    .addComponent(processButton)
+                    .addComponent(assignToMeButton))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -57,12 +57,14 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
 
         jSplitPane1.setDividerLocation(200);
 
-        rightButtonsJPanel.setBackground(new java.awt.Color(204, 204, 255));
+        rightButtonsJPanel.setBackground(java.awt.SystemColor.activeCaption);
 
         selectedNodeLabel.setText("Selected Node");
 
         selectedNodeLabelValue.setText("<value>");
 
+        manageNetworkBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageNetworkBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-blockchain-technology-24.png"))); // NOI18N
         manageNetworkBtn.setText("Manage Network");
         manageNetworkBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +72,8 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
             }
         });
 
+        manageEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageEnterpriseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-enterprise-24.png"))); // NOI18N
         manageEnterpriseBtn.setText("Manage Enterprise");
         manageEnterpriseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +81,8 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
             }
         });
 
+        manageEnterpriseAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageEnterpriseAdminBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-enterprise-admin.png"))); // NOI18N
         manageEnterpriseAdminBtn.setText("Manage Enterprise Admin");
         manageEnterpriseAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,8 +90,12 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
             }
         });
 
+        manageDonorRecipientBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageDonorRecipientBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/management.png"))); // NOI18N
         manageDonorRecipientBtn.setText("Manage Donors and Recipient Name");
 
+        analysisBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        analysisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-analysis-24.png"))); // NOI18N
         analysisBtn.setText("Analysis");
 
         javax.swing.GroupLayout rightButtonsJPanelLayout = new javax.swing.GroupLayout(rightButtonsJPanel);
@@ -93,21 +103,18 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         rightButtonsJPanelLayout.setHorizontalGroup(
             rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
                 .addGroup(rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(analysisBtn)
+                    .addComponent(manageNetworkBtn)
                     .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
                         .addComponent(selectedNodeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(selectedNodeLabelValue))
-                    .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addGroup(rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(manageEnterpriseBtn)
-                            .addComponent(manageNetworkBtn)
-                            .addComponent(manageEnterpriseAdminBtn)
-                            .addComponent(manageDonorRecipientBtn)
-                            .addComponent(analysisBtn))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                    .addComponent(manageEnterpriseBtn)
+                    .addComponent(manageEnterpriseAdminBtn)
+                    .addComponent(manageDonorRecipientBtn))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         rightButtonsJPanelLayout.setVerticalGroup(
             rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,15 +123,15 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
                 .addGroup(rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectedNodeLabel)
                     .addComponent(selectedNodeLabelValue))
-                .addGap(132, 132, 132)
+                .addGap(56, 56, 56)
                 .addComponent(manageNetworkBtn)
-                .addGap(42, 42, 42)
+                .addGap(54, 54, 54)
                 .addComponent(manageEnterpriseBtn)
-                .addGap(43, 43, 43)
+                .addGap(50, 50, 50)
                 .addComponent(manageEnterpriseAdminBtn)
-                .addGap(38, 38, 38)
+                .addGap(54, 54, 54)
                 .addComponent(manageDonorRecipientBtn)
-                .addGap(32, 32, 32)
+                .addGap(53, 53, 53)
                 .addComponent(analysisBtn)
                 .addContainerGap(85, Short.MAX_VALUE))
         );

@@ -59,7 +59,7 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         approvalPageHelperImage = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(java.awt.SystemColor.activeCaption);
 
         requestedFundFormLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         requestedFundFormLabel.setText("Fund Requested");
@@ -72,8 +72,9 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
             }
         });
 
-        approveRequestBtn.setBackground(new java.awt.Color(255, 204, 204));
-        approveRequestBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        approveRequestBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        approveRequestBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        approveRequestBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/check.png"))); // NOI18N
         approveRequestBtn.setText("Approve Funds Request");
         approveRequestBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         approveRequestBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +83,9 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
             }
         });
 
-        declineRequestBtn.setBackground(new java.awt.Color(255, 204, 204));
-        declineRequestBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        declineRequestBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        declineRequestBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        declineRequestBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/close.png"))); // NOI18N
         declineRequestBtn.setText("Decline Funds Request");
         declineRequestBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         declineRequestBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -96,8 +98,8 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
         requestedFundCurrencyLabel.setText("$");
 
         backBtn.setBackground(new java.awt.Color(153, 204, 255));
-        backBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        backBtn.setText("<<Back");
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backBtn.setText("Back");
         backBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,50 +113,41 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(261, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(requestedFundCurrencyLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestedFundFormTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(declineRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(approveRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(approvalPageHelperImage)
+                        .addComponent(requestedFundFormLabel)))
+                .addGap(240, 240, 240))
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(approvalPageHelperImage))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(requestedFundFormLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                                .addComponent(requestedFundCurrencyLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(requestedFundFormTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(420, 420, 420))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(approveRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(60, 60, 60)
-                                        .addComponent(declineRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                .addGap(89, 89, 89)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(52, 52, 52)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(requestedFundFormLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(requestedFundCurrencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(requestedFundFormTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(requestedFundCurrencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(requestedFundFormTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(requestedFundFormLabel))
                 .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(approveRequestBtn)
                     .addComponent(declineRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(89, 89, 89)
                 .addComponent(approvalPageHelperImage)
-                .addGap(142, 142, 142))
+                .addGap(97, 97, 97))
         );
     }// </editor-fold>//GEN-END:initComponents
 

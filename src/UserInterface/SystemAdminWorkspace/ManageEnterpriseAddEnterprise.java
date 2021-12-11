@@ -84,10 +84,10 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         submitBtn = new javax.swing.JButton();
         imageHelperLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        enterpriseTable.setBackground(new java.awt.Color(0, 153, 255));
+        enterpriseTable.setBackground(java.awt.SystemColor.info);
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -101,19 +101,19 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         ));
         jscrollPane.setViewportView(enterpriseTable);
 
-        add(jscrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 970, 170));
+        add(jscrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 970, 170));
 
         enterpriseCityLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseCityLabel.setText("City");
-        add(enterpriseCityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, -1));
+        add(enterpriseCityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
         enterpriseTypeLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseTypeLabel.setText("Enterprise Type");
-        add(enterpriseTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, 20));
+        add(enterpriseTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, 20));
 
         enterpriseNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseNameLabel.setText("Enterprise Name");
-        add(enterpriseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
+        add(enterpriseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
 
         cityDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityDropdown.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +121,7 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
                 cityDropdownActionPerformed(evt);
             }
         });
-        add(cityDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, -1, -1));
+        add(cityDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 150, -1));
 
         enterpriseTypeDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         enterpriseTypeDropdown.addActionListener(new java.awt.event.ActionListener() {
@@ -129,26 +129,27 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
                 enterpriseTypeDropdownActionPerformed(evt);
             }
         });
-        add(enterpriseTypeDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
-        add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 120, -1));
+        add(enterpriseTypeDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 150, -1));
+        add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 150, -1));
 
-        backBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        backBtn.setText("<<BACK");
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backBtn.setText("BACK");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, -1, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         submitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        submitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
-        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, -1, -1));
+        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, -1, -1));
 
         imageHelperLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/donation.jpg"))); // NOI18N
         add(imageHelperLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, 470));
