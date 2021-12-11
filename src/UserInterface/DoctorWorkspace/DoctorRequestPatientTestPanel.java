@@ -42,6 +42,8 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         testSelectionHeaderLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.SystemColor.activeCaption);
+
         bloodTestCheckbox.setBackground(new java.awt.Color(255, 255, 255));
         bloodTestCheckbox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         bloodTestCheckbox.setText("Blood Test");

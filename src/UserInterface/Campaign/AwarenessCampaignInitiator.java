@@ -33,23 +33,21 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         chooseCityFormLabel = new javax.swing.JLabel();
         chooseCityFormComboBox = new javax.swing.JComboBox();
         eventDateFormLabel = new javax.swing.JLabel();
-        setupEventBtn = new javax.swing.JButton();
         eventNameFormLabel = new javax.swing.JLabel();
         eventNameFromTextField = new javax.swing.JTextField();
         requestFundsFormTextField = new javax.swing.JTextField();
         requestFundsFormLabel = new javax.swing.JLabel();
         requestFundsFormCurrencyLabel = new javax.swing.JLabel();
-        fundsRequestStatusBtn = new javax.swing.JButton();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        fundsRequestStatusBtn = new javax.swing.JButton();
+        setupEventBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 255));
-        setLayout(null);
+        setBackground(java.awt.SystemColor.activeCaption);
 
-        scheduledEventTableLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        scheduledEventTableLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         scheduledEventTableLabel.setText("Scheduled Event Details");
-        add(scheduledEventTableLabel);
-        scheduledEventTableLabel.setBounds(44, 22, 250, 27);
 
+        displayScheduledEventsTable.setBackground(java.awt.SystemColor.info);
         displayScheduledEventsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -63,62 +61,36 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(displayScheduledEventsTable);
 
-        add(jScrollPane3);
-        jScrollPane3.setBounds(44, 62, 949, 137);
-
         chooseCityFormLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        chooseCityFormLabel.setText("Choose City");
-        add(chooseCityFormLabel);
-        chooseCityFormLabel.setBounds(94, 247, 124, 28);
+        chooseCityFormLabel.setText("Choose City:");
 
         chooseCityFormComboBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         chooseCityFormComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(chooseCityFormComboBox);
-        chooseCityFormComboBox.setBounds(264, 245, 147, 33);
 
         eventDateFormLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        eventDateFormLabel.setText("Date of Event");
-        add(eventDateFormLabel);
-        eventDateFormLabel.setBounds(80, 336, 138, 28);
-
-        setupEventBtn.setBackground(new java.awt.Color(153, 204, 255));
-        setupEventBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        setupEventBtn.setText("Setup Event");
-        setupEventBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        setupEventBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setupEventBtnActionPerformed(evt);
-            }
-        });
-        add(setupEventBtn);
-        setupEventBtn.setBounds(53, 484, 361, 35);
+        eventDateFormLabel.setText("Date of Event:");
 
         eventNameFormLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         eventNameFormLabel.setText("Name of Event");
-        add(eventNameFormLabel);
-        eventNameFormLabel.setBounds(69, 285, 149, 28);
 
         eventNameFromTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(eventNameFromTextField);
-        eventNameFromTextField.setBounds(264, 285, 147, 33);
+        eventNameFromTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventNameFromTextFieldActionPerformed(evt);
+            }
+        });
 
         requestFundsFormTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestFundsFormTextFieldActionPerformed(evt);
             }
         });
-        add(requestFundsFormTextField);
-        requestFundsFormTextField.setBounds(263, 377, 147, 33);
 
         requestFundsFormLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         requestFundsFormLabel.setText("Request Funds");
-        add(requestFundsFormLabel);
-        requestFundsFormLabel.setBounds(67, 377, 151, 28);
 
         requestFundsFormCurrencyLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         requestFundsFormCurrencyLabel.setText("$");
-        add(requestFundsFormCurrencyLabel);
-        requestFundsFormCurrencyLabel.setBounds(244, 377, 18, 28);
 
         fundsRequestStatusBtn.setBackground(new java.awt.Color(153, 204, 255));
         fundsRequestStatusBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -129,10 +101,87 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
                 fundsRequestStatusBtnActionPerformed(evt);
             }
         });
-        add(fundsRequestStatusBtn);
-        fundsRequestStatusBtn.setBounds(53, 537, 361, 35);
-        add(jDateChooser2);
-        jDateChooser2.setBounds(264, 331, 147, 32);
+
+        setupEventBtn.setBackground(new java.awt.Color(153, 204, 255));
+        setupEventBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        setupEventBtn.setText("Setup Event");
+        setupEventBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setupEventBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setupEventBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scheduledEventTableLabel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane3)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(eventDateFormLabel)
+                                .addComponent(chooseCityFormLabel))
+                            .addGap(73, 73, 73)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(chooseCityFormComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(requestFundsFormLabel)
+                                    .addGap(39, 39, 39)
+                                    .addComponent(requestFundsFormCurrencyLabel))
+                                .addComponent(eventNameFormLabel))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(eventNameFromTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                                .addComponent(requestFundsFormTextField)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(0, 316, Short.MAX_VALUE)
+                            .addComponent(setupEventBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(66, 66, 66)
+                            .addComponent(fundsRequestStatusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(226, 226, 226))))
+                .addGap(57, 57, 57))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(scheduledEventTableLabel)
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(eventNameFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eventNameFormLabel)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chooseCityFormLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chooseCityFormComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(eventDateFormLabel)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(requestFundsFormLabel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(requestFundsFormCurrencyLabel)
+                        .addComponent(requestFundsFormTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(setupEventBtn)
+                    .addComponent(fundsRequestStatusBtn))
+                .addContainerGap(140, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setupEventBtnActionPerformed
@@ -147,6 +196,10 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
     private void fundsRequestStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundsRequestStatusBtnActionPerformed
 
     }//GEN-LAST:event_fundsRequestStatusBtnActionPerformed
+
+    private void eventNameFromTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameFromTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventNameFromTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
