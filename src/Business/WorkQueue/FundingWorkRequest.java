@@ -18,6 +18,25 @@ public class FundingWorkRequest extends WorkRequest{
     private String approval;
     private float amount;
     private String fundStatus;
+    private String fundType;
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public String getFundType() {
+        return fundType;
+    }
+
+    public void setFundType(String fundType) {
+        this.fundType = fundType;
+    }
+    
+    
     
 
     public String getNetwork() {

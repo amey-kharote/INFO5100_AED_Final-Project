@@ -109,7 +109,7 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
 
     private void recipientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recipientButtonActionPerformed
         // TODO add your handling code here:
-        RecipientRegistrationForm reciptObj = new RecipientRegistrationForm(rightJPanel, org);
+        RecipientRegistrationForm reciptObj = new RecipientRegistrationForm( org, rightJPanel);
         rightJPanel.add("recipientRegistrationForm", reciptObj);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);

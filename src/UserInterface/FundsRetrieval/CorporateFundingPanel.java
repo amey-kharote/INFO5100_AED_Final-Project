@@ -8,6 +8,7 @@ package UserInterface.FundsRetrieval;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Organization.CorporateFundOrg;
 import Business.Role.CorporateManagerRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FundingWorkRequest;
@@ -51,7 +52,7 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
         for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){  
             System.out.println(organization);
             System.out.println(organization.getWorkQueue().getWorkRequestList());
-            
+            if(organization instanceof CorporateFundOrg){
             for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
                 
             Object[] row = new Object[4];
@@ -64,6 +65,7 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
             System.out.println(row[3]);
             dtm.addRow(row);
             }
+        }
         }
     }
 
