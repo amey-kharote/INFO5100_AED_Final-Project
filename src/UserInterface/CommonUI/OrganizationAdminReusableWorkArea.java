@@ -91,7 +91,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
 
         adminValue.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         adminValue.setText("<value>");
-        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, -1));
+        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 430, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButtonActionPerformed

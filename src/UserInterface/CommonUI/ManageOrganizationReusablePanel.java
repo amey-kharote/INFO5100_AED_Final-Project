@@ -203,7 +203,7 @@ public class ManageOrganizationReusablePanel extends javax.swing.JPanel {
             }
         });
 
-        backButton.setBackground(new java.awt.Color(153, 204, 255));
+        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

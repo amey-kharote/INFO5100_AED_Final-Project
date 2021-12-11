@@ -87,14 +87,14 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         infoTextArea.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         infoTextArea.setLineWrap(true);
         infoTextArea.setRows(5);
-        infoTextArea.setText("1. Improvements in medical techniques and pharmacological anti-reject therapies have made organ transplantation a powerful and valid way to treat diseases. \n\n2. Thanks to this, and to the relevance that mass media put on it, \nthe number of donors is constantly increasing.\n\n3. Donors are usually persons who have been involved in serious accidents and are kept artificially alive though cerebral death has been stated. \n\n4. In such patients is extremely difficult to maintain acceptable vital parameters for a long time, and any variation in them can lead to the loss of organs. \n\n5. Moreover, after the organs have been taken from the body, they can be stored for very few hours and the transplant must take place in the shortest period possible.");
+        infoTextArea.setText("1. People of all ages should consider themselves potential donors. \n\n2. When a person dies, they are evaluated for donor suitability based on their medical history and age. \n\n3. The organ procurement organization determines medical suitability for donation.\n\n4. A living donation, such as the donation of one healthy kidney or a segment of a healthy liver from a living human being to another, is arranged though the individual transplant centers according to criteria they have in place. \n\n5. An independent donor advocate, along with a dedicated living donor multi-disciplinary team, will represent the interests and well-being of the potential living donor.");
         infoTextArea.setWrapStyleWord(true);
         infoTextArea.setBorder(null);
         infoTextArea.setCaretColor(new java.awt.Color(255, 51, 51));
         infoTextArea.setFocusable(false);
         jScrollPane1.setViewportView(infoTextArea);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 580, 480));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 580, 450));
 
         submitButton.setBackground(new java.awt.Color(153, 204, 255));
         submitButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
