@@ -47,10 +47,10 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         DefaultTableModel tableModel = (DefaultTableModel)displayEmployeeDetailsTable.getModel();
         tableModel.setRowCount(0);
         for (Employee employeeObj : org.getEmployeeDirectory().getEmpList()) {
-            Object[] row = new Object[2];
-            row[0] = employeeObj.getEmpID();
-            row[1] = employeeObj.getEmpName();
-            row[2] = org.getName();
+            Object[] row = new Object[3];
+            row[1] = employeeObj.getEmpID();
+            row[2] = employeeObj.getEmpName();
+            row[0] = org.getName();
             tableModel.addRow(row);
         }
     }
@@ -79,20 +79,20 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         displayEmployeeDetailsTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEmployeeDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Name"
+                "Organization", "Employee ID", "Employee Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
