@@ -42,34 +42,52 @@ public class Utils {
     }
     
     public boolean isWordFieldValid(String sentence) {
-      String regex = "^[A-Z][a-z]*\\s+[A-Z][a-z]+$";
-      Pattern p = Pattern.compile(regex);
-      Matcher m = p.matcher(sentence);
-      return m.matches();
+        String regex = "^[A-Z][a-z]*\\s+[A-Z][a-z]+$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(sentence);
+        return m.matches();
     }   
     
-    public boolean isEmaildIdvalid(String sentence) {
-      return true;
+    public boolean isEmaildIdvalid(String email) {
+        String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(email);
+        return m.matches();
     }
     
-      public boolean isPasswordValid(String sentence) {
-      return true;
+      public boolean isPasswordValid(String password) {
+         String regex = "^([a-zA-Z+]+[0-9+]+[@#!$%^]+)$";
+         Pattern p = Pattern.compile(regex);
+         Matcher m = p.matcher(password);
+         return m.matches();
     }
     
     public boolean isValidName(String name) {
-      return true;
+         String regex = "^[a-zA-Z]*$";
+         Pattern p = Pattern.compile(regex);
+         Matcher m = p.matcher(name);
+         return m.matches();
     }
      
      public boolean isValidCampaign(String campaign){
-         return true;
+         String regex = "^[a-zA-Z]*$";
+         Pattern p = Pattern.compile(regex);
+         Matcher m = p.matcher(campaign);
+         return m.matches();
      }
      
      public boolean isValidSign(String signature){
-         return true;
+         String regex = "^[a-zA-Z]*$";
+         Pattern p = Pattern.compile(regex);
+         Matcher m = p.matcher(signature);
+         return m.matches();
      }
      
      public boolean isValidPhoneNo(String number){
-         return true;
+         String regex = "^[1-9]{1}+[0-9]{9}$";
+         Pattern p = Pattern.compile(regex);
+         Matcher m = p.matcher(number);
+         return m.matches();
      }
      
      //Specific to one class only, do not use
