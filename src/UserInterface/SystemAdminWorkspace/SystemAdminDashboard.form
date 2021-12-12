@@ -54,8 +54,7 @@
                           <Component id="analysisBtn" min="-2" max="-2" attributes="0"/>
                           <Component id="manageNetworkBtn" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="selectedNodeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
                               <Component id="selectedNodeLabelValue" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="manageEnterpriseBtn" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -70,10 +69,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="selectedNodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectedNodeLabelValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="selectedNodeLabelValue" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="manageNetworkBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
@@ -84,21 +80,13 @@
                       <Component id="manageDonorRecipientBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Component id="analysisBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="91" max="32767" attributes="0"/>
+                      <EmptySpace pref="117" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="selectedNodeLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Selected Node"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="selectedNodeLabelValue">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="&lt;value&gt;"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="manageNetworkBtn">
               <Properties>
