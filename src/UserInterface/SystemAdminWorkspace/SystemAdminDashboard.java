@@ -24,6 +24,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+import UserInterface.HospitalAdminWorkspace.ShowingInterestUI;
 
 /**
  *
@@ -291,7 +292,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
 
         DefaultPieDataset pieDataSet = new DefaultPieDataset();
         pieDataSet.setValue("The Donor is willing to donate!!", counter);
-        pieDataSet.setValue("The Donor is not willing to donate!!", countReject);
+        pieDataSet.setValue("The Donor is not willing to donate!!", ShowingInterestUI.countReject);
         
         JFreeChart charts = ChartFactory.createPieChart("Pie Chart", pieDataSet, true, true, true);
 

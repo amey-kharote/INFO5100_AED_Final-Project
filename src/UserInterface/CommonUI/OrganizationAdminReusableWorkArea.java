@@ -37,11 +37,11 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         this.enterpriseObj = enterprise;
         this.account = account;
         adminValue.setText(enterpriseObj.getName());
-        if(enterpriseObj instanceof HospitalEnterprise){
-            jButton1.setEnabled(true);
-        }else{
-            jButton1.setEnabled(false);
-        }
+//        if(enterpriseObj instanceof HospitalEnterprise){
+//            jButton1.setEnabled(true);
+//        }else{
+//            jButton1.setEnabled(false);
+//        }
     }
     
 
@@ -59,7 +59,6 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         manageOrgButton = new javax.swing.JButton();
         hospitalAdminLabel = new javax.swing.JLabel();
         adminValue = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,16 +105,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
 
         adminValue.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         adminValue.setText("<value>");
-        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, -1));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton1.setText("Check Donor Recipient Ratio");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 570, 40));
+        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 430, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButtonActionPerformed
@@ -148,12 +138,12 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         layout.next(rightJPanel);
     }//GEN-LAST:event_managePeopleButtonActionPerformed
 
-    private void manageOrgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrgButtonActionPerformed
+    private void manageOrgButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         ManageOrganizationReusablePanel manageOrgaJpanel = new ManageOrganizationReusablePanel(rightJPanel, enterpriseObj);
         rightJPanel.add("manageOrgJpanel", manageOrgaJpanel);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
-    }//GEN-LAST:event_manageOrgButtonActionPerformed
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -163,11 +153,13 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
                 layout.next(rightJPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+                                                
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminValue;
     private javax.swing.JLabel hospitalAdminLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton manageOrgButton;
     private javax.swing.JButton managePeopleButton;
     private javax.swing.JButton manageUserButton;
