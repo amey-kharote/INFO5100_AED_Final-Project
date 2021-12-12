@@ -335,7 +335,11 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String gender = "";
-        int age;        
+        int age; 
+        if (maleRadioBtn.isSelected() && femaleRadioBtn.isSelected()) {
+             JOptionPane.showMessageDialog(null, "Please only one gender.");
+            return;
+        }
         if(maleRadioBtn.isSelected()){
             gender = maleRadioBtn.getText();
         }else{
@@ -368,10 +372,13 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
                return;
            }           
          //Check Name validity
-        if(!utils.isValidName(nameOnForm) || !utils.isValidSign(signature)){
+        if(!utils.isValidName(nameOnForm) ){
             JOptionPane.showMessageDialog(null, "Please enter valid name.");
             return;
-        }        
+        }    else if (!utils.isValidSign(signature)){
+             JOptionPane.showMessageDialog(null, "Please enter valid sign.");
+            return;
+        }    
         //check Phone number validity
         if(!utils.isValidPhoneNo(phone)){
             JOptionPane.showMessageDialog(null, " Invalid Phone No." + 
@@ -380,8 +387,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
         }
         //check email ID validity
         if(!utils.isEmaildIdvalid(emailID)){
-            JOptionPane.showMessageDialog(null, " Invalid Email ID." + 
-                "Username should be an email-ID");
+            JOptionPane.showMessageDialog(null, "PLease enter a valid email id");
             return;
         }    
         if(!(corneasRdBtn.isSelected() || 
