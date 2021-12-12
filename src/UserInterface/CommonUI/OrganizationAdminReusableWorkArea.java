@@ -75,7 +75,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
                 managePeopleButtonActionPerformed(evt);
             }
         });
-        add(managePeopleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 570, 40));
+        add(managePeopleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 570, 40));
 
         manageOrgButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         manageOrgButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -113,14 +113,15 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         });
         add(manageUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 570, 40));
 
-        checkRatioButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        checkRatioButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        checkRatioButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-analysis-24.png"))); // NOI18N
         checkRatioButton.setText("Check Donor and Recipeint Ratio");
         checkRatioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkRatioButtonActionPerformed(evt);
             }
         });
-        add(checkRatioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 570, 40));
+        add(checkRatioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 570, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButtonActionPerformed

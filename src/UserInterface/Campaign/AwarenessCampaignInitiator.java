@@ -141,7 +141,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(null);
 
-        scheduledEventTableLabel.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        scheduledEventTableLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         scheduledEventTableLabel.setText("Scheduled Event Details");
         add(scheduledEventTableLabel);
         scheduledEventTableLabel.setBounds(30, 280, 300, 27);
@@ -160,7 +160,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         jScrollPane3.setViewportView(displayScheduledEventsTable);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(30, 330, 949, 137);
+        jScrollPane3.setBounds(30, 320, 949, 137);
 
         chooseCityFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         chooseCityFormLabel.setText("Choose City:");
@@ -265,14 +265,15 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(30, 60, 452, 120);
+        jScrollPane1.setBounds(30, 60, 950, 130);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setText("Details of Awareness Camp Requests by Hospital");
         add(jLabel1);
         jLabel1.setBounds(30, 10, 540, 40);
 
         assignButton1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        assignButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-audit-24.png"))); // NOI18N
         assignButton1.setText("Assign to me");
         assignButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,9 +281,10 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(assignButton1);
-        assignButton1.setBounds(30, 210, 160, 30);
+        assignButton1.setBounds(400, 210, 200, 30);
 
         approveButton2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        approveButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/check.png"))); // NOI18N
         approveButton2.setText("Approve");
         approveButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,9 +292,10 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(approveButton2);
-        approveButton2.setBounds(230, 210, 105, 30);
+        approveButton2.setBounds(30, 210, 160, 30);
 
         declineButton3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        declineButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/close.png"))); // NOI18N
         declineButton3.setText("Decline");
         declineButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +303,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(declineButton3);
-        declineButton3.setBounds(380, 210, 99, 30);
+        declineButton3.setBounds(820, 210, 160, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     //Method to check common validation for Trust and Corporate
