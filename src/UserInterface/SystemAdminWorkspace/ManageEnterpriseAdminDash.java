@@ -256,6 +256,7 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
 
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
         // TODO add your handling code here:
+        System.out.println("Validating Enterprise Admin Credentials");
         Utils util = new Utils();
         Enterprise enterpriseObj = (Enterprise) enterpriseNetworkDropdown.getSelectedItem();
         String emailId = formEmailTextField.getText();
@@ -276,7 +277,9 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
 
         Employee employee = enterpriseObj.getEmployeeDirectory().createEmployee(emailId);
         UserAccount account = enterpriseObj.getUserAccountDirectory().createUserAccount(emailId, password, employee, new EnterpriseManagerRole());
-
+       
+        System.out.println("Successfully created enterprise admin useraccount for emailId :"+emailId);
+        
         formEmailTextField.setText("");
         formPasswordField.setText("");
 

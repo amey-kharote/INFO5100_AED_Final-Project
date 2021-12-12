@@ -7,10 +7,16 @@ package UserInterface.SystemAdminWorkspace;
 
 import UserInterface.HospitalAdminWorkspace.CheckDonorRecipientRatio;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -28,10 +34,48 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         initComponents();
         this.ecoSystem = ecoSystemObj;
         this.rightJPanel = rightJPanel;
+        populateTree();
     }
 
     public void populateTree() {
+       DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
+        List<Network> networkList = ecoSystem.getNetworks();
+        List<Enterprise> enterpriseList;
+        ArrayList<Organization> organizationList;
 
+        Network network;
+        Enterprise enterprise;
+        Organization organization;
+
+        DefaultMutableTreeNode networks = new DefaultMutableTreeNode("Networks");
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        root.removeAllChildren();
+        root.insert(networks, 0);
+
+        DefaultMutableTreeNode networkNode;
+        DefaultMutableTreeNode enterpriseNode;
+        DefaultMutableTreeNode organizationNode;
+
+        for (int i = 0; i < networkList.size(); i++) {
+            network = networkList.get(i);
+            networkNode = new DefaultMutableTreeNode(network.getName());
+            networks.insert(networkNode, i);
+
+            enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
+            for (int j = 0; j < enterpriseList.size(); j++) {
+                enterprise = enterpriseList.get(j);
+                enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+                networkNode.insert(enterpriseNode, j);
+
+                organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+                for (int k = 0; k < organizationList.size(); k++) {
+                    organization = organizationList.get(k);
+                    organizationNode = new DefaultMutableTreeNode(organization.getName());
+                    enterpriseNode.insert(organizationNode, k);
+                }
+            }
+        }
+        model.reload();
     }
 
     /**
@@ -45,7 +89,6 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         rightButtonsJPanel = new javax.swing.JPanel();
-        selectedNodeLabel = new javax.swing.JLabel();
         selectedNodeLabelValue = new javax.swing.JLabel();
         manageNetworkBtn = new javax.swing.JButton();
         manageEnterpriseBtn = new javax.swing.JButton();
@@ -59,10 +102,6 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         jSplitPane1.setDividerLocation(200);
 
         rightButtonsJPanel.setBackground(java.awt.SystemColor.activeCaption);
-
-        selectedNodeLabel.setText("Selected Node");
-
-        selectedNodeLabelValue.setText("<value>");
 
         manageNetworkBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         manageNetworkBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-blockchain-technology-24.png"))); // NOI18N
@@ -114,8 +153,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
                     .addComponent(analysisBtn)
                     .addComponent(manageNetworkBtn)
                     .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
-                        .addComponent(selectedNodeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(155, 155, 155)
                         .addComponent(selectedNodeLabelValue))
                     .addComponent(manageEnterpriseBtn)
                     .addComponent(manageEnterpriseAdminBtn)
@@ -126,9 +164,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
             rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectedNodeLabel)
-                    .addComponent(selectedNodeLabelValue))
+                .addComponent(selectedNodeLabelValue)
                 .addGap(56, 56, 56)
                 .addComponent(manageNetworkBtn)
                 .addGap(54, 54, 54)
@@ -139,7 +175,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
                 .addComponent(manageDonorRecipientBtn)
                 .addGap(53, 53, 53)
                 .addComponent(analysisBtn)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(rightButtonsJPanel);
@@ -178,6 +214,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         rightJPanel.add("manageCityNetworks", manageNetwork);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
+        System.out.println("Opening Manage Network Tabs");
     }//GEN-LAST:event_manageNetworkBtnActionPerformed
 
     private void manageEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseBtnActionPerformed
@@ -190,6 +227,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         rightJPanel.add("manageAddEnterprise", enterpriseObj);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
+        System.out.println("Opening Manage Enterprise Tabs");
     }//GEN-LAST:event_manageEnterpriseBtnActionPerformed
 
     private void manageEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseAdminBtnActionPerformed
@@ -208,6 +246,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
             }
         }    
         JOptionPane.showMessageDialog(null, "Please create enterprises before creating admins");
+        System.out.println("Opening Manage Enterprise Admins Tabs");
     }//GEN-LAST:event_manageEnterpriseAdminBtnActionPerformed
 
     private void manageDonorRecipientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageDonorRecipientBtnActionPerformed
@@ -226,7 +265,6 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
     private javax.swing.JButton manageEnterpriseBtn;
     private javax.swing.JButton manageNetworkBtn;
     private javax.swing.JPanel rightButtonsJPanel;
-    private javax.swing.JLabel selectedNodeLabel;
     private javax.swing.JLabel selectedNodeLabelValue;
     // End of variables declaration//GEN-END:variables
 }

@@ -159,7 +159,7 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
                 Network newNetwork = ecoSystem.createAddNetwork();
                 newNetwork.setName(networkName);
                 populateNetworkTable(); 
-                System.out.println("Created new network with name :"+networkName);
+                System.out.println("Successfully created new network with name :"+networkName);
                 cityNameTextField.setText("");
                 JOptionPane.showMessageDialog(null, "Sucessfully created a city.");
                 return;

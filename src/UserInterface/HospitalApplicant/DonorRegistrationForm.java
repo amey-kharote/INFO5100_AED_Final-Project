@@ -500,6 +500,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             org.getDonorDirectory().createDonor(nameAdded, age,addressAdded , (String) bloodGroup, contactNo,
                     sexSelected, sign, emailStr, emergencyName, emergencyNum, availableNow, organs);
             JOptionPane.showMessageDialog(null, "Thankyou for registering as a donor.");
+            System.out.println("Successfully registered donor with username" +emailStr);
             rightJPanel.remove(this);
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
             layout.previous(rightJPanel);
