@@ -5,6 +5,7 @@
  */
 package UserInterface.SystemAdminWorkspace;
 
+import UserInterface.HospitalAdminWorkspace.CheckDonorRecipientRatio;
 import Business.EcoSystem;
 import Business.Network.Network;
 import java.awt.CardLayout;
@@ -51,7 +52,6 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         manageEnterpriseAdminBtn = new javax.swing.JButton();
         manageDonorRecipientBtn = new javax.swing.JButton();
         analysisBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         leftTreeJPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -99,13 +99,6 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         analysisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-analysis-24.png"))); // NOI18N
         analysisBtn.setText("Analysis");
 
-        jButton1.setText("Check Donor and Admin Ratio");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout rightButtonsJPanelLayout = new javax.swing.GroupLayout(rightButtonsJPanel);
         rightButtonsJPanel.setLayout(rightButtonsJPanelLayout);
         rightButtonsJPanelLayout.setHorizontalGroup(
@@ -113,7 +106,6 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
             .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
                     .addComponent(analysisBtn)
                     .addComponent(manageNetworkBtn)
                     .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
@@ -142,9 +134,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
                 .addComponent(manageDonorRecipientBtn)
                 .addGap(53, 53, 53)
                 .addComponent(analysisBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(25, 25, 25))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(rightButtonsJPanel);
@@ -215,18 +205,9 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Please create enterprises before creating admins");
     }//GEN-LAST:event_manageEnterpriseAdminBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        CheckDonorRecipientRatio checkRatio = new CheckDonorRecipientRatio(ecoSystem, rightJPanel);
-                rightJPanel.add("manageEntAdmins", checkRatio);
-                CardLayout layout = (CardLayout) rightJPanel.getLayout();
-                layout.next(rightJPanel);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton analysisBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTree jTree1;
