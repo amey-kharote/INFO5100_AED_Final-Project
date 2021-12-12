@@ -9,7 +9,6 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
 import Business.Organization.Organization;
-import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
 import UserInterface.HospitalAdminWorkspace.CheckDonorRecipientRatio;
 import java.awt.CardLayout;
@@ -42,12 +41,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         }else{
             checkRatioButton.setVisible(false);
         }
-        
-//        if(enterpriseObj instanceof HospitalEnterprise){
-//            jButton1.setEnabled(true);
-//        }else{
-//            jButton1.setEnabled(false);
-//        }
+
     }
     
 
