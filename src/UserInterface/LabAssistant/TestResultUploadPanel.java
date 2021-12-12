@@ -71,7 +71,7 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
         setBackground(java.awt.SystemColor.activeCaption);
 
         resultTextFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        resultTextFieldLabel.setText("Patient Under Observation:");
+        resultTextFieldLabel.setText("Patient:");
 
         resultFileDisplayTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         resultFileDisplayTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -127,68 +127,49 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(323, 323, 323)
-                        .addComponent(submitResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 255, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(219, 219, 219)
-                                .addComponent(uploadResultButtonLabel)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(303, 303, 303)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(resultFileDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(fileUploadPathDisplayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(resultTextFieldLabel)
-                                    .addGap(128, 128, 128)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(patient)
-                                .addGap(116, 116, 116)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(296, 296, 296)
-                    .addComponent(resultTextFieldLabel1)
-                    .addContainerGap(831, Short.MAX_VALUE)))
+                            .addComponent(fileUploadPathDisplayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(uploadResultButtonLabel)
+                                    .addComponent(resultTextFieldLabel1)
+                                    .addComponent(resultTextFieldLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(resultFileDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(patient)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(346, 346, 346)
+                        .addComponent(submitResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(patient)
+                    .addComponent(resultTextFieldLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(resultTextFieldLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(patient)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(fileUploadPathDisplayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(resultFileDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(uploadResultButtonLabel))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                    .addComponent(resultTextFieldLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(resultFileDisplayTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(uploadResultButtonLabel)
+                    .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fileUploadPathDisplayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addComponent(submitResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(117, 117, 117)
-                    .addComponent(resultTextFieldLabel1)
-                    .addContainerGap(469, Short.MAX_VALUE)))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -208,7 +189,7 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
         } else {
             labTestWorkRequest.setTestResult(resultFileDisplayTextField.getText());
             boolean variableForSession = false;
-            final String toPerson = labTestWorkRequest.getPatientName().trim(); 
+            final String toPerson = labTestWorkRequest.getPatientId().trim(); 
             String from = "organdonationaed@gmail.com";
             String host = "smtp.gmail.com";
             String username = "organdonationaed@gmail.com";
@@ -228,6 +209,7 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
                 MimeMessage messageToSendEmail = new MimeMessage(session);
                 messageToSendEmail.setFrom(new InternetAddress(from));
                 messageToSendEmail.setRecipient(Message.RecipientType.TO, new InternetAddress(toPerson));
+                messageToSendEmail.setRecipient(Message.RecipientType.CC, new InternetAddress(labTestWorkRequest.getSender().getUsername()));
                 InternetAddress addressToPerson;
                 addressToPerson = new InternetAddress(toPerson);
                 messageToSendEmail.setSubject("Your Test Report is ready!");
@@ -238,11 +220,11 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
                 transport.sendMessage(messageToSendEmail, messageToSendEmail.getAllRecipients());
                 transport.close();
             } catch (Exception e) {
-                System.out.println("MAIL NOT SENT");
-                JOptionPane.showMessageDialog(null, "Please attach test report!");
+                System.out.println(e);
             }
             labTestWorkRequest.setStatus("Completed");
             JOptionPane.showMessageDialog(null, "Reports Uploaded. Request processing completed.");
+            resultFileDisplayTextField.setText("");
             submitResultButton.setEnabled(false);
             uploadButton.setEnabled(false);
         }

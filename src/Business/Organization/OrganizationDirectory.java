@@ -33,7 +33,7 @@ public class OrganizationDirectory {
         
         Organization orgObj = null;
         
-        if (orgType.getValue().equals(OrganizationType.Applicant.getValue())) {
+        if (orgType.getValue().equals(OrganizationType.Receptionist.getValue())) {
             orgObj = new ApplicantOrg();
         } 
         else if (orgType.getValue().equals(OrganizationType.Doctor.getValue())) {

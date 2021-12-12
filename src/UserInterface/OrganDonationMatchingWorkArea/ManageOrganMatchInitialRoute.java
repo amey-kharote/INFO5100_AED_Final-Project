@@ -55,9 +55,9 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
         setBackground(java.awt.SystemColor.activeCaption);
 
         matchOrganByApplicantButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        matchOrganByApplicantButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        matchOrganByApplicantButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         matchOrganByApplicantButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-available-updates-32.png"))); // NOI18N
-        matchOrganByApplicantButton.setText("Match Organ by Applicant Availability");
+        matchOrganByApplicantButton.setText("Match Organ by Donor Availability");
         matchOrganByApplicantButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         matchOrganByApplicantButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +66,7 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
         });
 
         matchOrganByRecipientButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        matchOrganByRecipientButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        matchOrganByRecipientButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         matchOrganByRecipientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-available-updates-red.png"))); // NOI18N
         matchOrganByRecipientButton.setText("Match Organ by Recipient Severity");
         matchOrganByRecipientButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -100,7 +100,7 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +140,7 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
                         if (organization.getName().equalsIgnoreCase("Applicant Org")) {
                             for (Donor donors : organization.getDonorDirectory().getDonorRecords()) {
-                                if(donors.isIsOrganAvailable()){
+                                if(donors.isIsOrganAvailable() && donors.isIsDonorFitForTransplant()){
                                     donors.setNetwork(network.getName());
                                     donorL.add(donors);
                                 }
@@ -178,7 +178,7 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
                 
                 if(ents instanceof HospitalEnterprise){
                     for(Organization organization : ents.getOrganizationDirectory().getOrganizationList()){
-                        if(organization.getName().equals("Applicant Organization")){
+                        if(organization.getName().equals("Applicant Org")){
                             for( Recipient recp : organization.getRecipientDirectory().getRecipientRecords()){
                                   if(recp.getPriorityNo() > 0){
                                       recp.setNetwork(network.getName());

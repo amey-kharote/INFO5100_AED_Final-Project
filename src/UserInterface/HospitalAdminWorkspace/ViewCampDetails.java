@@ -28,6 +28,7 @@ public class ViewCampDetails extends javax.swing.JPanel {
     EcoSystem system;
     UserAccount userAccount;
     Enterprise ent;
+
     /**
      * Creates new form ViewCampDetails
      */
@@ -39,32 +40,32 @@ public class ViewCampDetails extends javax.swing.JPanel {
         this.ent = ent;
         populateStatusTable();
     }
-    
-    public void populateStatusTable(){
-        DefaultTableModel dtm = (DefaultTableModel)jStatusTable.getModel();
+
+    public void populateStatusTable() {
+        DefaultTableModel dtm = (DefaultTableModel) jStatusTable.getModel();
         dtm.setRowCount(0);
-        
+
         for (Network network1 : system.getNetworks()) {
             for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
-                if(enterprise instanceof HospitalEnterprise){
-                    for (WorkRequest request : ent.getWorkQueue().getWorkRequestList()){
+                if (enterprise instanceof HospitalEnterprise) {
+                    for (WorkRequest request : ent.getWorkQueue().getWorkRequestList()) {
+                        if (request instanceof AwarenessWorkRequest) {
 
-            Object[] row = new Object[4];
-            row[0] = ((AwarenessWorkRequest) request).getMessage();
-            row[1] = ((AwarenessWorkRequest) request).getOrgans();
-            row[2] = ((AwarenessWorkRequest) request).getStatus();
-            row[3] = ((AwarenessWorkRequest) request).getSender();
-            dtm.addRow(row);
+                            Object[] row = new Object[4];
+                            row[0] = ((AwarenessWorkRequest) request).getMessage();
+                            row[1] = ((AwarenessWorkRequest) request).getOrgans();
+                            row[2] = ((AwarenessWorkRequest) request).getStatus();
+                            row[3] = ((AwarenessWorkRequest) request).getSender();
+                            dtm.addRow(row);
+                        }
 
-    }
                     }
                 }
             }
-
         }
-        //FundingWorkRequest req = new FundingWorkRequest();
-        
-    
+
+    }
+    //FundingWorkRequest req = new FundingWorkRequest();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,7 +142,7 @@ public class ViewCampDetails extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        
+
         panel.remove(this);
         Component[] componentArray = panel.getComponents();
         Component componentObj = componentArray[componentArray.length - 1];

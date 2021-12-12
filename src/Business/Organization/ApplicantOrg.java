@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ApplicantOrg extends Organization {
       
     public ApplicantOrg() {
-        super(Organization.OrganizationType.Applicant.getValue());
+        super(Organization.OrganizationType.Receptionist.getValue());
     }
 
     @Override

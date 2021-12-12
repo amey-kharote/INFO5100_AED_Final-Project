@@ -100,7 +100,7 @@ public class ManageOrganizationReusablePanel extends javax.swing.JPanel {
         for (Organization.OrganizationType orgType : Organization.OrganizationType.values()) {
             if (enterpriseObj.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Hospital.getValue())) {
                 if (orgType.getValue().equals(Organization.OrganizationType.Doctor.getValue())
-                        || orgType.getValue().equals(Organization.OrganizationType.Applicant.getValue())
+                        || orgType.getValue().equals(Organization.OrganizationType.Receptionist.getValue())
                         || orgType.getValue().equals(Organization.OrganizationType.InternalLab.getValue())) {
                     orgTypeDropdown.addItem(orgType);
                 }

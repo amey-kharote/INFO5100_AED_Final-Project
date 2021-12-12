@@ -131,7 +131,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             }
         });
 
-        testCheckboxLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        testCheckboxLabel.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         testCheckboxLabel.setText("List Of Tests");
 
         xrayCheckbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -171,7 +171,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             }
         });
 
-        testResultSectionHeaderLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        testResultSectionHeaderLabel.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         testResultSectionHeaderLabel.setText("View Test Results");
 
         testSelectionHeaderLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -184,7 +184,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             }
         });
 
-        askDonorToTakeTestButton1.setBackground(new java.awt.Color(153, 204, 255));
+        askDonorToTakeTestButton1.setBackground(java.awt.SystemColor.controlLtHighlight);
         askDonorToTakeTestButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         askDonorToTakeTestButton1.setText("Request Donor Test");
         askDonorToTakeTestButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -194,7 +194,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             }
         });
 
-        checkResultStatusButton1.setBackground(new java.awt.Color(153, 204, 255));
+        checkResultStatusButton1.setBackground(java.awt.SystemColor.controlLtHighlight);
         checkResultStatusButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         checkResultStatusButton1.setText("Check Recipient Reports");
         checkResultStatusButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -213,7 +213,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         testCheckboxLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         testCheckboxLabel3.setText("Radiology Lab Tests");
 
-        requestPatientTest.setBackground(new java.awt.Color(153, 204, 255));
+        requestPatientTest.setBackground(java.awt.SystemColor.controlLtHighlight);
         requestPatientTest.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         requestPatientTest.setText("Request Patient Test");
         requestPatientTest.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -324,9 +324,9 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(testCheckboxLabel)
-                .addGap(4, 4, 4)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(testCheckboxLabel2)
                     .addComponent(testCheckboxLabel3)
@@ -343,7 +343,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
                             .addComponent(gynecologicalScreeningCheckbox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancerCheckbox)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(testResultSectionHeaderLabel)
@@ -351,7 +351,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkResultStatusButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkDonorResultStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -109,7 +109,7 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
         corporateFundingTableHeaderLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(java.awt.SystemColor.activeCaption);
 
         governmentFundRequestStatusTable.setBackground(java.awt.SystemColor.info);
         governmentFundRequestStatusTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -120,7 +120,7 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Event Name", "Sender", "Status", "Funds"
+                "Event Name", "Receiver", "Status", "Funds"
             }
         ));
         jScrollPane1.setViewportView(governmentFundRequestStatusTable);
@@ -134,7 +134,7 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Event Name", "Sender", "Status", "Funds"
+                "Event Name", "Receiver", "Status", "Funds"
             }
         ));
         jScrollPane3.setViewportView(governmentFundRequestStatusTable1);

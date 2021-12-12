@@ -63,7 +63,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.rightPanel = rightPanel;
-        methodToPopulateTableEnterprise();
+        methodToPopulateTableData();
     }
 
     /**
@@ -150,12 +150,13 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         tableModel.setRowCount(0);
         for (WorkRequest workRequestObject : organization.getWorkQueue().getWorkRequestList()) {
             LabTestWorkRequest workRequestObject1 = (LabTestWorkRequest)workRequestObject;
-            Object[] labAssistantTableRow = new Object[5];
+            Object[] labAssistantTableRow = new Object[6];
             labAssistantTableRow[0] = workRequestObject;
             labAssistantTableRow[1] = workRequestObject.getSender().getEmployee().getEmpName();
             labAssistantTableRow[2] = workRequestObject.getReceiver() == null ? null : workRequestObject.getReceiver().getEmployee().getEmpName();
             labAssistantTableRow[3] = workRequestObject.getStatus();
             labAssistantTableRow[4] = workRequestObject1.getPatientId();
+            labAssistantTableRow[5] = workRequestObject1.getTestResult();
             tableModel.addRow(labAssistantTableRow);
         }
     }
@@ -207,6 +208,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         } else if (userAccount.getRole() instanceof InternalLabAssistantRole) {
             methodToPopulateTableData();
         }
+          methodToPopulateTableData();
     }//GEN-LAST:event_assignToMeButtonActionPerformed
 
     private void processButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processButtonActionPerformed
@@ -220,6 +222,10 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
             return;
         }
         LabTestWorkRequest labTestWorkRequest = (LabTestWorkRequest) labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
+        if("Completed".equalsIgnoreCase(labTestWorkRequest.getStatus())){
+             JOptionPane.showMessageDialog(null, "This request has already been completed.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if(labTestWorkRequest.getReceiver() == null ){
             JOptionPane.showMessageDialog(null, "Please, assign the request to yourself.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;

@@ -213,7 +213,7 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
 
         int selectedRow = recipientInfoTable.getSelectedRow();      
         
-        if(selectedRow > 0){
+        if(selectedRow >= 0){
            recipient = (Recipient) recipientInfoTable.getValueAt(selectedRow, 0);
            String network = (String) recipientInfoTable.getValueAt(selectedRow, 1);
            String organType = (String) recipientInfoTable.getValueAt(selectedRow, 2);
@@ -369,7 +369,7 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
 
         int selectedRow = applicantInfoTable.getSelectedRow();
 
-        if (selectedRow > 0) {
+        if (selectedRow >= 0) {
             donor = (Donor) applicantInfoTable.getValueAt(selectedRow, 0);
             sendOutEmail(donor.getPersonEmailId());
             sendOutEmail(recipient.getPersonEmailId());
@@ -383,9 +383,9 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
         private void sendOutEmail(String emailID){
             final String reci = emailID;
             String hostname = "smtp.gmail.com";
-            String password = "taskplannermernproject@123";
-            String sender = "taskplannermernproject@gmail.com";            
-            String userNAme= "taskplannermernproject@gmail.com";
+            String password = "Pass@1234";
+            String sender = "organdonationaed@gmail.com";            
+            String userNAme= "organdonationaed@gmail.com";
             
             Properties prop = System.getProperties();  
             prop.setProperty("mail.smtp.host", hostname); 

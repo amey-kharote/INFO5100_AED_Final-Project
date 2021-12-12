@@ -81,7 +81,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
         assignToMeButton = new javax.swing.JButton();
         processButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(java.awt.SystemColor.activeCaption);
 
         govtEventDetailTable.setBackground(java.awt.SystemColor.info);
         govtEventDetailTable.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N

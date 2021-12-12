@@ -47,7 +47,7 @@ public abstract class Organization {
         // hospital enterprise org
         InternalLab("InternalLab Org"),
         Doctor("Doctor Org"),
-        Applicant("Applicant Org"),
+        Receptionist("Applicant Org"),
         // campaign enterprise org
         RedCrossAwarenessOrg("RedCross Awareness Org"),
         // funding enterprise org

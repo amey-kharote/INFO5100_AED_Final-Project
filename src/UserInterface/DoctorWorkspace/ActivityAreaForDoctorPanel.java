@@ -88,7 +88,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) displayValidationWorkRequestTable.getModel();
         model.setRowCount(0);
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             if (request instanceof LabTestWorkRequest) {
                 if (((LabTestWorkRequest) request).getPatientId() != null) {
                     if (((LabTestWorkRequest) request).getPatientId().equals(patientUserName)) {
@@ -96,8 +96,9 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                         row[1] = ((LabTestWorkRequest) request).getSender();
                         row[2] = ((LabTestWorkRequest) request).getReceiver();
                         row[3] = ((LabTestWorkRequest) request).getStatus();
+                        row[4] = ((LabTestWorkRequest) request).getMessage();
                         String result = ((LabTestWorkRequest) request).getTestResult();
-                        row[4] = result == null ? "Pending Results" : result;
+                        row[5] = result == null ? "Pending Results" : result;
                         model.addRow(row);
                     }
                 }
@@ -163,20 +164,20 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         displayValidationWorkRequestTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         displayValidationWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Patient Name", "Sender", "Receiver", "Status", "Results"
+                "Patient Name", "Sender", "Receiver", "Status", "Test Message", "Results"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -215,17 +216,17 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
 
         displayEnterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         displayEnterpriseLabel1.setText("Enterprise :");
-        add(displayEnterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, 70));
+        add(displayEnterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, 70));
 
         displayEnterpriseValueTextField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         displayEnterpriseValueTextField.setText("<value>");
-        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 230, 50));
+        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 230, 50));
 
-        patientTypeLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(patientTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 160, 40));
+        patientTypeLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(patientTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 40));
 
-        pateintIdLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(pateintIdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 210, 40));
+        pateintIdLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(pateintIdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 340, 40));
 
         displayEnterpriseLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         displayEnterpriseLabel4.setText("Test Results Page");

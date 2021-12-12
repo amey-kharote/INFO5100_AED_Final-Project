@@ -39,7 +39,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
     Donor donor;
     Recipient recipient;
     List<Donor> donorL;
-    
+
     /**
      * Creates new form OrganMatchByApplicantPanel
      */
@@ -48,6 +48,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         this.panel = panel;
         this.donorL = donorL;
+        populateDonorTable();
     }
 
     /**
@@ -71,7 +72,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         donorInfoTable.setBackground(java.awt.SystemColor.info);
-        donorInfoTable.setFont(new java.awt.Font("Tahoma", 1, 23)); // NOI18N
+        donorInfoTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         donorInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -115,7 +116,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
         add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 260, 60));
 
         recipientInfoTable.setBackground(java.awt.SystemColor.info);
-        recipientInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        recipientInfoTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         recipientInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -174,55 +175,82 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
     private void findMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findMatchButtonActionPerformed
 
         int selectedRow = donorInfoTable.getSelectedRow();
-        
-        if(selectedRow > 0){
-           Donor donorInfo = (Donor) donorInfoTable.getValueAt(selectedRow, 0);
-           String network = (String) donorInfoTable.getValueAt(selectedRow, 1);
-           donor = donorInfo;
-           List<String> organsList = donor.getOrganList();           
-           populateRecipientToTable(network, organsList);    
-        }else{
+
+        if (selectedRow >= 0) {
+            Donor donorInfo = (Donor) donorInfoTable.getValueAt(selectedRow, 0);
+            String network = (String) donorInfoTable.getValueAt(selectedRow, 1);
+            donor = donorInfo;
+            List<String> organsList = donor.getOrganList();
+            populateRecipientToTable(network, organsList);
+        } else {
             JOptionPane.showMessageDialog(null, "Please select a row.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_findMatchButtonActionPerformed
 
-    private void populateRecipientToTable(String network, List<String> organList){
-        
-        DefaultTableModel dtm  = (DefaultTableModel) recipientInfoTable.getModel();
+    void populateDonortabel() {
+        DefaultTableModel dtm = (DefaultTableModel) donorInfoTable.getModel();
+        dtm.setRowCount(0);
+        for (Donor donor : donorL) {
+            Object[] row = new Object[4];
+            row[0] = donor;
+            row[1] = donor.getNetwork();
+            row[2] = donor.getOrganList();
+            row[3] = donor.isIsOrganAvailable();
+            dtm.addRow(row);
+        }
+    }
+
+    private void populateDonorTable() {
+
+        DefaultTableModel model = (DefaultTableModel) donorInfoTable.getModel();
+
+        model.setRowCount(0);
+
+        for (Donor donor : donorL) {
+            Object[] row = new Object[4];
+            row[0] = donor;
+            row[1] = donor.getNetwork();
+            row[2] = donor.getOrganList();
+            row[3] = donor.isIsOrganAvailable();
+
+            model.addRow(row);
+        }
+    }
+
+    private void populateRecipientToTable(String network, List<String> organList) {
+        System.out.println("Populate receipient table");
+        DefaultTableModel dtm = (DefaultTableModel) recipientInfoTable.getModel();
         List<Recipient> recipientL = new ArrayList<Recipient>();
         dtm.setRowCount(0);
-        
+
         for (Network n : ecoSystem.getNetworks()) {
             for (Enterprise enterprise : n.getEnterpriseDirectory().getEnterpriseList()) {
-                if(enterprise instanceof HospitalEnterprise)
-                {
+                if (enterprise instanceof HospitalEnterprise) {
                     for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization.getName().equalsIgnoreCase("Applicant Org")) 
-                        {
-                            for (Recipient rec : organization.getRecipientDirectory().getRecipientRecords()) { 
-                                    int priorityNo = rec.getPriorityNo();
-                                    if((organList.contains(rec.getOrganType())) && (priorityNo > 0)){
-                                          rec.setNetwork(network);
-                                          recipientL.add(rec);
-                                      }  
+                        if (organization.getName().equalsIgnoreCase("Applicant Org")) {
+                            for (Recipient rec : organization.getRecipientDirectory().getRecipientRecords()) {
+                                int priorityNo = rec.getPriorityNo();
+                                if ((organList.contains(rec.getOrganType())) && (priorityNo > 0)) {
+                                    rec.setNetwork(network);
+                                    recipientL.add(rec);
+                                }
                             }
                         }
-                   }
+                    }
                 }
             }
         }
-        
-        
+
         Collections.sort(recipientL, new Comparator<Recipient>() {
 
-             @Override
-             public int compare(Recipient rec1, Recipient rec2) {
-                 return rec2.compareTo(rec1);
-             }       
+            @Override
+            public int compare(Recipient rec1, Recipient rec2) {
+                return rec2.compareTo(rec1);
+            }
         });
-        
-        for(Recipient recipient1 : recipientL){
+
+        for (Recipient recipient1 : recipientL) {
             Object[] row = new Object[4];
             row[0] = recipient1;
             row[1] = recipient1.getNetwork();
@@ -230,67 +258,68 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
             row[3] = recipient1.getPriorityNo();
             dtm.addRow(row);
         }
-        
+
     }
-    
+
     private void informOrganMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informOrganMatchButtonActionPerformed
 
         int selectedRow = recipientInfoTable.getSelectedRow();
-        if (selectedRow > 0) {
+        if (selectedRow >= 0) {
             recipient = (Recipient) recipientInfoTable.getValueAt(selectedRow, 0);
-            
+
             sendOutEmail(recipient.getPersonEmailId());
             sendOutEmail(donor.getPersonEmailId());
 
             JOptionPane.showMessageDialog(null, "Email has been sent successfully regarding Organ match");
-            } else {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select a row.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_informOrganMatchButtonActionPerformed
 
-        private void sendOutEmail(String emailID)
-        {
-            final String tosend = emailID;
-            boolean sessionDebug=false;
-            String sender = "taskplannermernproject@gmail.com"; 
-            String hostname = "smtp.gmail.com";
-            String userName = "taskplannermernproject@gmail.com";
-            String password = "taskplannermernproject@123";
-            Properties prop = System.getProperties();  
-            prop.setProperty("mail.smtp.host", hostname); 
-            prop.put("mail.smtp.starttls.required", "true");
-            prop.put("mail.smtp.starttls.enable", "true");
-            prop.put("mail.smtp.host", hostname);  
-            prop.put("mail.smtp.port", "587");  
-            prop.put("mail.smtp.auth", "true");  
-            
-            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());  
-            
-            Session session;
-            session = Session.getDefaultInstance(prop,null);
-            session.setDebug(sessionDebug);
-            
-            try
-            {
-            MimeMessage msg = new MimeMessage(session);  
-            msg.setFrom(new InternetAddress(sender));  
-            msg.setRecipient(Message.RecipientType.TO,new InternetAddress(tosend));  
+    private void sendOutEmail(String emailID) {
+        final String tosend = emailID;
+        boolean sessionDebug = false;
+        //String sender = "taskplannermernproject@gmail.com";
+        String hostname = "smtp.gmail.com";
+        // String userName = "taskplannermernproject@gmail.com";
+        //String password = "taskplannermernproject@123";
+        String password = "Pass@1234";
+        String sender = "organdonationaed@gmail.com";
+        String userName = "organdonationaed@gmail.com";
+        Properties prop = System.getProperties();
+        prop.setProperty("mail.smtp.host", hostname);
+        prop.put("mail.smtp.starttls.required", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.host", hostname);
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+
+        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+
+        Session session;
+        session = Session.getDefaultInstance(prop, null);
+        session.setDebug(sessionDebug);
+
+        try {
+            MimeMessage msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(sender));
+            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(tosend));
             InternetAddress add;
             add = new InternetAddress(tosend);
-            msg.setSubject("Match Organ Details!!");  
-            msg.setText("Paring Details are as follows: Donor :: "+ donor.getPersonEmailId()+ " with Recipient:: " + recipient.getPersonEmailId() + 
-                    " for organ transplant.");  
-            
+            msg.setSubject("Match Organ Details!!");
+            msg.setText("Paring Details are as follows: Donor :: " + donor.getPersonEmailId() + " with Recipient:: " + recipient.getPersonEmailId()
+                    + " for organ transplant.");
+
             Transport transport = session.getTransport("smtp");
             transport.connect(hostname, userName, password);
             transport.sendMessage(msg, msg.getAllRecipients());
             transport.close();
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "Encountered error while sending Email!!");
-            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Encountered error while sending Email!!");
+        }
     }
-    
+
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
 
         ManageOrganMatchInitialRoute manageNetworksJPanel = new ManageOrganMatchInitialRoute(ecoSystem, panel);

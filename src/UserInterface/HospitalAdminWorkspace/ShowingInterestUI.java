@@ -61,6 +61,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         infoTextArea = new javax.swing.JTextArea();
         submitButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,12 +85,17 @@ public class ShowingInterestUI extends javax.swing.JPanel {
                 yesRadioButtonActionPerformed(evt);
             }
         });
-        add(yesRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
+        add(yesRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
 
         noRadioButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         noRadioButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         noRadioButton.setText("NO");
-        add(noRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
+        noRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noRadioButtonActionPerformed(evt);
+            }
+        });
+        add(noRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
 
         infoTextArea.setEditable(false);
         infoTextArea.setBackground(java.awt.SystemColor.inactiveCaption);
@@ -115,7 +121,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
                 submitButtonActionPerformed(evt);
             }
         });
-        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 200, 60));
+        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 200, 60));
 
         backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
@@ -126,6 +132,10 @@ public class ShowingInterestUI extends javax.swing.JPanel {
             }
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 130, 40));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Do you want to be a donor?");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void yesRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesRadioButtonActionPerformed
@@ -182,12 +192,17 @@ public class ShowingInterestUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void noRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noRadioButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JTextField enterEmailTextField;
     private javax.swing.JLabel enterEmailTextFieldLabel;
     private javax.swing.JTextArea infoTextArea;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton noRadioButton;
     private javax.swing.JLabel showingInterestHeader;

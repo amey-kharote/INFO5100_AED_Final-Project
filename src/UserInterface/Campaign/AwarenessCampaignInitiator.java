@@ -65,7 +65,9 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
                 if(enterprise instanceof HospitalEnterprise){
                     for(WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()){
+                        if (wr instanceof AwarenessWorkRequest) {
                         Object[] row = new Object[4];
+                        
                         AwarenessWorkRequest req = (AwarenessWorkRequest)wr;
                         row[0] = wr;
                         row[1] = req.getOrgans();
@@ -73,6 +75,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
                         row[3] = wr.getSender();
                 
                         dtm.addRow(row);
+                    }
                     }
                 }
             }
