@@ -94,6 +94,11 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         manageDonorRecipientBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         manageDonorRecipientBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/management.png"))); // NOI18N
         manageDonorRecipientBtn.setText("Manage Donors and Recipient Name");
+        manageDonorRecipientBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageDonorRecipientBtnActionPerformed(evt);
+            }
+        });
 
         analysisBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         analysisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-analysis-24.png"))); // NOI18N
@@ -204,6 +209,10 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         }    
         JOptionPane.showMessageDialog(null, "Please create enterprises before creating admins");
     }//GEN-LAST:event_manageEnterpriseAdminBtnActionPerformed
+
+    private void manageDonorRecipientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageDonorRecipientBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageDonorRecipientBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

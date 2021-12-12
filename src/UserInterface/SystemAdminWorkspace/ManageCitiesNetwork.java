@@ -148,7 +148,7 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
         Utils util = new Utils();
         String networkName = cityNameTextField.getText();
         if (util.notNullOrEmpty(networkName)) {
-            if (util.isAlphaNumericFieldValid(networkName)) {
+            if (util.isValidName(networkName)) {
                 for (Network network: ecoSystem.getNetworks()) {
                     if (network.getName().equalsIgnoreCase(networkName)) {
                         JOptionPane.showMessageDialog(null, "City aLready exists. Please enter a new city!");

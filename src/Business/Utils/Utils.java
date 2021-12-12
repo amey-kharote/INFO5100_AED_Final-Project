@@ -56,21 +56,24 @@ public class Utils {
     }
     
       public boolean isPasswordValid(String password) {
-         String regex = "^([a-zA-Z+]+[0-9+]+[@#!$%^]+)$";
+         String regex = "^(?=.*[0-9])"
+                       + "(?=.*[a-z])(?=.*[A-Z])"
+                       + "(?=.*[@#$%^&+=])"
+                       + "(?=\\S+$).{8,20}$";
          Pattern p = Pattern.compile(regex);
          Matcher m = p.matcher(password);
          return m.matches();
     }
     
     public boolean isValidName(String name) {
-         String regex = "^[a-zA-Z]*$";
+         String regex = "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$";
          Pattern p = Pattern.compile(regex);
          Matcher m = p.matcher(name);
          return m.matches();
     }
      
      public boolean isValidCampaign(String campaign){
-         String regex = "^[a-zA-Z]*$";
+         String regex = "^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$";
          Pattern p = Pattern.compile(regex);
          Matcher m = p.matcher(campaign);
          return m.matches();
@@ -92,13 +95,14 @@ public class Utils {
      
      //Specific to one class only, do not use
      public boolean isValidPhoneNum(String campaign){
-         return true;
+         String regex = "^[1-9]{1}+[0-9]{9}$";
+         Pattern p = Pattern.compile(regex);
+         Matcher m = p.matcher(campaign);
+         return m.matches();
      }
              
-     public void sendEmail(String emailID, String campaignName, String campaignDate, String city){
-         
-         final String recipient = emailID;
-         
+     public void sendEmail(String emailID, String campaignName, String campaignDate, String city){         
+         final String recipient = emailID;         
          String sender = "taskplannermernproject@gmail.com"; 
          String host = "smtp.gmail.com";
          String userEmail = "taskplannermernproject@gmail.com";

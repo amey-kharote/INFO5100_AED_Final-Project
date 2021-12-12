@@ -130,6 +130,12 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
             }
         });
         add(enterpriseTypeDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 150, -1));
+
+        enterpriseNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseNameTextFieldActionPerformed(evt);
+            }
+        });
         add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 150, -1));
 
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
@@ -172,7 +178,7 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         if (!util.notNullOrEmpty(enterpriseName)) {
             JOptionPane.showMessageDialog(null, "Please enter an enterprise name.");
             return;
-        } else if (!util.isAlphabetFieldValid(enterpriseName)) {
+        } else if (!util.isValidName(enterpriseName)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid enterprise name.");
             return;
         }
@@ -203,6 +209,10 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
     private void cityDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityDropdownActionPerformed
         // TODO add your handling code here:        
     }//GEN-LAST:event_cityDropdownActionPerformed
+
+    private void enterpriseNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseNameTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -49,7 +49,7 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
         requestForTestButton = new javax.swing.JButton();
         variableToDisplayImg = new javax.swing.JLabel();
 
-        setLayout(new java.awt.CardLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(java.awt.SystemColor.activeCaption);
 
@@ -134,7 +134,7 @@ public class RequestLabTestByDoctor extends javax.swing.JPanel {
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        add(jPanel1, "card2");
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
