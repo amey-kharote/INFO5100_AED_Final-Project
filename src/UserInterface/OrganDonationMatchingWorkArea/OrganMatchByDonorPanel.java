@@ -112,7 +112,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
                 findMatchButtonActionPerformed(evt);
             }
         });
-        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 300, 40));
+        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 260, 60));
 
         recipientInfoTable.setBackground(java.awt.SystemColor.info);
         recipientInfoTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -156,7 +156,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
                 informOrganMatchButtonActionPerformed(evt);
             }
         });
-        add(informOrganMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 610, 320, 40));
+        add(informOrganMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 610, 290, 60));
 
         backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N

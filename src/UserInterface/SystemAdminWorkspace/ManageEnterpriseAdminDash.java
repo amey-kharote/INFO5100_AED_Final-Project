@@ -85,12 +85,14 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
         formPasswordLabel = new javax.swing.JLabel();
         formPasswordField = new javax.swing.JPasswordField();
         SubmitBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
 
         helperImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/donation.jpg"))); // NOI18N
 
         backBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backBtn.setText("Back");
         backBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -101,7 +103,7 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
         });
 
         enterpriseAdminTable.setBackground(java.awt.SystemColor.info);
-        enterpriseAdminTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        enterpriseAdminTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         enterpriseAdminTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -123,7 +125,7 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseAdminTable);
 
-        cityNetworkDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        cityNetworkDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cityNetworkDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityNetworkDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,13 +133,13 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
             }
         });
 
-        formCityLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        formCityLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         formCityLabel.setText("City");
 
-        formenterpriseLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        formenterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         formenterpriseLabel.setText("Enterprise");
 
-        enterpriseNetworkDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        enterpriseNetworkDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         enterpriseNetworkDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         enterpriseNetworkDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,17 +147,18 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
             }
         });
 
-        formEmailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        formEmailTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        formUsernameLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        formUsernameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         formUsernameLabel.setText("Email");
 
-        formPasswordLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        formPasswordLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         formPasswordLabel.setText("Password");
 
-        formPasswordField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        formPasswordField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         SubmitBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        SubmitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         SubmitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         SubmitBtn.setText("Submit");
         SubmitBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -165,71 +168,84 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Manage  Enterprise Admins");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(13, 13, 13)
+                                    .addComponent(formCityLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cityNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(formPasswordLabel)
+                                                .addComponent(formUsernameLabel))
+                                            .addGap(32, 32, 32)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(formEmailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                                .addComponent(formPasswordField)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(formenterpriseLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                            .addComponent(enterpriseNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(formCityLabel)
-                                .addGap(19, 19, 19)
-                                .addComponent(cityNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(formenterpriseLabel)
-                                .addGap(15, 15, 15)
-                                .addComponent(enterpriseNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(formUsernameLabel)
-                                .addGap(24, 24, 24)
-                                .addComponent(formEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(formPasswordLabel)
-                                .addGap(23, 23, 23)
-                                .addComponent(formPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(helperImageLabel)))
-                .addGap(45, 45, 45))
+                                .addGap(82, 82, 82)
+                                .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(helperImageLabel))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formCityLabel)
-                            .addComponent(cityNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(72, 72, 72)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cityNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formCityLabel))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(formenterpriseLabel)
                             .addComponent(enterpriseNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(formEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formUsernameLabel))
                         .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formUsernameLabel)
-                            .addComponent(formEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formPasswordLabel)
-                            .addComponent(formPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(formPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formPasswordLabel))
+                        .addGap(48, 48, 48)
                         .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(helperImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(helperImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -274,7 +290,11 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter a valid email id.");
             return;
         }
-
+        
+        if(enterpriseObj.getEmployeeDirectory().getEmpList().size() > 0){
+            JOptionPane.showMessageDialog(null, "Enterprise admin already exists");
+            return;
+        }
         Employee employee = enterpriseObj.getEmployeeDirectory().createEmployee(emailId);
         UserAccount account = enterpriseObj.getUserAccountDirectory().createUserAccount(emailId, password, employee, new EnterpriseManagerRole());
        
@@ -300,6 +320,7 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
     private javax.swing.JLabel formUsernameLabel;
     private javax.swing.JLabel formenterpriseLabel;
     private javax.swing.JLabel helperImageLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

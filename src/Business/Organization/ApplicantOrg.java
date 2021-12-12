@@ -7,7 +7,7 @@ package Business.Organization;
 
 import Business.Entity.DonorDirectory;
 import Business.Entity.RecipientDirectory;
-import Business.Role.ApplicantRole;
+import Business.Role.ReceptionistRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class ApplicantOrg extends Organization {
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList <Role> supportedRole = new ArrayList<>();
-        supportedRole.add(new ApplicantRole());
+        supportedRole.add(new ReceptionistRole());
         return supportedRole;        
     }
 }

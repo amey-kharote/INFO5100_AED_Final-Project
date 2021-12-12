@@ -9,15 +9,16 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import UserInterface.LabAssistant.LabAssistantWorkAreaPanel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author amey
  */
-public class ApplicantRole extends Role{
+public class RadiologistRole extends Role{
 
-    RoleType roleType = RoleType.ApplicantRole;
+    RoleType roleType = RoleType.RadiologistRole;
     
     @Override
     public String toString() {
@@ -26,8 +27,6 @@ public class ApplicantRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
- 
+      return new LabAssistantWorkAreaPanel(userProcessContainer, business,  enterprise,org, account);
+    }    
 }

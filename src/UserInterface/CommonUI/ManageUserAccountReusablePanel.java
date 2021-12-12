@@ -21,9 +21,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Amey
  */
 public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
-    
+
     JPanel rightJPanel;
     Enterprise enterpriseObj;
+
     /**
      * Creates new form ManageUserAccountReusablePanel
      */
@@ -40,32 +41,36 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount account : organization.getUserAccountDirectory().getUserAccountList()) {
-                Object rowObj[] = new Object[2];
+                Object rowObj[] = new Object[3];
                 rowObj[0] = account;
                 rowObj[1] = account.getRole();
+                rowObj[2] = account.getEmployee().getEmpName();
                 model.addRow(rowObj);
             }
         }
     }
-     public void populateEmployeeComboBox(Organization org){
-        employeeDropdown.removeAllItems();        
-        for (Employee employeeObj : org.getEmployeeDirectory().getEmpList()){
+
+    public void populateEmployeeComboBox(Organization org) {
+        employeeDropdown.removeAllItems();
+        for (Employee employeeObj : org.getEmployeeDirectory().getEmpList()) {
             employeeDropdown.addItem(employeeObj);
         }
     }
-    
-    private void populateRoleComboBox(Organization org){
+
+    private void populateRoleComboBox(Organization org) {
         roleDropdown.removeAllItems();
-        for (Role role : org.getSupportedRole()){
+        for (Role role : org.getSupportedRole()) {
             roleDropdown.addItem(role);
         }
     }
+
     private void populateOrgCombo() {
         orgDropdown.removeAllItems();
         for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
             orgDropdown.addItem(organization);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,24 +94,25 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
         passwordFieldLabel = new javax.swing.JLabel();
         createUserButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
 
-        displayUserDetailsTable.setBackground(new java.awt.Color(255, 204, 204));
-        displayUserDetailsTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayUserDetailsTable.setBackground(java.awt.SystemColor.info);
+        displayUserDetailsTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         displayUserDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "User Name", "Role"
+                "User Name", "Role", "Employee Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -119,7 +125,7 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(displayUserDetailsTable);
 
-        orgDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        orgDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         orgDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         orgDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,13 +133,13 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
             }
         });
 
-        orgDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        orgDropdownLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         orgDropdownLabel.setText("Organization:");
 
-        employeeDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        employeeDropdownLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         employeeDropdownLabel.setText("Employee:");
 
-        employeeDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        employeeDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         employeeDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         employeeDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +147,7 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
             }
         });
 
-        roleDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        roleDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         roleDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         roleDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,22 +155,22 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
             }
         });
 
-        roleDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        roleDropdownLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         roleDropdownLabel.setText("Role:");
 
-        userNameTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        userNameTextFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         userNameTextFieldLabel.setText("Email:");
 
-        usernameTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        usernameTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameTextFieldActionPerformed(evt);
             }
         });
 
-        passwordField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        passwordField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        passwordFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        passwordFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         passwordFieldLabel.setText("Password:");
 
         createUserButton.setBackground(java.awt.SystemColor.controlLtHighlight);
@@ -187,99 +193,97 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Manage User Accounts");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(254, 254, 254)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(orgDropdownLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(orgDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(roleDropdownLabel)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(employeeDropdownLabel)
+                                .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(orgDropdownLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(orgDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(userNameTextFieldLabel)
-                                        .addGap(24, 24, 24)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(52, 52, 52)
-                                                .addComponent(passwordFieldLabel)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(34, 34, 34)
-                                        .addComponent(employeeDropdownLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(employeeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(roleDropdownLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(roleDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())))
+                                    .addComponent(roleDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(employeeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userNameTextFieldLabel)
+                            .addComponent(passwordFieldLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(96, 96, 96)
+                        .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton)
-                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(orgDropdownLabel)
-                    .addComponent(orgDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roleDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(employeeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(employeeDropdownLabel)
-                    .addComponent(roleDropdownLabel))
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userNameTextFieldLabel)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
-                .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(userNameTextFieldLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(passwordFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(329, 329, 329))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(orgDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(orgDropdownLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(employeeDropdownLabel)
+                                    .addComponent(employeeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(roleDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(roleDropdownLabel)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgDropdownActionPerformed
         Organization org = (Organization) orgDropdown.getSelectedItem();
-        if (org != null){
+        if (org != null) {
             populateEmployeeComboBox(org);
             populateRoleComboBox(org);
         }
-        if(String.valueOf(orgDropdown.getItemAt(orgDropdown.getSelectedIndex())).equals("Applicant Org")){
-            usernameTextField.setEnabled(false);
-            passwordField.setEditable(false);
-            usernameTextField.setEditable(false);
-            passwordField.setEnabled(false);
-            createUserButton.setEnabled(false);
-        }
-        else{
-            usernameTextField.setEnabled(true);
-            passwordField.setEnabled(true);
-            usernameTextField.setEditable(true);
-            passwordField.setEditable(true);
-        }        
-
     }//GEN-LAST:event_orgDropdownActionPerformed
 
     private void roleDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleDropdownActionPerformed
@@ -293,24 +297,33 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
     private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
         String userEmail = usernameTextField.getText();
         String password = String.valueOf(passwordField.getPassword());
-        Utils util = new Utils();  
-        if( !util.notNullOrEmpty(userEmail) && !util.notNullOrEmpty(password)){
+        Utils util = new Utils();
+        if (!util.notNullOrEmpty(userEmail) && !util.notNullOrEmpty(password)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid username and password!");
             return;
         }
         Organization org = (Organization) orgDropdown.getSelectedItem();
         Employee employeeObj = (Employee) employeeDropdown.getSelectedItem();
-        Role role = (Role) roleDropdown.getSelectedItem();   
-        if(!util.isEmaildIdvalid(userEmail)){
+        Role role = (Role) roleDropdown.getSelectedItem();
+        if (!util.isEmaildIdvalid(userEmail)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid emailId.");
             return;
-        }        
-        if(!util.isPasswordValid(password)){
+        }
+        if (!util.isPasswordValid(password)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid password.");
             return;
         }
+        
+        for(UserAccount e: org.getUserAccountDirectory().getUserAccountList()){
+            if(e.getEmployee() == employeeObj){
+                 JOptionPane.showMessageDialog(null, "User for this employee already exists!.");
+                 return;
+            }
+        }
+            
+             
         UserAccount account = org.getUserAccountDirectory().createUserAccount(userEmail, password, employeeObj, role);
-        if(account == null){
+        if (account == null) {
             JOptionPane.showMessageDialog(null, "User already exists!. Please enter a different emailId.");
             usernameTextField.setText("");
             passwordField.setText("");
@@ -319,7 +332,7 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
         populateTableData();
         usernameTextField.setText("");
         passwordField.setText("");
-        
+
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -327,7 +340,7 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
         rightJPanel.remove(this);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.previous(rightJPanel);
-        
+
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void employeeDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeDropdownActionPerformed
@@ -341,6 +354,7 @@ public class ManageUserAccountReusablePanel extends javax.swing.JPanel {
     private javax.swing.JTable displayUserDetailsTable;
     private javax.swing.JComboBox employeeDropdown;
     private javax.swing.JLabel employeeDropdownLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox orgDropdown;
     private javax.swing.JLabel orgDropdownLabel;

@@ -54,78 +54,90 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        manageUserButton = new javax.swing.JButton();
         managePeopleButton = new javax.swing.JButton();
         manageOrgButton = new javax.swing.JButton();
         hospitalAdminLabel = new javax.swing.JLabel();
         adminValue = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        manageUserButton1 = new javax.swing.JButton();
+        manageUserButton2 = new javax.swing.JButton();
+        checkRatioBtn = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageUserButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        manageUserButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        manageUserButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/team-management.png"))); // NOI18N
-        manageUserButton.setText("Manage User");
-        manageUserButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        manageUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageUserButtonActionPerformed(evt);
-            }
-        });
-        add(manageUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 570, 40));
-
         managePeopleButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        managePeopleButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        managePeopleButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         managePeopleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/management.png"))); // NOI18N
-        managePeopleButton.setText("Manage People");
+        managePeopleButton.setText(" Manage People In Organization  ");
         managePeopleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         managePeopleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 managePeopleButtonActionPerformed(evt);
             }
         });
-        add(managePeopleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 570, 40));
+        add(managePeopleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 570, 40));
 
         manageOrgButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        manageOrgButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        manageOrgButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         manageOrgButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/planning.png"))); // NOI18N
-        manageOrgButton.setText("Manage Organization");
+        manageOrgButton.setText(" Manage Organization In Enterprise");
         manageOrgButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         manageOrgButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOrgButtonActionPerformed(evt);
             }
         });
-        add(manageOrgButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 570, 40));
+        add(manageOrgButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 570, 40));
 
-        hospitalAdminLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        hospitalAdminLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         hospitalAdminLabel.setText("Admin :");
-        add(hospitalAdminLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+        add(hospitalAdminLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
-        adminValue.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        adminValue.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         adminValue.setText("<value>");
-        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 430, -1));
-    }// </editor-fold>//GEN-END:initComponents
+        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 430, -1));
 
-    private void manageUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButtonActionPerformed
-        if(enterpriseObj.getOrganizationDirectory().getOrganizationList().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Currently there are no organizations. Please create organizations first.");
-            return;
-        }
-      
-        for(Organization orgObj : enterpriseObj.getOrganizationDirectory().getOrganizationList()){
-            if(!orgObj.getEmployeeDirectory().getEmpList().isEmpty()){
-                ManageUserAccountReusablePanel manageUserJPanel = new ManageUserAccountReusablePanel(rightJPanel, enterpriseObj);
-                rightJPanel.add("manageUserJPanel", manageUserJPanel);
-                CardLayout layout = (CardLayout) rightJPanel.getLayout();
-                layout.next(rightJPanel);
-                return;
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Enterprise Admin Screen");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        manageUserButton1.setBackground(java.awt.SystemColor.controlLtHighlight);
+        manageUserButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        manageUserButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/team-management.png"))); // NOI18N
+        manageUserButton1.setText(" Manage User In Organization    ");
+        manageUserButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        manageUserButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageUserButton1ActionPerformed(evt);
             }
-                
-        }
-        JOptionPane.showMessageDialog(null, "Please create employees before creating users."); 
-    }//GEN-LAST:event_manageUserButtonActionPerformed
+        });
+        add(manageUserButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 570, 40));
+
+        manageUserButton2.setBackground(java.awt.SystemColor.controlLtHighlight);
+        manageUserButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        manageUserButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/team-management.png"))); // NOI18N
+        manageUserButton2.setText(" Manage User In Organization    ");
+        manageUserButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        manageUserButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageUserButton2ActionPerformed(evt);
+            }
+        });
+        add(manageUserButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 570, 40));
+
+        checkRatioBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        checkRatioBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        checkRatioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/team-management.png"))); // NOI18N
+        checkRatioBtn.setText("  Check Donor Receipient Ratio");
+        checkRatioBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        checkRatioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkRatioBtnActionPerformed(evt);
+            }
+        });
+        add(checkRatioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 570, 40));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void managePeopleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePeopleButtonActionPerformed
         if(enterpriseObj.getOrganizationDirectory().getOrganizationList().isEmpty()){
@@ -144,14 +156,47 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
 
-
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         CheckDonorRecipientRatio checkRatio = new CheckDonorRecipientRatio(system, rightJPanel, account, enterpriseObj);
-                rightJPanel.add("manageEntAdmins", checkRatio);
+        rightJPanel.add("manageEntAdmins", checkRatio);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void manageUserButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButton1ActionPerformed
+        // TODO add your handling code here:
+          if(enterpriseObj.getOrganizationDirectory().getOrganizationList().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Currently there are no organizations. Please create organizations first.");
+            return;
+        }
+      
+        for(Organization orgObj : enterpriseObj.getOrganizationDirectory().getOrganizationList()){
+            if(!orgObj.getEmployeeDirectory().getEmpList().isEmpty()){
+                ManageUserAccountReusablePanel manageUserJPanel = new ManageUserAccountReusablePanel(rightJPanel, enterpriseObj);
+                rightJPanel.add("manageUserJPanel", manageUserJPanel);
                 CardLayout layout = (CardLayout) rightJPanel.getLayout();
                 layout.next(rightJPanel);
-    }//GEN-LAST:event_jButton1ActionPerformed
+                return;
+            }
+                
+        }
+        JOptionPane.showMessageDialog(null, "Please create employees before creating users."); 
+    }//GEN-LAST:event_manageUserButton1ActionPerformed
+
+    private void manageUserButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageUserButton2ActionPerformed
+
+    private void checkRatioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkRatioBtnActionPerformed
+        // TODO add your handling code here:
+        CheckDonorRecipientRatio checkRatio = new CheckDonorRecipientRatio(system, rightJPanel, account, enterpriseObj);
+        rightJPanel.add("manageEntAdmins", checkRatio);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_checkRatioBtnActionPerformed
 
                                                 
 
@@ -159,9 +204,12 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminValue;
+    private javax.swing.JButton checkRatioBtn;
     private javax.swing.JLabel hospitalAdminLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageOrgButton;
     private javax.swing.JButton managePeopleButton;
-    private javax.swing.JButton manageUserButton;
+    private javax.swing.JButton manageUserButton1;
+    private javax.swing.JButton manageUserButton2;
     // End of variables declaration//GEN-END:variables
 }

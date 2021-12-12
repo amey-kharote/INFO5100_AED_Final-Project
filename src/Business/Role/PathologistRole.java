@@ -14,11 +14,11 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author amey
+ * @author ninos
  */
-public class LabAssistantRole extends Role{
+public class PathologistRole extends Role{
 
-    RoleType roleType = RoleType.LabAssistantRole;
+    RoleType roleType = RoleType.PathologistRole;
     
     @Override
     public String toString() {
@@ -27,6 +27,7 @@ public class LabAssistantRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
-      return new LabAssistantWorkAreaPanel(userProcessContainer, business,  enterprise,org, account);
-    }    
+        return new LabAssistantWorkAreaPanel(userProcessContainer, business,  enterprise,org, account);
+    }
+    
 }

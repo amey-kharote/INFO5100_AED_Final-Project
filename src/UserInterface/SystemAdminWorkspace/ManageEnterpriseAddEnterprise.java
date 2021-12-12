@@ -83,11 +83,13 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         submitBtn = new javax.swing.JButton();
         imageHelperLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         enterpriseTable.setBackground(java.awt.SystemColor.info);
+        enterpriseTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -101,43 +103,48 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         ));
         jscrollPane.setViewportView(enterpriseTable);
 
-        add(jscrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 970, 170));
+        add(jscrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 970, 170));
 
         enterpriseCityLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseCityLabel.setText("City");
-        add(enterpriseCityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        add(enterpriseCityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
 
         enterpriseTypeLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseTypeLabel.setText("Enterprise Type");
-        add(enterpriseTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, 20));
+        add(enterpriseTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 20));
 
         enterpriseNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseNameLabel.setText("Enterprise Name");
-        add(enterpriseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
+        add(enterpriseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
+        cityDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cityDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityDropdownActionPerformed(evt);
             }
         });
-        add(cityDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 150, -1));
+        add(cityDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 200, -1));
 
+        enterpriseTypeDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         enterpriseTypeDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         enterpriseTypeDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterpriseTypeDropdownActionPerformed(evt);
             }
         });
-        add(enterpriseTypeDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 150, -1));
+        add(enterpriseTypeDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 200, -1));
 
+        enterpriseNameTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         enterpriseNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterpriseNameTextFieldActionPerformed(evt);
             }
         });
-        add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 150, -1));
+        add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 200, -1));
 
+        backBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +152,7 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 120, 40));
 
         submitBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         submitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -156,10 +163,14 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
                 submitBtnActionPerformed(evt);
             }
         });
-        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, -1, -1));
+        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 150, 40));
 
         imageHelperLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/donation.jpg"))); // NOI18N
-        add(imageHelperLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, 470));
+        add(imageHelperLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 560, 380));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Manage Enterprises");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterpriseTypeDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseTypeDropdownActionPerformed
@@ -227,6 +238,7 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
     private javax.swing.JComboBox enterpriseTypeDropdown;
     private javax.swing.JLabel enterpriseTypeLabel;
     private javax.swing.JLabel imageHelperLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jscrollPane;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables

@@ -49,55 +49,58 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         this.patientType = patientType;
         patientTypeLabel.setText(patientType);
         pateintIdLabel.setText(patientUserName);
-        if(patientType.equalsIgnoreCase("Donor")){
+        if (patientType.equalsIgnoreCase("Donor")) {
             priorityOptionsDropdown.setVisible(false);
             setPriorityButton.setVisible(false);
-        }else {
+        } else {
             markDonorFit.setVisible(false);
             markDonorUnfit.setVisible(false);
         }
         populateWorkRequestTable();
-        populateValidateTable();
+        //populateValidateTable();
     }
 
-    public void populateValidateTable(){
-        DefaultTableModel model = (DefaultTableModel) validateWr.getModel();
-        model.setRowCount(0);
-        DonorValidationWorkRequest finalObj = null;
-        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
-                if (w instanceof DonorValidationWorkRequest) {
-                    DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
-                    if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
-                        finalObj = a;
-                        break;
-                    }
-                }
-       }
-       if(finalObj != null){
-                Object[] row = new Object[5];
-                row[0] = finalObj.getPatientId();
-                row[1] = finalObj.getSender();
-                row[2] = finalObj.isReceiverName();
-                row[3] = finalObj.getStatus();
-                model.addRow(row);
-          
-        }
-    }
+// public void populateValidateTable() {
+//        DefaultTableModel model = (DefaultTableModel) validateWr.getModel();
+//        model.setRowCount(0);
+//        DonorValidationWorkRequest finalObj = null;
+//        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+//            if (w instanceof DonorValidationWorkRequest) {
+//                DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
+//                if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
+//                    finalObj = a;
+//                    break;
+//                }
+//            }
+//        }
+//        if (finalObj != null) {
+//            Object[] row = new Object[5];
+//            row[0] = finalObj.getPatientId();
+//            row[1] = finalObj.getSender();
+//            row[2] = finalObj.isReceiverName();
+//            row[3] = finalObj.getStatus();
+//            model.addRow(row);
+//
+//        }
+//    }
+
     public void populateWorkRequestTable() {
         DefaultTableModel model = (DefaultTableModel) displayValidationWorkRequestTable.getModel();
         model.setRowCount(0);
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[5];
-            if(request instanceof LabTestWorkRequest)
-            if(((LabTestWorkRequest) request).getPatientId()!= null)
-            if (((LabTestWorkRequest) request).getPatientId().equals(patientUserName)) {
-                row[0] = ((LabTestWorkRequest) request).getPatientId();
-                row[1] = ((LabTestWorkRequest) request).getSender();
-                row[2] = ((LabTestWorkRequest) request).getReceiver();
-                row[3] = ((LabTestWorkRequest) request).getStatus();
-                String result = ((LabTestWorkRequest) request).getTestResult();
-                row[4] = result == null ? "Pending Results" : result;
-                model.addRow(row);
+            if (request instanceof LabTestWorkRequest) {
+                if (((LabTestWorkRequest) request).getPatientId() != null) {
+                    if (((LabTestWorkRequest) request).getPatientId().equals(patientUserName)) {
+                        row[0] = ((LabTestWorkRequest) request).getPatientId();
+                        row[1] = ((LabTestWorkRequest) request).getSender();
+                        row[2] = ((LabTestWorkRequest) request).getReceiver();
+                        row[3] = ((LabTestWorkRequest) request).getStatus();
+                        String result = ((LabTestWorkRequest) request).getTestResult();
+                        row[4] = result == null ? "Pending Results" : result;
+                        model.addRow(row);
+                    }
+                }
             }
         }
     }
@@ -112,12 +115,8 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         backButton = new javax.swing.JButton();
-        refreshTableButton = new javax.swing.JButton();
         markDonorUnfit = new javax.swing.JButton();
         markDonorFit = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        validateWr = new javax.swing.JTable();
-        displayEnterpriseLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         displayValidationWorkRequestTable = new javax.swing.JTable();
         displayEnterpriseLabel2 = new javax.swing.JLabel();
@@ -127,6 +126,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         displayEnterpriseValueTextField = new javax.swing.JLabel();
         patientTypeLabel = new javax.swing.JLabel();
         pateintIdLabel = new javax.swing.JLabel();
+        displayEnterpriseLabel4 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -139,73 +139,28 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 130, 40));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 130, 40));
 
-        refreshTableButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        refreshTableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/Refresh.jpg"))); // NOI18N
-        refreshTableButton.setText("Refresh");
-        refreshTableButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refreshTableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTableButtonActionPerformed(evt);
-            }
-        });
-        add(refreshTableButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 60, 170, 40));
-
+        markDonorUnfit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         markDonorUnfit.setText("Mark Donor Unfit");
         markDonorUnfit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 markDonorUnfitActionPerformed(evt);
             }
         });
-        add(markDonorUnfit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 710, -1, -1));
+        add(markDonorUnfit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 210, 60));
 
+        markDonorFit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         markDonorFit.setText("Mark Donor Fit");
         markDonorFit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 markDonorFitActionPerformed(evt);
             }
         });
-        add(markDonorFit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 710, -1, -1));
-
-        validateWr.setBackground(java.awt.SystemColor.info);
-        validateWr.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        validateWr.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Patient Name", "Sender", "Receiver", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(validateWr);
-
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 1060, 160));
-
-        displayEnterpriseLabel3.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        displayEnterpriseLabel3.setText("Donor Validation Requests:");
-        add(displayEnterpriseLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
+        add(markDonorFit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 200, 60));
 
         displayValidationWorkRequestTable.setBackground(java.awt.SystemColor.info);
-        displayValidationWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayValidationWorkRequestTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         displayValidationWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -234,20 +189,20 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(displayValidationWorkRequestTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 1060, 120));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 900, 120));
 
-        displayEnterpriseLabel2.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         displayEnterpriseLabel2.setText("Lab Tests Requests:");
-        add(displayEnterpriseLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        add(displayEnterpriseLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         priorityOptionsDropdown.setBackground(new java.awt.Color(204, 204, 204));
-        priorityOptionsDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        priorityOptionsDropdown.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         priorityOptionsDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- High", "2- Medium", "3- Low" }));
         priorityOptionsDropdown.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(priorityOptionsDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 260, -1, -1));
+        add(priorityOptionsDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, -1, -1));
 
         setPriorityButton.setBackground(new java.awt.Color(204, 204, 204));
-        setPriorityButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        setPriorityButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         setPriorityButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/priority.png"))); // NOI18N
         setPriorityButton.setText("Set Priority");
         setPriorityButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -256,21 +211,25 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 setPriorityButtonActionPerformed(evt);
             }
         });
-        add(setPriorityButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, -1, -1));
+        add(setPriorityButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 200, -1, -1));
 
-        displayEnterpriseLabel1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         displayEnterpriseLabel1.setText("Enterprise :");
-        add(displayEnterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, 70));
+        add(displayEnterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, 70));
 
-        displayEnterpriseValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseValueTextField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         displayEnterpriseValueTextField.setText("<value>");
-        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 230, 50));
+        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 230, 50));
 
         patientTypeLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         add(patientTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 160, 40));
 
         pateintIdLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         add(pateintIdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 210, 40));
+
+        displayEnterpriseLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        displayEnterpriseLabel4.setText("Test Results Page");
+        add(displayEnterpriseLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -279,20 +238,15 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         Component[] componentArray = rightJPanel.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorRequestPatientTestPanel reqPatientLabTestObj = (DoctorRequestPatientTestPanel) component;
-        CardLayout cardLayout = (CardLayout)rightJPanel.getLayout();
+        CardLayout cardLayout = (CardLayout) rightJPanel.getLayout();
         cardLayout.previous(rightJPanel);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButtonActionPerformed
-        populateWorkRequestTable();
-        populateValidateTable();
-    }//GEN-LAST:event_refreshTableButtonActionPerformed
-
     private void markDonorUnfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorUnfitActionPerformed
         // TODO add your handling code here:
-        System.out.println("Marking donor as unfit for transplant" +patientUserName);
-        WorkRequest finalObj = null;
-        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+        System.out.println("Marking donor as unfit for transplant" + patientUserName);
+        DonorValidationWorkRequest finalObj = null;
+        for (WorkRequest w : enterprise.getWorkQueue().getWorkRequestList()) {
             if (w instanceof DonorValidationWorkRequest) {
                 DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
                 if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
@@ -301,21 +255,18 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 }
             }
         }
-        for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
-            if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
-                d.setIsDonorFitForTransplant(false);
-            }
-
-        }
-        finalObj.setStatus("Marked Donor Unfit");
-        populateValidateTable();
+        Donor d = finalObj.getDonorObj();
+        d.setIsDonorFitForTransplant(true);
+        finalObj.setStatus("Request Completed");
+        finalObj.setTestResult("Donor Fit");
+        JOptionPane.showMessageDialog(null, "Donor Marked Unfit!");
+        //populateValidateTable();
     }//GEN-LAST:event_markDonorUnfitActionPerformed
 
     private void markDonorFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorFitActionPerformed
         // TODO add your handling code here:
-        System.out.println("Marking donor as fit for transplant" +patientUserName);
-        WorkRequest finalObj = null;
-        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+        DonorValidationWorkRequest finalObj = null;
+        for (WorkRequest w : enterprise.getWorkQueue().getWorkRequestList()) {
             if (w instanceof DonorValidationWorkRequest) {
                 DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
                 if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
@@ -324,14 +275,12 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 }
             }
         }
-        for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
-            if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
-                d.setIsDonorFitForTransplant(true);
-            }
-
-        }
-        finalObj.setStatus("Marked Donor Fit");
-        populateValidateTable();
+        Donor d = finalObj.getDonorObj();
+        d.setIsDonorFitForTransplant(true);
+        finalObj.setStatus("Request Completed");
+        finalObj.setTestResult("Donor Fit");
+        JOptionPane.showMessageDialog(null, "Donor Marked Fit!");
+        //populateValidateTable();
     }//GEN-LAST:event_markDonorFitActionPerformed
 
     private void setPriorityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriorityButtonActionPerformed
@@ -356,7 +305,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                                 JOptionPane.showMessageDialog(null, "Priority set to LOW!");
                             }
 
-                        }else {
+                        } else {
                             JOptionPane.showMessageDialog(null, "Sorry, You cannot set priority for patients with pending tests!");
                             return;
                         }
@@ -374,18 +323,15 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
     private javax.swing.JButton backButton;
     private javax.swing.JLabel displayEnterpriseLabel1;
     private javax.swing.JLabel displayEnterpriseLabel2;
-    private javax.swing.JLabel displayEnterpriseLabel3;
+    private javax.swing.JLabel displayEnterpriseLabel4;
     private javax.swing.JLabel displayEnterpriseValueTextField;
     private javax.swing.JTable displayValidationWorkRequestTable;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton markDonorFit;
     private javax.swing.JButton markDonorUnfit;
     private javax.swing.JLabel pateintIdLabel;
     private javax.swing.JLabel patientTypeLabel;
     private javax.swing.JComboBox priorityOptionsDropdown;
-    private javax.swing.JButton refreshTableButton;
     private javax.swing.JButton setPriorityButton;
-    private javax.swing.JTable validateWr;
     // End of variables declaration//GEN-END:variables
 }

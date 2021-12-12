@@ -5,8 +5,12 @@
  */
 package UserInterface.HospitalApplicant;
 
+import Business.Enterprise.Enterprise;
+import Business.Entity.Donor;
 import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import Business.Utils.Utils;
+import Business.WorkQueue.DonorValidationWorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +29,17 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
     Organization org;
     String emailStr;
     JPanel rightJPanel;
-
-    public DonorRegistrationForm(JPanel rightJPanel, Organization org, String emailStr) {
+    Enterprise enterpriseObj;
+    UserAccount account;
+    
+    public DonorRegistrationForm(JPanel rightJPanel, Organization org, String emailStr, Enterprise enterpriseObj, UserAccount account) {
         initComponents();
         this.rightJPanel = rightJPanel;
         this.org = org;
         this.emailStr = emailStr;
         emailTextField.setText(emailStr);
+        this.enterpriseObj = enterpriseObj;
+        this.account = account;
     }
 
     /**
@@ -55,7 +63,6 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         bloodGroupDropdown = new javax.swing.JComboBox();
         bloodGroupDropdownLabel = new javax.swing.JLabel();
         contactNumberLabel = new javax.swing.JLabel();
-        contactNumTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
         emailTextFieldLabel = new javax.swing.JLabel();
         addressTextAreaLabel = new javax.swing.JLabel();
@@ -79,6 +86,8 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         registerButton = new javax.swing.JButton();
         signatureTextField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        contactNumTextField = new javax.swing.JTextPane();
 
         setBackground(java.awt.SystemColor.activeCaption);
 
@@ -92,43 +101,41 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             }
         });
 
-        donorRegFormHeader.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        donorRegFormHeader.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         donorRegFormHeader.setText("Donor Registration Form");
 
-        nameTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        nameTextFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         nameTextFieldLabel.setText("Name:");
 
-        nameTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        nameTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        ageTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        ageTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        ageTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        ageTextFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ageTextFieldLabel.setText("Age:");
 
-        sexCheckboxLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        sexCheckboxLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         sexCheckboxLabel.setText("Sex:");
 
         maleRadioBtn.setBackground(new java.awt.Color(255, 255, 255));
-        maleRadioBtn.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        maleRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         maleRadioBtn.setText("Male");
 
         femaleRadioBtn.setBackground(new java.awt.Color(255, 255, 255));
-        femaleRadioBtn.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        femaleRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         femaleRadioBtn.setText("Female");
 
-        bloodGroupDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        bloodGroupDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bloodGroupDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "O-positive", "O-negative ", "A-positive", "A-negative", "B-positive", "B-negative", "AB-positive", "AB-negative" }));
 
-        bloodGroupDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        bloodGroupDropdownLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bloodGroupDropdownLabel.setText("Blood Group:");
 
-        contactNumberLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        contactNumberLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         contactNumberLabel.setText("Contact Number:");
 
-        contactNumTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-
         emailTextField.setEditable(false);
-        emailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        emailTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         emailTextField.setEnabled(false);
         emailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,75 +143,75 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             }
         });
 
-        emailTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        emailTextFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         emailTextFieldLabel.setText("Email Id:");
 
-        addressTextAreaLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        addressTextAreaLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         addressTextAreaLabel.setText("Address:");
 
         addressTextArea.setColumns(20);
-        addressTextArea.setFont(new java.awt.Font("Times New Roman", 0, 23)); // NOI18N
+        addressTextArea.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addressTextArea.setRows(5);
         jScrollPane1.setViewportView(addressTextArea);
 
-        organCheckboxHeader.setFont(new java.awt.Font("Times New Roman", 3, 22)); // NOI18N
+        organCheckboxHeader.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         organCheckboxHeader.setText("After My Death I would like to donate:");
 
         corneasCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        corneasCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        corneasCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         corneasCheckBox.setText("Corneas");
 
         heartCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        heartCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        heartCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         heartCheckBox.setText("Heart");
 
         liverCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        liverCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        liverCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         liverCheckBox.setText("Liver");
 
         pancreasCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        pancreasCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        pancreasCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pancreasCheckBox.setText("Pancreas");
 
         lungsCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        lungsCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        lungsCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lungsCheckBox.setText("Lungs");
 
         kidneysCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        kidneysCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        kidneysCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         kidneysCheckBox.setText("Kidney");
 
         organNotAvailRadioButton.setBackground(new java.awt.Color(255, 255, 255));
-        organNotAvailRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        organNotAvailRadioButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         organNotAvailRadioButton.setText("NO");
 
         organAvailRadioButton.setBackground(new java.awt.Color(255, 255, 255));
-        organAvailRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        organAvailRadioButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         organAvailRadioButton.setText("Yes");
 
-        organAvailabilityHeader.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        organAvailabilityHeader.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         organAvailabilityHeader.setText("Organ Available Now?");
 
-        emergencyContactHeader.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        emergencyContactHeader.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         emergencyContactHeader.setText("In Emergency, Person of Contact");
 
-        emergencyContactNameTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        emergencyContactNameTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        emergencyContactNumTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        emergencyContactNumTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         emergencyContactNumTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emergencyContactNumTextFieldActionPerformed(evt);
             }
         });
 
-        emergencyContactTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        emergencyContactTextFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         emergencyContactTextFieldLabel.setText("Contact Number:");
 
-        emergencyNameTextFieldName.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        emergencyNameTextFieldName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         emergencyNameTextFieldName.setText("Name:");
 
         registerButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        registerButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        registerButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-register-32.png"))); // NOI18N
         registerButton.setText("Register");
         registerButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -214,10 +221,13 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             }
         });
 
-        signatureTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        signatureTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 22)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel14.setText("Digital Signature:");
+
+        contactNumTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jScrollPane2.setViewportView(contactNumTextField);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -228,23 +238,20 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ageTextFieldLabel)
                             .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nameTextFieldLabel)
-                            .addComponent(sexCheckboxLabel))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(sexCheckboxLabel)
+                                .addComponent(ageTextFieldLabel)))
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bloodGroupDropdownLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(contactNumberLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(emailTextFieldLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(emailTextFieldLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bloodGroupDropdownLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(donorRegFormHeader)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -256,9 +263,18 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                                             .addComponent(maleRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(femaleRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(contactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(bloodGroupDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(organAvailabilityHeader)
+                                .addGap(165, 165, 165))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(emergencyContactTextFieldLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -270,7 +286,6 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                                         .addGap(18, 18, 18)
                                         .addComponent(kidneysCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(organCheckboxHeader)
-                                    .addComponent(organAvailabilityHeader)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(organAvailRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -284,19 +299,14 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(liverCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(pancreasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(emergencyContactTextFieldLabel)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(signatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(105, 105, 105))))
+                                            .addComponent(pancreasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(105, 105, 105))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(donorRegFormHeader)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(addressTextAreaLabel)
@@ -306,17 +316,23 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(364, 364, 364))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(signatureTextField)
+                .addGap(649, 649, 649))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(donorRegFormHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(backButton)
-                            .addComponent(donorRegFormHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nameTextFieldLabel))
@@ -324,22 +340,22 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ageTextFieldLabel)
                             .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sexCheckboxLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(maleRadioBtn)
-                                .addComponent(femaleRadioBtn)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bloodGroupDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bloodGroupDropdownLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(contactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contactNumberLabel)))
+                                .addComponent(femaleRadioBtn))
+                            .addComponent(sexCheckboxLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bloodGroupDropdownLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bloodGroupDropdown, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(contactNumberLabel))
+                        .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(organCheckboxHeader)
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -353,13 +369,13 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(liverCheckBox)
                             .addComponent(pancreasCheckBox))
-                        .addGap(17, 17, 17)
+                        .addGap(27, 27, 27)
                         .addComponent(organAvailabilityHeader)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(organAvailRadioButton)
-                            .addComponent(organNotAvailRadioButton))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(organNotAvailRadioButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -370,8 +386,6 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                         .addComponent(emergencyContactHeader)
                         .addGap(4, 4, 4)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addressTextAreaLabel)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(emergencyContactNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,14 +395,18 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(emergencyContactNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emergencyContactTextFieldLabel))))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addGap(56, 56, 56)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                            .addComponent(emergencyContactTextFieldLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addressTextAreaLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(signatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addGap(94, 94, 94)
+                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(95, 95, 95))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -497,13 +515,22 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             return;
         }
         if (org != null && org.getDonorDirectory() != null) {
-            org.getDonorDirectory().createDonor(nameAdded, age,addressAdded , (String) bloodGroup, contactNo,
+            Donor donor = org.getDonorDirectory().createDonor(nameAdded, age,addressAdded , (String) bloodGroup, contactNo,
                     sexSelected, sign, emailStr, emergencyName, emergencyNum, availableNow, organs);
+            
+            DonorValidationWorkRequest requestObj = new DonorValidationWorkRequest();
+            requestObj.setSender(account);
+            requestObj.setMessage("Please Validate Donor");
+            requestObj.setPatientId(emailStr);
+            requestObj.setStatus("Request Raised");
+            requestObj.setDonorObj(donor);
+            enterpriseObj.getWorkQueue().getWorkRequestList().add(requestObj);
             JOptionPane.showMessageDialog(null, "Thankyou for registering as a donor.");
-            System.out.println("Successfully registered donor with username" +emailStr);
             rightJPanel.remove(this);
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
             layout.previous(rightJPanel);
+            
+            // raise a work request to doctor org to validate donor
         }
     }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -516,7 +543,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
     private javax.swing.JButton backButton;
     private javax.swing.JComboBox bloodGroupDropdown;
     private javax.swing.JLabel bloodGroupDropdownLabel;
-    private javax.swing.JTextField contactNumTextField;
+    private javax.swing.JTextPane contactNumTextField;
     private javax.swing.JLabel contactNumberLabel;
     private javax.swing.JCheckBox corneasCheckBox;
     private javax.swing.JLabel donorRegFormHeader;
@@ -531,6 +558,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
     private javax.swing.JCheckBox heartCheckBox;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JCheckBox kidneysCheckBox;
     private javax.swing.JCheckBox liverCheckBox;
     private javax.swing.JCheckBox lungsCheckBox;

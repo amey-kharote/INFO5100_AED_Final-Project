@@ -5,6 +5,8 @@
  */
 package Business.WorkQueue;
 
+import Business.Entity.Donor;
+
 /**
  *
  * @author amey
@@ -19,11 +21,20 @@ public class DonorValidationWorkRequest extends WorkRequest{
     private boolean diabetic;
     private boolean heartDisease;
     private String receiverName;
-     private String patientId;
+    private String patientId;
     private String patientName;
     private String testResult;
     private String testUploaded;
     private String patientType;
+    Donor donorObj;
+
+    public Donor getDonorObj() {
+        return donorObj;
+    }
+
+    public void setDonorObj(Donor donorObj) {
+        this.donorObj = donorObj;
+    }
 
     public String getPatientId() {
         return patientId;

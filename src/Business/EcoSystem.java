@@ -77,5 +77,8 @@ public class EcoSystem extends Organization{
         return campaignList;
     }
 
+    public void deleteNetwork (Network network){
+       networks.remove(network);
+    }
     
 }

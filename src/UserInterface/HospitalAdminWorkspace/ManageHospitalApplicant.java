@@ -7,6 +7,8 @@ package UserInterface.HospitalAdminWorkspace;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import UserInterface.CommonUI.ViewDonorValidationDashboard;
 import UserInterface.HospitalApplicant.RecipientRegistrationForm;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -22,11 +24,15 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
      */
     JPanel rightJPanel;
     Organization org;
+    Enterprise enterpriseObj;
+    UserAccount account;
 
-    public ManageHospitalApplicant(JPanel rightJPanel, Organization org) {
+    public ManageHospitalApplicant(JPanel rightJPanel, Organization org, Enterprise enterpriseObj, UserAccount account) {
         initComponents();
         this.rightJPanel = rightJPanel;
         this.org = org;
+        this.enterpriseObj = enterpriseObj;
+        this.account = account;
     }
 
     /**
@@ -40,12 +46,13 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
 
         donorButton = new javax.swing.JButton();
         recipientButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        viewDonorValidationRequests = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
 
         donorButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        donorButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        donorButton.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         donorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-donor-32.png"))); // NOI18N
         donorButton.setText("Donor");
         donorButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -56,7 +63,7 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
         });
 
         recipientButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        recipientButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        recipientButton.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         recipientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-welfare-32.png"))); // NOI18N
         recipientButton.setText("Recipient");
         recipientButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -66,12 +73,17 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
             }
         });
 
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backButton.setText("Back");
-        backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Manage Hospital Applicants");
+
+        viewDonorValidationRequests.setBackground(java.awt.SystemColor.controlLtHighlight);
+        viewDonorValidationRequests.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
+        viewDonorValidationRequests.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/team-management.png"))); // NOI18N
+        viewDonorValidationRequests.setText(" Donor Validation Requests");
+        viewDonorValidationRequests.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        viewDonorValidationRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                viewDonorValidationRequestsActionPerformed(evt);
             }
         });
 
@@ -80,32 +92,37 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addContainerGap(210, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(donorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
-                        .addComponent(recipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(114, 114, 114))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(donorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(recipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(186, 186, 186))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(viewDonorValidationRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(178, 178, 178))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(280, 280, 280))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(backButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1)
+                .addGap(182, 182, 182)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(donorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(406, 406, 406))
+                    .addComponent(donorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(recipientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addComponent(viewDonorValidationRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(204, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void donorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donorButtonActionPerformed
-        ShowingInterestUI interestObj = new ShowingInterestUI(rightJPanel, org);
+        ShowingInterestUI interestObj = new ShowingInterestUI(rightJPanel, org, enterpriseObj,account);
         rightJPanel.add("manageInterest", interestObj);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
@@ -119,17 +136,19 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
         layout.next(rightJPanel);
     }//GEN-LAST:event_recipientButtonActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void viewDonorValidationRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDonorValidationRequestsActionPerformed
         // TODO add your handling code here:
-        rightJPanel.remove(this);
+        ViewDonorValidationDashboard viewDonorDashboard = new ViewDonorValidationDashboard(rightJPanel, enterpriseObj);
+        rightJPanel.add("viewDonorDashboard",viewDonorDashboard);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.previous(rightJPanel);
-    }//GEN-LAST:event_backButtonActionPerformed
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_viewDonorValidationRequestsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
     private javax.swing.JButton donorButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton recipientButton;
+    private javax.swing.JButton viewDonorValidationRequests;
     // End of variables declaration//GEN-END:variables
 }

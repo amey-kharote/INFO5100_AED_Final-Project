@@ -13,6 +13,24 @@ public class Recipient extends Person implements Comparable<Recipient>{
     
     private int priorityNo;
     private String organType;
+    boolean isDocAssigned;
+    String docAssignedEmaild;
+
+    public String getDocAssignedEmaild() {
+        return docAssignedEmaild;
+    }
+
+    public void setDocAssignedEmaild(String docAssignedEmaild) {
+        this.docAssignedEmaild = docAssignedEmaild;
+    }
+    
+    public boolean isIsDocAssigned() {
+        return isDocAssigned;
+    }
+
+    public void setIsDocAssigned(boolean isDocAssigned) {
+        this.isDocAssigned = isDocAssigned;
+    }
   
     public void setPriorityNo(int priorityNo) {
         this.priorityNo = priorityNo;
@@ -32,8 +50,9 @@ public class Recipient extends Person implements Comparable<Recipient>{
         
     @Override
     public String toString() {
-        return this.getPersonName();
+        return this.getPersonEmailId().trim();
     }
+
     
     public int compareTo(Recipient o) {
 		return Integer.compare(o.getPriorityNo(), this.getPriorityNo());

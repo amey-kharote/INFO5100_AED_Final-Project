@@ -6,7 +6,7 @@
 package Business.Organization;
 
 import Business.Role.CampaignManagerRole;
-import Business.Role.LabAssistantRole;
+import Business.Role.RadiologistRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 

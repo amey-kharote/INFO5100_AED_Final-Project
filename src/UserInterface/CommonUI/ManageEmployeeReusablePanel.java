@@ -34,13 +34,14 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         populateOrgDropDown();
         populateOrganizationEmpComboBox();
     }
-   
+
     private void populateOrgDropDown() {
         orgJComboBox.removeAllItems();
         for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
             orgJComboBox.addItem(organization);
         }
     }
+
     private void populateOrganizationEmpComboBox() {;
         orgEmpDropdown.removeAllItems();
         for (Organization organization : enterpriseObj.getOrganizationDirectory().getOrganizationList()) {
@@ -49,7 +50,7 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     }
 
     private void populateEmployeeTable(Organization org) {
-        DefaultTableModel tableModel = (DefaultTableModel)displayEmployeeDetailsTable.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) displayEmployeeDetailsTable.getModel();
         tableModel.setRowCount(0);
         for (Employee employeeObj : org.getEmployeeDirectory().getEmpList()) {
             Object[] row = new Object[3];
@@ -74,17 +75,18 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         orgEmpDropdown = new javax.swing.JComboBox();
         nameTextField = new javax.swing.JTextField();
         nameTextFieldLabel = new javax.swing.JLabel();
-        organizationDropdownLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         orgJComboBox = new javax.swing.JComboBox();
+        organizationDropdownLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         displayEmployeeDetailsTable.setBackground(java.awt.SystemColor.info);
-        displayEmployeeDetailsTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEmployeeDetailsTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         displayEmployeeDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -113,9 +115,9 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(displayEmployeeDetailsTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 980, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 960, 170));
 
-        orgEmpDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        orgEmpDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         orgEmpDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         orgEmpDropdown.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,20 +138,17 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
                 orgEmpDropdownActionPerformed(evt);
             }
         });
-        add(orgEmpDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 270, 40));
+        add(orgEmpDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 270, 40));
 
-        nameTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, 270, 40));
+        nameTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 360, 40));
 
-        nameTextFieldLabel.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        nameTextFieldLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         nameTextFieldLabel.setText("Name:");
-        add(nameTextFieldLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, -1, -1));
-
-        organizationDropdownLabel.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        organizationDropdownLabel.setText("Organization:");
-        add(organizationDropdownLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        add(nameTextFieldLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, -1, -1));
 
         backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -158,10 +157,10 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 160, 40));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 160, 40));
 
         addButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        addButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        addButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-plus-+-24.png"))); // NOI18N
         addButton.setText("Add ");
         addButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -170,20 +169,28 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
                 addButtonActionPerformed(evt);
             }
         });
-        add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 160, 40));
+        add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 430, 160, 40));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        jLabel1.setText("View By Filter:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, -1, 30));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Manage Employees");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, 30));
 
-        orgJComboBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        orgJComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         orgJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         orgJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgJComboBoxActionPerformed(evt);
             }
         });
-        add(orgJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 380, -1));
+        add(orgJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, 160, -1));
+
+        organizationDropdownLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        organizationDropdownLabel1.setText("Organization:");
+        add(organizationDropdownLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("View By Filter:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgEmpDropdownMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orgEmpDropdownMouseClicked
@@ -203,13 +210,10 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_orgEmpDropdownMouseReleased
 
     private void orgEmpDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgEmpDropdownActionPerformed
-        if (String.valueOf(orgEmpDropdown.getItemAt(orgEmpDropdown.getSelectedIndex())).equals("Applicant Org")) {
-            nameTextField.setEnabled(false);
-            nameTextField.setEditable(false);
-        } else {
-            nameTextField.setEnabled(true);
-            nameTextField.setEditable(true);
-        }
+
+        nameTextField.setEnabled(true);
+        nameTextField.setEditable(true);
+
     }//GEN-LAST:event_orgEmpDropdownActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -223,23 +227,21 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Utils util = new Utils();
         Organization org = (Organization) orgEmpDropdown.getSelectedItem();
-        if((!util.notNullOrEmpty(nameTextField.getText()) || !util.isValidName(nameTextField.getText())) 
-                && !org.getName().equals("Applicant Org")) {
+        if ((!util.notNullOrEmpty(nameTextField.getText()) || !util.isValidName(nameTextField.getText()))) {
             JOptionPane.showMessageDialog(null, "Please enter valid name.");
             return;
         }
-       if (org.getName().equals("Applicant Org")) {
-            ManageHospitalApplicant hospitalApplicantScreen = new ManageHospitalApplicant(rightJPanel, org);
-            rightJPanel.add("hospitalApplicantScreen", hospitalApplicantScreen);
-            CardLayout layout = (CardLayout) rightJPanel.getLayout();
-            layout.next(rightJPanel);
-        } else {
-            Employee e  = org.getEmployeeDirectory().createEmployee(nameTextField.getText());
-            if ((org.getEmployeeDirectory().getEmpList().size()) > 0)
-                e.setEmpID(org.getEmployeeDirectory().getEmpList().get(org.getEmployeeDirectory().getEmpList().size()-1).getEmpID()+1);
-            populateEmployeeTable(org);
-            JOptionPane.showMessageDialog(null, "Employee added successfully!");
-        }
+//       if (org.getName().equals("Applicant Org")) {
+//            ManageHospitalApplicant hospitalApplicantScreen = new ManageHospitalApplicant(rightJPanel, org, enterpriseObj);
+//            rightJPanel.add("hospitalApplicantScreen", hospitalApplicantScreen);
+//            CardLayout layout = (CardLayout) rightJPanel.getLayout();
+//            layout.next(rightJPanel);
+//        } else {
+        Employee e = org.getEmployeeDirectory().createEmployee(nameTextField.getText());
+        JOptionPane.showMessageDialog(null, "Employee added successfully!");
+//        }
+        populateEmployeeTable(org);
+        orgJComboBox.setSelectedItem(org);
         nameTextField.setText("");
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -256,11 +258,12 @@ public class ManageEmployeeReusablePanel extends javax.swing.JPanel {
     private javax.swing.JButton backButton;
     private javax.swing.JTable displayEmployeeDetailsTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JLabel nameTextFieldLabel;
     private javax.swing.JComboBox orgEmpDropdown;
     private javax.swing.JComboBox orgJComboBox;
-    private javax.swing.JLabel organizationDropdownLabel;
+    private javax.swing.JLabel organizationDropdownLabel1;
     // End of variables declaration//GEN-END:variables
 }

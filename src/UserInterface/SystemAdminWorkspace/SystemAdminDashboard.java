@@ -103,6 +103,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         manageEnterpriseAdminBtn = new javax.swing.JButton();
         manageDonorRecipientBtn = new javax.swing.JButton();
         analysisBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         leftTreeJPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -156,39 +157,49 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("System Admin Dashboard");
+
         javax.swing.GroupLayout rightButtonsJPanelLayout = new javax.swing.GroupLayout(rightButtonsJPanel);
         rightButtonsJPanel.setLayout(rightButtonsJPanelLayout);
         rightButtonsJPanelLayout.setHorizontalGroup(
             rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
                 .addGroup(rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(analysisBtn)
-                    .addComponent(manageNetworkBtn)
                     .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
-                        .addGap(155, 155, 155)
+                        .addGap(211, 211, 211)
                         .addComponent(selectedNodeLabelValue))
-                    .addComponent(manageEnterpriseBtn)
-                    .addComponent(manageEnterpriseAdminBtn)
-                    .addComponent(manageDonorRecipientBtn))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel1))
+                    .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(manageDonorRecipientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(analysisBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageEnterpriseAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageNetworkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         rightButtonsJPanelLayout.setVerticalGroup(
             rightButtonsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightButtonsJPanelLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectedNodeLabelValue)
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manageNetworkBtn)
-                .addGap(54, 54, 54)
+                .addGap(44, 44, 44)
                 .addComponent(manageEnterpriseBtn)
-                .addGap(50, 50, 50)
+                .addGap(38, 38, 38)
                 .addComponent(manageEnterpriseAdminBtn)
-                .addGap(54, 54, 54)
+                .addGap(42, 42, 42)
                 .addComponent(manageDonorRecipientBtn)
-                .addGap(53, 53, 53)
+                .addGap(37, 37, 37)
                 .addComponent(analysisBtn)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(rightButtonsJPanel);
@@ -309,6 +320,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton analysisBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTree jTree1;

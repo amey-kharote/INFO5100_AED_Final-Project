@@ -13,7 +13,7 @@ import Business.Organization.InternalLabOrg;
 
 import Business.Organization.Organization;
 
-import Business.Role.LabAssistantRole;
+import Business.Role.RadiologistRole;
 
 import Business.Role.InternalLabAssistantRole;
 
@@ -79,6 +79,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         labAssitantWorkRequestTable = new javax.swing.JTable();
         assignToMeButton = new javax.swing.JButton();
         processButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,20 +88,20 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         labAssitantWorkRequestTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labAssitantWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status", "Patient Id"
+                "Message", "Sender", "Receiver", "Status", "Patient Id", "Test Results"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,7 +114,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(labAssitantWorkRequestTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1090, 180));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 1020, 180));
 
         assignToMeButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
@@ -125,10 +126,10 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
                 assignToMeButtonActionPerformed(evt);
             }
         });
-        add(assignToMeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 300, 40));
+        add(assignToMeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 240, 60));
 
         processButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        processButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        processButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         processButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/process.png"))); // NOI18N
         processButton.setText("Process");
         processButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -137,7 +138,11 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
                 processButtonActionPerformed(evt);
             }
         });
-        add(processButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, 300, 40));
+        add(processButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 370, 220, 60));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Lab Assistant Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     public void methodToPopulateTableData() {
@@ -162,13 +167,16 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         for (Organization organizationObject : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (WorkRequest requestOfWork : organizationObject.getWorkQueue().getWorkRequestList()) {
                 LabTestWorkRequest workRequestObject1 = (LabTestWorkRequest)requestOfWork;
-                Object[] labAssistantTableRow = new Object[5];
-                labAssistantTableRow[0] = requestOfWork;
-                labAssistantTableRow[1] = requestOfWork.getSender().getEmployee().getEmpName();
-                labAssistantTableRow[2] = requestOfWork.getReceiver() == null ? null : requestOfWork.getReceiver().getEmployee().getEmpName();
-                labAssistantTableRow[3] = requestOfWork.getStatus();
-                labAssistantTableRow[4] = workRequestObject1.getPatientId();
-                tableModel.addRow(labAssistantTableRow);
+                    if(workRequestObject1.getReceiver() == null || workRequestObject1.getReceiver().equals(userAccount)){
+                    Object[] labAssistantTableRow = new Object[6];
+                    labAssistantTableRow[0] = requestOfWork;
+                    labAssistantTableRow[1] = requestOfWork.getSender().getEmployee().getEmpName();
+                    labAssistantTableRow[2] = requestOfWork.getReceiver() == null ? null : requestOfWork.getReceiver().getEmployee().getEmpName();
+                    labAssistantTableRow[3] = requestOfWork.getStatus();
+                    labAssistantTableRow[4] = workRequestObject1.getPatientId();
+                    labAssistantTableRow[5] = workRequestObject1.getTestResult();
+                    tableModel.addRow(labAssistantTableRow);
+                }
             }
         }
     }
@@ -184,13 +192,17 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
             return;
         }
         WorkRequest requestOfWork = (WorkRequest) labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
+        if(requestOfWork.getReceiver() !=null ){
+            JOptionPane.showMessageDialog(null, "This test has already been assigned.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if("Completed".equalsIgnoreCase(requestOfWork.getStatus())){
             JOptionPane.showMessageDialog(null, "This test has already been completed.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         requestOfWork.setReceiver(userAccount);
         requestOfWork.setStatus("Pending");
-        if (userAccount.getRole() instanceof LabAssistantRole) {
+        if (userAccount.getRole() instanceof RadiologistRole) {
             methodToPopulateTableData();
         } else if (userAccount.getRole() instanceof InternalLabAssistantRole) {
             methodToPopulateTableData();
@@ -208,6 +220,10 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
             return;
         }
         LabTestWorkRequest labTestWorkRequest = (LabTestWorkRequest) labAssitantWorkRequestTable.getValueAt(selectedRowOfTable, 0);
+        if(labTestWorkRequest.getReceiver() == null ){
+            JOptionPane.showMessageDialog(null, "Please, assign the request to yourself.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         labTestWorkRequest.setStatus("Processing");
         TestResultUploadPanel processWorkRequestJPanel = new TestResultUploadPanel(rightPanel, labTestWorkRequest, userAccount);
         rightPanel.add("processWorkRequestJPanel", processWorkRequestJPanel);
@@ -217,6 +233,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignToMeButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable labAssitantWorkRequestTable;
     private javax.swing.JButton processButton;

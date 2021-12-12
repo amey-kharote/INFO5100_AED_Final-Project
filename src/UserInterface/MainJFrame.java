@@ -12,6 +12,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,6 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public EcoSystem ecoSystem;
     private DB4OUtil dB4OUtilObj = DB4OUtil.getInstance();
+    static Logger log = Logger.getLogger(MainJFrame.class.getName());  
 
     /**
      * Creates new form MainJFrame
@@ -165,9 +167,8 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String passwordVal = String.valueOf(passwordField.getPassword());
         String usernameVal = usernameTextField.getText();
-   
         UserAccount account = ecoSystem.getUserAccountDirectory().authenticateUser(usernameVal, passwordVal);
-
+        log.info("Logging user in the system");
         Organization inOrg = null;
         Enterprise inEnterprise = null;
 

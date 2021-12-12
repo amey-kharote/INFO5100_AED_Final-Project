@@ -22,6 +22,8 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
 
     EcoSystem ecoSystem;
     JPanel rightJPanel;
+    Utils util = new Utils();
+
     /**
      * Creates new form ManageCitiesNetwork
      */
@@ -31,16 +33,21 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
         this.rightJPanel = rightJPanel;
         populateNetworkTable();
     }
-    
+
     private void populateNetworkTable() {
         DefaultTableModel networkTable = (DefaultTableModel) citiesNetworkTable.getModel();
         networkTable.setRowCount(0);
+        // hide column networks table column
+        citiesNetworkTable.getColumnModel().getColumn(1).setMinWidth(0);
+        citiesNetworkTable.getColumnModel().getColumn(1).setMaxWidth(0);
         for (Network network : ecoSystem.getNetworks()) {
-            Object[] tableRow = new Object[1];
+            Object[] tableRow = new Object[2];
             tableRow[0] = network.getName();
+            tableRow[1] = network;
             networkTable.addRow(tableRow);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,26 +63,45 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
         cityNameLabel = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         submitBtn = new javax.swing.JButton();
+        cityNameLabel1 = new javax.swing.JLabel();
+        deleteBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
 
         citiesNetworkTable.setBackground(java.awt.SystemColor.info);
-        citiesNetworkTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        citiesNetworkTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         citiesNetworkTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "City Network Name"
+                "City Network Name", "Object"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        citiesNetworkTable.setColumnSelectionAllowed(true);
         jScrollPane2.setViewportView(citiesNetworkTable);
+        citiesNetworkTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (citiesNetworkTable.getColumnModel().getColumnCount() > 0) {
+            citiesNetworkTable.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        cityNameTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         cityNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        cityNameLabel.setText("City Name:");
+        cityNameLabel.setText("Current Networks");
 
         backBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
@@ -96,6 +122,28 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
             }
         });
 
+        cityNameLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cityNameLabel1.setText("Create New City Network");
+
+        deleteBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
+        updateBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Manage Networks");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,30 +151,52 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(cityNameLabel)
-                            .addGap(55, 55, 55)
-                            .addComponent(cityNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                            .addComponent(cityNameTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(updateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(submitBtn))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(94, Short.MAX_VALUE))
+                        .addGap(0, 77, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cityNameLabel)
+                            .addComponent(cityNameLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(146, 146, 146)
+                                .addComponent(jLabel1)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(backBtn)
-                .addGap(49, 49, 49)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cityNameLabel)
+                    .addComponent(backBtn)
+                    .addComponent(jLabel1))
+                .addGap(77, 77, 77)
+                .addComponent(cityNameLabel1)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cityNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitBtn))
-                .addContainerGap(357, Short.MAX_VALUE))
+                .addGap(131, 131, 131)
+                .addComponent(cityNameLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(deleteBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateBtn)))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,39 +214,92 @@ public class ManageCitiesNetwork extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
-        Utils util = new Utils();
         String networkName = cityNameTextField.getText();
         if (util.notNullOrEmpty(networkName)) {
             if (util.isValidName(networkName)) {
-                for (Network network: ecoSystem.getNetworks()) {
+                for (Network network : ecoSystem.getNetworks()) {
                     if (network.getName().equalsIgnoreCase(networkName)) {
-                        JOptionPane.showMessageDialog(null, "City aLready exists. Please enter a new city!");
+                        JOptionPane.showMessageDialog(null, "City already exists. Please enter a new city!", "Error", JOptionPane.ERROR_MESSAGE);
                         cityNameTextField.setText("");
                         return;
                     }
                 }
-                System.out.println("Creating a new network with name :"+networkName);
+                System.out.println("Creating a new network with name :" + networkName);
                 Network newNetwork = ecoSystem.createAddNetwork();
                 newNetwork.setName(networkName);
-                populateNetworkTable(); 
-                System.out.println("Successfully created new network with name :"+networkName);
+                populateNetworkTable();
+                System.out.println("Successfully created new network with name :" + networkName);
                 cityNameTextField.setText("");
-                JOptionPane.showMessageDialog(null, "Sucessfully created a city.");
+                JOptionPane.showMessageDialog(null, "Sucessfully created a city.", "INFO", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-             JOptionPane.showMessageDialog(null, "Please enter a valid city.");
-             return;
+            JOptionPane.showMessageDialog(null, "Please enter a valid city.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        JOptionPane.showMessageDialog(null, "Please do not leave city name as empty!");              
+        JOptionPane.showMessageDialog(this, "Please do not leave city name as empty!", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_submitBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = citiesNetworkTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a city to be deleted", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Network networkToBeDeleted = (Network) citiesNetworkTable.getValueAt(selectedRow, 1);
+        ecoSystem.deleteNetwork(networkToBeDeleted);
+        populateNetworkTable();
+        JOptionPane.showMessageDialog(null, "Sucessfully deleted city network.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = citiesNetworkTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a city to be updated", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Network networkToBeChanged = (Network) citiesNetworkTable.getValueAt(selectedRow, 1);
+        String newNameChanged = (String) citiesNetworkTable.getValueAt(selectedRow, 0);
+        if (util.notNullOrEmpty(newNameChanged)) {
+            if (newNameChanged.equalsIgnoreCase(networkToBeChanged.getName())) {
+                JOptionPane.showMessageDialog(this, "No change in name detected", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else {
+                if (util.isValidName(newNameChanged)) {
+                    for (Network network : ecoSystem.getNetworks()) {
+                        if (network.getName().equalsIgnoreCase(newNameChanged)) {
+                            JOptionPane.showMessageDialog(null, "City already exists. Please enter a new city!", "Error", JOptionPane.ERROR_MESSAGE);
+                            cityNameTextField.setText("");
+                            return;
+                        }
+                    }
+                    System.out.println("Updating network name from :" + networkToBeChanged.getName() + " to :" + newNameChanged);
+                    networkToBeChanged.setName(newNameChanged);
+                    populateNetworkTable();
+                    JOptionPane.showMessageDialog(null, "Sucessfully updated city network.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid city.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please do not leave city name as empty!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_updateBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JTable citiesNetworkTable;
     private javax.swing.JLabel cityNameLabel;
+    private javax.swing.JLabel cityNameLabel1;
     private javax.swing.JTextField cityNameTextField;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton submitBtn;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }

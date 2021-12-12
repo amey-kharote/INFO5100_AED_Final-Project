@@ -34,10 +34,7 @@ public class FundingWorkRequest extends WorkRequest{
 
     public void setFundType(String fundType) {
         this.fundType = fundType;
-    }
-    
-    
-    
+    }   
 
     public String getNetwork() {
         return network;

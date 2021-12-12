@@ -19,14 +19,15 @@ public abstract class Role {
    
 
     public enum RoleType {
-        ApplicantRole("Applicant"),
+        ApplicantRole("Receptionist"),
         CampaignManagerRole("Campaign Manager"),
         CorporateManagerRole("Corporate Manager"),
         DoctorRole("Doctor"),
         EnterpriseManagerRole("Enterprise Manager"),
         InternalLabAssistantRole("Internal Lab Assistant"),
         SystemAdminRole("System Admin"),
-        LabAssistantRole("Lab Assistant"),
+        RadiologistRole("Radiologist"),
+        PathologistRole("Pathologist"),
         TrustManagerRole("Trust Manager");
 
         private String value;
@@ -48,14 +49,16 @@ public abstract class Role {
     public Role createRole(Role.RoleType roleType) {
         Role roleObj = null;
         if (roleType.equals(RoleType.ApplicantRole)) {
-            roleObj = new ApplicantRole();
+            roleObj = new ReceptionistRole();
         } else if (roleType.equals(RoleType.CampaignManagerRole)) {
             roleObj = new CampaignManagerRole();
         } else if (roleType.equals(RoleType.DoctorRole)) {
             roleObj = new DoctorRole();
-        } else if (roleType.equals(RoleType.LabAssistantRole)) {
-            roleObj = new LabAssistantRole();
-        } else if (roleType.equals(RoleType.InternalLabAssistantRole)) {
+        } else if (roleType.equals(RoleType.RadiologistRole)) {
+            roleObj = new RadiologistRole();
+        } else if(roleType.equals(RoleType.PathologistRole)){
+             roleObj = new PathologistRole();
+        }else if (roleType.equals(RoleType.InternalLabAssistantRole)) {
             roleObj = new InternalLabAssistantRole();
         } else if (roleType.equals(RoleType.CorporateManagerRole)) {
             roleObj = new CorporateManagerRole();

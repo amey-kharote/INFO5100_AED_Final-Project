@@ -18,6 +18,24 @@ public class Donor extends Person{
     private boolean isOrganAvailable;
     private boolean isDonorFitForTransplant;
     List<String> organList;
+    boolean isDocAssigned;
+    String docAssignedEmaild;
+
+    public String getDocAssignedEmaild() {
+        return docAssignedEmaild;
+    }
+
+    public void setDocAssignedEmaild(String docAssignedEmaild) {
+        this.docAssignedEmaild = docAssignedEmaild;
+    }
+    
+    public boolean isIsDocAssigned() {
+        return isDocAssigned;
+    }
+
+    public void setIsDocAssigned(boolean isDocAssigned) {
+        this.isDocAssigned = isDocAssigned;
+    }
 
     public String getReferenceName() {
         return referenceName;
@@ -62,7 +80,7 @@ public class Donor extends Person{
 
     @Override
     public String toString() {
-        return this.referenceName;
+        return this.getPersonEmailId().trim();
     }
 
 }

@@ -9,17 +9,16 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.DoctorWorkspace.DoctorMainPage;
-import UserInterface.DoctorWorkspace.DoctorRequestPatientTestPanel;
+import UserInterface.HospitalAdminWorkspace.ManageHospitalApplicant;
 import javax.swing.JPanel;
 
 /**
  *
  * @author amey
  */
-public class DoctorRole extends Role{
+public class ReceptionistRole extends Role{
 
-     RoleType roleType = RoleType.DoctorRole;
+    RoleType roleType = RoleType.ApplicantRole;
     
     @Override
     public String toString() {
@@ -28,7 +27,8 @@ public class DoctorRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization org, Enterprise enterprise, EcoSystem business) {
-        return new DoctorMainPage(userProcessContainer, enterprise, account, business);    
+        return new ManageHospitalApplicant(userProcessContainer, org, enterprise,account);
     }
-  
+   
+ 
 }

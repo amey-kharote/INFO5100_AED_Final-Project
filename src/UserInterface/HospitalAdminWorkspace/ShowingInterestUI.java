@@ -5,9 +5,11 @@
  */
 package UserInterface.HospitalAdminWorkspace;
 
+import Business.Enterprise.Enterprise;
 import Business.Entity.Applicant;
 import Business.Entity.ApplicantDirectory;
 import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import Business.Utils.Utils;
 import UserInterface.HospitalApplicant.DonorRegistrationForm;
 import java.awt.CardLayout;
@@ -27,11 +29,18 @@ public class ShowingInterestUI extends javax.swing.JPanel {
     Organization org;
     ApplicantDirectory appDir = new ApplicantDirectory();
     public static int countReject = 0;
+    Enterprise enterpriseObj;
+    UserAccount account;
     
-    public ShowingInterestUI(JPanel rightJPanel, Organization org) {
+    public ShowingInterestUI(JPanel rightJPanel, Organization org, Enterprise enterpriseObj,UserAccount account) {
         initComponents();
         this.rightJPanel = rightJPanel;
         this.org = org;
+        this.enterpriseObj = enterpriseObj;
+        yesRadioButton.setSelected(false);
+        noRadioButton.setSelected(false);
+        enterEmailTextField.setText("");
+        this.account = account;
     }
 
     /**
@@ -56,36 +65,36 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        showingInterestHeader.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        showingInterestHeader.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         showingInterestHeader.setText("Showing Awareness Of OTM importance");
-        add(showingInterestHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, 42));
+        add(showingInterestHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, 42));
 
-        enterEmailTextFieldLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        enterEmailTextFieldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterEmailTextFieldLabel.setText("Enter email ID");
-        add(enterEmailTextFieldLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+        add(enterEmailTextFieldLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
-        enterEmailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(enterEmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 270, -1));
+        enterEmailTextField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        add(enterEmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 270, -1));
 
         yesRadioButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        yesRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        yesRadioButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         yesRadioButton.setText("YES");
         yesRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 yesRadioButtonActionPerformed(evt);
             }
         });
-        add(yesRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, -1, -1));
+        add(yesRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
 
         noRadioButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        noRadioButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        noRadioButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         noRadioButton.setText("NO");
-        add(noRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
+        add(noRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
         infoTextArea.setEditable(false);
         infoTextArea.setBackground(java.awt.SystemColor.inactiveCaption);
         infoTextArea.setColumns(20);
-        infoTextArea.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        infoTextArea.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         infoTextArea.setLineWrap(true);
         infoTextArea.setRows(5);
         infoTextArea.setText("1. People of all ages should consider themselves potential donors. \n\n2. When a person dies, they are evaluated for donor suitability based on their medical history and age. \n\n3. The organ procurement organization determines medical suitability for donation.\n\n4. A living donation, such as the donation of one healthy kidney or a segment of a healthy liver from a living human being to another, is arranged though the individual transplant centers according to criteria they have in place. \n\n5. An independent donor advocate, along with a dedicated living donor multi-disciplinary team, will represent the interests and well-being of the potential living donor.");
@@ -95,10 +104,10 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         infoTextArea.setFocusable(false);
         jScrollPane1.setViewportView(infoTextArea);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 580, 450));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 580, 450));
 
         submitButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        submitButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        submitButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +115,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
                 submitButtonActionPerformed(evt);
             }
         });
-        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 200, 40));
+        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 200, 60));
 
         backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
@@ -147,7 +156,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
         if( util.isEmaildIdvalid(enterEmailTextField.getText())){
             if (yesRadioButton.isSelected()){
                 appDir.createApplicant(true, enterEmailTextField.getText());
-                DonorRegistrationForm donorReg= new DonorRegistrationForm(rightJPanel, org, enterEmailTextField.getText());
+                DonorRegistrationForm donorReg= new DonorRegistrationForm(rightJPanel, org, enterEmailTextField.getText(), enterpriseObj,account);
                 rightJPanel.add("donorRegistration", donorReg);
                 CardLayout layout = (CardLayout) rightJPanel.getLayout();
                 layout.next(rightJPanel);
