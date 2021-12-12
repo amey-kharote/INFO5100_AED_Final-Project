@@ -5,6 +5,8 @@
  */
 package Business.WorkQueue;
 
+import java.util.List;
+
 /**
  *
  * @author amey
@@ -13,7 +15,7 @@ public class AwarenessWorkRequest extends WorkRequest{
     
     private int donorCount;
     private int recipientCount;
-    private String organType;
+    private List<String> organs;
     private String from;
 
     public String getFrom() {
@@ -40,14 +42,12 @@ public class AwarenessWorkRequest extends WorkRequest{
         this.recipientCount = recipientCount;
     }
 
-    public String getOrganType() {
-        return organType;
+    public List<String> getOrgans() {
+        return organs;
     }
 
-    public void setOrganType(String organType) {
-        this.organType = organType;
+    public void setOrgans(List<String> organs) {
+        this.organs = organs;
     }
-    
-    
     
 }

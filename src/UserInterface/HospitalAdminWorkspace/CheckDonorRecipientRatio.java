@@ -16,10 +16,9 @@ import Business.Entity.DonorDirectory;
 import Business.Entity.Recipient;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Organization.RedCrossAwarenessOrg;
-import Business.Organization.TrustFundOrg;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AwarenessWorkRequest;
+import UserInterface.CommonUI.OrganizationAdminReusableWorkArea;
 import UserInterface.SystemAdminWorkspace.SystemAdminDashboard;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -38,21 +37,22 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
 
     EcoSystem system;
     JPanel panel;
+    Enterprise ent;
+    private UserAccount userAccount;
     
     /**
      * Creates new form CheckDonorRecipientRatio
      */
-    public CheckDonorRecipientRatio(EcoSystem system, JPanel panel) {
+    public CheckDonorRecipientRatio(EcoSystem system, JPanel panel, UserAccount userAccount, Enterprise ent) {
         initComponents();
         this.system = system;
         this.panel = panel;
+        this.userAccount = userAccount;
+        this.ent = ent;
         populateValues();
         checkAllcount();
-        
-
     }
     
-
     
     private void populateValues(){
         int totalRecipeint = 0;
@@ -77,12 +77,12 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
                 jButton1.setEnabled(true);
             }else{
                 jButton1.setEnabled(false);
-            }
-            
+            }         
         }
         } 
         jTextField1.setText(String.valueOf(totalDonors));
         jTextField2.setText(String.valueOf(totalRecipeint));
+
     }
     
     private void checkAllcount(){
@@ -116,9 +116,9 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
                                    if(str.equalsIgnoreCase("Corneas")){
                                         dCorneas++;
                                     }else if(str.equalsIgnoreCase("Kidney")){
-                                        dheart++;
-                                    }else if(str.equalsIgnoreCase("Heart")){
                                         dkidkey++;
+                                    }else if(str.equalsIgnoreCase("Heart")){
+                                        dheart++;
                                     }else if(str.equalsIgnoreCase("Lungs")){
                                         dlungs++;
                                     }else if (str.equalsIgnoreCase("Liver")){
@@ -146,38 +146,33 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         arrayList.add("Lungs");
         arrayList.add("Liver");
         arrayList.add("Panceras");
-                
-        
+    
         Map<String, Integer> map1 = new HashMap<>();
 
         map1.put("Corneas", Integer.valueOf(dCorneas));
-         map1.put("Kidney", Integer.valueOf(dkidkey));
-          map1.put("Heart", Integer.valueOf(dheart));
-           map1.put("Lungs", Integer.valueOf(dlungs));
-            map1.put("Liver", Integer.valueOf(dliver));
-             map1.put("Panceras", Integer.valueOf(dpanceras));
+        map1.put("Kidney", Integer.valueOf(dkidkey));
+        map1.put("Heart", Integer.valueOf(dheart));
+        map1.put("Lungs", Integer.valueOf(dlungs));
+        map1.put("Liver", Integer.valueOf(dliver));
+        map1.put("Panceras", Integer.valueOf(dpanceras));
              
-             Map<String, Integer> map2 = new HashMap<>();
+        Map<String, Integer> map2 = new HashMap<>();
 
         map2.put("Corneas", Integer.valueOf(rCorneas));
-         map2.put("Kidney", Integer.valueOf(rkidkey));
-          map2.put("Heart", Integer.valueOf(rheart));
-           map2.put("Lungs", Integer.valueOf(rlungs));
-            map2.put("Liver", Integer.valueOf(rliver));
-             map2.put("Panceras", Integer.valueOf(rpanceras));
+        map2.put("Kidney", Integer.valueOf(rkidkey));
+        map2.put("Heart", Integer.valueOf(rheart));
+        map2.put("Lungs", Integer.valueOf(rlungs));
+        map2.put("Liver", Integer.valueOf(rliver));
+        map2.put("Panceras", Integer.valueOf(rpanceras));
 
-        
         for (String orggans : arrayList) {
             Object[] rows = new Object[3];
             rows[0] = orggans;
             rows[1] = map1.get(orggans);
             rows[2] = map2.get(orggans);           
-            dtm.addRow(rows);
-        
+            dtm.addRow(rows);        
     }
-        
-    }
-
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -196,6 +191,13 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        kidneysCheckBox = new javax.swing.JCheckBox();
+        lungsCheckBox = new javax.swing.JCheckBox();
+        pancreasCheckBox = new javax.swing.JCheckBox();
+        liverCheckBox = new javax.swing.JCheckBox();
+        heartCheckBox = new javax.swing.JCheckBox();
+        corneasCheckBox = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
 
         backBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
@@ -219,14 +221,14 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
 
         jLabel2.setText("Toal Recipeint Count");
 
-        jButton1.setText("Request Awarness Camp for Donors");
+        jButton1.setText("Raise Request for Awarness Camp");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Request Awareness Camp to Redcross");
+        jLabel3.setText("Select the organs to initiate awareness camps");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -258,6 +260,37 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        kidneysCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        kidneysCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        kidneysCheckBox.setText("Kidney");
+
+        lungsCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        lungsCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lungsCheckBox.setText("Lungs");
+
+        pancreasCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        pancreasCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        pancreasCheckBox.setText("Pancreas");
+
+        liverCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        liverCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        liverCheckBox.setText("Liver");
+
+        heartCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        heartCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        heartCheckBox.setText("Heart");
+
+        corneasCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        corneasCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        corneasCheckBox.setText("Corneas");
+
+        jButton2.setText("View Camp details");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -265,57 +298,82 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel3))))
-                .addContainerGap(223, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(15, 15, 15)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(heartCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lungsCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(corneasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(kidneysCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(liverCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(pancreasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backBtn)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kidneysCheckBox)
+                    .addComponent(corneasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lungsCheckBox)
+                    .addComponent(heartCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(liverCheckBox)
+                    .addComponent(pancreasCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+
         panel.remove(this);
         Component[] componentArray = panel.getComponents();
         Component componentObj = componentArray[componentArray.length - 1];
-        SystemAdminDashboard sysAdminScreen = (SystemAdminDashboard) componentObj;
+        OrganizationAdminReusableWorkArea sysAdminScreen = (OrganizationAdminReusableWorkArea) componentObj;
         CardLayout prevLayout = (CardLayout) panel.getLayout();
         // populate tree on admin screen
-        sysAdminScreen.populateTree();
+        //sysAdminScreen.populateTree();
         prevLayout.previous(panel);
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -324,7 +382,46 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       /*
+       
+        List<String> organs = new ArrayList<String>();
+        if(corneasCheckBox.isSelected() && heartCheckBox.isSelected() && kidneysCheckBox.isSelected()
+                && lungsCheckBox.isSelected() && liverCheckBox.isSelected() && pancreasCheckBox.isSelected()){
+            JOptionPane.showMessageDialog(null, "Please select one or more organs to send the request!");
+            return;
+        }
+        if (corneasCheckBox.isSelected()) {
+            organs.add(corneasCheckBox.getText());
+        }
+        if (heartCheckBox.isSelected()) {
+            organs.add(heartCheckBox.getText());
+        }
+        if (kidneysCheckBox.isSelected()) {
+            organs.add(kidneysCheckBox.getText());
+        }
+        if (lungsCheckBox.isSelected()) {
+            organs.add(lungsCheckBox.getText());
+        }
+        if (liverCheckBox.isSelected()) {
+            organs.add(liverCheckBox.getText());
+        }
+        if (pancreasCheckBox.isSelected()) {
+            organs.add(pancreasCheckBox.getText());
+        }
+        
+        AwarenessWorkRequest req = new AwarenessWorkRequest();
+        req.setMessage("Awarness Campaign Request!");
+        req.setSender(userAccount);
+        req.setStatus("Request Sent");
+        req.setOrgans(organs);
+        
+        //req.setSender(enterpriseObj.getUserAccountDirectory().getUserAccountList().get(0));
+        //requestObj.setMessage("Awarness Campaign Request!");
+        //requestObj.setStatus("Request Sent");
+
+        ent.getWorkQueue().getWorkRequestList().add(req);
+        JOptionPane.showMessageDialog(null, "Request for awareness camp has been sent!");          
+      
+        /*
         // TODO add your handling code here:
         int column = 0;
         int row = jTable1.getSelectedRow();
@@ -358,10 +455,21 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
          */
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ViewCampDetails campPanel = new ViewCampDetails(system, panel, userAccount, ent);
+        panel.add("FundRequestStatusJPanel", campPanel);
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.next(panel);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JCheckBox corneasCheckBox;
+    private javax.swing.JCheckBox heartCheckBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -369,5 +477,9 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JCheckBox kidneysCheckBox;
+    private javax.swing.JCheckBox liverCheckBox;
+    private javax.swing.JCheckBox lungsCheckBox;
+    private javax.swing.JCheckBox pancreasCheckBox;
     // End of variables declaration//GEN-END:variables
 }

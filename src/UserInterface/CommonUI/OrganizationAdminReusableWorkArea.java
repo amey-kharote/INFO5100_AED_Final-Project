@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.UserAccount.UserAccount;
 import UserInterface.HospitalAdminWorkspace.CheckDonorRecipientRatio;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -24,15 +25,17 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
     EcoSystem system;
     Enterprise enterpriseObj;
     JPanel rightJPanel;
+    UserAccount account;
 
     /**
      * Creates new form OrganizationAdminReusableWorkArea
      */
-    public OrganizationAdminReusableWorkArea( EcoSystem system,JPanel rightJPanel, Enterprise enterprise) {
+    public OrganizationAdminReusableWorkArea( EcoSystem system,JPanel rightJPanel, Enterprise enterprise, UserAccount account) {
         initComponents();
         this.system = system;
         this.rightJPanel = rightJPanel;
         this.enterpriseObj = enterprise;
+        this.account = account;
         adminValue.setText(enterpriseObj.getName());
         if(enterpriseObj instanceof HospitalEnterprise){
             jButton1.setEnabled(true);
@@ -154,7 +157,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        CheckDonorRecipientRatio checkRatio = new CheckDonorRecipientRatio(system, rightJPanel);
+        CheckDonorRecipientRatio checkRatio = new CheckDonorRecipientRatio(system, rightJPanel, account, enterpriseObj);
                 rightJPanel.add("manageEntAdmins", checkRatio);
                 CardLayout layout = (CardLayout) rightJPanel.getLayout();
                 layout.next(rightJPanel);

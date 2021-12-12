@@ -8,9 +8,11 @@ package UserInterface.Campaign;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.FundingEnterprise;
+import Business.Enterprise.HospitalEnterprise;
 import Business.Entity.Applicant;
 import Business.Entity.ApplicantDirectory;
 import Business.Entity.CampaignEvent;
+import Business.Entity.Donor;
 import Business.Network.Network;
 import Business.Organization.ApplicantOrg;
 import Business.Organization.CorporateFundOrg;
@@ -19,6 +21,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.Utils;
 import Business.WorkQueue.FundingWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import UserInterface.FundsRetrieval.FundsRequestStatusPanel;
 import java.awt.CardLayout;
 import java.util.Date;
@@ -51,8 +54,31 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         
         populateEventTable();
         populateNetworkList();
+        populatecampTable();
     }
     
+    public void populatecampTable(){
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        dtm.setRowCount(0);
+        
+        for (Network network1 : ecoSystem.getNetworks()) {
+            for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
+                if(enterprise instanceof HospitalEnterprise){
+                    for(WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()){
+                        Object[] row = new Object[4];
+                        row[0] = wr.getMessage();
+                        //row[1] = get(AwarenessWorkRequest) wr.;
+                        row[2] = wr.getStatus();
+                        row[3] = wr.getSender();
+                
+                        dtm.addRow(row);
+                    }
+                }
+            }
+
+        }
+
+    }
     public void populateEventTable(){
         
         DefaultTableModel dtm = (DefaultTableModel)displayScheduledEventsTable.getModel();
@@ -104,6 +130,8 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         fundsRequestStatusBtn = new javax.swing.JButton();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         reqCorporateFunds = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(null);
@@ -111,7 +139,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         scheduledEventTableLabel.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         scheduledEventTableLabel.setText("Scheduled Event Details");
         add(scheduledEventTableLabel);
-        scheduledEventTableLabel.setBounds(44, 22, 300, 27);
+        scheduledEventTableLabel.setBounds(30, 220, 300, 27);
 
         displayScheduledEventsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,22 +155,22 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         jScrollPane3.setViewportView(displayScheduledEventsTable);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(40, 80, 949, 137);
+        jScrollPane3.setBounds(30, 260, 949, 137);
 
         chooseCityFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         chooseCityFormLabel.setText("Choose City:");
         add(chooseCityFormLabel);
-        chooseCityFormLabel.setBounds(50, 240, 150, 25);
+        chooseCityFormLabel.setBounds(80, 440, 150, 25);
 
         chooseCityFormComboBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         chooseCityFormComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(chooseCityFormComboBox);
-        chooseCityFormComboBox.setBounds(230, 240, 170, 33);
+        chooseCityFormComboBox.setBounds(220, 440, 170, 33);
 
         eventDateFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         eventDateFormLabel.setText("Date of Event:");
         add(eventDateFormLabel);
-        eventDateFormLabel.setBounds(50, 310, 160, 25);
+        eventDateFormLabel.setBounds(60, 500, 160, 25);
 
         setupEventBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         setupEventBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -154,16 +182,16 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(setupEventBtn);
-        setupEventBtn.setBounds(150, 390, 290, 50);
+        setupEventBtn.setBounds(140, 550, 290, 50);
 
         eventNameFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         eventNameFormLabel.setText("Name of Event:");
         add(eventNameFormLabel);
-        eventNameFormLabel.setBounds(570, 250, 138, 25);
+        eventNameFormLabel.setBounds(570, 450, 138, 25);
 
         eventNameFromTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         add(eventNameFromTextField);
-        eventNameFromTextField.setBounds(840, 240, 147, 33);
+        eventNameFromTextField.setBounds(750, 440, 147, 33);
 
         requestFundsFormTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,17 +199,17 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(requestFundsFormTextField);
-        requestFundsFormTextField.setBounds(840, 310, 147, 33);
+        requestFundsFormTextField.setBounds(750, 500, 147, 33);
 
         requestFundsFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         requestFundsFormLabel.setText("Request Funds:");
         add(requestFundsFormLabel);
-        requestFundsFormLabel.setBounds(570, 310, 180, 25);
+        requestFundsFormLabel.setBounds(570, 500, 180, 25);
 
         requestFundsFormCurrencyLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         requestFundsFormCurrencyLabel.setText("$");
         add(requestFundsFormCurrencyLabel);
-        requestFundsFormCurrencyLabel.setBounds(810, 310, 18, 28);
+        requestFundsFormCurrencyLabel.setBounds(730, 450, 18, 28);
 
         fundsRequestStatusBtn.setBackground(new java.awt.Color(153, 204, 255));
         fundsRequestStatusBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -194,9 +222,9 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(fundsRequestStatusBtn);
-        fundsRequestStatusBtn.setBounds(310, 490, 361, 50);
+        fundsRequestStatusBtn.setBounds(310, 660, 361, 50);
         add(jDateChooser2);
-        jDateChooser2.setBounds(230, 310, 170, 32);
+        jDateChooser2.setBounds(220, 500, 170, 32);
 
         reqCorporateFunds.setBackground(java.awt.SystemColor.controlLtHighlight);
         reqCorporateFunds.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -208,7 +236,31 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(reqCorporateFunds);
-        reqCorporateFunds.setBounds(560, 390, 360, 50);
+        reqCorporateFunds.setBounds(540, 550, 360, 50);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Message", "Organs", "Status", "Sender"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(30, 60, 452, 120);
     }// </editor-fold>//GEN-END:initComponents
 
     //Method to check common validation for Trust and Corporate
@@ -535,7 +587,9 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
     private javax.swing.JTextField eventNameFromTextField;
     private javax.swing.JButton fundsRequestStatusBtn;
     private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton reqCorporateFunds;
     private javax.swing.JLabel requestFundsFormCurrencyLabel;
     private javax.swing.JLabel requestFundsFormLabel;
