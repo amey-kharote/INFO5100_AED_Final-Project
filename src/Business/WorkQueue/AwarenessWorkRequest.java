@@ -13,6 +13,16 @@ public class AwarenessWorkRequest extends WorkRequest{
     
     private int donorCount;
     private int recipientCount;
+    private String organType;
+    private String from;
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
 
     public int getDonorCount() {
         return donorCount;
@@ -29,5 +39,15 @@ public class AwarenessWorkRequest extends WorkRequest{
     public void setRecipientCount(int recipientCount) {
         this.recipientCount = recipientCount;
     }
+
+    public String getOrganType() {
+        return organType;
+    }
+
+    public void setOrganType(String organType) {
+        this.organType = organType;
+    }
+    
+    
     
 }
