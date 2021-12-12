@@ -141,16 +141,15 @@ public class ViewCampDetails extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        //back button
-        /*
+        
         panel.remove(this);
         Component[] componentArray = panel.getComponents();
         Component componentObj = componentArray[componentArray.length - 1];
-        SystemAdminDashboard sysAdminScreen = (SystemAdminDashboard) componentObj;
+        CheckDonorRecipientRatio sysAdminScreen = (CheckDonorRecipientRatio) componentObj;
         CardLayout prevLayout = (CardLayout) panel.getLayout();
         // populate tree on admin screen
-        sysAdminScreen.populateTree();
-        prevLayout.previous(panel);*/
+        //sysAdminScreen.populateTree();
+        prevLayout.previous(panel);
     }//GEN-LAST:event_backBtnActionPerformed
 
 

@@ -384,8 +384,8 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
         List<String> organs = new ArrayList<String>();
-        if(corneasCheckBox.isSelected() && heartCheckBox.isSelected() && kidneysCheckBox.isSelected()
-                && lungsCheckBox.isSelected() && liverCheckBox.isSelected() && pancreasCheckBox.isSelected()){
+        if(!corneasCheckBox.isSelected() && !heartCheckBox.isSelected() && !kidneysCheckBox.isSelected()
+                && !lungsCheckBox.isSelected() && !liverCheckBox.isSelected() && !pancreasCheckBox.isSelected()){
             JOptionPane.showMessageDialog(null, "Please select one or more organs to send the request!");
             return;
         }
@@ -411,7 +411,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         AwarenessWorkRequest req = new AwarenessWorkRequest();
         req.setMessage("Awarness Campaign Request!");
         req.setSender(userAccount);
-        req.setStatus("Request Sent");
+        req.setStatus("Sent");
         req.setOrgans(organs);
         
         //req.setSender(enterpriseObj.getUserAccountDirectory().getUserAccountList().get(0));
