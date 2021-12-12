@@ -103,7 +103,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 125, 970, 150));
 
         findMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        findMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        findMatchButton.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         findMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-searching-32.png"))); // NOI18N
         findMatchButton.setText("Click To Find Match");
         findMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -147,7 +147,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 399, 980, 170));
 
         informOrganMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        informOrganMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        informOrganMatchButton.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         informOrganMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-new-message-32.png"))); // NOI18N
         informOrganMatchButton.setText("Click To Inform Match");
         informOrganMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -158,7 +158,7 @@ public class OrganMatchByDonorPanel extends javax.swing.JPanel {
         });
         add(informOrganMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 610, 320, 40));
 
-        backButton.setBackground(new java.awt.Color(153, 204, 255));
+        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

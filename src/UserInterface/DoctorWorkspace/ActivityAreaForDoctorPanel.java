@@ -128,6 +128,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         patientTypeLabel = new javax.swing.JLabel();
         pateintIdLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
@@ -138,7 +139,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 130, 40));
 
         refreshTableButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         refreshTableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/Refresh.jpg"))); // NOI18N
@@ -149,7 +150,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 refreshTableButtonActionPerformed(evt);
             }
         });
-        add(refreshTableButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 90, -1, -1));
+        add(refreshTableButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 60, 170, 40));
 
         markDonorUnfit.setText("Mark Donor Unfit");
         markDonorUnfit.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +158,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 markDonorUnfitActionPerformed(evt);
             }
         });
-        add(markDonorUnfit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 760, -1, -1));
+        add(markDonorUnfit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 710, -1, -1));
 
         markDonorFit.setText("Mark Donor Fit");
         markDonorFit.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +166,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 markDonorFitActionPerformed(evt);
             }
         });
-        add(markDonorFit, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 760, -1, -1));
+        add(markDonorFit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 710, -1, -1));
 
         validateWr.setBackground(java.awt.SystemColor.info);
         validateWr.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -197,11 +198,11 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(validateWr);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 1050, 160));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 1060, 160));
 
         displayEnterpriseLabel3.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEnterpriseLabel3.setText("Donor Validation Requests:");
-        add(displayEnterpriseLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, -1, -1));
+        add(displayEnterpriseLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
 
         displayValidationWorkRequestTable.setBackground(java.awt.SystemColor.info);
         displayValidationWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -233,17 +234,17 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(displayValidationWorkRequestTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 340, 1060, 120));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 1060, 120));
 
         displayEnterpriseLabel2.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEnterpriseLabel2.setText("Lab Tests Requests:");
-        add(displayEnterpriseLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+        add(displayEnterpriseLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
         priorityOptionsDropdown.setBackground(new java.awt.Color(204, 204, 204));
         priorityOptionsDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         priorityOptionsDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- High", "2- Medium", "3- Low" }));
         priorityOptionsDropdown.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(priorityOptionsDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 280, -1, -1));
+        add(priorityOptionsDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 260, -1, -1));
 
         setPriorityButton.setBackground(new java.awt.Color(204, 204, 204));
         setPriorityButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -255,21 +256,21 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 setPriorityButtonActionPerformed(evt);
             }
         });
-        add(setPriorityButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 280, -1, -1));
+        add(setPriorityButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, -1, -1));
 
         displayEnterpriseLabel1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEnterpriseLabel1.setText("Enterprise :");
-        add(displayEnterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, 70));
+        add(displayEnterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, 70));
 
         displayEnterpriseValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEnterpriseValueTextField.setText("<value>");
-        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, 50));
+        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 230, 50));
 
         patientTypeLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(patientTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+        add(patientTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 160, 40));
 
         pateintIdLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        add(pateintIdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
+        add(pateintIdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 210, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

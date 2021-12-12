@@ -130,7 +130,7 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 800, 170));
 
         findMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        findMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        findMatchButton.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         findMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-searching-32.png"))); // NOI18N
         findMatchButton.setText("Click To Find Match");
         findMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -139,7 +139,7 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
                 findMatchButtonActionPerformed(evt);
             }
         });
-        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 260, -1));
+        add(findMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 270, -1));
 
         applicantInfoTable.setBackground(java.awt.SystemColor.info);
         applicantInfoTable.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
@@ -197,7 +197,7 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
         add(seePieChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, 230, 40));
 
         informAboutMatchButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        informAboutMatchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        informAboutMatchButton.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         informAboutMatchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-new-message-32.png"))); // NOI18N
         informAboutMatchButton.setText("Click To Inform Match");
         informAboutMatchButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -206,7 +206,7 @@ public class OrganMatchByRecipientPanel extends javax.swing.JPanel {
                 informAboutMatchButtonActionPerformed(evt);
             }
         });
-        add(informAboutMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, 260, -1));
+        add(informAboutMatchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, 270, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void findMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findMatchButtonActionPerformed

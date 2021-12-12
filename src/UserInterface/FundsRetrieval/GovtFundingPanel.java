@@ -101,6 +101,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
         govtEventFundTableLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         govtEventFundTableLabel.setText("Government Event Fund Raising Details");
 
+        assignToMeButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         assignToMeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-audit-24.png"))); // NOI18N
         assignToMeButton.setText("Assign To Me");
@@ -110,6 +111,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
             }
         });
 
+        processButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         processButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         processButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/process.png"))); // NOI18N
         processButton.setText("Process");

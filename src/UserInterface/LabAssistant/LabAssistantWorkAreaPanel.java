@@ -115,7 +115,7 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1090, 180));
 
-        assignToMeButton.setBackground(new java.awt.Color(153, 204, 255));
+        assignToMeButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         assignToMeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-audit-24.png"))); // NOI18N
         assignToMeButton.setText("Assign to me");

@@ -102,7 +102,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="460" y="110" width="580" height="480"/>
+          <AbsoluteConstraints x="460" y="110" width="580" height="450"/>
         </Constraint>
       </Constraints>
 
@@ -120,7 +120,7 @@
             </Property>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="1. Improvements in medical techniques and pharmacological anti-reject therapies have made organ transplantation a powerful and valid way to treat diseases. &#xa;&#xa;2. Thanks to this, and to the relevance that mass media put on it, &#xa;the number of donors is constantly increasing.&#xa;&#xa;3. Donors are usually persons who have been involved in serious accidents and are kept artificially alive though cerebral death has been stated. &#xa;&#xa;4. In such patients is extremely difficult to maintain acceptable vital parameters for a long time, and any variation in them can lead to the loss of organs. &#xa;&#xa;5. Moreover, after the organs have been taken from the body, they can be stored for very few hours and the transplant must take place in the shortest period possible."/>
+            <Property name="text" type="java.lang.String" value="1. People of all ages should consider themselves potential donors. &#xa;&#xa;2. When a person dies, they are evaluated for donor suitability based on their medical history and age. &#xa;&#xa;3. The organ procurement organization determines medical suitability for donation.&#xa;&#xa;4. A living donation, such as the donation of one healthy kidney or a segment of a healthy liver from a living human being to another, is arranged though the individual transplant centers according to criteria they have in place. &#xa;&#xa;5. An independent donor advocate, along with a dedicated living donor multi-disciplinary team, will represent the interests and well-being of the potential living donor."/>
             <Property name="wrapStyleWord" type="boolean" value="true"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -136,10 +136,10 @@
     <Component class="javax.swing.JButton" name="submitButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="99" type="rgb"/>
+          <Color blue="ff" green="ff" id="Control Lt Highlight" palette="2" red="ff" type="palette"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="24" style="1"/>
+          <Font name="Tahoma" size="24" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/UserInterface/Images/icons8-submit-resume-24.png"/>

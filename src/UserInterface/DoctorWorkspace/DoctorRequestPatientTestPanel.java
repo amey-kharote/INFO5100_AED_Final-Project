@@ -98,7 +98,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         cancerCheckbox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         cancerCheckbox.setText("Cancer Screening");
 
-        askToTakeTestButton.setBackground(new java.awt.Color(153, 204, 255));
+        askToTakeTestButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         askToTakeTestButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         askToTakeTestButton.setText("Ask Patient To Take Test");
         askToTakeTestButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
