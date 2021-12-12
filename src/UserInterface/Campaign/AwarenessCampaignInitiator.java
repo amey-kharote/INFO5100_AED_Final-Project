@@ -12,7 +12,6 @@ import Business.Enterprise.HospitalEnterprise;
 import Business.Entity.Applicant;
 import Business.Entity.ApplicantDirectory;
 import Business.Entity.CampaignEvent;
-import Business.Entity.Donor;
 import Business.Network.Network;
 import Business.Organization.ApplicantOrg;
 import Business.Organization.CorporateFundOrg;
@@ -67,8 +66,9 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
                 if(enterprise instanceof HospitalEnterprise){
                     for(WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()){
                         Object[] row = new Object[4];
+                        AwarenessWorkRequest req = (AwarenessWorkRequest)wr;
                         row[0] = wr;
-                        //row[1] = get(AwarenessWorkRequest) wr.;
+                        row[1] = req.getOrgans();
                         row[2] = wr.getStatus();
                         row[3] = wr.getSender();
                 
