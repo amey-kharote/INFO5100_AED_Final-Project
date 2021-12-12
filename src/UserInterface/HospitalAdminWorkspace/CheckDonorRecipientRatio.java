@@ -324,6 +324,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       /*
         // TODO add your handling code here:
         int column = 0;
         int row = jTable1.getSelectedRow();
@@ -354,7 +355,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
          if(org1 != null){
             org1.getWorkQueue().getWorkRequestList().add(req);
         }
-         
+         */
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -26,6 +26,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
     JPanel rightJPanel;
     Organization org;
     ApplicantDirectory appDir = new ApplicantDirectory();
+    public static int countReject = 0;
     
     public ShowingInterestUI(JPanel rightJPanel, Organization org) {
         initComponents();
@@ -154,6 +155,7 @@ public class ShowingInterestUI extends javax.swing.JPanel {
             else if(noRadioButton.isSelected()) {
                 appDir.createApplicant(false, enterEmailTextField.getText());
                 JOptionPane.showMessageDialog(null, "Thanks for showing interest!");
+                countReject++;
                 return;
             }
         }        

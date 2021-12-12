@@ -208,9 +208,61 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     //Method to check common validation for Trust and Corporate
-    private void checkValidaion(Network networkName, String campaignName, Date eventDate){
+    private boolean checkValidaion(Network networkName, String campaignName, Date eventDate){
         
+        boolean value = true;
         
+        Date date = new Date();
+        Date today = new java.sql.Date (date.getTime());
+ 
+        try{
+        if(networkName.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select city for the event");
+            return false;
+        }else if(campaignName.equals("")){
+            JOptionPane.showMessageDialog(null, "Please add the event Name ");
+            return false;
+        }else if(eventDate.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select the date for the event");
+            return false;
+        }else if(requestFundsFormTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter the amount of funds required");
+            return false;
+        }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please enter values for all the fields");
+            return false;
+        }
+        /*
+        if(!(utility.isValidCampaign(campaignName))){
+            JOptionPane.showMessageDialog(null, "Campign Name is not valid");
+            return;
+        }*/
+        
+        //Validate Date
+        try{
+            if(eventDate.compareTo(today) < 0){
+                JOptionPane.showMessageDialog(null,"Please select a valid date for the event");
+               return false;
+            }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please add the date");
+            return false;
+        }
+        
+        return value;
+        //Handle exception for funds 
+        
+    }
+    
+    
+    private void setupEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setupEventBtnActionPerformed
+
+        Network networkName = (Network) chooseCityFormComboBox.getSelectedItem();
+        String campaignName = eventNameFromTextField.getText();
+        Date eventDate = jDateChooser2.getDate();
+        String money = requestFundsFormTextField.getText();
+  
         Date date = new Date();
         Date today = new java.sql.Date (date.getTime());
  
@@ -241,28 +293,16 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         //Validate Date
         try{
             if(eventDate.compareTo(today) < 0){
-                JOptionPane.showMessageDialog(null,"Please select a valid date forthe event");
-               
+                JOptionPane.showMessageDialog(null,"Please select a valid date for the event");
+               return;
             }
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Please add the date");
             return;
         }
         
+      
         //Handle exception for funds 
-        
-    }
-    
-    
-    private void setupEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setupEventBtnActionPerformed
-
-        Network networkName = (Network) chooseCityFormComboBox.getSelectedItem();
-        String campaignName = eventNameFromTextField.getText();
-        Date eventDate = jDateChooser2.getDate();
-        String money = requestFundsFormTextField.getText();
-        
-        //Validate fields
-        checkValidaion(networkName, campaignName, eventDate);
         
         float money1 = 0;
         try{
@@ -276,7 +316,6 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         
         //Send email to all the applicants
         if(ecoSystem != null){
-            System.out.println("####LP#### Befoer sending email");
             for(Applicant applicant : appDirectory.getApplicantRecords()){
                 utility.sendEmail(applicant.getApplicantEmailId(), campaignName, String.valueOf(eventDate), String.valueOf(networkName));
             }
@@ -286,7 +325,6 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
                   for(Enterprise enterprise :   network.getEnterpriseDirectory().getEnterpriseList()){
                     for (Organization organisation : enterprise.getOrganizationDirectory().getOrganizationList()){
                         if(organisation instanceof ApplicantOrg){
-                           //LP Please add code later!!!
                     }
                     }
                   }
@@ -307,25 +345,19 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         Organization org1 = null;
          for(Network network : ecoSystem.getNetworks()){          
             for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-                System.out.println("####LP#### Enterprise" +enterprise.toString());
                 if(enterprise instanceof FundingEnterprise){
                    
                     for(Organization org :  enterprise.getOrganizationDirectory().getOrganizationList()){  
-                        System.out.println("####LP####");
                         System.out.println(org.toString());
                        if(org instanceof TrustFundOrg){
                            org1 = org; 
-                           System.out.println("####LP####");
                            System.out.println(org1.toString());
                        }
                    }
                 }
             }
         }
-        if(org1 != null){
-            System.out.println("####LP####");
-            System.out.println(org1);
-            
+        if(org1 != null){    
             org1.getWorkQueue().getWorkRequestList().add(req);
             userAccount.getWorkQueue().getWorkRequestList().add(req);
             System.out.println(org1.getWorkQueue().getWorkRequestList());
@@ -366,7 +398,46 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         String money = requestFundsFormTextField.getText();
         
         //Validate fields
-        checkValidaion(networkName, campaignName, eventDate);
+        Date date = new Date();
+        Date today = new java.sql.Date (date.getTime());
+ 
+        try{
+        if(networkName.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select city for the event");
+            return;
+        }else if(campaignName.equals("")){
+            JOptionPane.showMessageDialog(null, "Please add the event Name ");
+            return;
+        }else if(eventDate.equals(null)){
+            JOptionPane.showMessageDialog(null, "Please select the date for the event");
+            return;
+        }else if(requestFundsFormTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter the amount of funds required");
+            return;
+        }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please enter values for all the fields");
+            return;
+        }
+        /*
+        if(!(utility.isValidCampaign(campaignName))){
+            JOptionPane.showMessageDialog(null, "Campign Name is not valid");
+            return;
+        }*/
+        
+        //Validate Date
+        try{
+            if(eventDate.compareTo(today) < 0){
+                JOptionPane.showMessageDialog(null,"Please select a valid date for the event");
+               return;
+            }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please add the date");
+            return;
+        }
+        
+       
+        //Handle exception for funds 
         
         //Check validation for funds
         float money1 = 0;
