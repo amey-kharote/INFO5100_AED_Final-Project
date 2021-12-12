@@ -37,6 +37,12 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         this.enterpriseObj = enterprise;
         this.account = account;
         adminValue.setText(enterpriseObj.getName());
+        if(enterprise instanceof HospitalEnterprise){
+            checkRatioButton.setVisible(true);
+        }else{
+            checkRatioButton.setVisible(false);
+        }
+        
 //        if(enterpriseObj instanceof HospitalEnterprise){
 //            jButton1.setEnabled(true);
 //        }else{
@@ -59,6 +65,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         manageOrgButton = new javax.swing.JButton();
         hospitalAdminLabel = new javax.swing.JLabel();
         adminValue = new javax.swing.JLabel();
+        checkRatioButton = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,6 +113,15 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         adminValue.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         adminValue.setText("<value>");
         add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 430, -1));
+
+        checkRatioButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        checkRatioButton.setText("Check Donor and Recipeint Ratio");
+        checkRatioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkRatioButtonActionPerformed(evt);
+            }
+        });
+        add(checkRatioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 370, 570, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButtonActionPerformed
@@ -143,15 +159,15 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         rightJPanel.add("manageOrgJpanel", manageOrgaJpanel);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
+    }
 
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void checkRatioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkRatioButtonActionPerformed
         // TODO add your handling code here:
         CheckDonorRecipientRatio checkRatio = new CheckDonorRecipientRatio(system, rightJPanel, account, enterpriseObj);
                 rightJPanel.add("manageEntAdmins", checkRatio);
                 CardLayout layout = (CardLayout) rightJPanel.getLayout();
                 layout.next(rightJPanel);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_checkRatioButtonActionPerformed
 
                                                 
 
@@ -159,6 +175,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminValue;
+    private javax.swing.JButton checkRatioButton;
     private javax.swing.JLabel hospitalAdminLabel;
     private javax.swing.JButton manageOrgButton;
     private javax.swing.JButton managePeopleButton;
