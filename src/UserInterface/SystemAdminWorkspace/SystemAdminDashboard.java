@@ -17,6 +17,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import Business.Entity.Donor;
+import UserInterface.OrganDonationMatchingWorkArea.ManageOrganMatchInitialRoute;
+import java.awt.Frame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -142,6 +149,11 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         analysisBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         analysisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-analysis-24.png"))); // NOI18N
         analysisBtn.setText("Analysis");
+        analysisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                analysisBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rightButtonsJPanelLayout = new javax.swing.GroupLayout(rightButtonsJPanel);
         rightButtonsJPanel.setLayout(rightButtonsJPanelLayout);
@@ -251,7 +263,47 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
 
     private void manageDonorRecipientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageDonorRecipientBtnActionPerformed
         // TODO add your handling code here:
+        ManageOrganMatchInitialRoute organMatching = new ManageOrganMatchInitialRoute(ecoSystem, rightJPanel);
+        rightJPanel.add("organMatching", organMatching);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_manageDonorRecipientBtnActionPerformed
+
+    private void analysisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analysisBtnActionPerformed
+        // TODO add your handling code here:      
+        int counter = 0;
+        
+        for (Network network : ecoSystem.getNetworks()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization.getName().equalsIgnoreCase("Applicant Org")) {
+                       
+                        for (Donor donorman : organization.getDonorDirectory().getDonorRecords()) {
+                            counter = counter + 1;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        Frame frames = new Frame();
+
+        DefaultPieDataset pieDataSet = new DefaultPieDataset();
+        pieDataSet.setValue("The Donor is willing to donate!!", counter);
+        pieDataSet.setValue("The Donor is not willing to donate!!", countReject);
+        
+        JFreeChart charts = ChartFactory.createPieChart("Pie Chart", pieDataSet, true, true, true);
+
+        ChartPanel chartPanel = new ChartPanel(charts);
+        frames.add(chartPanel);
+
+        frames.pack();
+        frames.setVisible(true);
+        chartPanel.setSize(600, 600);
+        chartPanel.setVisible(true);
+
+    }//GEN-LAST:event_analysisBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

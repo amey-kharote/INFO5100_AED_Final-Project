@@ -99,7 +99,7 @@ public class GovtFundingPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(govtEventDetailTable);
 
         govtEventFundTableLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        govtEventFundTableLabel.setText("Government Event Fund Raising Details");
+        govtEventFundTableLabel.setText("Trust Event Fund Raising Details");
 
         assignToMeButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         assignToMeButton.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
@@ -143,11 +143,11 @@ public class GovtFundingPanel extends javax.swing.JPanel {
                 .addComponent(govtEventFundTableLabel)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(processButton)
                     .addComponent(assignToMeButton))
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap(391, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
