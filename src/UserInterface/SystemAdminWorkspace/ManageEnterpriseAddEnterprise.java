@@ -190,6 +190,7 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
             }
         }
         networkObj.getEnterpriseDirectory().createAndAddEnterprise(enterpriseName, enterpriseType);
+        System.out.println("Successfully created new enterprise " +enterpriseName+ "of type " +enterpriseType);
         populateTable();
         enterpriseNameTextField.setText("");
     }//GEN-LAST:event_submitBtnActionPerformed

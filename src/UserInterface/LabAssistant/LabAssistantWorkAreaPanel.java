@@ -84,23 +84,23 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labAssitantWorkRequestTable.setBackground(java.awt.SystemColor.info);
-        labAssitantWorkRequestTable.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labAssitantWorkRequestTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labAssitantWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status"
+                "Message", "Sender", "Receiver", "Status", "Patient Id"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -144,11 +144,13 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         DefaultTableModel tableModel = (DefaultTableModel) labAssitantWorkRequestTable.getModel();
         tableModel.setRowCount(0);
         for (WorkRequest workRequestObject : organization.getWorkQueue().getWorkRequestList()) {
-            Object[] labAssistantTableRow = new Object[4];
+            LabTestWorkRequest workRequestObject1 = (LabTestWorkRequest)workRequestObject;
+            Object[] labAssistantTableRow = new Object[5];
             labAssistantTableRow[0] = workRequestObject;
             labAssistantTableRow[1] = workRequestObject.getSender().getEmployee().getEmpName();
             labAssistantTableRow[2] = workRequestObject.getReceiver() == null ? null : workRequestObject.getReceiver().getEmployee().getEmpName();
             labAssistantTableRow[3] = workRequestObject.getStatus();
+            labAssistantTableRow[4] = workRequestObject1.getPatientId();
             tableModel.addRow(labAssistantTableRow);
         }
     }
@@ -159,11 +161,13 @@ public class LabAssistantWorkAreaPanel extends javax.swing.JPanel {
         tableModel.setRowCount(0);
         for (Organization organizationObject : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (WorkRequest requestOfWork : organizationObject.getWorkQueue().getWorkRequestList()) {
-                Object[] labAssistantTableRow = new Object[4];
+                LabTestWorkRequest workRequestObject1 = (LabTestWorkRequest)requestOfWork;
+                Object[] labAssistantTableRow = new Object[5];
                 labAssistantTableRow[0] = requestOfWork;
                 labAssistantTableRow[1] = requestOfWork.getSender().getEmployee().getEmpName();
                 labAssistantTableRow[2] = requestOfWork.getReceiver() == null ? null : requestOfWork.getReceiver().getEmployee().getEmpName();
                 labAssistantTableRow[3] = requestOfWork.getStatus();
+                labAssistantTableRow[4] = workRequestObject1.getPatientId();
                 tableModel.addRow(labAssistantTableRow);
             }
         }

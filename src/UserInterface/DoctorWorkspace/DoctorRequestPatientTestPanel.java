@@ -302,6 +302,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             return;
         }
         if (bloodTestCheckbox.isSelected() || xrayCheckbox.isSelected()) {
+            System.out.println("Created Internal Lab Work Request For "+(String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             LabTestWorkRequest request = new LabTestWorkRequest();
             request.setStatus("Request Generated");
             request.setMessage("Requesting set of common tests!");
@@ -323,6 +324,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "A request has been sent to internal lab!");
         }
         if (gynecologicalScreeningCheckbox.isSelected()) {
+            System.out.println("Created Pathology Lab Work Request For "+(String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             LabTestWorkRequest request = new LabTestWorkRequest();
             request.setSender(account);
             request.setMessage("Requesting all pathological tests for patient!");
@@ -352,6 +354,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             LabTestWorkRequest request = new LabTestWorkRequest();
             request.setStatus("Request Generated");
             request.setSender(account);
+            System.out.println("Created Radiology Lab Work Request For "+(String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             request.setMessage("Requesting all screening for patient");
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             request.setPatientId((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
@@ -464,6 +467,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
                 orgObj.getWorkQueue().getWorkRequestList().add(request);
                 account.getWorkQueue().getWorkRequestList().add(request);
                 JOptionPane.showMessageDialog(null, "A request has been sent to pathology lab!");
+                System.out.println("Creating A Request For Pathology Lab For Patient:" + request.getPatientId());
             }
         }
         if (cancerCheckbox.isSelected()) {
@@ -490,6 +494,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
                 orgObj.getWorkQueue().getWorkRequestList().add(request);
                 account.getWorkQueue().getWorkRequestList().add(request);
                 JOptionPane.showMessageDialog(null, "A request has been sent to radiology lab!");
+                System.out.println("Creating A Request For Radiology Lab For Patient:" + request.getPatientId());
             }
             String patientIdObj = (String) donorComboName.getItemAt(donorComboName.getSelectedIndex());
             int count = 0;
@@ -503,6 +508,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             }
             if (count == 0) {
                 {
+                    System.out.println("Created Donor Validation Work Request For Patient:" +patientIdObj);
                     DonorValidationWorkRequest validationRequest = new DonorValidationWorkRequest();
                     validationRequest.setStatus("Validation In Progress");
                     validationRequest.setMessage("Awaiting Test Results");

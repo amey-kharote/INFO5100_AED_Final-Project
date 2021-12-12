@@ -103,10 +103,10 @@ public class Utils {
              
      public void sendEmail(String emailID, String campaignName, String campaignDate, String city){         
          final String recipient = emailID;         
-         String sender = "taskplannermernproject@gmail.com"; 
+         String sender = "organdonationaed@gmail.com"; 
          String host = "smtp.gmail.com";
-         String userEmail = "taskplannermernproject@gmail.com";
-         String pswd = "taskplannermernproject@123";
+         String userEmail = "organdonationaed@gmail.com";
+         String pswd = "Pass@1234";
          Properties prop = System.getProperties();  
          prop.setProperty("mail.smtp.host", host); 
          prop.put("mail.smtp.starttls.required", "true");

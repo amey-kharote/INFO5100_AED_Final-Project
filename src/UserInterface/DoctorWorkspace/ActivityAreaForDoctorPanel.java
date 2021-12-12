@@ -52,6 +52,9 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         if(patientType.equalsIgnoreCase("Donor")){
             priorityOptionsDropdown.setVisible(false);
             setPriorityButton.setVisible(false);
+        }else {
+            markDonorFit.setVisible(false);
+            markDonorUnfit.setVisible(false);
         }
         populateWorkRequestTable();
         populateValidateTable();
@@ -260,7 +263,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
 
         displayEnterpriseValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEnterpriseValueTextField.setText("<value>");
-        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, 50));
+        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, 50));
 
         patientTypeLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         add(patientTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
@@ -286,6 +289,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
 
     private void markDonorUnfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorUnfitActionPerformed
         // TODO add your handling code here:
+        System.out.println("Marking donor as unfit for transplant" +patientUserName);
         WorkRequest finalObj = null;
         for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
             if (w instanceof DonorValidationWorkRequest) {
@@ -308,6 +312,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
 
     private void markDonorFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorFitActionPerformed
         // TODO add your handling code here:
+        System.out.println("Marking donor as fit for transplant" +patientUserName);
         WorkRequest finalObj = null;
         for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
             if (w instanceof DonorValidationWorkRequest) {
