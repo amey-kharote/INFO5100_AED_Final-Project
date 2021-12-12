@@ -125,6 +125,11 @@ public class ShowingInterestUI extends javax.swing.JPanel {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
+        
+        if( yesRadioButton.isSelected()&& noRadioButton.isSelected()){
+            JOptionPane.showMessageDialog(null, "Please select either yes or no.");
+            return;
+        }
         if(enterEmailTextField.getText().equals("")&& yesRadioButton.isSelected()== false && noRadioButton.isSelected() == false){
             JOptionPane.showMessageDialog(null, "Please enter email and choose a valid option.");
             return;

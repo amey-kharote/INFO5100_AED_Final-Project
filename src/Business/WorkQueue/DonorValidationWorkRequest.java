@@ -18,6 +18,60 @@ public class DonorValidationWorkRequest extends WorkRequest{
     private boolean smokingHistory;
     private boolean diabetic;
     private boolean heartDisease;
+    private String receiverName;
+     private String patientId;
+    private String patientName;
+    private String testResult;
+    private String testUploaded;
+    private String patientType;
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getTestResult() {
+        return testResult;
+    }
+
+    public void setTestResult(String testResult) {
+        this.testResult = testResult;
+    }
+
+    public String getTestUploaded() {
+        return testUploaded;
+    }
+
+    public void setTestUploaded(String testUploaded) {
+        this.testUploaded = testUploaded;
+    }
+
+    public String getPatientType() {
+        return patientType;
+    }
+
+    public void setPatientType(String patientType) {
+        this.patientType = patientType;
+    }
+
+    public String isReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
 
     public String getDonorName() {
         return donorName;

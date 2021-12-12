@@ -15,7 +15,16 @@ public class LabTestWorkRequest extends WorkRequest{
     private String patientName;
     private String testResult;
     private String testUploaded;
+    private String patientType;
 
+    public String getPatientType() {
+        return patientType;
+    }
+
+    public void setPatientType(String patientType) {
+        this.patientType = patientType;
+    }
+    
     public String getPatientId() {
         return patientId;
     }
