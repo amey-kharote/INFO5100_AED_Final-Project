@@ -156,7 +156,11 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_requestedFundFormTextFieldActionPerformed
 
     private void approveRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveRequestBtnActionPerformed
-
+        if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+            JOptionPane.showMessageDialog(null, "The funds have already been Approved/Declined");
+            return;
+        }
+        
         if(requestedFundFormTextField.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please enter a comment!");
@@ -209,6 +213,11 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
 
     private void declineRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineRequestBtnActionPerformed
         // TODO add your handling code here:
+        if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+            JOptionPane.showMessageDialog(null, "The funds have already been Approved/Declined");
+            return;
+        }
+        
         if(requestedFundFormTextField.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please enter a comment!");

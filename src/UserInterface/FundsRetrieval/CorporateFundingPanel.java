@@ -44,8 +44,7 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
-        
-        System.out.println("####LP#### In Corporate Table");
+
         DefaultTableModel dtm  = (DefaultTableModel)corpEventDetailTable.getModel();
         dtm.setRowCount(0);
         
@@ -168,6 +167,14 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)corpEventDetailTable.getValueAt(selectedRow, 0);
+         if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+            JOptionPane.showMessageDialog(null, "The funds have alrady been Approved/Declined!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(request.getStatus().equalsIgnoreCase("Pending")){
+            JOptionPane.showMessageDialog(null, "Assigned Request cannot be assigned again!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         request.setReceiver(useraccount);
         request.setStatus("Pending");
         if(useraccount.getRole() instanceof CorporateManagerRole){
@@ -190,12 +197,21 @@ public class CorporateFundingPanel extends javax.swing.JPanel {
         }
 
         FundingWorkRequest request = (FundingWorkRequest)corpEventDetailTable.getValueAt(selectedRow, 0);
-        request.setFundStatus("Processing");
+        if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+            JOptionPane.showMessageDialog(null, "The funds have alrady been Approved/Declined!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(request.getStatus().equalsIgnoreCase("Pending")){
+            request.setFundStatus("Processing");
         
         FundsApprovalPanel processWorkRequestJPanel = new FundsApprovalPanel(panel, request, useraccount);
         panel.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) panel.getLayout();
         layout.next(panel);
+        }else{
+            JOptionPane.showMessageDialog(null, "Please assign the request first!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_processButtonActionPerformed
 
 

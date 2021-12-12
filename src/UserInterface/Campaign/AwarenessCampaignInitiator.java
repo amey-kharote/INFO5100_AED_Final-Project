@@ -20,6 +20,7 @@ import Business.Organization.TrustFundOrg;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.Utils;
+import Business.WorkQueue.AwarenessWorkRequest;
 import Business.WorkQueue.FundingWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import UserInterface.FundsRetrieval.FundsRequestStatusPanel;
@@ -66,7 +67,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
                 if(enterprise instanceof HospitalEnterprise){
                     for(WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()){
                         Object[] row = new Object[4];
-                        row[0] = wr.getMessage();
+                        row[0] = wr;
                         //row[1] = get(AwarenessWorkRequest) wr.;
                         row[2] = wr.getStatus();
                         row[3] = wr.getSender();
@@ -132,6 +133,10 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         reqCorporateFunds = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        assignButton1 = new javax.swing.JButton();
+        approveButton2 = new javax.swing.JButton();
+        declineButton3 = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(null);
@@ -139,7 +144,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         scheduledEventTableLabel.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         scheduledEventTableLabel.setText("Scheduled Event Details");
         add(scheduledEventTableLabel);
-        scheduledEventTableLabel.setBounds(30, 220, 300, 27);
+        scheduledEventTableLabel.setBounds(30, 280, 300, 27);
 
         displayScheduledEventsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,22 +160,22 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         jScrollPane3.setViewportView(displayScheduledEventsTable);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(30, 260, 949, 137);
+        jScrollPane3.setBounds(30, 330, 949, 137);
 
         chooseCityFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         chooseCityFormLabel.setText("Choose City:");
         add(chooseCityFormLabel);
-        chooseCityFormLabel.setBounds(80, 440, 150, 25);
+        chooseCityFormLabel.setBounds(80, 480, 150, 25);
 
         chooseCityFormComboBox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         chooseCityFormComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(chooseCityFormComboBox);
-        chooseCityFormComboBox.setBounds(220, 440, 170, 33);
+        chooseCityFormComboBox.setBounds(220, 480, 170, 33);
 
         eventDateFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         eventDateFormLabel.setText("Date of Event:");
         add(eventDateFormLabel);
-        eventDateFormLabel.setBounds(60, 500, 160, 25);
+        eventDateFormLabel.setBounds(60, 540, 160, 25);
 
         setupEventBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         setupEventBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -182,16 +187,16 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(setupEventBtn);
-        setupEventBtn.setBounds(140, 550, 290, 50);
+        setupEventBtn.setBounds(140, 590, 290, 50);
 
         eventNameFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         eventNameFormLabel.setText("Name of Event:");
         add(eventNameFormLabel);
-        eventNameFormLabel.setBounds(570, 450, 138, 25);
+        eventNameFormLabel.setBounds(570, 490, 138, 25);
 
         eventNameFromTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         add(eventNameFromTextField);
-        eventNameFromTextField.setBounds(750, 440, 147, 33);
+        eventNameFromTextField.setBounds(750, 480, 147, 33);
 
         requestFundsFormTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,17 +204,17 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(requestFundsFormTextField);
-        requestFundsFormTextField.setBounds(750, 500, 147, 33);
+        requestFundsFormTextField.setBounds(750, 540, 147, 33);
 
         requestFundsFormLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         requestFundsFormLabel.setText("Request Funds:");
         add(requestFundsFormLabel);
-        requestFundsFormLabel.setBounds(570, 500, 180, 25);
+        requestFundsFormLabel.setBounds(570, 540, 180, 25);
 
         requestFundsFormCurrencyLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         requestFundsFormCurrencyLabel.setText("$");
         add(requestFundsFormCurrencyLabel);
-        requestFundsFormCurrencyLabel.setBounds(730, 450, 18, 28);
+        requestFundsFormCurrencyLabel.setBounds(730, 540, 18, 28);
 
         fundsRequestStatusBtn.setBackground(new java.awt.Color(153, 204, 255));
         fundsRequestStatusBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -224,7 +229,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         add(fundsRequestStatusBtn);
         fundsRequestStatusBtn.setBounds(310, 660, 361, 50);
         add(jDateChooser2);
-        jDateChooser2.setBounds(220, 500, 170, 32);
+        jDateChooser2.setBounds(220, 540, 170, 32);
 
         reqCorporateFunds.setBackground(java.awt.SystemColor.controlLtHighlight);
         reqCorporateFunds.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -236,7 +241,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             }
         });
         add(reqCorporateFunds);
-        reqCorporateFunds.setBounds(540, 550, 360, 50);
+        reqCorporateFunds.setBounds(540, 590, 360, 50);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,6 +266,41 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
 
         add(jScrollPane1);
         jScrollPane1.setBounds(30, 60, 452, 120);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel1.setText("Details of Awareness Camp Requests by Hospital");
+        add(jLabel1);
+        jLabel1.setBounds(30, 10, 540, 40);
+
+        assignButton1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        assignButton1.setText("Assign to me");
+        assignButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignButton1ActionPerformed(evt);
+            }
+        });
+        add(assignButton1);
+        assignButton1.setBounds(30, 210, 160, 30);
+
+        approveButton2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        approveButton2.setText("Approve");
+        approveButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveButton2ActionPerformed(evt);
+            }
+        });
+        add(approveButton2);
+        approveButton2.setBounds(230, 210, 105, 30);
+
+        declineButton3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        declineButton3.setText("Decline");
+        declineButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                declineButton3ActionPerformed(evt);
+            }
+        });
+        add(declineButton3);
+        declineButton3.setBounds(380, 210, 99, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     //Method to check common validation for Trust and Corporate
@@ -340,6 +380,13 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter values for all the fields");
             return;
         }
+        
+        //Field validation for event name
+       utility = new Utils();
+       if(!utility.isValidName(campaignName)){
+           JOptionPane.showMessageDialog(null, "Please enter valid name for the event");
+            return;
+       }
         /*
         if(!(utility.isValidCampaign(campaignName))){
             JOptionPane.showMessageDialog(null, "Campign Name is not valid");
@@ -353,7 +400,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
                return;
             }
         }catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Please add the date");
+            JOptionPane.showMessageDialog(null, "Please select the date for the event");
             return;
         }
         
@@ -366,7 +413,7 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
             requestFundsFormTextField.setText("");
             
         }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Please add correct amount of funds");
+            JOptionPane.showMessageDialog(null, "Please add valid amount of funds");
                   return ; 
         }
         
@@ -577,16 +624,103 @@ public class AwarenessCampaignInitiator extends javax.swing.JPanel {
         populateEventTable();
     }//GEN-LAST:event_reqCorporateFundsActionPerformed
 
+    private void approveButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButton2ActionPerformed
+         // TODO add your handling code here:
+         int selectedRow = jTable1.getSelectedRow();
+
+        if(jTable1.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "No rows available to select", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        AwarenessWorkRequest request = (AwarenessWorkRequest)jTable1.getValueAt(selectedRow, 0);
+        if( request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+            JOptionPane.showMessageDialog(null, "The request has already been Approved/Declined", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else if(request.getStatus().equalsIgnoreCase("Sent")){
+            JOptionPane.showMessageDialog(null, "Please assign therequest first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else if(request.getStatus().equalsIgnoreCase("Assigned")){
+           request.setStatus("Approved"); 
+        JOptionPane.showMessageDialog(null, "The request has already been Approved successfully!");
+        populatecampTable();
+        }
+        
+    }//GEN-LAST:event_approveButton2ActionPerformed
+
+    private void assignButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+
+        if(jTable1.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "No rows available to select", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        AwarenessWorkRequest request = (AwarenessWorkRequest)jTable1.getValueAt(selectedRow, 0);
+        if(request.getStatus().equalsIgnoreCase("Assigned") ){
+            JOptionPane.showMessageDialog(null, "The request has already been Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+            JOptionPane.showMessageDialog(null, "The request has already been Approved/Declined", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        request.setStatus("Assigned");
+        JOptionPane.showMessageDialog(null, "The request has been Assigned successfully!!");
+        populatecampTable();
+
+    }//GEN-LAST:event_assignButton1ActionPerformed
+
+    private void declineButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+
+        if(jTable1.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "No rows available to select", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        AwarenessWorkRequest request = (AwarenessWorkRequest)jTable1.getValueAt(selectedRow, 0);
+        if( request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+            JOptionPane.showMessageDialog(null, "The request has already been Approved/Declined", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else if(request.getStatus().equalsIgnoreCase("Sent")){
+            JOptionPane.showMessageDialog(null, "Please assign the request first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else if(request.getStatus().equalsIgnoreCase("Assigned")){
+           request.setStatus("Declined"); 
+           JOptionPane.showMessageDialog(null, "The request has been Declined successfully!!");
+        populatecampTable();
+        }
+
+    }//GEN-LAST:event_declineButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton approveButton2;
+    private javax.swing.JButton assignButton1;
     private javax.swing.JComboBox chooseCityFormComboBox;
     private javax.swing.JLabel chooseCityFormLabel;
+    private javax.swing.JButton declineButton3;
     private javax.swing.JTable displayScheduledEventsTable;
     private javax.swing.JLabel eventDateFormLabel;
     private javax.swing.JLabel eventNameFormLabel;
     private javax.swing.JTextField eventNameFromTextField;
     private javax.swing.JButton fundsRequestStatusBtn;
     private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
