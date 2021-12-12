@@ -7,6 +7,7 @@ package UserInterface.DoctorWorkspace;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.HospitalEnterprise;
 import Business.Enterprise.LabEnterprise;
 import Business.Entity.Donor;
 import Business.Entity.Recipient;
@@ -16,7 +17,9 @@ import Business.Organization.Organization;
 import Business.Organization.PathologyOrg;
 import Business.Organization.RadiologyOrg;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.DonorValidationWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +39,14 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     private UserAccount account;
     EcoSystem business;
-    String patientType = "";
 
     void populatePatientIdDropdown() {
         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (Donor donorObj : org.getDonorDirectory().getDonorRecords()) {
-                patientNameCombobox.addItem(donorObj.getPersonEmailId().trim());
-                patientType = "Donor";
+                donorComboName.addItem(donorObj.getPersonEmailId().trim());
             }
             for (Recipient rObj : org.getRecipientDirectory().getRecipientRecords()) {
                 patientNameCombobox.addItem(rObj.getPersonEmailId().trim());
-                patientType = "Recipient";
             }
         }
     }
@@ -78,11 +78,15 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         xrayCheckbox = new javax.swing.JCheckBox();
         radiologicTestCheckbox = new javax.swing.JCheckBox();
         gynecologicalScreeningCheckbox = new javax.swing.JCheckBox();
-        checkResultStatusButton = new javax.swing.JButton();
+        checkDonorResultStatusButton = new javax.swing.JButton();
         testResultSectionHeaderLabel = new javax.swing.JLabel();
         patientTestSectionHeaderLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         testSelectionHeaderLabel = new javax.swing.JLabel();
+        patientEmailDropdownLabel1 = new javax.swing.JLabel();
+        donorComboName = new javax.swing.JComboBox();
+        askDonorToTakeTestButton1 = new javax.swing.JButton();
+        checkResultStatusButton1 = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
 
@@ -96,7 +100,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
 
         askToTakeTestButton.setBackground(new java.awt.Color(153, 204, 255));
         askToTakeTestButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        askToTakeTestButton.setText("Ask To Take Test");
+        askToTakeTestButton.setText("Ask Patient To Take Test");
         askToTakeTestButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         askToTakeTestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +109,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         });
 
         patientEmailDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        patientEmailDropdownLabel.setText("Patient Information");
+        patientEmailDropdownLabel.setText("Patient List");
 
         testCheckboxLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         testCheckboxLabel.setText("Tests");
@@ -113,6 +117,11 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         xrayCheckbox.setBackground(new java.awt.Color(255, 255, 255));
         xrayCheckbox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         xrayCheckbox.setText("Chest X-Ray and Electrocardiogram (EKG)");
+        xrayCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xrayCheckboxActionPerformed(evt);
+            }
+        });
 
         radiologicTestCheckbox.setBackground(new java.awt.Color(255, 255, 255));
         radiologicTestCheckbox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -122,13 +131,13 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         gynecologicalScreeningCheckbox.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         gynecologicalScreeningCheckbox.setText("Gynecological screening");
 
-        checkResultStatusButton.setBackground(new java.awt.Color(153, 204, 255));
-        checkResultStatusButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        checkResultStatusButton.setText("Click to Check Result Status");
-        checkResultStatusButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        checkResultStatusButton.addActionListener(new java.awt.event.ActionListener() {
+        checkDonorResultStatusButton.setBackground(new java.awt.Color(153, 204, 255));
+        checkDonorResultStatusButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        checkDonorResultStatusButton.setText("Validate Donor Status");
+        checkDonorResultStatusButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        checkDonorResultStatusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkResultStatusButtonActionPerformed(evt);
+                checkDonorResultStatusButtonActionPerformed(evt);
             }
         });
 
@@ -139,7 +148,30 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
         patientTestSectionHeaderLabel.setText("Patient Information Section");
 
         testSelectionHeaderLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        testSelectionHeaderLabel.setText("Test Selection Panel");
+        testSelectionHeaderLabel.setText("Test Suggestion Panel");
+
+        patientEmailDropdownLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        patientEmailDropdownLabel1.setText("Donor List");
+
+        askDonorToTakeTestButton1.setBackground(new java.awt.Color(153, 204, 255));
+        askDonorToTakeTestButton1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        askDonorToTakeTestButton1.setText("Ask Donor To Take Test");
+        askDonorToTakeTestButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        askDonorToTakeTestButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                askDonorToTakeTestButton1ActionPerformed(evt);
+            }
+        });
+
+        checkResultStatusButton1.setBackground(new java.awt.Color(153, 204, 255));
+        checkResultStatusButton1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        checkResultStatusButton1.setText("Click to Check Result Status");
+        checkResultStatusButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        checkResultStatusButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkResultStatusButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -147,56 +179,87 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(356, 356, 356)
-                .addComponent(testSelectionHeaderLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkResultStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(testResultSectionHeaderLabel)
-                            .addComponent(patientTestSectionHeaderLabel)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(patientEmailDropdownLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(patientNameCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(testResultSectionHeaderLabel)
+                                .addGap(0, 816, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(xrayCheckbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(radiologicTestCheckbox)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(gynecologicalScreeningCheckbox))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(bloodTestCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(48, 48, 48)
+                                                .addComponent(cancerCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 416, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(askToTakeTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(askDonorToTakeTestButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(patientTestSectionHeaderLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(testSelectionHeaderLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(testCheckboxLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(xrayCheckbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(askToTakeTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(radiologicTestCheckbox)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(gynecologicalScreeningCheckbox))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(bloodTestCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(48, 48, 48)
-                                            .addComponent(cancerCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 416, Short.MAX_VALUE)))))
+                                .addComponent(testCheckboxLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(patientEmailDropdownLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(patientNameCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(patientEmailDropdownLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(donorComboName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(checkDonorResultStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(74, 74, 74)
+                    .addComponent(checkResultStatusButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(672, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(testSelectionHeaderLabel)
-                .addGap(27, 27, 27)
-                .addComponent(patientTestSectionHeaderLabel)
-                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(testSelectionHeaderLabel)
+                        .addGap(59, 59, 59))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(patientTestSectionHeaderLabel)
+                        .addGap(36, 36, 36)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(patientEmailDropdownLabel)
+                        .addComponent(patientNameCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(patientEmailDropdownLabel1)
+                        .addComponent(donorComboName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(testCheckboxLabel)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientNameCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(patientEmailDropdownLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(testCheckboxLabel)
                     .addComponent(bloodTestCheckbox)
                     .addComponent(cancerCheckbox))
                 .addGap(29, 29, 29)
@@ -206,14 +269,21 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addComponent(xrayCheckbox)
                 .addGap(34, 34, 34)
-                .addComponent(askToTakeTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(askToTakeTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(askDonorToTakeTestButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(testResultSectionHeaderLabel)
-                .addGap(50, 50, 50)
-                .addComponent(checkResultStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(checkDonorResultStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(592, Short.MAX_VALUE)
+                    .addComponent(checkResultStatusButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(58, 58, 58)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -230,6 +300,8 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             request.setMessage("Requesting set of common tests!");
             request.setSender(account);
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
+            request.setPatientId((String) patientNameCombobox.getItemAt(donorComboName.getSelectedIndex()));
+            request.setPatientType("Patient");
             Organization org = null;
             for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 if (organization instanceof InternalLabOrg) {
@@ -249,6 +321,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             request.setMessage("Requesting all pathological tests for patient!");
             request.setStatus("Request Generated");
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
+            request.setPatientType("Patient");
             Organization orgObj = null;
             for (Network networkObj : business.getNetworks()) {
                 for (Enterprise eObj : networkObj.getEnterpriseDirectory().getEnterpriseList()) {
@@ -273,6 +346,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             request.setSender(account);
             request.setMessage("Requesting all screening for patient");
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
+            request.setPatientType("Patient");
             Organization orgObj = null;
             for (Network networkObj : business.getNetworks()) {
                 for (Enterprise eObj : networkObj.getEnterpriseDirectory().getEnterpriseList()) {
@@ -299,30 +373,181 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_askToTakeTestButtonActionPerformed
 
-    private void checkResultStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkResultStatusButtonActionPerformed
+    private void checkDonorResultStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkDonorResultStatusButtonActionPerformed
         List<String> testLists = new ArrayList<>();
-        if (bloodTestCheckbox.isSelected()) testLists.add("Yes");
-        else testLists.add("No");
-        if (radiologicTestCheckbox.isSelected()) testLists.add("Yes");
-        else testLists.add("No");
-        if (xrayCheckbox.isSelected()) testLists.add("Yes"); else testLists.add("No");     
-        String patientId = (String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex());
-        ActivityAreaForDoctorPanel doctorActivityArea = new ActivityAreaForDoctorPanel(rightJPanel, account,enterprise, patientId , testLists, patientType);
+        if (bloodTestCheckbox.isSelected()) {
+            testLists.add("Yes");
+        } else {
+            testLists.add("No");
+        }
+        if (radiologicTestCheckbox.isSelected()) {
+            testLists.add("Yes");
+        } else {
+            testLists.add("No");
+        }
+        if (xrayCheckbox.isSelected()) {
+            testLists.add("Yes");
+        } else {
+            testLists.add("No");
+        }
+        String patientId = (String) donorComboName.getItemAt(donorComboName.getSelectedIndex());
+        ActivityAreaForDoctorPanel doctorActivityArea = new ActivityAreaForDoctorPanel(rightJPanel, account, enterprise, patientId, testLists, "Donor");
         rightJPanel.add("ActivityScreenForDoctor", doctorActivityArea);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
 
-    }//GEN-LAST:event_checkResultStatusButtonActionPerformed
+    }//GEN-LAST:event_checkDonorResultStatusButtonActionPerformed
+
+    private void xrayCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xrayCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_xrayCheckboxActionPerformed
+
+    private void askDonorToTakeTestButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_askDonorToTakeTestButton1ActionPerformed
+        // TODO add your handling code here:
+        if (bloodTestCheckbox.isSelected() == false
+                && gynecologicalScreeningCheckbox.isSelected() == false
+                && cancerCheckbox.isSelected() == false) {
+            JOptionPane.showMessageDialog(null, "Please advice some test!");
+            return;
+        }
+        if (bloodTestCheckbox.isSelected() || xrayCheckbox.isSelected()) {
+            LabTestWorkRequest request = new LabTestWorkRequest();
+            request.setStatus("Request Generated");
+            request.setMessage("Requesting set of common tests!");
+            request.setSender(account);
+            request.setPatientName((String) donorComboName.getItemAt(donorComboName.getSelectedIndex()));
+            request.setPatientId((String) donorComboName.getItemAt(donorComboName.getSelectedIndex()));
+            request.setPatientType("Donor");
+            Organization org = null;
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                if (organization instanceof InternalLabOrg) {
+                    org = organization;
+                    break;
+                }
+            }
+            if (org != null) {
+                org.getWorkQueue().getWorkRequestList().add(request);
+                account.getWorkQueue().getWorkRequestList().add(request);
+            }
+            JOptionPane.showMessageDialog(null, "A request has been sent to internal lab!");
+        }
+        if (gynecologicalScreeningCheckbox.isSelected()) {
+            LabTestWorkRequest request = new LabTestWorkRequest();
+            request.setSender(account);
+            request.setMessage("Requesting all pathological tests for patient!");
+            request.setStatus("Request Generated");
+            request.setPatientName((String) donorComboName.getItemAt(patientNameCombobox.getSelectedIndex()));
+            request.setPatientId((String) donorComboName.getItemAt(donorComboName.getSelectedIndex()));
+            request.setPatientType("Donor");
+            Organization orgObj = null;
+            for (Network networkObj : business.getNetworks()) {
+                for (Enterprise eObj : networkObj.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (eObj instanceof LabEnterprise) {
+                        for (Organization org : eObj.getOrganizationDirectory().getOrganizationList()) {
+                            if (org instanceof PathologyOrg) {
+                                orgObj = org;
+                            }
+                        }
+                    }
+                }
+            }
+            if (orgObj != null) {
+                orgObj.getWorkQueue().getWorkRequestList().add(request);
+                account.getWorkQueue().getWorkRequestList().add(request);
+                JOptionPane.showMessageDialog(null, "A request has been sent to pathology lab!");
+            }
+        }
+        if (cancerCheckbox.isSelected()) {
+            LabTestWorkRequest request = new LabTestWorkRequest();
+            request.setStatus("Request Generated");
+            request.setSender(account);
+            request.setMessage("Requesting all screening for patient");
+            request.setPatientType("Donor");
+            request.setPatientName((String) donorComboName.getItemAt(donorComboName.getSelectedIndex()));
+            request.setPatientId((String) donorComboName.getItemAt(donorComboName.getSelectedIndex()));
+            Organization orgObj = null;
+            for (Network networkObj : business.getNetworks()) {
+                for (Enterprise eObj : networkObj.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (eObj instanceof LabEnterprise) {
+                        for (Organization org : eObj.getOrganizationDirectory().getOrganizationList()) {
+                            if (org instanceof RadiologyOrg) {
+                                orgObj = org;
+                            }
+                        }
+                    }
+                }
+            }
+            if (orgObj != null) {
+                orgObj.getWorkQueue().getWorkRequestList().add(request);
+                account.getWorkQueue().getWorkRequestList().add(request);
+                JOptionPane.showMessageDialog(null, "A request has been sent to radiology lab!");
+            }
+            String patientIdObj = (String) donorComboName.getItemAt(donorComboName.getSelectedIndex());
+            int count = 0;
+            for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+                if (w instanceof DonorValidationWorkRequest) {
+                    DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
+                    if (patientIdObj.equalsIgnoreCase(a.getPatientId())) {
+                        count++;
+                    }
+                }
+            }
+            if (count == 0) {
+                {
+                    DonorValidationWorkRequest validationRequest = new DonorValidationWorkRequest();
+                    validationRequest.setStatus("Validation In Progress");
+                    validationRequest.setMessage("Awaiting Test Results");
+                    validationRequest.setSender(account);
+                    validationRequest.setReceiverName(enterprise.getName());
+                    validationRequest.setPatientName((String) donorComboName.getItemAt(donorComboName.getSelectedIndex()));
+                    validationRequest.setPatientId((String) donorComboName.getItemAt(donorComboName.getSelectedIndex()));
+                    if (enterprise != null) {
+                        enterprise.getWorkQueue().getWorkRequestList().add(validationRequest);
+                        account.getWorkQueue().getWorkRequestList().add(validationRequest);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_askDonorToTakeTestButton1ActionPerformed
+
+    private void checkResultStatusButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkResultStatusButton1ActionPerformed
+        // TODO add your handling code here:
+        List<String> testLists = new ArrayList<>();
+        if (bloodTestCheckbox.isSelected()) {
+            testLists.add("Yes");
+        } else {
+            testLists.add("No");
+        }
+        if (radiologicTestCheckbox.isSelected()) {
+            testLists.add("Yes");
+        } else {
+            testLists.add("No");
+        }
+        if (xrayCheckbox.isSelected()) {
+            testLists.add("Yes");
+        } else {
+            testLists.add("No");
+        }
+        String patientId = (String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex());
+        ActivityAreaForDoctorPanel doctorActivityArea = new ActivityAreaForDoctorPanel(rightJPanel, account, enterprise, patientId, testLists, "Patient");
+        rightJPanel.add("ActivityScreenForDoctor", doctorActivityArea);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_checkResultStatusButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton askDonorToTakeTestButton1;
     private javax.swing.JButton askToTakeTestButton;
     private javax.swing.JCheckBox bloodTestCheckbox;
     private javax.swing.JCheckBox cancerCheckbox;
-    private javax.swing.JButton checkResultStatusButton;
+    private javax.swing.JButton checkDonorResultStatusButton;
+    private javax.swing.JButton checkResultStatusButton1;
+    private javax.swing.JComboBox donorComboName;
     private javax.swing.JCheckBox gynecologicalScreeningCheckbox;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel patientEmailDropdownLabel;
+    private javax.swing.JLabel patientEmailDropdownLabel1;
     private javax.swing.JComboBox patientNameCombobox;
     private javax.swing.JLabel patientTestSectionHeaderLabel;
     private javax.swing.JCheckBox radiologicTestCheckbox;

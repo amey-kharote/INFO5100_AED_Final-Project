@@ -16,7 +16,7 @@ public class Donor extends Person{
     private String referenceName;
     private String referenceNo;
     private boolean isOrganAvailable;
-    
+    private boolean isDonorFitForTransplant;
     List<String> organList;
 
     public String getReferenceName() {
@@ -50,6 +50,15 @@ public class Donor extends Person{
     public void setOrganList(List<String> organList) {
         this.organList = organList;
     }
+    
+    public boolean isIsDonorFitForTransplant() {
+        return isDonorFitForTransplant;
+    }
+
+    public void setIsDonorFitForTransplant(boolean isDonorFitForTransplant) {
+        this.isDonorFitForTransplant = isDonorFitForTransplant;
+    }
+    
 
     @Override
     public String toString() {
