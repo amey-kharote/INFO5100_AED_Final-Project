@@ -82,7 +82,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
 
         setBackground(java.awt.SystemColor.activeCaption);
 
-        backButton.setBackground(new java.awt.Color(153, 204, 255));
+        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -204,7 +204,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         emergencyNameTextFieldName.setText("Name:");
 
         registerButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        registerButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        registerButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-register-32.png"))); // NOI18N
         registerButton.setText("Register");
         registerButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

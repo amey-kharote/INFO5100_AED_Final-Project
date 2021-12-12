@@ -72,23 +72,33 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        helperImageLabel = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         enterpriseAdminTable = new javax.swing.JTable();
-        formCityLabel = new javax.swing.JLabel();
         cityNetworkDropdown = new javax.swing.JComboBox();
+        formCityLabel = new javax.swing.JLabel();
         formenterpriseLabel = new javax.swing.JLabel();
         enterpriseNetworkDropdown = new javax.swing.JComboBox();
-        formUsernameLabel = new javax.swing.JLabel();
         formEmailTextField = new javax.swing.JTextField();
+        formUsernameLabel = new javax.swing.JLabel();
         formPasswordLabel = new javax.swing.JLabel();
         formPasswordField = new javax.swing.JPasswordField();
-        backBtn = new javax.swing.JButton();
         SubmitBtn = new javax.swing.JButton();
-        helperImageLabel = new javax.swing.JLabel();
 
-        jPanel1.setBackground(java.awt.SystemColor.activeCaption);
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBackground(java.awt.SystemColor.activeCaption);
+
+        helperImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/donation.jpg"))); // NOI18N
+
+        backBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backBtn.setText("Back");
+        backBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         enterpriseAdminTable.setBackground(java.awt.SystemColor.info);
         enterpriseAdminTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -113,12 +123,6 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseAdminTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 1040, 140));
-
-        formCityLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        formCityLabel.setText("City");
-        jPanel1.add(formCityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
-
         cityNetworkDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         cityNetworkDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityNetworkDropdown.addActionListener(new java.awt.event.ActionListener() {
@@ -126,11 +130,12 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
                 cityNetworkDropdownActionPerformed(evt);
             }
         });
-        jPanel1.add(cityNetworkDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 270, -1));
+
+        formCityLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        formCityLabel.setText("City");
 
         formenterpriseLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         formenterpriseLabel.setText("Enterprise");
-        jPanel1.add(formenterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
 
         enterpriseNetworkDropdown.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         enterpriseNetworkDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -139,32 +144,16 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
                 enterpriseNetworkDropdownActionPerformed(evt);
             }
         });
-        jPanel1.add(enterpriseNetworkDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 270, -1));
+
+        formEmailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
 
         formUsernameLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         formUsernameLabel.setText("Email");
-        jPanel1.add(formUsernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
-
-        formEmailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        jPanel1.add(formEmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 270, -1));
 
         formPasswordLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         formPasswordLabel.setText("Password");
-        jPanel1.add(formPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
 
         formPasswordField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        jPanel1.add(formPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 270, -1));
-
-        backBtn.setBackground(new java.awt.Color(153, 204, 255));
-        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backBtn.setText("Back");
-        backBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 160, 40));
 
         SubmitBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         SubmitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
@@ -175,32 +164,95 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
                 SubmitBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 170, 40));
-
-        helperImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/donation.jpg"))); // NOI18N
-        jPanel1.add(helperImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 600, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1283, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(formCityLabel)
+                                .addGap(19, 19, 19)
+                                .addComponent(cityNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(formenterpriseLabel)
+                                .addGap(15, 15, 15)
+                                .addComponent(enterpriseNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(formUsernameLabel)
+                                .addGap(24, 24, 24)
+                                .addComponent(formEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(formPasswordLabel)
+                                .addGap(23, 23, 23)
+                                .addComponent(formPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(helperImageLabel)))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 866, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 866, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formCityLabel)
+                            .addComponent(cityNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formenterpriseLabel)
+                            .addComponent(enterpriseNetworkDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formUsernameLabel)
+                            .addComponent(formEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formPasswordLabel)
+                            .addComponent(formPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(helperImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        rightJPanel.remove(this);
+        Component[] componentArray = rightJPanel.getComponents();
+        Component componentObj = componentArray[componentArray.length - 1];
+        SystemAdminDashboard sysAdminScreen = (SystemAdminDashboard) componentObj;
+        CardLayout prevLayout = (CardLayout) rightJPanel.getLayout();
+        // populate tree on admin screen
+        sysAdminScreen.populateTree();
+        prevLayout.previous(rightJPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void cityNetworkDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityNetworkDropdownActionPerformed
+        Network networkObj = (Network) cityNetworkDropdown.getSelectedItem();
+        if (networkObj != null)  populateEnterpriseList(networkObj);
+    }//GEN-LAST:event_cityNetworkDropdownActionPerformed
+
+    private void enterpriseNetworkDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseNetworkDropdownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseNetworkDropdownActionPerformed
 
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
         // TODO add your handling code here:
@@ -220,37 +272,16 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
         if (!util.isEmaildIdvalid(emailId)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email id.");
             return;
-        }      
+        }
 
         Employee employee = enterpriseObj.getEmployeeDirectory().createEmployee(emailId);
         UserAccount account = enterpriseObj.getUserAccountDirectory().createUserAccount(emailId, password, employee, new EnterpriseManagerRole());
-        
+
         formEmailTextField.setText("");
         formPasswordField.setText("");
-        
+
         populateEnterpriseTable();
     }//GEN-LAST:event_SubmitBtnActionPerformed
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        rightJPanel.remove(this);
-        Component[] componentArray = rightJPanel.getComponents();
-        Component componentObj = componentArray[componentArray.length - 1];
-        SystemAdminDashboard sysAdminScreen = (SystemAdminDashboard) componentObj;
-        CardLayout prevLayout = (CardLayout) rightJPanel.getLayout();
-        // populate tree on admin screen
-        sysAdminScreen.populateTree();
-        prevLayout.previous(rightJPanel);
-    }//GEN-LAST:event_backBtnActionPerformed
-
-    private void enterpriseNetworkDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseNetworkDropdownActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enterpriseNetworkDropdownActionPerformed
-
-    private void cityNetworkDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityNetworkDropdownActionPerformed
-        Network networkObj = (Network) cityNetworkDropdown.getSelectedItem();
-       if (networkObj != null)  populateEnterpriseList(networkObj);
-    }//GEN-LAST:event_cityNetworkDropdownActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -266,7 +297,6 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
     private javax.swing.JLabel formUsernameLabel;
     private javax.swing.JLabel formenterpriseLabel;
     private javax.swing.JLabel helperImageLabel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

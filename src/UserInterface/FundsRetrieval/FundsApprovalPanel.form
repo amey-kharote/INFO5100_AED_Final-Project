@@ -141,7 +141,7 @@
     <Component class="javax.swing.JButton" name="backBtn">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="99" type="rgb"/>
+          <Color blue="ff" green="ff" id="Control Lt Highlight" palette="2" red="ff" type="palette"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"/>

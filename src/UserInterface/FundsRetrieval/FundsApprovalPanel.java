@@ -97,7 +97,7 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
         requestedFundCurrencyLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         requestedFundCurrencyLabel.setText("$");
 
-        backBtn.setBackground(new java.awt.Color(153, 204, 255));
+        backBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backBtn.setText("Back");
         backBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

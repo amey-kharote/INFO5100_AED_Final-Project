@@ -146,7 +146,7 @@ public class FundsRequestStatusPanel extends javax.swing.JPanel {
         corporateFundingTableHeaderLbl.setText("Corporate Funds Request Status");
 
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backBtn.setText("BACK");
+        backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);

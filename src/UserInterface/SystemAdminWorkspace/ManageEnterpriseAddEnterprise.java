@@ -139,7 +139,7 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 150, -1));
 
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backBtn.setText("BACK");
+        backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -147,6 +147,7 @@ public class ManageEnterpriseAddEnterprise extends javax.swing.JPanel {
         });
         add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
+        submitBtn.setBackground(java.awt.SystemColor.controlLtHighlight);
         submitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         submitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitBtn.setText("Submit");
