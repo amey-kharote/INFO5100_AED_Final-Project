@@ -5,9 +5,12 @@
  */
 package UserInterface.CommonUI;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.HospitalEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import UserInterface.HospitalAdminWorkspace.CheckDonorRecipientRatio;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,19 +20,27 @@ import javax.swing.JPanel;
  * @author Amey
  */
 public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
-
+    
+    EcoSystem system;
     Enterprise enterpriseObj;
     JPanel rightJPanel;
 
     /**
      * Creates new form OrganizationAdminReusableWorkArea
      */
-    public OrganizationAdminReusableWorkArea(JPanel rightJPanel, Enterprise enterprise) {
+    public OrganizationAdminReusableWorkArea( EcoSystem system,JPanel rightJPanel, Enterprise enterprise) {
         initComponents();
+        this.system = system;
         this.rightJPanel = rightJPanel;
         this.enterpriseObj = enterprise;
         adminValue.setText(enterpriseObj.getName());
+        if(enterpriseObj instanceof HospitalEnterprise){
+            jButton1.setEnabled(true);
+        }else{
+            jButton1.setEnabled(false);
+        }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +56,7 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         manageOrgButton = new javax.swing.JButton();
         hospitalAdminLabel = new javax.swing.JLabel();
         adminValue = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,7 +103,16 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
 
         adminValue.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         adminValue.setText("<value>");
-        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 430, -1));
+        add(adminValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, -1));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton1.setText("Check Donor Recipient Ratio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 570, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserButtonActionPerformed
@@ -131,10 +152,19 @@ public class OrganizationAdminReusableWorkArea extends javax.swing.JPanel {
         layout.next(rightJPanel);
     }//GEN-LAST:event_manageOrgButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CheckDonorRecipientRatio checkRatio = new CheckDonorRecipientRatio(system, rightJPanel);
+                rightJPanel.add("manageEntAdmins", checkRatio);
+                CardLayout layout = (CardLayout) rightJPanel.getLayout();
+                layout.next(rightJPanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminValue;
     private javax.swing.JLabel hospitalAdminLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton manageOrgButton;
     private javax.swing.JButton managePeopleButton;
     private javax.swing.JButton manageUserButton;

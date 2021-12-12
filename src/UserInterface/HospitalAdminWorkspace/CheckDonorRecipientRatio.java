@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.SystemAdminWorkspace;
+package UserInterface.HospitalAdminWorkspace;
 
 import Business.EcoSystem;
+import Business.Enterprise.CampaignEnterprise;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.FundingEnterprise;
 import Business.Enterprise.HospitalEnterprise;
 import Business.Entity.Donor;
 import javax.swing.JPanel;
@@ -14,8 +16,11 @@ import Business.Entity.DonorDirectory;
 import Business.Entity.Recipient;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Organization.RedCrossAwarenessOrg;
+import Business.Organization.TrustFundOrg;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AwarenessWorkRequest;
+import UserInterface.SystemAdminWorkspace.SystemAdminDashboard;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -31,20 +36,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CheckDonorRecipientRatio extends javax.swing.JPanel {
 
-    EcoSystem ecoSystem;
+    EcoSystem system;
     JPanel panel;
-    private UserAccount userAccount;
     
     /**
      * Creates new form CheckDonorRecipientRatio
      */
-    public CheckDonorRecipientRatio(EcoSystem ecoSystem, JPanel panel, UserAccount userAccount) {
+    public CheckDonorRecipientRatio(EcoSystem system, JPanel panel) {
         initComponents();
-        this.ecoSystem = ecoSystem;
+        this.system = system;
         this.panel = panel;
-        this.userAccount = userAccount;
         populateValues();
         checkAllcount();
+        
+
     }
     
 
@@ -53,8 +58,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         int totalRecipeint = 0;
         int totalDonors = 0;
         
-        
-        for (Network n : ecoSystem.getNetworks()) {
+        for (Network n : system.getNetworks()) {
             for (Enterprise enterprise : n.getEnterpriseDirectory().getEnterpriseList()) {
                 if(enterprise instanceof HospitalEnterprise)
                 {
@@ -68,7 +72,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
                          
                    }
                 }
-            }
+            
             if(totalRecipeint <= totalDonors){
                 jButton1.setEnabled(true);
             }else{
@@ -76,7 +80,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
             }
             
         }
-        
+        } 
         jTextField1.setText(String.valueOf(totalDonors));
         jTextField2.setText(String.valueOf(totalRecipeint));
     }
@@ -84,7 +88,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
     private void checkAllcount(){
         int dCorneas = 0, dheart = 0, dkidkey = 0, dlungs = 0, dliver = 0, dpanceras = 0;
         int rCorneas = 0, rheart = 0, rkidkey = 0, rlungs = 0, rliver = 0, rpanceras = 0;
-        for (Network n : ecoSystem.getNetworks()) {
+        for (Network n : system.getNetworks()){
             for (Enterprise enterprise : n.getEnterpriseDirectory().getEnterpriseList()) {
                 if(enterprise instanceof HospitalEnterprise)
                 {
@@ -129,7 +133,8 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
                    }
                 }
             }
-        }
+    }
+        
  
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
@@ -323,24 +328,33 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         int column = 0;
         int row = jTable1.getSelectedRow();
         if(row < 1){
-            JOptionPane.showMessageDialog(null, "Pleaseselect a row.");
+            JOptionPane.showMessageDialog(null, "Please select a row.");
              return;
         }
         String value = jTable1.getModel().getValueAt(row, column).toString();
         
         AwarenessWorkRequest req = new AwarenessWorkRequest();
-        
-        req.
-        
-        
-        
         req.setMessage("Awarness Camp Required");
-        req.setSender(userAccount);
+        req.setFrom("Admin");
         req.setStatus("Sent");
-        req.setCampaign(eventNameFromTextField.getText());
-        req.setAmount(money1);
-        req.setEventName(campaignName);
-        req.setFundType("Trust");
+        req.setOrganType(value);
+        
+       Organization org1 = null;
+         for(Network network : system.getNetworks()){          
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CampaignEnterprise){                   
+                    for(Organization org :  enterprise.getOrganizationDirectory().getOrganizationList()){  
+                       if(org instanceof RedCrossAwarenessOrg){
+                           org1 = org; 
+                       }
+                   }
+                }
+            }
+        }
+         if(org1 != null){
+            org1.getWorkQueue().getWorkRequestList().add(req);
+        }
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

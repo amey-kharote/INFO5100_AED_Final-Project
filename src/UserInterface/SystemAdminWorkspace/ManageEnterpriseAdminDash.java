@@ -266,7 +266,7 @@ public class ManageEnterpriseAdminDash extends javax.swing.JPanel {
             return;
         }
         if (!util.isPasswordValid(password)) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid email id.");
+            JOptionPane.showMessageDialog(null, "Please enter a valid password. (Minimum eight characters, at least one uppercase letter, one lowercase letter and one number)");
             return;
         }
         if (!util.isEmaildIdvalid(emailId)) {
