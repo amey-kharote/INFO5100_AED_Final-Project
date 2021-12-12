@@ -6,10 +6,12 @@
 package UserInterface.DoctorWorkspace;
 
 import Business.Enterprise.Enterprise;
+import Business.Entity.Donor;
 import Business.Entity.Recipient;
 import Business.Organization.ApplicantOrg;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.DonorValidationWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -45,22 +47,52 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.account = account;
         this.patientType = patientType;
+        patientTypeLabel.setText(patientType);
+        pateintIdLabel.setText(patientUserName);
+        if(patientType.equalsIgnoreCase("Donor")){
+            priorityOptionsDropdown.setVisible(false);
+            setPriorityButton.setVisible(false);
+        }
         populateWorkRequestTable();
-
+        populateValidateTable();
     }
 
+    public void populateValidateTable(){
+        DefaultTableModel model = (DefaultTableModel) validateWr.getModel();
+        model.setRowCount(0);
+        DonorValidationWorkRequest finalObj = null;
+        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+                if (w instanceof DonorValidationWorkRequest) {
+                    DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
+                    if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
+                        finalObj = a;
+                        break;
+                    }
+                }
+       }
+       if(finalObj != null){
+                Object[] row = new Object[5];
+                row[0] = finalObj.getPatientId();
+                row[1] = finalObj.getSender();
+                row[2] = finalObj.isReceiverName();
+                row[3] = finalObj.getStatus();
+                model.addRow(row);
+          
+        }
+    }
     public void populateWorkRequestTable() {
-        DefaultTableModel model = (DefaultTableModel) displayWorkRequestTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) displayValidationWorkRequestTable.getModel();
         model.setRowCount(0);
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[5];
+            if(request instanceof LabTestWorkRequest)
             if (((LabTestWorkRequest) request).getPatientId().equals(patientUserName)) {
                 row[0] = ((LabTestWorkRequest) request).getPatientId();
-                row[1] = ((LabTestWorkRequest) request).getPatientName();
+                row[1] = ((LabTestWorkRequest) request).getSender();
                 row[2] = ((LabTestWorkRequest) request).getReceiver();
                 row[3] = ((LabTestWorkRequest) request).getStatus();
                 String result = ((LabTestWorkRequest) request).getTestResult();
-                row[4] = result == null ? "PENDING RESULTS" : result.toUpperCase();
+                row[4] = result == null ? "Pending Results" : result;
                 model.addRow(row);
             }
         }
@@ -78,12 +110,20 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         refreshTableButton = new javax.swing.JButton();
         displayEnterpriseValueTextField = new javax.swing.JLabel();
-        displayEnterpriseLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        displayWorkRequestTable = new javax.swing.JTable();
+        pateintIdLabel = new javax.swing.JLabel();
         priorityOptionsDropdown = new javax.swing.JComboBox();
         setPriorityButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        displayEnterpriseLabel1 = new javax.swing.JLabel();
+        patientTypeLabel = new javax.swing.JLabel();
+        markDonorUnfit = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        displayValidationWorkRequestTable = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        validateWr = new javax.swing.JTable();
+        displayEnterpriseLabel2 = new javax.swing.JLabel();
+        displayEnterpriseLabel3 = new javax.swing.JLabel();
+        markDonorFit = new javax.swing.JButton();
 
         jPanel1.setBackground(java.awt.SystemColor.activeCaption);
 
@@ -100,38 +140,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         displayEnterpriseValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEnterpriseValueTextField.setText("<value>");
 
-        displayEnterpriseLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        displayEnterpriseLabel.setText("Enterprise :");
-
-        displayWorkRequestTable.setBackground(java.awt.SystemColor.info);
-        displayWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        displayWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Patient Name", "Sender", "Status", "Result"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(displayWorkRequestTable);
+        pateintIdLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
 
         priorityOptionsDropdown.setBackground(new java.awt.Color(204, 204, 204));
         priorityOptionsDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -158,47 +167,185 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
             }
         });
 
+        displayEnterpriseLabel1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseLabel1.setText("Enterprise :");
+
+        patientTypeLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+
+        markDonorUnfit.setText("Mark Donor Unfit");
+        markDonorUnfit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                markDonorUnfitActionPerformed(evt);
+            }
+        });
+
+        displayValidationWorkRequestTable.setBackground(java.awt.SystemColor.info);
+        displayValidationWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayValidationWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Patient Name", "Sender", "Receiver", "Status", "Results"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(displayValidationWorkRequestTable);
+        if (displayValidationWorkRequestTable.getColumnModel().getColumnCount() > 0) {
+            displayValidationWorkRequestTable.getColumnModel().getColumn(4).setHeaderValue("Results");
+        }
+
+        validateWr.setBackground(java.awt.SystemColor.info);
+        validateWr.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        validateWr.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Patient Name", "Sender", "Receiver", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(validateWr);
+
+        displayEnterpriseLabel2.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseLabel2.setText("Lab Tests Requests:");
+
+        displayEnterpriseLabel3.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseLabel3.setText("Donor Validation Requests:");
+
+        markDonorFit.setText("Mark Donor Fit");
+        markDonorFit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                markDonorFitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(markDonorFit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(markDonorUnfit)
+                .addGap(513, 513, 513))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(57, 57, 57)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refreshTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(157, 157, 157))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(207, 207, 207)
+                            .addComponent(displayEnterpriseValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(579, 579, 579))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(80, 80, 80)
+                            .addComponent(displayEnterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(78, 78, 78)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(patientTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(pateintIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 372, Short.MAX_VALUE)
+                                    .addComponent(priorityOptionsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(setPriorityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(102, 102, 102))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(displayEnterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(refreshTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(displayEnterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(displayEnterpriseValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(priorityOptionsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(setPriorityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(188, Short.MAX_VALUE))
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(79, 79, 79)
+                    .addComponent(displayEnterpriseLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(853, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(refreshTableButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
-                .addGap(111, 111, 111)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshTableButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(setPriorityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priorityOptionsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(displayEnterpriseValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(displayEnterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(displayEnterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(setPriorityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(priorityOptionsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(patientTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pateintIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(17, 17, 17)
+                .addComponent(displayEnterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(markDonorUnfit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(markDonorFit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(135, 135, 135))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(483, Short.MAX_VALUE)
+                    .addComponent(displayEnterpriseLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(382, 382, 382)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -222,7 +369,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_refreshTableButtonActionPerformed
 
     private void setPriorityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriorityButtonActionPerformed
-        int selectedRow = displayWorkRequestTable.getSelectedRow();
+        int selectedRow = displayValidationWorkRequestTable.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row to set priority!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -231,7 +378,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
             for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (Recipient rObj : org.getRecipientDirectory().getRecipientRecords()) {
                     if (rObj.getPersonEmailId().equals(patientUserName)) {
-                        if ((displayWorkRequestTable.getValueAt(selectedRow, 2).equals("Completed"))) {
+                        if ((displayValidationWorkRequestTable.getValueAt(selectedRow, 2).equals("Completed"))) {
                             if (priorityOptionsDropdown.getSelectedIndex() == 0) {
                                 rObj.setPriorityNo(1);
                                 JOptionPane.showMessageDialog(null, "Priority set to HIGH!");
@@ -263,16 +410,70 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         cardLayout.previous(rightJPanel);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void markDonorUnfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorUnfitActionPerformed
+        // TODO add your handling code here:
+        WorkRequest finalObj = null;
+        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+                if (w instanceof DonorValidationWorkRequest) {
+                    DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
+                    if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
+                        finalObj = a;
+                        break;
+                    }
+                }
+       }
+       for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
+           if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
+               d.setIsDonorFitForTransplant(false);
+           }
+           
+       }
+       finalObj.setStatus("Marked Donor Unfit");
+       markDonorFit.setEnabled(false);
+       markDonorUnfit.setEnabled(false);
+       populateValidateTable();
+    }//GEN-LAST:event_markDonorUnfitActionPerformed
+
+    private void markDonorFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorFitActionPerformed
+        // TODO add your handling code here:
+        WorkRequest finalObj = null;
+        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+                if (w instanceof DonorValidationWorkRequest) {
+                    DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
+                    if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
+                        finalObj = a;
+                        break;
+                    }
+                }
+       }
+       for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
+           if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
+               d.setIsDonorFitForTransplant(true);
+           }
+           
+       }
+       finalObj.setStatus("Marked Donor Fit");
+       populateValidateTable();
+    }//GEN-LAST:event_markDonorFitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel displayEnterpriseLabel;
+    private javax.swing.JLabel displayEnterpriseLabel1;
+    private javax.swing.JLabel displayEnterpriseLabel2;
+    private javax.swing.JLabel displayEnterpriseLabel3;
     private javax.swing.JLabel displayEnterpriseValueTextField;
-    private javax.swing.JTable displayWorkRequestTable;
+    private javax.swing.JTable displayValidationWorkRequestTable;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton markDonorFit;
+    private javax.swing.JButton markDonorUnfit;
+    private javax.swing.JLabel pateintIdLabel;
+    private javax.swing.JLabel patientTypeLabel;
     private javax.swing.JComboBox priorityOptionsDropdown;
     private javax.swing.JButton refreshTableButton;
     private javax.swing.JButton setPriorityButton;
+    private javax.swing.JTable validateWr;
     // End of variables declaration//GEN-END:variables
 }

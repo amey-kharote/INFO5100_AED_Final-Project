@@ -25,9 +25,9 @@ public class DonorDirectory {
     }
     
     //Create a new Donor
-    public Donor createDonor(String personName, int personAge, String personAddress, String personPhoneNo, 
-            String personEmailId, String personBloodType, String personSex, String signature, String referenceName, 
-            String referenceNo, boolean isOrganAvailable, List<String> organList){
+    public Donor createDonor(String personName, int personAge,String personAddress , String personBloodType, String personPhoneNo,
+                    String personSex, String signature, String personEmailId,String referenceName, String referenceNo, boolean isOrganAvailable, List organList)
+          {
         
         Donor donor = new Donor();
         donor.setPersonName(personName);
@@ -42,6 +42,7 @@ public class DonorDirectory {
         donor.setReferenceNo(referenceNo);
         donor.setIsOrganAvailable(isOrganAvailable);
         donor.setOrganList(organList);
+        donor.setIsDonorFitForTransplant(false);
         donorRecords.add(donor);
         return donor;
     }

@@ -24,7 +24,6 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
      */
     Organization org;
     String emailStr;
-    String emailAddStr;
     JPanel rightJPanel;
 
     public DonorRegistrationForm(JPanel rightJPanel, Organization org, String emailStr) {
@@ -32,8 +31,6 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         this.rightJPanel = rightJPanel;
         this.org = org;
         this.emailStr = emailStr;
-        this.emailAddStr = emailAddStr;
-        String emailAddStr = emailStr;
         emailTextField.setText(emailStr);
     }
 
@@ -129,11 +126,6 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
         contactNumberLabel.setText("Contact Number:");
 
         contactNumTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        contactNumTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactNumTextFieldActionPerformed(evt);
-            }
-        });
 
         emailTextField.setEditable(false);
         emailTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -419,6 +411,15 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         String nameAdded = nameTextField.getText();
         String sexSelected = "";
+        if (maleRadioBtn.isSelected() && femaleRadioBtn.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Please only one gender.");
+            return;
+        }
+         if (organAvailRadioButton.isSelected() && organNotAvailRadioButton.isSelected()) {
+             JOptionPane.showMessageDialog(null, "Please only one status of organ availability.");
+            return;
+        }
+        
         if (maleRadioBtn.isSelected()) {
             sexSelected = maleRadioBtn.getText();
         }
@@ -487,7 +488,7 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter valid name.");
             return;
         }
-        if (!util.isEmaildIdvalid(emailAddStr)) {
+        if (!util.isEmaildIdvalid(emailStr)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email.");
             return;
         }
@@ -496,19 +497,14 @@ public class DonorRegistrationForm extends javax.swing.JPanel {
             return;
         }
         if (org != null && org.getDonorDirectory() != null) {
-            org.getDonorDirectory().createDonor(nameAdded, age, addressAdded,contactNo,
-                     emailAddStr, (String) bloodGroup, sexSelected,
-                    sign, emergencyName, emergencyNum, availableNow, organs);
-            JOptionPane.showMessageDialog(null, "Thankyou for registering as a donoe.");
+            org.getDonorDirectory().createDonor(nameAdded, age,addressAdded , (String) bloodGroup, contactNo,
+                    sexSelected, sign, emailStr, emergencyName, emergencyNum, availableNow, organs);
+            JOptionPane.showMessageDialog(null, "Thankyou for registering as a donor.");
             rightJPanel.remove(this);
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
             layout.previous(rightJPanel);
         }
     }//GEN-LAST:event_registerButtonActionPerformed
-
-    private void contactNumTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNumTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contactNumTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
