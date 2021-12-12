@@ -159,8 +159,8 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         Map<String, Integer> map2 = new HashMap<>();
 
         map2.put("Corneas", Integer.valueOf(rCorneas));
-        map2.put("Kidney", Integer.valueOf(rkidkey));
-        map2.put("Heart", Integer.valueOf(rheart));
+        map2.put("Kidney", Integer.valueOf(rheart));
+        map2.put("Heart", Integer.valueOf(rkidkey));
         map2.put("Lungs", Integer.valueOf(rlungs));
         map2.put("Liver", Integer.valueOf(rliver));
         map2.put("Panceras", Integer.valueOf(rpanceras));
@@ -228,7 +228,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Select the organs to initiate awareness camps");
+        jLabel3.setText("Select the organs to initiate awareness campaigns");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -284,7 +284,7 @@ public class CheckDonorRecipientRatio extends javax.swing.JPanel {
         corneasCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         corneasCheckBox.setText("Corneas");
 
-        jButton2.setText("View Camp details");
+        jButton2.setText("View Status of Requested Campaigns");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
