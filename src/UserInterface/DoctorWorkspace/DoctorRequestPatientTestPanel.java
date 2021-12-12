@@ -171,7 +171,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
 
         checkResultStatusButton1.setBackground(new java.awt.Color(153, 204, 255));
         checkResultStatusButton1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        checkResultStatusButton1.setText("Click to Check Result Status");
+        checkResultStatusButton1.setText("Check Recipient Status");
         checkResultStatusButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         checkResultStatusButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +294,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void askToTakeTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_askToTakeTestButtonActionPerformed
+        System.out.println("Patient requested ro perform tests: " +(String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
         if (bloodTestCheckbox.isSelected() == false
                 && gynecologicalScreeningCheckbox.isSelected() == false
                 && cancerCheckbox.isSelected() == false) {
@@ -306,7 +307,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             request.setMessage("Requesting set of common tests!");
             request.setSender(account);
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
-            request.setPatientId((String) patientNameCombobox.getItemAt(donorComboName.getSelectedIndex()));
+            request.setPatientId((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             request.setPatientType("Patient");
             Organization org = null;
             for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
@@ -328,6 +329,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             request.setStatus("Request Generated");
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             request.setPatientType("Patient");
+            request.setPatientId((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             Organization orgObj = null;
             for (Network networkObj : business.getNetworks()) {
                 for (Enterprise eObj : networkObj.getEnterpriseDirectory().getEnterpriseList()) {
@@ -352,6 +354,7 @@ public class DoctorRequestPatientTestPanel extends javax.swing.JPanel {
             request.setSender(account);
             request.setMessage("Requesting all screening for patient");
             request.setPatientName((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
+            request.setPatientId((String) patientNameCombobox.getItemAt(patientNameCombobox.getSelectedIndex()));
             request.setPatientType("Patient");
             Organization orgObj = null;
             for (Network networkObj : business.getNetworks()) {

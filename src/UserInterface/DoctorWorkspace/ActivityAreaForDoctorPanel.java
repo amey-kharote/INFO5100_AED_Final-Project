@@ -86,6 +86,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[5];
             if(request instanceof LabTestWorkRequest)
+            if(((LabTestWorkRequest) request).getPatientId()!= null)
             if (((LabTestWorkRequest) request).getPatientId().equals(patientUserName)) {
                 row[0] = ((LabTestWorkRequest) request).getPatientId();
                 row[1] = ((LabTestWorkRequest) request).getSender();
@@ -107,25 +108,34 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        refreshTableButton = new javax.swing.JButton();
-        displayEnterpriseValueTextField = new javax.swing.JLabel();
-        pateintIdLabel = new javax.swing.JLabel();
-        priorityOptionsDropdown = new javax.swing.JComboBox();
-        setPriorityButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        displayEnterpriseLabel1 = new javax.swing.JLabel();
-        patientTypeLabel = new javax.swing.JLabel();
+        refreshTableButton = new javax.swing.JButton();
         markDonorUnfit = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        displayValidationWorkRequestTable = new javax.swing.JTable();
+        markDonorFit = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         validateWr = new javax.swing.JTable();
-        displayEnterpriseLabel2 = new javax.swing.JLabel();
         displayEnterpriseLabel3 = new javax.swing.JLabel();
-        markDonorFit = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        displayValidationWorkRequestTable = new javax.swing.JTable();
+        displayEnterpriseLabel2 = new javax.swing.JLabel();
+        priorityOptionsDropdown = new javax.swing.JComboBox();
+        setPriorityButton = new javax.swing.JButton();
+        displayEnterpriseLabel1 = new javax.swing.JLabel();
+        displayEnterpriseValueTextField = new javax.swing.JLabel();
+        patientTypeLabel = new javax.swing.JLabel();
+        pateintIdLabel = new javax.swing.JLabel();
 
-        jPanel1.setBackground(java.awt.SystemColor.activeCaption);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
         refreshTableButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         refreshTableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/Refresh.jpg"))); // NOI18N
@@ -136,41 +146,7 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 refreshTableButtonActionPerformed(evt);
             }
         });
-
-        displayEnterpriseValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        displayEnterpriseValueTextField.setText("<value>");
-
-        pateintIdLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-
-        priorityOptionsDropdown.setBackground(new java.awt.Color(204, 204, 204));
-        priorityOptionsDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        priorityOptionsDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- High", "2- Medium", "3- Low" }));
-        priorityOptionsDropdown.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        setPriorityButton.setBackground(new java.awt.Color(204, 204, 204));
-        setPriorityButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        setPriorityButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/priority.png"))); // NOI18N
-        setPriorityButton.setText("Set Priority");
-        setPriorityButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        setPriorityButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setPriorityButtonActionPerformed(evt);
-            }
-        });
-
-        backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
-        displayEnterpriseLabel1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        displayEnterpriseLabel1.setText("Enterprise :");
-
-        patientTypeLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        add(refreshTableButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 90, -1, -1));
 
         markDonorUnfit.setText("Mark Donor Unfit");
         markDonorUnfit.addActionListener(new java.awt.event.ActionListener() {
@@ -178,39 +154,15 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                 markDonorUnfitActionPerformed(evt);
             }
         });
+        add(markDonorUnfit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 760, -1, -1));
 
-        displayValidationWorkRequestTable.setBackground(java.awt.SystemColor.info);
-        displayValidationWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        displayValidationWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Patient Name", "Sender", "Receiver", "Status", "Results"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        markDonorFit.setText("Mark Donor Fit");
+        markDonorFit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                markDonorFitActionPerformed(evt);
             }
         });
-        jScrollPane2.setViewportView(displayValidationWorkRequestTable);
-        if (displayValidationWorkRequestTable.getColumnModel().getColumnCount() > 0) {
-            displayValidationWorkRequestTable.getColumnModel().getColumn(4).setHeaderValue("Results");
-        }
+        add(markDonorFit, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 760, -1, -1));
 
         validateWr.setBackground(java.awt.SystemColor.info);
         validateWr.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
@@ -242,131 +194,139 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(validateWr);
 
-        displayEnterpriseLabel2.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
-        displayEnterpriseLabel2.setText("Lab Tests Requests:");
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 1050, 160));
 
         displayEnterpriseLabel3.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         displayEnterpriseLabel3.setText("Donor Validation Requests:");
+        add(displayEnterpriseLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, -1, -1));
 
-        markDonorFit.setText("Mark Donor Fit");
-        markDonorFit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                markDonorFitActionPerformed(evt);
+        displayValidationWorkRequestTable.setBackground(java.awt.SystemColor.info);
+        displayValidationWorkRequestTable.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayValidationWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Patient Name", "Sender", "Receiver", "Status", "Results"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane2.setViewportView(displayValidationWorkRequestTable);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(markDonorFit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(markDonorUnfit)
-                .addGap(513, 513, 513))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(refreshTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(207, 207, 207)
-                            .addComponent(displayEnterpriseValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(579, 579, 579))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(80, 80, 80)
-                            .addComponent(displayEnterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(78, 78, 78)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(patientTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(pateintIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 372, Short.MAX_VALUE)
-                                    .addComponent(priorityOptionsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(setPriorityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(102, 102, 102))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(displayEnterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(79, 79, 79)
-                    .addComponent(displayEnterpriseLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(853, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refreshTableButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(displayEnterpriseValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(displayEnterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(setPriorityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(priorityOptionsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(patientTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pateintIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(17, 17, 17)
-                .addComponent(displayEnterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(markDonorUnfit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(markDonorFit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(135, 135, 135))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(483, Short.MAX_VALUE)
-                    .addComponent(displayEnterpriseLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(382, 382, 382)))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 340, 1060, 120));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        displayEnterpriseLabel2.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseLabel2.setText("Lab Tests Requests:");
+        add(displayEnterpriseLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+
+        priorityOptionsDropdown.setBackground(new java.awt.Color(204, 204, 204));
+        priorityOptionsDropdown.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        priorityOptionsDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- High", "2- Medium", "3- Low" }));
+        priorityOptionsDropdown.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        add(priorityOptionsDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 280, -1, -1));
+
+        setPriorityButton.setBackground(new java.awt.Color(204, 204, 204));
+        setPriorityButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        setPriorityButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/priority.png"))); // NOI18N
+        setPriorityButton.setText("Set Priority");
+        setPriorityButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setPriorityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setPriorityButtonActionPerformed(evt);
+            }
+        });
+        add(setPriorityButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 280, -1, -1));
+
+        displayEnterpriseLabel1.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseLabel1.setText("Enterprise :");
+        add(displayEnterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, 70));
+
+        displayEnterpriseValueTextField.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        displayEnterpriseValueTextField.setText("<value>");
+        add(displayEnterpriseValueTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, 50));
+
+        patientTypeLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        add(patientTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+
+        pateintIdLabel.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
+        add(pateintIdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        rightJPanel.remove(this);
+        Component[] componentArray = rightJPanel.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DoctorRequestPatientTestPanel reqPatientLabTestObj = (DoctorRequestPatientTestPanel) component;
+        CardLayout cardLayout = (CardLayout)rightJPanel.getLayout();
+        cardLayout.previous(rightJPanel);
+    }//GEN-LAST:event_backButtonActionPerformed
 
+    private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButtonActionPerformed
+        populateWorkRequestTable();
+        populateValidateTable();
     }//GEN-LAST:event_refreshTableButtonActionPerformed
+
+    private void markDonorUnfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorUnfitActionPerformed
+        // TODO add your handling code here:
+        WorkRequest finalObj = null;
+        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+            if (w instanceof DonorValidationWorkRequest) {
+                DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
+                if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
+                    finalObj = a;
+                    break;
+                }
+            }
+        }
+        for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
+            if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
+                d.setIsDonorFitForTransplant(false);
+            }
+
+        }
+        finalObj.setStatus("Marked Donor Unfit");
+        populateValidateTable();
+    }//GEN-LAST:event_markDonorUnfitActionPerformed
+
+    private void markDonorFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorFitActionPerformed
+        // TODO add your handling code here:
+        WorkRequest finalObj = null;
+        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
+            if (w instanceof DonorValidationWorkRequest) {
+                DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
+                if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
+                    finalObj = a;
+                    break;
+                }
+            }
+        }
+        for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
+            if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
+                d.setIsDonorFitForTransplant(true);
+            }
+
+        }
+        finalObj.setStatus("Marked Donor Fit");
+        populateValidateTable();
+    }//GEN-LAST:event_markDonorFitActionPerformed
 
     private void setPriorityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriorityButtonActionPerformed
         int selectedRow = displayValidationWorkRequestTable.getSelectedRow();
@@ -374,11 +334,11 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row to set priority!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        if (patientType.equals("recipient")) {
+        if (patientType.equals("Patient")) {
             for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (Recipient rObj : org.getRecipientDirectory().getRecipientRecords()) {
                     if (rObj.getPersonEmailId().equals(patientUserName)) {
-                        if ((displayValidationWorkRequestTable.getValueAt(selectedRow, 2).equals("Completed"))) {
+                        if ((displayValidationWorkRequestTable.getValueAt(selectedRow, 3).equals("Completed"))) {
                             if (priorityOptionsDropdown.getSelectedIndex() == 0) {
                                 rObj.setPriorityNo(1);
                                 JOptionPane.showMessageDialog(null, "Priority set to HIGH!");
@@ -390,6 +350,9 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
                                 JOptionPane.showMessageDialog(null, "Priority set to LOW!");
                             }
 
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Sorry, You cannot set priority for patients with pending tests!");
+                            return;
                         }
                     }
                 }
@@ -400,62 +363,6 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_setPriorityButtonActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
-        rightJPanel.remove(this);
-        Component[] componentArray = rightJPanel.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        DoctorRequestPatientTestPanel reqPatientLabTestObj = (DoctorRequestPatientTestPanel) component;
-        CardLayout cardLayout = (CardLayout)reqPatientLabTestObj.getLayout();
-        cardLayout.previous(rightJPanel);
-    }//GEN-LAST:event_backButtonActionPerformed
-
-    private void markDonorUnfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorUnfitActionPerformed
-        // TODO add your handling code here:
-        WorkRequest finalObj = null;
-        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
-                if (w instanceof DonorValidationWorkRequest) {
-                    DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
-                    if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
-                        finalObj = a;
-                        break;
-                    }
-                }
-       }
-       for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
-           if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
-               d.setIsDonorFitForTransplant(false);
-           }
-           
-       }
-       finalObj.setStatus("Marked Donor Unfit");
-       markDonorFit.setEnabled(false);
-       markDonorUnfit.setEnabled(false);
-       populateValidateTable();
-    }//GEN-LAST:event_markDonorUnfitActionPerformed
-
-    private void markDonorFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markDonorFitActionPerformed
-        // TODO add your handling code here:
-        WorkRequest finalObj = null;
-        for (WorkRequest w : account.getWorkQueue().getWorkRequestList()) {
-                if (w instanceof DonorValidationWorkRequest) {
-                    DonorValidationWorkRequest a = (DonorValidationWorkRequest) w;
-                    if (patientUserName.equalsIgnoreCase(a.getPatientId())) {
-                        finalObj = a;
-                        break;
-                    }
-                }
-       }
-       for(Donor d:enterprise.getDonorDirectory().getDonorRecords()){
-           if(patientUserName.equalsIgnoreCase(d.getPersonEmailId())){
-               d.setIsDonorFitForTransplant(true);
-           }
-           
-       }
-       finalObj.setStatus("Marked Donor Fit");
-       populateValidateTable();
-    }//GEN-LAST:event_markDonorFitActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -464,7 +371,6 @@ public class ActivityAreaForDoctorPanel extends javax.swing.JPanel {
     private javax.swing.JLabel displayEnterpriseLabel3;
     private javax.swing.JLabel displayEnterpriseValueTextField;
     private javax.swing.JTable displayValidationWorkRequestTable;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton markDonorFit;

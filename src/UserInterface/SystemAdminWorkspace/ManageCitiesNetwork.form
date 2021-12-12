@@ -129,7 +129,6 @@
           <Image iconType="3" name="/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="BACK"/>
-        <Property name="actionCommand" type="java.lang.String" value="BACK"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
