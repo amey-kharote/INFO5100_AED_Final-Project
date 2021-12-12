@@ -96,8 +96,8 @@ public class ShowingInterestUI extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 580, 450));
 
-        submitButton.setBackground(new java.awt.Color(153, 204, 255));
-        submitButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        submitButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        submitButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {

@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 package UserInterface.LabAssistant;
-
 import Business.Role.InternalLabAssistantRole;
-
 import Business.Role.LabAssistantRole;
-
 import Business.UserAccount.UserAccount;
-
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.io.File;
 import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -68,6 +69,7 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
             }
         });
 
+        uploadButton.setBackground(java.awt.SystemColor.controlLtHighlight);
         uploadButton.setFont(new java.awt.Font("Times New Roman", 1, 23)); // NOI18N
         uploadButton.setText("Upload");
         uploadButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -81,7 +83,7 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
         uploadResultButtonLabel.setText("Upload Result:");
 
         submitResultButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        submitResultButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        submitResultButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         submitResultButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitResultButton.setText("Submit Result");
         submitResultButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -158,40 +160,40 @@ public class TestResultUploadPanel extends javax.swing.JPanel {
             return;
         } else {
             labTestWorkRequest.setTestResult(resultFileDisplayTextField.getText());
-//            boolean variableForSession = false;
-//            final String toPerson = labTestWorkRequest.getPatientName().trim(); 
-//            String from = "organdonationaed@gmail.com";
-//            String host = "smtp.gmail.com";
-//            String username = "organdonationaed@gmail.com";
-//            String password = "Pass@1234";
-//            Properties propertiesOfEmailServer = System.getProperties();
-//            propertiesOfEmailServer.setProperty("mail.smtp.host", host);
-//            propertiesOfEmailServer.put("mail.smtp.starttls.required", "true");
-//            propertiesOfEmailServer.put("mail.smtp.starttls.enable", "true");
-//            propertiesOfEmailServer.put("mail.smtp.host", host);
-//            propertiesOfEmailServer.put("mail.smtp.port", "587");
-//            propertiesOfEmailServer.put("mail.smtp.auth", "true");
-//            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-//            Session session;
-//            session = Session.getDefaultInstance(propertiesOfEmailServer, null);
-//            session.setDebug(variableForSession);
-//            try {
-//                MimeMessage messageToSendEmail = new MimeMessage(session);
-//                messageToSendEmail.setFrom(new InternetAddress(from));
-//                messageToSendEmail.setRecipient(Message.RecipientType.TO, new InternetAddress(toPerson));
-//                InternetAddress addressToPerson;
-//                addressToPerson = new InternetAddress(toPerson);
-//                messageToSendEmail.setSubject("Your Test Report is ready!");
-//                messageToSendEmail.setText("Hello! You can find the report in Attachment.");
-//                messageToSendEmail.setFileName(labTestWorkRequest.getTestUploaded());
-//                Transport transport = session.getTransport("smtp");
-//                transport.connect(host, username, password);
-//                transport.sendMessage(messageToSendEmail, messageToSendEmail.getAllRecipients());
-//                transport.close();
-//            } catch (Exception e) {
-//                System.out.println("MAIL NOT SENT");
-//                JOptionPane.showMessageDialog(null, "Please attach test report!");
-//            }
+            boolean variableForSession = false;
+            final String toPerson = labTestWorkRequest.getPatientName().trim(); 
+            String from = "organdonationaed@gmail.com";
+            String host = "smtp.gmail.com";
+            String username = "organdonationaed@gmail.com";
+            String password = "Pass@1234";
+            Properties propertiesOfEmailServer = System.getProperties();
+            propertiesOfEmailServer.setProperty("mail.smtp.host", host);
+            propertiesOfEmailServer.put("mail.smtp.starttls.required", "true");
+            propertiesOfEmailServer.put("mail.smtp.starttls.enable", "true");
+            propertiesOfEmailServer.put("mail.smtp.host", host);
+            propertiesOfEmailServer.put("mail.smtp.port", "587");
+            propertiesOfEmailServer.put("mail.smtp.auth", "true");
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session session;
+            session = Session.getDefaultInstance(propertiesOfEmailServer, null);
+            session.setDebug(variableForSession);
+            try {
+                MimeMessage messageToSendEmail = new MimeMessage(session);
+                messageToSendEmail.setFrom(new InternetAddress(from));
+                messageToSendEmail.setRecipient(Message.RecipientType.TO, new InternetAddress(toPerson));
+                InternetAddress addressToPerson;
+                addressToPerson = new InternetAddress(toPerson);
+                messageToSendEmail.setSubject("Your Test Report is ready!");
+                messageToSendEmail.setText("Hello! You can find the report in Attachment.");
+                messageToSendEmail.setFileName(labTestWorkRequest.getTestUploaded());
+                Transport transport = session.getTransport("smtp");
+                transport.connect(host, username, password);
+                transport.sendMessage(messageToSendEmail, messageToSendEmail.getAllRecipients());
+                transport.close();
+            } catch (Exception e) {
+                System.out.println("MAIL NOT SENT");
+                JOptionPane.showMessageDialog(null, "Please attach test report!");
+            }
             labTestWorkRequest.setStatus("Completed");
             JOptionPane.showMessageDialog(null, "Reports Uploaded. Request processing completed.");
             submitResultButton.setEnabled(false);

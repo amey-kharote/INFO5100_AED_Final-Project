@@ -88,8 +88,8 @@ public class NewApplicantSignUpForm extends javax.swing.JPanel {
         noBtn.setFont(new java.awt.Font("Tahoma", 0, 23)); // NOI18N
         noBtn.setText("No");
 
-        submitButton.setBackground(new java.awt.Color(153, 204, 255));
-        submitButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        submitButton.setBackground(java.awt.SystemColor.controlLtHighlight);
+        submitButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         submitButton.setText("Submit");
         submitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

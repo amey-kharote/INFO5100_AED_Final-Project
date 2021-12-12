@@ -190,7 +190,7 @@ public class ManageOrganizationReusablePanel extends javax.swing.JPanel {
             }
         });
 
-        orgTypeDropdownLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        orgTypeDropdownLabel.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         orgTypeDropdownLabel.setText("Organization Type");
 
         addOrgButton.setBackground(java.awt.SystemColor.controlLtHighlight);

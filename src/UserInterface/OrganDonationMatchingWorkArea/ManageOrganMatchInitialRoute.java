@@ -77,7 +77,6 @@ public class ManageOrganMatchInitialRoute extends javax.swing.JPanel {
         });
 
         backButton.setBackground(java.awt.SystemColor.controlLtHighlight);
-        backButton.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
         backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

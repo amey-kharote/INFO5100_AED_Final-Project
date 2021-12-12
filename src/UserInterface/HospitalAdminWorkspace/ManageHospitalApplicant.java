@@ -67,7 +67,7 @@ public class ManageHospitalApplicant extends javax.swing.JPanel {
         });
 
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/left-arrow-in-circular-button-black-symbol-2.png"))); // NOI18N
-        backButton.setText("<< Back");
+        backButton.setText("Back");
         backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

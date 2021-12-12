@@ -153,7 +153,7 @@ public class RecipientRegistrationForm extends javax.swing.JPanel {
         signatureTextField.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jButton3.setBackground(java.awt.SystemColor.controlLtHighlight);
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/icons8-submit-resume-24.png"))); // NOI18N
         jButton3.setText("Submit");
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

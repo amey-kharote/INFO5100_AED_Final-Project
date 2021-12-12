@@ -190,7 +190,7 @@
     <Component class="javax.swing.JButton" name="askToTakeTestButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="99" type="rgb"/>
+          <Color blue="ff" green="ff" id="Control Lt Highlight" palette="2" red="ff" type="palette"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="23" style="1"/>
@@ -271,7 +271,7 @@
     <Component class="javax.swing.JButton" name="checkDonorResultStatusButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="99" type="rgb"/>
+          <Color blue="ff" green="ff" id="Control Lt Highlight" palette="2" red="ff" type="palette"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="23" style="1"/>
