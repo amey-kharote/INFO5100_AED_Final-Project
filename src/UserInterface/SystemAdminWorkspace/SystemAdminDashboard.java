@@ -5,6 +5,7 @@
  */
 package UserInterface.SystemAdminWorkspace;
 
+import UserInterface.HospitalAdminWorkspace.CheckDonorRecipientRatio;
 import Business.EcoSystem;
 import Business.Network.Network;
 import java.awt.CardLayout;
@@ -133,7 +134,7 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
                 .addComponent(manageDonorRecipientBtn)
                 .addGap(53, 53, 53)
                 .addComponent(analysisBtn)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(rightButtonsJPanel);

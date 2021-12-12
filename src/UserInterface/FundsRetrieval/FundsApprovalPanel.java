@@ -202,7 +202,7 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Error encountered while sending email");
                 }   
 
-            request.setFundStatus("Approved");
+            request.setStatus("Approved");
             JOptionPane.showMessageDialog(null, "Funds have been approved");
         }
     }//GEN-LAST:event_approveRequestBtnActionPerformed
@@ -254,7 +254,7 @@ public class FundsApprovalPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Error encountered while sending email");
                 }   
 
-            request.setFundStatus("Declined");
+            request.setStatus("Declined");
             JOptionPane.showMessageDialog(null, "Funds have been declined");
         }
         
